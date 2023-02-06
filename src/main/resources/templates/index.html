@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/src/main/resources/static/images/logo.png" type="image/icon type">
+    <title>24HR Car Rental</title>
+
+    <!-- FontAweSome-->
+    <script src="https://kit.fontawesome.com/bdbcf2ce1a.js" crossorigin="anonymous"></script>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="/src/main/resources/static/imagefavicon.png">
+
+    <!-- Bootstrap 5 CDN Links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <!-- Custom File's Link -->
+    <link rel="stylesheet" type="text/css" href="/src/main/resources/static/css/style.css" />
+    <!-- <link rel="stylesheet" href="css/responsive-style.css"> -->
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+    <!-- Navbar section -->
+    <header class="header_wrapper">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="/src/main/resources/static/images/logo.png" class="img-fluid" alt="logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-stream navbar-toggler-icon"></i>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav menu-navbar-nav">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#guide">Guide</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">Routes</a>
+                        </li>
+
+                        <!-- backendCode here -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="partnerPage">Become Partner</a>
+                        </li>
+                        <!-- backendCode End -->
+
+                        <!-- backendCode here -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="login">Login</a>
+                        </li>
+                        <!-- backendCode End -->
+
+                        <li class="nav-item mt-3 mt-lg-0">
+                            <a class="main-btn" href="#home">Book Now</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Navbar section exit -->
+
+    <!-- Banner section -->
+    <section id="home" class="banner_wrapper p-0">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"
+                    style="background-image: url(/src/main/resources/static/images/slider/slider2.webp);">
+                    <div class="slide-caption text-center">
+                        <div>
+                            <h1>welcome to 24HR - CAR BOOKING</h1>
+                            <p>Need a ride? Contact us </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide"
+                    style="background-image: url(/src/main/resources/static/images/slider/slider1.webp);">
+                    <div class="slide-caption text-center">
+                        <div>
+                            <h1>The Safest, Fastest, Cheapest</h1>
+                            <p>Hotline booking</p>
+                            <a href="tel:0976192474">
+                                <p style="font-size: larger;">0976192474</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-vertical">
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button"
+                    aria-label="Go to slide 1" aria-current="true"></span>
+                    <span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span>
+            </div>
+        </div>
+
+        <div class="container booking-area">
+
+            <!-- backendCode here -->
+            <form class="row">
+                <div class="col-lg mb-3 mb-lg-0">
+                    <i class="fa-solid fa-calendar-days fa-lg "></i>
+                    <label class="search-label">Date of departure</label>
+                    <input type="date" class="form-control" placeholder="Date">
+                </div>
+                <div class="col-lg mb-3 mb-lg-0">
+                    <i class="fa-solid fa-map-location-dot fa-lg"></i>
+                    <label class="search-label">Pick up place</label>
+                    <input class="form-control" type="text" placeholder="Pick up place" required="">
+                </div>
+                <div class="col-lg mb-3 mb-lg-0">
+                    <i class="fa-solid fa-location-dot fa-lg"></i>
+                    <label class="search-label">Drop off place</label>
+                    <input class="form-control" type="text" placeholder="Drop off place" required="">
+                </div>
+                <div class="col-lg mb-3 mb-lg-0">
+                    <br>
+                    <button type="submit" class="main-btn2 rounded-2 px-lg-3">
+                        <i style="color: white;" class="fa-solid fa-magnifying-glass fa-lg"></i>
+                        <span style="color: white;">Check Availability</span>
+                    </button>
+                </div>
+            </form>
+            <!-- backendCode End -->
+        </div>
+
+    </section>
+    <!-- Banner section exit -->
+
+    <!-- guides section -->
+    <section id="guide" class="guides_wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div style="padding-top: 50px; padding-bottom: 50px;">
+                    <div class="col-sm-12 section-title text-center mb-5">
+                        <h5>We Are Here For You</h5>
+                        <h3>How to booking on 24HR</h3>
+                    </div>
+                    <div class="number font-size-18 row pt-5 text-center">
+                        <div class="  col-12 col-md-6 col-lg-3 ">
+                            <div style=" font-size: 133px; font-weight: bold;">01</div>
+                            <h3 style="color: #EA001E; text-transform: uppercase; margin-top: 10px;">Access
+                            </h3>
+                            <p class="number">Access to the system at 24HR. Then search for the journey presented in the
+                                Find Section.</p>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3 mb-3">
+                            <div style=" font-size: 133px; font-weight: bold;">02</div>
+                            <h3 style="color: #EA001E; text-transform: uppercase; margin-top: 10px;">Book ticket
+                            </h3>
+                            <p class="number">Select a flight and book by clicking on the fare section to see the total
+                                invoice to be paid,
+                                then view the flight specifics in the details area and select BOOK.</p>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3  mb-3">
+                            <div style=" font-size: 133px; font-weight: bold;">03</div>
+                            <h3 style="color: #EA001E; text-transform: uppercase; margin-top: 10px;">Fill information
+                            </h3>
+                            <p class="number">To proceed with the ticket purchase, provide the following information:
+                                customer information,
+                                contact information, and luggage information, then click Continue.</p>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3  mb-3">
+                            <div style=" font-size: 133px; font-weight: bold;">04</div>
+                            <h3 style="color: #EA001E; text-transform: uppercase; margin-top: 10px;">Payment</h3>
+                            <p class="number">Choose a payment method and follow the on-screen instructions. A
+                                confirmation email for your order will be sent by 24HR.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- guides Section Exit -->
+    
+    <section id="whyus" class="service_section sec_ptb_150 pb-0 mb_100 text-white clearfix"
+        data-bg-gradient="linear-gradient(0deg, #0C0C0F, #292D45)" style="background-image: linear-gradient(0deg, rgb(12, 12, 15), rgb(41, 45, 69));
+                padding-top: 30px;">
+        <div  class="container">
+            <div class="section_title mb_30 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                <h2  class="title_text mb-0" style="color: red;">-<span
+                        style="color: white; font-family: 'Goldman', cursive;"> Why Us </span>-</h2>
+            </div>
+            <div class="row justify-content-center" style="padding-top: 50px;">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="service_primary text-center text-white aos-init aos-animate" data-aos="fade-up"
+                        data-aos-delay="100">
+                        <div class="item_icon"><i class="fas fa-shield-alt"
+                                style="font-size: 48px; color: #EA001E;"></i></div>
+                        <h3 class="item_title text-white">Secured Payment Guarantee</h3>
+                        <p class="mb-0 text-white">Vestibulum at ultrices elit. Maecenas faucibus vulputate vestibulum
+                        </p>
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="service_primary text-center text-white aos-init aos-animate" data-aos="fade-up"
+                        data-aos-delay="300">
+                        <div class="item_icon"><i class="fal fa-headset"></i></div>
+                        <h3 class="item_title text-white">Help Center &amp; Support 24/7</h3>
+                        <p class="mb-0">Vestibulum at ultrices elit. Maecenas faucibus vulputate vestibulum</p>
+                    </div>
+                </div> -->
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="service_primary text-center text-white aos-init aos-animate" data-aos="fade-up"
+                        data-aos-delay="500">
+                        <div class="item_icon"><i class="fas fa-bus" style="font-size: 48px; color: #EA001E;"></i></div>
+                        <h3 class="item_title text-white">Booking any Company's Car</h3>
+                        <p class="mb-0 text-white">Vestibulum at ultrices elit. Maecenas faucibus vulputate vestibulum
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="service_primary text-center text-white aos-init aos-animate" data-aos="fade-up"
+                        data-aos-delay="100">
+                        <div class="item_icon"><i class="fas fa-briefcase" style="font-size: 48px; color: #EA001E;"></i>
+                        </div>
+                        <h3 class="item_title text-white">Corporate and Business Services</h3>
+                        <p class="mb-0 text-white">Vestibulum at ultrices elit. Maecenas faucibus vulputate vestibulum
+                        </p>
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="service_primary text-center text-white aos-init aos-animate" data-aos="fade-up"
+                        data-aos-delay="300">
+                        <div class="item_icon"><i class="fas fa-user-plus"></i></div>
+                        <h3 class="item_title text-white">Car Sharing Options</h3>
+                        <p class="mb-0">Vestibulum at ultrices elit. Maecenas faucibus vulputate vestibulum</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="service_primary text-center text-white aos-init aos-animate" data-aos="fade-up"
+                        data-aos-delay="500">
+                        <div class="item_icon"><i class="fas fa-gem"></i></div>
+                        <h3 class="item_title text-white">Limousine and Chauffeur Hire</h3>
+                        <p class="mb-0">Vestibulum at ultrices elit. Maecenas faucibus vulputate vestibulum</p>
+                    </div>
+                </div> -->
+
+            </div>
+
+
+            <div class="counter mt-5">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
+                            <h1>
+                                <span id="count1">1287</span>+
+                            </h1>
+                            <p>Happy Clients</p>
+                        </div>
+                        <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
+                            <h1>
+                                <span id="count2">50</span>+
+                            </h1>
+                            <p>Cars in Fleet</p>
+                        </div>
+                        <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
+                            <h1>
+                                <span id="count3">1140</span>+
+                            </h1>
+                            <p>Five Start Ratings</p>
+                        </div>
+                        <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
+                            <h1>
+                                <span id="count4">110</span>+
+                            </h1>
+                            <p>Days in Business</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Services section -->
+    <section id="services" class="services_wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 section-title text-center mb-5">
+                    <h5>We Are Here For You</h5>
+                    <h3>Our Awesome Routes</h3>
+                </div>
+            </div>
+            <div class="row align-items-center service-item-wrap">
+                <div class="col-lg-7 p-lg-0">
+
+                    <!--Service Area Start-->
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade active show" id="spa" role="tabpanel">
+                            <img src="/src/main/resources/static/images/routes/routes1.webp" alt="">
+                        </div>
+                        <div class="tab-pane fade" id="restaurent" role="tabpanel">
+                            <img src="/src/main/resources/static/images/routes/routes2.webp" alt="">
+                        </div>
+                        <div class="tab-pane fade" id="swimming" role="tabpanel">
+                            <img src="/src/main/resources/static/images/routes/routes3.webp" alt="">
+                        </div>
+                        <div class="tab-pane fade" id="conference" role="tabpanel">
+                            <img src="/src/main/resources/static/images/routes/routes4.webp" alt="">
+                        </div>
+                    </div>
+                    <!--Service Area End-->
+
+                </div>
+                <div class="col-lg-5 position-relative">
+                    <!--Service Tab Menu Area Start-->
+                    <div class="service-menu-area">
+                        <ul style="list-style: none;" class="nav">
+                            <li>
+                                <a data-bs-toggle="tab" href="#spa">
+                                    <span class="service-icon">
+                                        <i class="fa-solid fa-van-shuttle fa-2xl"></i>
+                                    </span>
+                                    <h5 style="color: #000c21;">Ho Chi Minh City - Da Lat </h5>
+                                    <p style="color: black;"><span style="color: #EA001E ;">Distance: </span>
+                                        310km</p>
+                                    <p style="color: black;"><span style="color: #EA001E ;">Duration: </span>
+                                        8 hour</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="tab" href="#restaurent">
+                                    <span class="service-icon">
+                                        <i class="fa-solid fa-van-shuttle fa-2xl"></i>
+                                    </span>
+                                    <h5 style="color: #000c21;">Ho Chi Minh City - Nha Trang </h5>
+                                    <p style="color: black;"><span style="color: #EA001E ;">Distance: </span>
+                                        426km</p>
+                                    <p style="color: black;"><span style="color: #EA001E ;">Duration: </span>
+                                        12 hour</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="tab" href="#swimming">
+                                    <span class="service-icon">
+                                        <i class="fa-solid fa-van-shuttle fa-2xl"></i>
+                                    </span>
+                                    <h5 style="color: #000c21;">Ho Chi Minh City - Da Nang </h5>
+                                    <p style="color: black;"><span style="color: #EA001E ;">Distance: </span>
+                                        980km</p>
+                                    <p style="color: black;"><span style="color: #EA001E ;">Duration: </span>
+                                        20 hour</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a style="margin-bottom: -17px;" data-bs-toggle="tab" href="#conference">
+                                    <span class="service-icon">
+                                        <i class="fa-solid fa-van-shuttle fa-2xl"></i>
+                                    </span>
+                                    <h5 style="color: #000c21;">Ho Chi Minh City - Can Tho</h5>
+                                    <p style="color: black;"><span style="color: #EA001E ;">Distance: </span>
+                                        166km</p>
+                                    <p style="color: black;"><span style="color: #EA001E ;">Duration: </span>
+                                        3.30 hour</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Service Tab Menu Area End-->
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="counter mt-5">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
+                        <h1>
+                            <span id="count1">1287</span>+
+                        </h1>
+                        <p>Happy Clients</p>
+                    </div>
+                    <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
+                        <h1>
+                            <span id="count2">50</span>+
+                        </h1>
+                        <p>Cars in Fleet</p>
+                    </div>
+                    <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
+                        <h1>
+                            <span id="count3">1140</span>+
+                        </h1>
+                        <p>Five Start Ratings</p>
+                    </div>
+                    <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
+                        <h1>
+                            <span id="count4">110</span>+
+                        </h1>
+                        <p>Days in Business</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+    </section>
+    <!-- Services section Exit -->
+
+
+    <!-- Rental Section Exit  -->
+
+    <!-- Footer section -->
+    <section id="contact" class="footer_wrapper mt-3 mt-md-0 pb-0">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <h5>24HR Co., ltd</h5>
+                    <div class="contact-info">
+                        <ul class="list-unstyled">
+                            <li><a href="#"><i class="fa fa-home me-3"></i>Lot E2a-7, D1 Street, Hi-Tech Park, Long
+                                    Thanh My Ward, Thu Duc City, Ho Chi Minh City HCM.</a></li>
+                            <li><a href="#"><i class="fa fa-phone me-3"></i>(097) 6192474</a></li>
+                            <li><a href="#"><i class="fa fa-envelope me-3"></i>24hr@gmail.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Useful Links</h5>
+                    <ul class="link-widget p-0">
+                        <li><a href="#home">Homepage</a></li>
+                        <li><a href="#guide">Guide</a></li>
+                        <li><a href="#whyus">Why Us</a></li>
+                        <li><a href="#services">Routes</a></li>
+                        <!-- <li><a href="#">Price</a></li>
+                        <li><a href="#">Rental</a></li> -->
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+
+                    <h5>Stay Connected</h5>
+
+                    <ul class="social-network d-flex align-items-center p-0">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+                    </ul>
+                </div>
+
+                <hr class="hr-footer">
+                <div class="container-fluid copyright-section">
+                    <p>Copyright <a href="#">© 24HR.</a> All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Footer section exit -->
+
+    <!-- Bootstrap 5 JS CDN Links -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Custom Js Link -->
+    <script src="/src/main/resources/static/js/main.js"></script>
+</body>
+
+</html>

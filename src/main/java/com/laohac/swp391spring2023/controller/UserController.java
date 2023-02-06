@@ -1,10 +1,14 @@
 package com.laohac.swp391spring2023.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.laohac.swp391spring2023.security.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,10 +17,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController {
 
-    @PostMapping("/login-google")
-    public String login(@AuthenticationPrincipal OAuth2User principal){
+    @Autowired
+    private UserService userService;
 
-        return null;
+    @PostMapping("/login-google")
+    public String login(Model model, @AuthenticationPrincipal OAuth2User user){
+
+        userService.login(user);
+
+        return "user";
     }
 
     

@@ -1,4 +1,4 @@
-package com.laohac.swp391spring2023.security.impl;
+package com.laohac.swp391spring2023.service.impl;
 
 import java.util.Optional;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.UserRepository;
-import com.laohac.swp391spring2023.security.UserService;
+import com.laohac.swp391spring2023.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
                                 .username(username)
                                 .email(email)
                                 .build();
+        System.out.println(newUser);
         return userDTOResponse;
         
     }

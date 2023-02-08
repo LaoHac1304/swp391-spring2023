@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/src/main/resources/static/images/logo.png" type="image/icon type">
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/icon type">
     <title>24HR Car Rental</title>
 
     <!-- FontAweSome-->
-    <script src="https://kit.fontawesome.com/bdbcf2ce1a.js" crossorigin="anonymous"></script>
+    <script th:src="@{https://kit.fontawesome.com/bdbcf2ce1a.js}" crossorigin="anonymous"></script>
 
     <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="/src/main/resources/static/imagefavicon.png">
+    <link rel="icon" type="image/png" th:href="@{/imagefavicon.png}">
 
     <!-- Bootstrap 5 CDN Links -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}">
 
     <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{https://unpkg.com/swiper/swiper-bundle.min.css}">
 
     <!-- Custom File's Link -->
-    <link rel="stylesheet" type="text/css" href="/src/main/resources/static/css/homepageStyle.css" />
-    <!-- <link rel="stylesheet" href="css/responsive-style.css"> -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepageStyle.css}" />
+    <!-- <link rel="stylesheet" th:href="css/responsive-style.css"> -->
 
 
 </head>
@@ -33,7 +34,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <img src="/src/main/resources/static/images/logo.png" class="img-fluid" alt="logo">
+                    <img th:src="@{/images/logo.png}" class="img-fluid" alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -468,14 +469,14 @@
     <!-- Footer section exit -->
 
     <!-- Bootstrap 5 JS CDN Links -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js}"></script>
 
     <!-- Swiper JS -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script th:src="@{https://unpkg.com/swiper/swiper-bundle.min.js}"></script>
 
     <!-- Custom Js Link -->
-    <script src="/src/main/resources/static/js/main.js"></script>
+    <script th:src="@{/js/main.js}"></script>
 </body>
 
 </html>

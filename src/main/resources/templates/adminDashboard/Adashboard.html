@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,13 +7,13 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="/src/main/resources/static/css/adminStyle.css" rel="stylesheet" />
+        <link th:href="@{https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css}" rel="stylesheet" />
+        <link th:href="@{/css/adminStyle.css}" rel="stylesheet" />
 
         <!-- turn off favicon-->
-        <link rel="icon" href="data:;base64,=">
+        <link rel="icon" href="data:;base64,="> 
 
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <script th:src="@{https://use.fontawesome.com/releases/v6.1.0/js/all.js}" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark ">
@@ -53,7 +53,7 @@
                                 Dashboard
                             </a>
 
-                            <a class="nav-link" href="Adashboard.html">
+                            <a class="nav-link" th:href="@{member/addEmployee}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user "></i></div>
                                 Add Employee
                             </a>
@@ -65,7 +65,7 @@
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link" href="/src/main/resources/templates/home/index.html" target="_blank">
+                                    <a class="nav-link" th:href="@{/home/index.html}" target="_blank">
                                         Homepage
                                     </a>
                                 </nav>
@@ -646,13 +646,13 @@
                 </footer>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="/src/main/resources/static/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="/src/main/resources/static/assets/demo/chart-area-demo.js"></script>
-        <script src="/src/main/resources/static/assets/demo/chart-bar-demo.js"></script>
-        <script src="/src/main/resources/static/assets/demo/chart-pie-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="/src/main/resources/static/js/datatables-simple-demo.js"></script>
+        <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js}" crossorigin="anonymous"></script>
+        <script th:src="@{/js/scripts.js}"></script>
+        <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js}" crossorigin="anonymous"></script>
+        <script th:src="@{/assets/demo/chart-area-demo.js}"></script>
+        <script th:src="@{/assets/demo/chart-bar-demo.js}"></script>
+        <script th:src="@{/assets/demo/chart-pie-demo.js}"></script>
+        <script th:src="@{https://cdn.jsdelivr.net/npm/simple-datatables@latest}" crossorigin="anonymous"></script>
+        <script th:src="@{/js/datatables-simple-demo.js}"></script>
     </body>
 </html>

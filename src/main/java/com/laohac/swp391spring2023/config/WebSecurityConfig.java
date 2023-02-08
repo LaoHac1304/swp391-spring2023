@@ -19,7 +19,7 @@ public class WebSecurityConfig {
         httpSecurity.cors();
         httpSecurity.csrf().disable();
         httpSecurity.authorizeRequests()
-                .antMatchers("/homepage").permitAll()
+                .antMatchers("/homepage", "/member").permitAll()
                 .anyRequest().authenticated().and().oauth2Login();
         //httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 

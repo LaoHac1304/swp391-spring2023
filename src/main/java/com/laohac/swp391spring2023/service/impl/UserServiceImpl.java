@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
         User newUser = new User();
 
         if (!userOptional.isPresent()){
-            newUser = User.builder().username(username).email(email).build();
+            newUser = User.builder().fullName(username).email(email).build();
             userRepository.save(newUser);
         }
 

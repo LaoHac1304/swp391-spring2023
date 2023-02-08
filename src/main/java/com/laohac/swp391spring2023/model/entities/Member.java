@@ -24,6 +24,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "EmpID")
     private int id;
 
     @Column(name = "Role")

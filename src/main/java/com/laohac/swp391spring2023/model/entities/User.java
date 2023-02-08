@@ -24,10 +24,12 @@ public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CustomerID")
     private int id;
 
-    @Column(unique = true)
     private String email;
 
-    private String username;
+    private String fullName;
+    private String sex;
+    private String phoneNumber;
 }

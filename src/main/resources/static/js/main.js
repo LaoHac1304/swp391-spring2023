@@ -78,3 +78,20 @@ var swiper = new Swiper(".our-partner", {
     },
 });
 
+// Music
+let playing = false;
+
+document.addEventListener("keydown", function(event) {
+  if (event.code === "Space") {
+    var music = document.getElementById("music");
+    if (playing === true) {
+      music.pause();
+      playing = false;
+    } else {
+      music.play();
+      playing = true;
+    }
+  }
+});
+
+

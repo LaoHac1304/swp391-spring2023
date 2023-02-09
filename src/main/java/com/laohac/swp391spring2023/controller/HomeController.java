@@ -12,6 +12,11 @@ public class HomeController {
     public String showHomePage(){
         return "home/index";
     }
+
+    @GetMapping("/adminDashBord")
+    public String showAdminDashBoard(){
+        return "adminDashboard/Adashboard";
+    }
     
     
 }

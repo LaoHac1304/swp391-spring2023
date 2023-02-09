@@ -1,14 +1,12 @@
 package com.laohac.swp391spring2023.service.impl;
 
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.core.user.OAuth2User;
+
 import org.springframework.stereotype.Service;
 
-import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
-import com.laohac.swp391spring2023.model.entities.Member;
-import com.laohac.swp391spring2023.model.entities.User;
+
 import com.laohac.swp391spring2023.repository.UserRepository;
 import com.laohac.swp391spring2023.service.UserService;
 
@@ -18,7 +16,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
-    @Override
+    /*@Override
     public UserDTOResponse login(OAuth2User user) {
         
         UserDTOResponse userDTOResponse = new UserDTOResponse();
@@ -40,12 +38,10 @@ public class UserServiceImpl implements UserService {
                                 .email(email)
                                 .build();
         System.out.println(newUser);
-        return userDTOResponse;
+        return userDTOResponse;*/
         
     }
 
 
 
 
-
-}

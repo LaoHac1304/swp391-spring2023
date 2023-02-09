@@ -56,7 +56,7 @@ button {
 
 }
 
-form{
+.form-login{
     height: 480px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
@@ -123,6 +123,10 @@ h3 {
     display: inline-block;
 }
 
+.image-slider{
+    background-image: url(/src/main/resources/static/images/slider/slider1.webp);
+}
+
 img {
     width: 20%;
     height: 20%;
@@ -156,7 +160,8 @@ img {
 
 body {
     font-family: var(--primary-font);
-    background-color: var(--bg-white);
+    /* background-color: var(--bg-white); */
+    background-image: url(@{/imgages/slider/about-us.jpg});
 }
 
 a {

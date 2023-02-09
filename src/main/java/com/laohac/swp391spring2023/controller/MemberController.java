@@ -32,7 +32,7 @@ public class MemberController {
     public String showEmployeePage(Model model){
         Member member = new Member();
         model.addAttribute("employee", member);
-        return "adminDashboard/Adashboard";
+        return "adminDashboard/addEmployee";
     }
 
     @PostMapping("/memberLogin")
@@ -44,11 +44,12 @@ public class MemberController {
     }
 
     @PostMapping("/add")
-    public String addMember(Model model) {
-        Member member = new Member();
-        model.addAttribute("member", member);
-        return "add-dashboard";
+    public String addMember(@ModelAttribute("employee") Member member) {
+        Member employee = new Member();
+        //employee = memberService.addMember(member);
+        return "adminDashboard/addEmployee";
     }
+
 
     @GetMapping("/adminDB")
     public String showAdminDB(){

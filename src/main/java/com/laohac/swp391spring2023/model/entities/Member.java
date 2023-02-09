@@ -43,5 +43,8 @@ public class Member {
     @Column(name = "Password")
     private String password;
 
+    @Column(name = "Email")
+    private String email;
+
     
 }

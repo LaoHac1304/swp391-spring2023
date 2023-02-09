@@ -102,15 +102,15 @@
                                 Add Employee
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form th:action="@{/member/add}"  method="post">
                                     <div class="form-floating mb-3">
-                                        <input class="form-color form-control " id="inputUsername" type="text" placeholder="name@example.com">
+                                        <input class="form-color form-control " id="inputUsername"  type="text" placeholder="name@example.com">
                                         <label for="inputUsername">Username</label>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com">
+                                    <!-- <div class="form-floating mb-3">
+                                        <input class="form-control" id="inputEmail" type="email" th:field="*{email}" placeholder="name@example.com">
                                         <label for="inputEmail">Email address</label>
-                                    </div>
+                                    </div> -->
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="inputPassword" type="password" placeholder="Password">
                                           
@@ -118,7 +118,7 @@
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input class="form-control"  type="text" placeholder="Role" list="roleList">
-                                        <datalist id="roleList">
+                                        <datalist id="roleList" >
                                             <option value="ADMIN">ADMIN</option>
                                             <option value="EMPLOYEE">EMPLOYEE</option>
                                         </datalist>
@@ -126,7 +126,7 @@
                                     </div>
                                    
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0 center">
-                                        <a class="btn btn-primary" href="index.html">Login</a>
+                                        <a class="btn btn-primary" href="#">Add</a>
                                     </div>
                                 </form>
                             </div>

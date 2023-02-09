@@ -1,5 +1,6 @@
 package com.laohac.swp391spring2023.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,29 @@ public class MemberServiceImpl implements MemberService {
         return null;
     }
 
+    public List<Member> getAllMember() {      
+        return memberRepository.findAll();
+    }
+    @Override
+    public Member getMemberById(int id) {
+        Optional<Member> optional = memberRepository.findById(id);
+        Member member = null;
+        if(optional.isPresent()){
+            member = optional.get();
+        }else{
+            throw new RuntimeException("Not found");
+        }
+        return member;
+    }
+    @Override
+    public void deleteMemberById(int id) {
+        this.memberRepository.deleteById(id);
+        
+    }
     @Override
     public void addMember(Member member) {
-        member.setPassword(member.getPassword());
-        memberRepository.save(member);
+        member.setRole("employee");
+        this.memberRepository.save(member);       
     }
 
     

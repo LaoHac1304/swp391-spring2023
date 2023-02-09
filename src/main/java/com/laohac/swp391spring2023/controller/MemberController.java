@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,13 +29,6 @@ public class MemberController {
         return "home/login"; 
     }
 
-    @GetMapping("/addEmployee")
-    public String showEmployeePage(Model model){
-        Member member = new Member();
-        model.addAttribute("employee", member);
-        return "adminDashboard/addEmployee";
-    }
-
     @PostMapping("/memberLogin")
     public String loginMember(@ModelAttribute("member") Member member){
         MemberDTOReponse memberLogin = memberService.authenticate(member);
@@ -43,12 +37,6 @@ public class MemberController {
         return "home/login";
     }
 
-    @PostMapping("/add")
-    public String addMember(@ModelAttribute("employee") Member member) {
-        Member employee = new Member();
-        //employee = memberService.addMember(member);
-        return "adminDashboard/addEmployee";
-    }
 
 
     @GetMapping("/adminDB")
@@ -56,15 +44,46 @@ public class MemberController {
         return "adminDashboard/Adashboard";
     }
 
-    
-
     @PostMapping("/sign-up")
     public String signUp(MemberDTORequest memberDTORequest){
 
         /*MemberDTOReponse member = memberService.authenticate(memberDTORequest);*/
         return null;
     }
+    
+    @GetMapping("/viewall")
+    public String viewAllMember(Model model) {
+        model.addAttribute("listMembers", memberService.getAllMember());
+        return "adminDashboard/Adashboard";
+    }
 
+    @GetMapping("/add")
+    public String addMember(Model model) {
+        Member member = new Member();
+        model.addAttribute("member", member);
+    
+        return "adminDashboard/addEmployee";
+    }
+
+    @GetMapping("/save")
+    public String saveMember(@ModelAttribute("member") Member member) {
+        memberService.addMember(member);
+        System.out.println(member);
+        return "redirect:/member/viewall";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateMember(@PathVariable(value = "id") int id, Model model) {
+        Member member = memberService.getMemberById(id);
+        model.addAttribute("member", member);
+        return "adminDashboard/updateEmployee";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteMember(@PathVariable(value = "id") int id) {
+        this.memberService.deleteMemberById(id);
+        return "redirect:/member/viewall";
+    }
     
     
 }

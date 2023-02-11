@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <div th:replace="fragments/fragments::adminHead"></div>
+    <body class="sb-nav-fixed">
+        <nav th:replace ="fragments/fragments::adminNavbar"></nav>
+        <div id="layoutSidenav">
+            <div th:replace = "fragments/fragments::adminSideNav"></div>
+            <div id="layoutSidenav_content">
+
+                <!--Main-->
+                <main>
+                    <div class="container-fluid px-4 text-white">
+                        <h1 class="mt-4">Charts</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="Adashboard.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Charts</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                Chart.js is a third party plugin that is used to generate the charts in this template. The charts below have been customized - for further customization options, please visit the official
+                                <a target="_blank" href="https://www.chartjs.org/docs/latest/">Chart.js documentation</a>
+                                .
+                            </div>
+                        </div>
+                        <div class="card mb-4 content-box-title">
+                            <div class="card-header">
+                                <i class="fas fa-chart-area me-1"></i>
+                                Add Employee
+                            </div>
+                            <div class="card-body">
+                                
+                                <form th:action="@{/member/save}" th:object="${member}">
+                                    
+                                    <input type="text" th:field="*{name}" placeholder="Fullname" class="form-control mb-4 col-4">
+                        
+                                    <input type="text" th:field="*{phoneNumber}" placeholder="Phone Number" class="form-control mb-4 col-4">
+                        
+                                    <input type="text" th:field="*{username}" placeholder="Username" class="form-control mb-4 col-4">
+                        
+                                    <input type="text" th:field="*{password}" placeholder="Password" class="form-control mb-4 col-4">
+                        
+                                    <input type="text" th:field="*{role}" placeholder="role" class="form-control mb-4 col-4">
+                                    <button type="submit" class="btn btn-primary"> Save Employee</button>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <footer th:replace="fragments/fragments::adminFooter"></footer>
+            </div>
+        </div>
+        <div th:replace ="fragments/fragments::adminScript"></div>
+    </body>
+</html>

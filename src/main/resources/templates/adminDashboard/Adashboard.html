@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <div th:replace="fragments/fragments::adminHead"></div>
+    <body class="sb-nav-fixed">
+        <nav th:replace ="fragments/fragments::adminNavbar"></nav>
+        <div id="layoutSidenav">
+            <div th:replace = "fragments/fragments::adminSideNav"></div>
+            <div id="layoutSidenav_content">
+
+                <!--Main-->
+                <main>               
+                    <div class="container-fluid px-4 text-white">
+                        <br><br>
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="box mb-4">
+                                    <p>57<br><span>Employees</span></p>
+                                    <i class="fa fa-user box-icon text-white"></i>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="box mb-4">
+                                    <p>99<br><span>Bus company</span></p>
+                                    <i class="fa fa-building box-icon text-white"></i>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="box mb-4">
+                                    <p>76<br><span>Orders</span></p>
+                                    <i class="fa fa-shopping-bag box-icon text-white"></i>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="box mb-4">
+                                    <p>699<br><span>Bus</span></p>
+                                    <i class="fa fa-bus box-icon text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header  content-box-title">
+                                        <i class="fas fa-chart-area me-1"></i>
+                                        Area Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas style="background-color: antiquewhite;" id="myAreaChart" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header content-box-title">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Bar Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas style="background-color: antiquewhite;" id="myBarChart" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header content-box-title">
+                                <i class="fas fa-table me-1"></i>
+                                Employee Database
+                            </div>
+                            <div class="card-body text-white">
+                                <table id="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                    <th>Full Name</th>
+                                    <th>Phone NUmber</th>
+                                    <th>Username</th>
+                                    <th>Password</th>
+                                    <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="member: ${listMembers}">
+                                        <td th:text="${member.name}">Full Name</td>
+                                        <td th:text="${member.phoneNumber}">Phone Number</td>
+                                        <td th:text="${member.username}">Username</td>
+                                        <td th:text="${member.password}">Password</td>
+                                        <td><a th:href="@{update/{id}(id=${member.id})}" class="btn btn-success">Update</a>
+                                            <a th:href="@{delete/{id}(id=${member.id})}" class="btn btn-warning">Delete</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <footer th:replace="fragments/fragments::adminFooter"></footer>
+            </div>
+        </div>
+        <div th:replace ="fragments/fragments::adminScript"></div>
+    </body>
+</html>

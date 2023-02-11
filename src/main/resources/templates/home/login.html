@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="/src/main/resources/static/css/bootstrap.css">
-    <script src="/src/main/resources/static/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="/src/main/resources/static/css/homepageStyle.css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"> 
+    <script th:src="@{/js/bootstrap.js}"></script> 
+    <link rel="stylesheet" th:href="@{/css/homepageStyle.css}">
 </head>
 
 <body>
     <div class="container-fluid">
-        <form action="">
+        <form th:action="@{/member/memberLogin}" th:object="${member}" method="post" class="form-login">
             <h3>Login Here</h3>
-
             <label>Username</label><br>
-            <input type="text" class="" placeholder="Username">
+            <input type="text" class="form-control" th:field="*{username}" placeholder="Username">
             <label class="lbpass">Password</label>
-            <input type="password" class="" placeholder="Password">
+            <input type="password" class="form-control" th:field="*{password}" placeholder="Password">
 
             <a href="#" class="lbforgotpassword">Forgot password?</a>
             <button type="submit" class="login">Login</button>
@@ -27,7 +26,7 @@
             <div class="social">
                 
                 <button type="button" class="google">
-                    <img src="/src/main/resources/static/images/googleicon.webp" alt="" style="width: 15%;
+                    <img th:src="@{/images/googleicon.webp}" alt="" style="width: 15%;
                     height: 100%;">
                     Login with Google
                 </button>

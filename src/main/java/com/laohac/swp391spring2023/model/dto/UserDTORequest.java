@@ -6,17 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Builder
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class UserDTOResponse {
-
-    private String email;
-    private String username;
-    private String fullName;
-    private String sex;
-    private String phoneNumber;
+@AllArgsConstructor
+public class UserDTORequest {
     
+    private String username;
+    private String password;
 }

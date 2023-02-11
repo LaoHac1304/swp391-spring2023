@@ -1,39 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="Register.css">
+  <link rel="stylesheet" th:href="@{/css/Register.css}">
   <title>Register</title>
 </head>
 
 <body>
-  <form action="#" class="RegisterForm">
+  <form th:action="@{/users/save}" method="post" th:object="${customer}" class="RegisterForm">
     <div class="container">
       <h1>Register</h1>
       <p>Please fill in this form to create an account.</p>
       <hr>
 
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" th:field="*{email}" id="email" required>
 
-      <label for="email"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="username" id="username" required>
-
-      <label for="pnumber"><b>Phone Number</b></label>
-      <input type="text" placeholder="Enter Phone Number" name="pnumber" id="pnumber" required>
-
+      <label for="username"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" th:field="*{username}" id="username" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+      <input type="password" placeholder="Enter Password" th:field="*{password}" id="psw" required>
 
       <label for="psw-repeat"><b>Repeat Password</b></label>
-      <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+      <input type="password" placeholder="Repeat Password" id="psw-repeat" required>
+
+      <label for="pnumber"><b>Phone Number</b></label>
+      <input type="text" placeholder="Enter Phone Number" th:field="*{phoneNumber}" id="pnumber" required>
+
+      <label for="fullname"><b>Full Name</b></label>
+      <input type="text" placeholder="Enter Full Name" th:field="*{fullName}" id="fullName" required>
+
+      <label for="sex"><b>Sex</b></label>
+      <input type="text" placeholder="Enter Sex" th:field="*{sex}" id="sex" required>
+      
       <hr>
       <button type="submit" class="registerbtn">Register</button>
     </div>
-
-
   </form>
 </body>
 

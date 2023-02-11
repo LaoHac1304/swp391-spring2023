@@ -28,8 +28,10 @@ public class User {
     private int id;
 
     private String email;
-
     private String fullName;
     private String sex;
     private String phoneNumber;
+    private String username;
+    private String password;
+    private String role;
 }

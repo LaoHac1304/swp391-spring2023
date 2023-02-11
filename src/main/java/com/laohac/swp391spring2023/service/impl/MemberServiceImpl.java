@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.laohac.swp391spring2023.model.dto.MemberDTOReponse;
-import com.laohac.swp391spring2023.model.entities.Member;
+import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.MemberRepository;
 import com.laohac.swp391spring2023.service.MemberService;
 
@@ -22,27 +22,27 @@ public class MemberServiceImpl implements MemberService {
     
 
     @Override
-    public MemberDTOReponse authenticate(Member memberDTORequest) {
+    public MemberDTOReponse authenticate(User memberDTORequest) {
         
-        Optional<Member> memberOptional = memberRepository.findByUsername(memberDTORequest.getUsername());
+        Optional<User> memberOptional = memberRepository.findByUsername(memberDTORequest.getUsername());
         if (memberOptional.isPresent()){
-            Member member = memberOptional.get();
+            User member = memberOptional.get();
             if (!member.getPassword().equals(memberDTORequest.getPassword())) return null;
             return MemberDTOReponse.builder()
                                     .username(member.getUsername())
-                                    .name(member.getName())
+                                    .name(member.getFullName())
                                     .build();
         }
         return null;
     }
 
-    public List<Member> getAllMember() {      
+    public List<User> getAllMember() {      
         return memberRepository.findAll();
     }
     @Override
-    public Member getMemberById(int id) {
-        Optional<Member> optional = memberRepository.findById(id);
-        Member member = null;
+    public User getMemberById(int id) {
+        Optional<User> optional = memberRepository.findById(id);
+        User member = null;
         if(optional.isPresent()){
             member = optional.get();
         }else{
@@ -56,7 +56,7 @@ public class MemberServiceImpl implements MemberService {
         
     }
     @Override
-    public void addMember(Member member) {
+    public void addMember(User member) {
         member.setRole("employee");
         this.memberRepository.save(member);       
     }

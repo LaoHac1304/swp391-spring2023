@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.laohac.swp391spring2023.model.dto.MemberDTOReponse;
 import com.laohac.swp391spring2023.model.dto.MemberDTORequest;
-import com.laohac.swp391spring2023.model.entities.Member;
+import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.service.MemberService;
 
 @Controller
@@ -24,13 +24,13 @@ public class MemberController {
     @GetMapping("/login")
     public String showLogin(Model model) {
         
-        Member member = new Member();
+        User member = new User();
         model.addAttribute("member", member);
         return "home/login"; 
     }
 
     @PostMapping("/memberLogin")
-    public String loginMember(@ModelAttribute("member") Member member){
+    public String loginMember(@ModelAttribute("member") User member){
         MemberDTOReponse memberLogin = memberService.authenticate(member);
         if (memberLogin != null)
             return "adminDashboard/Adashboard";
@@ -59,14 +59,14 @@ public class MemberController {
 
     @GetMapping("/add")
     public String addMember(Model model) {
-        Member member = new Member();
+        User member = new User();
         model.addAttribute("member", member);
     
         return "adminDashboard/addEmployee";
     }
 
     @GetMapping("/save")
-    public String saveMember(@ModelAttribute("member") Member member) {
+    public String saveMember(@ModelAttribute("member") User member) {
         memberService.addMember(member);
         System.out.println(member);
         return "redirect:/member/viewall";
@@ -74,7 +74,7 @@ public class MemberController {
 
     @GetMapping("/update/{id}")
     public String updateMember(@PathVariable(value = "id") int id, Model model) {
-        Member member = memberService.getMemberById(id);
+        User member = memberService.getMemberById(id);
         model.addAttribute("member", member);
         return "adminDashboard/updateEmployee";
     }

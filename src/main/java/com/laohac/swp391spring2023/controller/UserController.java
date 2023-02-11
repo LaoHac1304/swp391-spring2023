@@ -51,6 +51,13 @@ public class UserController {
         return "home/index";
     }
 
+    @GetMapping("/user-info")
+    public String getUserInfo(Model model, String username){
+        UserDTOResponse userDTOResponse = userService.getUserInfo(username);
+        model.addAttribute("userInfo", userDTOResponse);
+        return "user/userDetail";
+    }
+
     
     /*@GetMapping("/login-google")
     public String login(Model model, @AuthenticationPrincipal OAuth2User user){

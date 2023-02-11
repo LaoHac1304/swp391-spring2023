@@ -60,6 +60,24 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public UserDTOResponse getUserInfo(String username) {
+        
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        if (!userOptional.isPresent()){
+            return null;
+        }
+        User user = userOptional.get();
+        return UserDTOResponse
+                        .builder()
+                        .username(username)
+                        .email(user.getEmail())
+                        .fullName(user.getFullName())
+                        .phoneNumber(user.getPhoneNumber())
+                        .sex(user.getSex())               
+                        .build();
+    }
+
     /*@Override
     public UserDTOResponse login(OAuth2User user) {
         

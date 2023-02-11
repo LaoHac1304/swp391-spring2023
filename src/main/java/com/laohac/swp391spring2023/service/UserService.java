@@ -10,6 +10,8 @@ public interface UserService {
 
     public UserDTOResponse login(UserDTORequest userDTORequest);
 
+    public UserDTOResponse getUserInfo(String username);
+
     //public UserDTOResponse login(OAuth2User user);
     
 }

@@ -56,6 +56,10 @@ button {
 
 }
 
+.image-size{
+    width: 60%;
+}
+
 .form-login{
     height: 480px;
     width: 400px;

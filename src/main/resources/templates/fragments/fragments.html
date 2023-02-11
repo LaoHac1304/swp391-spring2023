@@ -3,6 +3,7 @@
     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <!--Admin head-->
+
 <head th:fragment="adminHead">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -131,6 +132,7 @@
 <!---------------------------------------------------------------------------------------------------------------------->
 
 <!--Home head-->
+
 <head th:fragment="homeHead">
 
     <meta charset="UTF-8">
@@ -193,7 +195,7 @@
 
                     <!-- backendCode here -->
                     <li class="nav-item">
-                        <a class="nav-link" href="login">Login</a>
+                        <a class="nav-link" href="#" onclick="showLoginPopup()">Login</a>
                     </li>
                     <!-- backendCode End -->
 
@@ -541,6 +543,52 @@
 
 <!--Home script-->
 <div th:fragment="homeScript">
+    <!-- Bootstrap 5 JS CDN Links -->
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js}"></script>
+
+    <!-- Swiper JS -->
+    <script th:src="@{https://unpkg.com/swiper/swiper-bundle.min.js}"></script>
+
+    <!-- Custom Js Link -->
+    <script th:src="@{/js/main.js}"></script>
+</div>
+
+<!------------------------------------------------------------------------------------------------------------>
+<!--Employee head-->
+
+<head th:fragment="empHead">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+    <link th:href="@{https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css}" rel="stylesheet" />
+    <link th:href="@{/css/employeeStyle.css}" rel="stylesheet" />
+
+    <!-- turn off favicon-->
+    <link rel="icon" href="data:;base64,=">
+
+    <script th:src="@{https://use.fontawesome.com/releases/v6.1.0/js/all.js}" crossorigin="anonymous"></script>
+</head>
+
+<!--Employee footer-->
+<footer th:fragment="empFooter" class="py-4 mt-auto ">
+    <div class="container-fluid px-4 text-white">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div>Copyright &copy; 24HR 2023</div>
+            <div>
+                <a href="#">Privacy Policy</a>
+                &middot;
+                <a href="#">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!--Employee script-->
+<div th:fragment="empScript">
     <!-- Bootstrap 5 JS CDN Links -->
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js}"></script>
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js}"></script>

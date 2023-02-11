@@ -56,30 +56,30 @@ button {
 
 }
 
-.image-size{
+.image-size {
     width: 60%;
 }
 
-.form-login{
+.form-login {
     height: 480px;
     width: 400px;
-    background-color: rgba(255,255,255,0.13);
+    background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 50px 35px;
 }
 
-input{
+input {
     display: block;
     height: 50px;
     width: 100%;
-    background-color: rgba(255,255,255,0.07);
+    background-color: rgba(255, 255, 255, 0.07);
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
@@ -127,14 +127,10 @@ h3 {
     display: inline-block;
 }
 
-.image-slider{
-    background-image: url(/src/main/resources/static/images/slider/slider1.webp);
-}
-
 img {
     width: 20%;
     height: 20%;
-    
+
 }
 
 .test {
@@ -164,8 +160,6 @@ img {
 
 body {
     font-family: var(--primary-font);
-    /* background-color: var(--bg-white); */
-    background-image: url(@{/imgages/slider/about-us.jpg});
 }
 
 a {
@@ -182,7 +176,7 @@ a {
 
 ::-webkit-scrollbar-thumb {
     background: rgb(234, 0, 30);
-} 
+}
 
 section {
     padding: 3.125rem 0;
@@ -194,7 +188,7 @@ section {
 
     text-transform: uppercase;
     background-color: transparent;
-    border: .0625rem solid ;
+    border: .0625rem solid;
     padding: .375rem 1.875rem;
     border-radius: 3.125rem;
     line-height: 1.75rem;
@@ -202,7 +196,8 @@ section {
     transition: all 0.3s ease-out 0s;
     color: #fff;
     background-color: rgb(234, 0, 30);
-    border-color: rgb(234, 0, 30);;
+    border-color: rgb(234, 0, 30);
+    ;
 }
 
 .main-btn:hover {
@@ -265,19 +260,19 @@ a.main-btn3.mt-2:hover {
     background-color: rgba(15, 15, 15, 0.1);
 }
 
-.search-label{
-    color: white    ;
+.search-label {
+    color: white;
     font-weight: 600;
     font-size: 18px;
     line-height: 24px;
     letter-spacing: 2px;
 }
 
-.font-aws{
+.font-aws {
     font-size: 16px;
 }
 
-img{
+img {
     border-radius: 20px;
 }
 
@@ -348,7 +343,7 @@ hr {
 
 .section-title:after {
     content: "";
-    background-image: url('../images/title-icon.webp');
+    /* background-image: url('../images/title-icon.webp'); */
     background-position: center center;
     background-repeat: no-repeat;
     display: block;
@@ -511,7 +506,7 @@ hr {
 }
 
 .guide-item img {
-    width:100%;
+    width: 100%;
     -webkit-transition: all 400ms ease-in 0s;
     transition: all 400ms ease-in 0s;
 }
@@ -578,7 +573,7 @@ hr {
     height: 5.625rem;
     width: 5.625rem;
     background-color: rgb(41, 45, 69);
-    
+
     color: #fff;
     line-height: 5.625rem;
     text-align: center;
@@ -628,7 +623,7 @@ hr {
 }
 
 .counter {
-    background-image: url('../images/counter-bg.webp');
+    /* background-image: url('../images/counter-bg.webp'); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -810,7 +805,7 @@ h5.text-decoration-underline.mb-4 {
 
 .text-white {
     --bs-text-opacity: 1;
-    color: rgba(var(--bs-white-rgb),var(--bs-text-opacity))!important;
+    color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
     padding: 5px;
 }
 
@@ -847,7 +842,7 @@ h5.text-decoration-underline.mb-4 {
     list-style: none;
 }
 
-.footer_wrapper .contact-info li a{
+.footer_wrapper .contact-info li a {
     color: white;
 }
 
@@ -855,7 +850,7 @@ h5.text-decoration-underline.mb-4 {
 .footer_wrapper p {
     color: var(--text-gray);
     font-size: .875rem;
-    padding-left:1.5rem;
+    padding-left: 1.5rem;
     position: relative;
     -webkit-transition: all 0.3s ease-out 0s;
     transition: all 0.3s ease-out 0s;
@@ -881,7 +876,7 @@ h5.text-decoration-underline.mb-4 {
     width: 2.1875rem;
     height: 2.1875rem;
     margin: .5rem;
-    line-height:2rem;
+    line-height: 2rem;
     font-size: .875rem;
     display: inline-block;
     border: .125rem solid var(--text-gray);
@@ -1018,7 +1013,7 @@ h5.text-decoration-underline.mb-4 {
 
     /* services */
     .service-menu-area {
-        padding:1.5rem 0.5rem;
+        padding: 1.5rem 0.5rem;
     }
 
     .service-menu-area ul li {
@@ -1064,6 +1059,3 @@ h5.text-decoration-underline.mb-4 {
         padding: 0 1.875rem;
     }
 }
-
-        
-      

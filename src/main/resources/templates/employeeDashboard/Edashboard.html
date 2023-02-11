@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <div th:replace="fragments/fragments::empHead"></div>
+  <body>
+    <header>
+      <h1>Employee Dashboard</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#customer-database">Customer Database</a></li>
+        <li><a href="#other-views">Other Views</a></li>
+      </ul>
+    </nav>
+    <main>
+        
+      <section id="customer-database">
+        <h2>Customer Database</h2>
+        <table id="datatablesSimple">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+          <tr>
+            <td>John Doe</td>
+            <td>johndoe@example.com</td>
+            <td>555-555-5555</td>
+          </tr>
+          <tr>
+            <td>Jane Doe</td>
+            <td>janedoe@example.com</td>
+            <td>555-555-5556</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="other-views">
+        <h2>Other Views</h2>
+        <p>Content for other views goes here.</p>
+      </section>
+    </main>
+    
+    <footer th:replace = "fragments/fragments::empFooter"></footer>
+
+    <div th:replace="fragments/fragments::empScript"></div>
+  </body>
+</html>

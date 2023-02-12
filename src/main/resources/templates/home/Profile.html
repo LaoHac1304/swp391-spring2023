@@ -7,7 +7,8 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <!------ Include the above in your HEAD tag ---------->
-
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Member Profile</title>
     <meta charset="utf-8">
@@ -15,8 +16,8 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-    <link rel="stylesheet" href="./css/bootstrap.css">
-    <script src="./js/bootstrap.js"></script>
+    <link rel="stylesheet" th:href="@{./css/bootstrap.css}">
+    <script th:src="@{./js/bootstrap.js}"></script>
 </head>
 
 
@@ -33,7 +34,7 @@
 
 
             <div class="text-center">
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+                <img th:src="@{http://ssl.gstatic.com/accounts/ui/avatar_2x.png}" class="avatar img-circle img-thumbnail"
                     alt="avatar">
                 <h6>Upload your avatar</h6>
                 <input type="file" class="text-center center-block file-upload">
@@ -51,8 +52,13 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
                     <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
-                        <div class="form-group">
+                    <form class="form" th:action="@{/users/info}" method="post" id="registrationForm">
+                        <td th:text="${userInfo.fullName}">Full Name</td>
+                        <td th:text="${userInfo.phoneNumber}">Phone Number</td>
+                        <td th:text="${userInfo.username}">Username</td>
+                        <td th:text="${userInfo.email}">Email</td>
+                        <td th:text="${userInfo.sex}">Sex</td>
+                        <!-- <div class="form-group">
 
                             <div class="col-xs-6">
                                 <label for="first_name">
@@ -119,7 +125,7 @@
                                 <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i>
                                     Reset</button>
                             </div>
-                        </div>
+                        </div> -->
                     </form>
 
                     <hr>

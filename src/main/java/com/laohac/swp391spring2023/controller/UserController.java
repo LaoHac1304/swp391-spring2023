@@ -1,5 +1,7 @@
 package com.laohac.swp391spring2023.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.laohac.swp391spring2023.model.dto.UserDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
+import com.laohac.swp391spring2023.model.dto.UserDTOUpdate;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.service.UserService;
 
@@ -46,11 +49,21 @@ public class UserController {
         return "home/index";
     }
 
-    @GetMapping("/user-info")
-    public String getUserInfo(Model model, String username){
-        UserDTOResponse userDTOResponse = userService.getUserInfo(username);
+    @GetMapping("/info")
+    public String showInfo(Model model, HttpSession session){
+        Object userCurrent = session.getAttribute("userSession");
+        UserDTOResponse userDTOResponse = (UserDTOResponse) userCurrent;
         model.addAttribute("userInfo", userDTOResponse);
-        return "user/userDetail";
+        return "home/Profile";
+    }
+
+    @GetMapping("/update-userInfo")
+    public String update(@ModelAttribute("userInfoUpdate") UserDTOUpdate userUpdate, HttpSession session){
+        Object userCurrent = session.getAttribute("userSession");
+        UserDTOResponse userDTOResponse = (UserDTOResponse) userCurrent;
+        String username = userDTOResponse.getUsername();
+        userDTOResponse = userService.update(userUpdate, username);
+        return null;
     }
 
     

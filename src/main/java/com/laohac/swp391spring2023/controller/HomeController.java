@@ -43,6 +43,7 @@ public class HomeController {
     public String login(HttpSession session ,Model model, @ModelAttribute("user") UserDTORequest userDTORequest){
 
         UserDTOResponse userDTOResponse = userService.authenticated(userDTORequest);
+        if (userDTOResponse == null) return "home/login";
         //model.addAttribute("user", userDTOResponse);
         session.setAttribute("userSession", userDTOResponse);
         if (userDTOResponse.getRole().equals("admin")){

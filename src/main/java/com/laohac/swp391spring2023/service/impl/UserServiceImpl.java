@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.laohac.swp391spring2023.model.dto.UserDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
+import com.laohac.swp391spring2023.model.dto.UserDTOUpdate;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.UserRepository;
 import com.laohac.swp391spring2023.service.UserService;
@@ -88,6 +89,33 @@ public class UserServiceImpl implements UserService {
         if (userOptional.isPresent()){
             User user = userOptional.get();
             if (!user.getPassword().equals(password)) return null;
+            UserDTOResponse userDTOResponse = UserDTOResponse
+                                                .builder()
+                                                .email(user.getEmail())
+                                                .username(user.getUsername())
+                                                .fullName(user.getFullName())
+                                                .phoneNumber(user.getPhoneNumber())
+                                                .sex(user.getSex())
+                                                .role(user.getRole())
+                                                .build();
+            return userDTOResponse;
+        }
+
+        return null;
+    }
+
+
+    @Override
+    public UserDTOResponse update(UserDTOUpdate userUpdate, String username) {
+        
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        if (userOptional.isPresent()){
+            User user = userOptional.get();
+            user.setFullName(userUpdate.getFullName());
+            user.setPhoneNumber(userUpdate.getPhoneNumber());
+            user.setSex(userUpdate.getSex());
+            userRepository.save(user);
+
             UserDTOResponse userDTOResponse = UserDTOResponse
                                                 .builder()
                                                 .email(user.getEmail())

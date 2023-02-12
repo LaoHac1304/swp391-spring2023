@@ -19,12 +19,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "customer")
+@Table(name = "user")
 public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CustomerID")
+    @Column(name = "UserID")
     private int id;
 
     private String email;

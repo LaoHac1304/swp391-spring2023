@@ -40,7 +40,7 @@ public class UserController {
     @GetMapping("/login-user")
     public String showLogin(Model model, UserDTORequest userDTORequest){
         model.addAttribute("customerInfo", userDTORequest);
-        return "user/login";
+        return "home/login";
     }
 
     @PostMapping("/sign-in")

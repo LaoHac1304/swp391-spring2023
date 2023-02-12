@@ -42,7 +42,7 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false"><i class="fas fa-user fa-fw text-white"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li class="dropdown-item"></li>
+                <li class="dropdown-item" th:text="${session.userSession.username}"></li>
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
@@ -193,9 +193,31 @@
                     </li>
                     <!-- backendCode End -->
 
-                    <!-- backendCode here -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="showLoginPopup()">Login</a>
+
+                    <!-- <p class="nav-link" th:if="${session.userSession != null}" th:text="${session.userSession.fullName}"></p>
+                    <a class="nav-link" th:if="${session.userSession == null}" th:href="@{/homepage/login}" th:text="Login" >Login</a> -->
+
+                    <!-- backendCode Login here -->
+                    <li class="nav-item dropdown" >
+                        <a class="nav-link" th:if="${session.userSession == null}" th:href="@{/homepage/login}" th:text="Login" >Login</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" th:if="${session.userSession != null}" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false"><i class="fas fa-user fa-fw text-white"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end" th:if="${session.userSession != null}" aria-labelledby="navbarDropdown">
+                            <li class="dropdown-item" th:if="${session.userSession != null}" th:text="${session.userSession.fullName}"></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            
+                            <!-- Show and update profile-->
+                            <li><a class="dropdown-item" href="#!">Settings</a></li>
+
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+
+                            <!-- Logout -->
+                            <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        </ul>
                     </li>
                     <!-- backendCode End -->
 

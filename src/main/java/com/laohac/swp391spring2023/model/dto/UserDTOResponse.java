@@ -18,5 +18,6 @@ public class UserDTOResponse {
     private String fullName;
     private String sex;
     private String phoneNumber;
+    private String role;
     
 }

@@ -13,7 +13,7 @@
 
 <body>
     <div class="container-fluid">
-        <form th:action="@{/member/memberLogin}" th:object="${member}" method="post" class="form-login">
+        <form th:action="@{/homepage/sign-in}" th:object="${user}" method="post" class="form-login">
             <h3>Login Here</h3>
             <label>Username</label><br>
             <input type="text" class="form-control" th:field="*{username}" placeholder="Username">

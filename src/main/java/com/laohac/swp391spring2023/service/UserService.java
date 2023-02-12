@@ -12,6 +12,8 @@ public interface UserService {
 
     public UserDTOResponse getUserInfo(String username);
 
+    public UserDTOResponse authenticated(UserDTORequest userDTORequest);
+
     //public UserDTOResponse login(OAuth2User user);
     
 }

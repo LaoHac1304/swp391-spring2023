@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.laohac.swp391spring2023.model.dto.MemberDTOReponse;
 import com.laohac.swp391spring2023.model.dto.MemberDTORequest;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.service.MemberService;
@@ -20,24 +18,6 @@ public class MemberController {
 
     @Autowired 
     MemberService memberService;
-
-    @GetMapping("/login")
-    public String showLogin(Model model) {
-        
-        User member = new User();
-        model.addAttribute("member", member);
-        return "home/login"; 
-    }
-
-    @PostMapping("/memberLogin")
-    public String loginMember(@ModelAttribute("member") User member){
-        MemberDTOReponse memberLogin = memberService.authenticate(member);
-        if (memberLogin != null)
-            return "adminDashboard/Adashboard";
-        return "home/login";
-    }
-
-
 
     @GetMapping("/adminDB")
     public String showAdminDB(){

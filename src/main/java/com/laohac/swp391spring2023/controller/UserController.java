@@ -37,14 +37,9 @@ public class UserController {
         return "home/index";
     }
 
-    @GetMapping("/login-user")
-    public String showLogin(Model model, UserDTORequest userDTORequest){
-        model.addAttribute("customerInfo", userDTORequest);
-        return "home/login";
-    }
 
     @PostMapping("/sign-in")
-    public String login(Model model, @ModelAttribute("customerInfo") UserDTORequest userDTORequest){
+    public String login(Model model, @ModelAttribute("userInfo") UserDTORequest userDTORequest){
 
         UserDTOResponse userDTOResponse = userService.login(userDTORequest);
         System.out.println(userDTOResponse.getFullName());

@@ -78,6 +78,31 @@ public class UserServiceImpl implements UserService {
                         .build();
     }
 
+    @Override
+    public UserDTOResponse authenticated(UserDTORequest userDTORequest) {
+        // authenticated
+        String username = userDTORequest.getUsername();
+        String password = userDTORequest.getPassword();
+
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        if (userOptional.isPresent()){
+            User user = userOptional.get();
+            if (!user.getPassword().equals(password)) return null;
+            UserDTOResponse userDTOResponse = UserDTOResponse
+                                                .builder()
+                                                .email(user.getEmail())
+                                                .username(user.getUsername())
+                                                .fullName(user.getFullName())
+                                                .phoneNumber(user.getPhoneNumber())
+                                                .sex(user.getSex())
+                                                .role(user.getRole())
+                                                .build();
+            return userDTOResponse;
+        }
+
+        return null;
+    }
+
     /*@Override
     public UserDTOResponse login(OAuth2User user) {
         

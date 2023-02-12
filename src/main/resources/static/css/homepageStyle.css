@@ -61,7 +61,7 @@ button {
 }
 
 .form-login {
-    height: 480px;
+    /* height: 480px; */
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -72,7 +72,7 @@ button {
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-    padding: 50px 35px;
+    padding: 25px 35px;
 }
 
 input {
@@ -104,11 +104,29 @@ h3 {
 
 }
 
+hr:not([size]) {
+    height: 0px;
+}
+
+.userFooter {
+    display: flex;
+    flex-direction: column;
+    min-height: 57vh;
+    justify-content: flex-end;
+}
+
 .lbforgotpassword {
     display: block;
     margin-top: 10px;
     margin-bottom: 10px;
-    text-align: right;
+    text-align: center;
+}
+
+.lbregister {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
 }
 
 .lbpass {

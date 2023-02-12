@@ -132,7 +132,6 @@
 <!---------------------------------------------------------------------------------------------------------------------->
 
 <!--Home head-->
-
 <head th:fragment="homeHead">
 
     <meta charset="UTF-8">
@@ -198,16 +197,20 @@
                     <a class="nav-link" th:if="${session.userSession == null}" th:href="@{/homepage/login}" th:text="Login" >Login</a> -->
 
                     <!-- backendCode Login here -->
-                    <li class="nav-item dropdown" >
-                        <a class="nav-link" th:if="${session.userSession == null}" th:href="@{/homepage/login}" th:text="Login" >Login</a>
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" th:if="${session.userSession != null}" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="fas fa-user fa-fw text-white"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end" th:if="${session.userSession != null}" aria-labelledby="navbarDropdown">
-                            <li class="dropdown-item" th:if="${session.userSession != null}" th:text="${session.userSession.fullName}"></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" th:if="${session.userSession == null}" th:href="@{/homepage/login}"
+                            th:text="Login">Login</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" th:if="${session.userSession != null}"
+                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
+                                class="fas fa-user fa-fw text-white"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end" th:if="${session.userSession != null}"
+                            aria-labelledby="navbarDropdown">
+                            <li class="dropdown-item" th:if="${session.userSession != null}"
+                                th:text="${session.userSession.fullName}"></li>
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>
-                            
+
                             <!-- Show and update profile-->
                             <li><a class="dropdown-item" th:href="@{/users/info}">Settings</a></li>
 
@@ -621,5 +624,176 @@
     <!-- Custom Js Link -->
     <script th:src="@{/js/main.js}"></script>
 </div>
+
+
+<!------------------------------------------------------------------------------------------------------------>
+
+<!--User settings-->
+<head th:fragment="userHead">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/icon type">
+    <title>24HR Car Rental</title>
+
+    <!-- FontAweSome-->
+    <script th:src="@{https://kit.fontawesome.com/bdbcf2ce1a.js}" crossorigin="anonymous"></script>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" th:href="@{/imagefavicon.png}">
+
+    <!-- Bootstrap 5 CDN Links -->
+    <link rel="stylesheet" type="text/css"
+        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css"
+        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{https://unpkg.com/swiper/swiper-bundle.min.css}">
+
+    <!-- Custom File's Link -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepageStyle.css}" />
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <link rel="stylesheet" th:href="css/responsive-style.css"> -->
+</head>
+
+<!--User header/navbar-->
+<header th:fragment="userHeader" class="header_wrapper">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img th:src="@{/images/logo.png}" style="width: 70%;" class="img-fluid" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-stream navbar-toggler-icon"></i>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav menu-navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#guide">Guide</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Routes</a>
+                    </li>
+
+                    <!-- backendCode here -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="partnerPage">Become Partner</a>
+                    </li>
+                    <!-- backendCode End -->
+
+
+                    <!-- <p class="nav-link" th:if="${session.userSession != null}" th:text="${session.userSession.fullName}"></p>
+                    <a class="nav-link" th:if="${session.userSession == null}" th:href="@{/homepage/login}" th:text="Login" >Login</a> -->
+
+                    <!-- backendCode Login here -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" th:if="${session.userSession == null}" th:href="@{/homepage/login}"
+                            th:text="Login">Login</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" th:if="${session.userSession != null}"
+                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
+                                class="fas fa-user fa-fw text-white"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end" th:if="${session.userSession != null}"
+                            aria-labelledby="navbarDropdown">
+                            <li class="dropdown-item" th:if="${session.userSession != null}"
+                                th:text="${session.userSession.fullName}"></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+
+                            <!-- Show and update profile-->
+                            <li><a class="dropdown-item" th:href="@{/users/info}">Settings</a></li>
+
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+
+                            <!-- Logout -->
+                            <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        </ul>
+                    </li>
+                    <!-- backendCode End -->
+
+                    <li class="nav-item mt-3 mt-lg-0">
+                        <a class="main-btn" href="#home">Book Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!--User footer-->
+<div class="userFooter" th:fragment="userFooter">
+    <section id="contact" class="footer_wrapper mt-3 mt-md-0 pb-0">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <h5>24HR Co., ltd</h5>
+                    <div class="contact-info">
+                        <ul class="list-unstyled">
+                            <li><a href="#"><i class="fa fa-home me-3"></i>Lot E2a-7, D1 Street, Hi-Tech Park, Long
+                                    Thanh My Ward, Thu Duc City, Ho Chi Minh City HCM.</a></li>
+                            <li><a href="#"><i class="fa fa-phone me-3"></i>(097) 6192474</a></li>
+                            <li><a href="#"><i class="fa fa-envelope me-3"></i>24hr@gmail.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Useful Links</h5>
+                    <ul class="link-widget p-0">
+                        <li><a href="#home">Homepage</a></li>
+                        <li><a href="#guide">Guide</a></li>
+                        <li><a href="#whyus">Why Us</a></li>
+                        <li><a href="#services">Routes</a></li>
+                        <!-- <li><a href="#">Price</a></li>
+                        <li><a href="#">Rental</a></li> -->
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+
+                    <h5>Stay Connected</h5>
+
+                    <ul class="social-network d-flex align-items-center p-0">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+                    </ul>
+                </div>
+
+                <hr class="hr-footer">
+                <div class="container-fluid copyright-section">
+                    <p>Copyright <a href="#">© 24HR.</a> All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+<!--Home script-->
+<div th:fragment="userScript">
+    <!-- Bootstrap 5 JS CDN Links -->
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js}"></script>
+
+    <!-- Swiper JS -->
+    <script th:src="@{https://unpkg.com/swiper/swiper-bundle.min.js}"></script>
+
+    <!-- Custom Js Link -->
+    <script th:src="@{/js/main.js}"></script>
+</div>
+
 
 </html>

@@ -13,6 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserDTOUpdate {
     
+    private String email;
     private String fullName;
     private String sex;
     private String phoneNumber;

@@ -57,13 +57,23 @@ public class UserController {
         return "home/Profile";
     }
 
-    @GetMapping("/update-userInfo")
-    public String update(@ModelAttribute("userInfoUpdate") UserDTOUpdate userUpdate, HttpSession session){
+    @GetMapping("/update-profile")
+    public String showUpdateForm(Model model, HttpSession session){
+
+        Object userCurrent = session.getAttribute("userSession");
+        UserDTOResponse userDTOResponse = (UserDTOResponse) userCurrent;
+        model.addAttribute("userInfo", userDTOResponse);
+        return "home/UpdateProfile";
+    }
+
+    @PostMapping("/update-userInfo")
+    public String update(@ModelAttribute("userInfo") UserDTOUpdate userUpdate, HttpSession session){
         Object userCurrent = session.getAttribute("userSession");
         UserDTOResponse userDTOResponse = (UserDTOResponse) userCurrent;
         String username = userDTOResponse.getUsername();
         userDTOResponse = userService.update(userUpdate, username);
-        return null;
+        session.setAttribute("userSession", userDTOResponse);
+        return "redirect:/users/info";
     }
 
     

@@ -17,26 +17,26 @@
       <hr>
 
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" th:field="*{email}" id="email" required>
-
+      <input type="text" placeholder="Enter Email" th:field="*{email}" th:errorClass="is-invalid" id="email" required>
+      <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
       <label for="username"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" th:field="*{username}" id="username" required>
-
+      <input type="text" placeholder="Enter Username" th:field="*{username}" th:errorClass="is-invalid" id="username" required>
+      <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" th:field="*{password}" id="psw" required>
-
+      <input type="password" placeholder="Enter Password" th:field="*{password}" th:errorClass="is-invalid" id="psw" required>
+      <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
       <label for="psw-repeat"><b>Repeat Password</b></label>
       <input type="password" placeholder="Repeat Password" id="psw-repeat" required>
 
       <label for="pnumber"><b>Phone Number</b></label>
-      <input type="text" placeholder="Enter Phone Number" th:field="*{phoneNumber}" id="pnumber" required>
-
+      <input type="text" placeholder="Enter Phone Number" th:field="*{phoneNumber}" th:errorClass="is-invalid" id="pnumber" required>
+      <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
       <label for="fullname"><b>Full Name</b></label>
-      <input type="text" placeholder="Enter Full Name" th:field="*{fullName}" id="fullName" required>
-
+      <input type="text" placeholder="Enter Full Name" th:field="*{fullName}" th:errorClass="is-invalid" id="fullName" required>
+      <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
       <label for="sex"><b>Sex</b></label>
-      <input type="text" placeholder="Enter Sex" th:field="*{sex}" id="sex" required>
-      
+      <input type="text" placeholder="Enter Sex" th:field="*{sex}" th:errorClass="is-invalid" id="sex" required>
+      <div th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></div>
       <hr>
       <button type="submit" class="registerbtn">Register</button>
     </div>

@@ -130,6 +130,14 @@ public class UserServiceImpl implements UserService {
 
         return null;
     }
+    @Override
+    public Optional<User> findUserByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+    @Override
+    public boolean userExists(String email) {
+        return findUserByEmail(email).isPresent();
+    }
 
     /*@Override
     public UserDTOResponse login(OAuth2User user) {

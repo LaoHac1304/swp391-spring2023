@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,12 +28,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserID")
     private int id;
-
+    @Email
+    @NotBlank(message = "Email is empty")
     private String email;
+    @NotBlank(message = "Name is empty")
     private String fullName;
+    @NotBlank(message = "Sex is empty")
     private String sex;
+    @NotBlank(message = "Phone number is empty")
     private String phoneNumber;
+    @NotBlank(message = "Username is empty")
     private String username;
+    @NotBlank(message = "Password is empty")
     private String password;
     private String role;
 }

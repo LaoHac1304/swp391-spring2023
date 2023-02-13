@@ -1,5 +1,7 @@
 package com.laohac.swp391spring2023.service;
 
+import java.util.Optional;
+
 import com.laohac.swp391spring2023.model.dto.UserDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOUpdate;
@@ -17,6 +19,8 @@ public interface UserService {
 
     public UserDTOResponse update(UserDTOUpdate userUpdate, String username);
 
+    public Optional<User> findUserByEmail(String email);
+    public boolean userExists(String email);
     //public UserDTOResponse login(OAuth2User user);
     
 }

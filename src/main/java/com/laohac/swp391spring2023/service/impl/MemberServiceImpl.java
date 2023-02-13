@@ -58,6 +58,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void addMember(User member) {
         member.setRole("employee");
+        member.setSex("Male");
         this.memberRepository.save(member);       
     }
 

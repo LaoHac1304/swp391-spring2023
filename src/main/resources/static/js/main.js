@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             step = Math.abs(Math.floor(duration / range)),
             timer = setInterval(() => {
                 current += increment;
-                obj.textContent = current;
+                // obj.textContent = current;
                 if (current == end) {
                     clearInterval(timer);
                 }
@@ -77,3 +77,32 @@ var swiper = new Swiper(".our-partner", {
 
     },
 });
+
+//Preview image
+document.getElementById("profileImage").addEventListener("change", function() {
+    var preview = document.getElementById("previewImage");
+    var file    = this.files[0];
+    var reader  = new FileReader();
+
+    reader.addEventListener("load", function () {
+      preview.src = reader.result;
+    }, false);
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  });
+
+
+  //Validate password
+  function validatePassword() {
+    var password = document.getElementById("psw").value;
+    var repeatPassword = document.getElementById("pswRepeat").value;
+
+    if (password !== repeatPassword) {
+      alert("Passwords do not match.");
+      return false;
+    }
+
+    return true;
+  }

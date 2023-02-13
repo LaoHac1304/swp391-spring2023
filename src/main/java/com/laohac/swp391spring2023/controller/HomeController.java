@@ -13,11 +13,15 @@ import com.laohac.swp391spring2023.model.dto.UserDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 
 import com.laohac.swp391spring2023.model.entities.User;
+import com.laohac.swp391spring2023.service.MemberService;
 import com.laohac.swp391spring2023.service.UserService;
 
 @Controller
 @RequestMapping("/homepage")
 public class HomeController {
+
+    @Autowired
+    private MemberService memberService;
 
     @Autowired
     private UserService userService;
@@ -28,7 +32,8 @@ public class HomeController {
     }
 
     @GetMapping("/adminDashBord")
-    public String showAdminDashBoard(){
+    public String showAdminDashBoard(Model model){
+        model.addAttribute("listMembers", memberService.getAllMember());
         return "adminDashboard/Adashboard";
     }
 

@@ -36,8 +36,9 @@ public class MemberServiceImpl implements MemberService {
         return null;
     }
 
-    public List<User> getAllMember() {      
-        return memberRepository.findAll();
+    public List<User> getAllMember() {  
+
+        return memberRepository.findAllByRole("employee");
     }
     @Override
     public User getMemberById(int id) {
@@ -58,6 +59,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void addMember(User member) {
         member.setRole("employee");
+        member.setSex("Male");
         this.memberRepository.save(member);       
     }
 

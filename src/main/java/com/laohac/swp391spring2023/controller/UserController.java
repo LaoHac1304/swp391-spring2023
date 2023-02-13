@@ -32,12 +32,21 @@ public class UserController {
         return "home/Register";
     }
 
+    @GetMapping("/login")
+    public String showLogin(Model model){
+        User user = new User();
+        model.addAttribute("user", user);
+        return "home/login";
+    }
+
+    
+
     @PostMapping("/save")
     public String register (@ModelAttribute("customer") User user){
 
         UserDTOResponse userDTOResponse = userService.registerUser(user);
         System.out.println(userDTOResponse.getFullName());
-        return "home/index";
+        return "redirect:/users/login";
     }
 
 

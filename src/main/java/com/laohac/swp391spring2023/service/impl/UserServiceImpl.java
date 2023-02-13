@@ -27,11 +27,13 @@ public class UserServiceImpl implements UserService {
         // validation user
         
         // successful validation
+        user.setRole("customer");
         userRepository.save(user);
         UserDTOResponse userDTOResponse = UserDTOResponse
                                 .builder()
                                 .fullName(user.getFullName())
                                 .username(user.getUsername())
+                                .role("customer")
                                 .build();
         return userDTOResponse;
     }

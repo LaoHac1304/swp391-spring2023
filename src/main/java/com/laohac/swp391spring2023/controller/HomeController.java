@@ -47,7 +47,8 @@ public class HomeController {
         //model.addAttribute("user", userDTOResponse);
         session.setAttribute("userSession", userDTOResponse);
         if (userDTOResponse.getRole().equals("admin")){
-            return "adminDashboard/Adashboard";
+            //return "adminDashboard/Adashboard";
+            return "redirect:/member/viewall";
         }
         return "home/index";
     }

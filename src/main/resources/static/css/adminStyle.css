@@ -724,6 +724,8 @@ progress {
   margin-top: var(--bs-gutter-y);
 }
 
+
+
 .col {
   flex: 1 0 0%;
 }
@@ -785,7 +787,7 @@ progress {
 
 .col-4 {
   flex: 0 0 auto;
-  width: 33.33333333%;
+  width: 33.33333333% !important; 
 }
 
 .col-5 {

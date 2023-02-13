@@ -14,7 +14,8 @@
 <body style="
             color: #1a202c;
             text-align: left;
-            background-color: #e2e8f0;">
+            
+    background-color: rgb(182 191 203)">
     <header th:replace="fragments/fragments::userHeader"></header>
     
     <div class="container" style="padding-top: 20px;">
@@ -55,15 +56,6 @@
                                 <div class="col-sm-9 text-secondary " th:text="${userInfo.username}"></div>
 
                             </div>
-                            <!-- <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Password</h6>
-                                </div>
-                                
-                                <div class="col-sm-9 text-secondary " th:text="${userInfo.password}"></div>
-
-                            </div> -->
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
@@ -83,21 +75,17 @@
 
                             </div>
                             <hr>
-                            <!-- <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Address</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    FPT UNIVERSITY
-                                </div>
-                            </div>
-                            <hr> -->
-
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-sm-10">
                                     <!--Edit profile here-->
                                     <a class="btn btn-info " target="__blank" th:href="@{/users/update-profile}">Edit</a>
                                 </div>
+                                <div class="col-sm-2">
+                                    <!--Edit profile here-->
+                                    <a class="btn btn-success" th:if="${session.userSession.role == 'admin'}" th:href="@{/homepage/adminDashBord}"
+                                th:text="Admin Dashboard"></a>
+                                </div>
+                                
                             </div>
 
                         </div>

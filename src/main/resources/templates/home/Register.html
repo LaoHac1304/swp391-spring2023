@@ -10,37 +10,44 @@
 </head>
 
 <body>
-  <form th:action="@{/users/save}" method="post" th:object="${customer}" class="RegisterForm">
+  <form onsubmit="return validatePassword()" th:action="@{/users/save}" method="post" th:object="${customer}" class="RegisterForm">
     <div class="container">
       <h1>Register</h1>
       <p>Please fill in this form to create an account.</p>
       <hr>
 
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" th:field="*{email}" id="email" required>
+      <input type="text" placeholder="Enter Email" th:field="*{email}" id="email" required
+        title="Please enter email address">
 
       <label for="username"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" th:field="*{username}" id="username" required>
+      <input type="text" placeholder="Enter Username" th:field="*{username}" id="username" required
+        title="Please enter username">
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" th:field="*{password}" id="psw" required>
+      <input type="password" placeholder="Enter Password" th:field="*{password}" id="psw" required pattern=".{6,}" title="Password must be at least 6 characters">
 
       <label for="psw-repeat"><b>Repeat Password</b></label>
-      <input type="password" placeholder="Repeat Password" id="psw-repeat" required>
+      <input type="password" placeholder="Repeat Password" id="pswRepeat" required title="Please enter password" >
+
+      <span id="message" ></span>
 
       <label for="pnumber"><b>Phone Number</b></label>
-      <input type="text" placeholder="Enter Phone Number" th:field="*{phoneNumber}" id="pnumber" required>
+      <input type="text" placeholder="Enter Phone Number" th:field="*{phoneNumber}" id="pnumber"
+        pattern="\d{10,11}$" required title="Please enter a valid 10 or 11-digit phone number">
 
       <label for="fullname"><b>Full Name</b></label>
-      <input type="text" placeholder="Enter Full Name" th:field="*{fullName}" id="fullName" required>
+      <input type="text" placeholder="Enter Full Name" th:field="*{fullName}" id="fullName" required title="Please enter Fullname">
 
-      <label for="sex"><b>Sex</b></label>
-      <input type="text" placeholder="Enter Sex" th:field="*{sex}" id="sex" required>
-      
+      <label for="sex"><b>Gender</b></label>
+      <input type="text" placeholder="Enter Sex" th:field="*{sex}" id="sex" required title="Please enter gender">
+
       <hr>
       <button type="submit" class="registerbtn">Register</button>
     </div>
   </form>
 </body>
+
+<div th:replace="fragments/fragments::homeScript"></div>
 
 </html>

@@ -22,29 +22,53 @@
                                 .
                             </div>
                         </div>
-                        <div class="card mb-4 content-box-title">
-                            <div class="card-header">
+                        <div class="card mb-4">
+                            <div class="card-header  content-box-title">
                                 <i class="fas fa-chart-area me-1"></i>
-                                Add Employee
+                                Update Employee</div>
+    
+                            <div class="container">
+                                <div class="card-body">
+    
+                                    <form th:action="@{/member/save}" th:object="${member}">
+                                        <input type="hidden" th:field="*{id}">
+        
+                                        <div class="mb-3 form-group">
+                                            <label class="small mb-1">Username (how your name will appear to
+                                                other users on the site)</label>
+                                                <input type="text" th:field="*{username}" placeholder="Username"
+                                                class="form-control mb-4 col-4" required title="Please enter username">
+                                        </div>
+        
+                                        <div class="mb-3 form-group">
+                                            <label class="small mb-1" >Fullname</label>
+                                                <input type="text" th:field="*{fullName}" placeholder="Fullname"
+                                                class="form-control mb-4 col-4" required title="Please enter Fullname">
+                                        </div>
+    
+                                        <div class="mb-3 form-group">
+                                            <label class="small mb-1" >Password</label>
+                                                <input type="text" th:field="*{password}" placeholder="Enter your password"
+                                                class="form-control mb-4 col-4" required pattern=".{6,}" title="Password must be at least 6 characters">
+                                        </div>
+        
+                                        <div class="mb-3">
+                                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                                            <input type="text" th:field="*{email}" placeholder="Enter your email address"
+                                            class="form-control mb-4 col-4" required title="Please enter email address">
+                                        </div>
+    
+                                        <div class="mb-3">
+                                            <label class="small mb-1" for="inputPhone">Phone number</label>
+                                                <input class="form-control mb-4 col-4" th:field="*{phoneNumber}" id="inputPhone" type="tel"
+                                                placeholder="Enter your phone number" pattern="\d{10,11}$" required title="Please enter a valid 10 or 11-digit phone number">
+                                        </div>
+        
+                                        <button type="submit" class="btn btn-primary"> Save Employee</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="card-body">
-
-                                <form th:action="@{/member/save}" th:object="${member}">
-                                    <input type="hidden" th:field="*{id}">
-
-                                    <input type="text" th:field="*{fullName}" placeholder="Fullname" class="form-control mb-4 col-4">
-                        
-                                    <input type="text" th:field="*{phoneNumber}" placeholder="Phone Number" class="form-control mb-4 col-4">
-                        
-                                    <input type="text" th:field="*{username}" placeholder="Username" class="form-control mb-4 col-4">
-                        
-                                    <input type="text" th:field="*{password}" placeholder="Password" class="form-control mb-4 col-4">
-                        
-                                    <input type="text" th:field="*{role}" placeholder="role" class="form-control mb-4 col-4">
-                                    <button type="submit" class="btn btn-info col-2"> Save Employee</button>
-                                    
-                                </form>
-                            </div>
+                            
                         </div>
                     </div>
                 </main>

@@ -67,6 +67,7 @@
                                 <thead>
                                     <tr>
                                     <th>Full Name</th>
+                                    <th>Email</th>
                                     <th>Phone NUmber</th>
                                     <th>Username</th>
                                     <th>Password</th>
@@ -76,6 +77,7 @@
                                 <tbody>
                                     <tr th:each="member: ${listMembers}">
                                         <td th:text="${member.fullName}">Full Name</td>
+                                        <td th:text="${member.email}">Full Name</td>
                                         <td th:text="${member.phoneNumber}">Phone Number</td>
                                         <td th:text="${member.username}">Username</td>
                                         <td th:text="${member.password}">Password</td>

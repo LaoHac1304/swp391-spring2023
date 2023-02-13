@@ -1,125 +1,78 @@
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-<!------ Include the above in your HEAD tag ---------->
-
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-<!------ Include the above in your HEAD tag ---------->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Member Profile</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-    <link rel="stylesheet" th:href="@{./css/bootstrap.css}">
-    <script th:src="@{./js/bootstrap.js}"></script>
-</head>
 
+<div th:replace="fragments/fragments::userHead"></div>
 
-<hr>
-<div class="container bootstrap snippet">
-    <div class="row">
-        <div class="col-sm-10">
-            <h1>Profile</h1>
-        </div>
+<body style="
+color: #1a202c;
+text-align: left;
 
-    </div>
-    <div class="row">
-        <div class="col-sm-3"><!--left col-->
+background-color: rgb(182 191 203)">
+    <header th:replace="fragments/fragments::userHeader"></header>
+    
+    <div class="container-xl px-4 mt-4">
+        <div class="row">
+            <div class="col-xl-4">
 
-
-            <div class="text-center">
-                <img th:src="@{http://ssl.gstatic.com/accounts/ui/avatar_2x.png}" class="avatar img-circle img-thumbnail"
-                    alt="avatar">
-                <h6>Upload your avatar</h6>
-                <input type="file" class="text-center center-block file-upload">
+                <form>
+                    <div class="card mb-4 mb-xl-0">
+                      <div class="card-header">Profile Picture</div>
+                      <div class="card-body text-center">
+                        <img class="img-account-profile rounded-circle mb-2" id="previewImage"
+                          src="" alt="">
+                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                        <div class="form-group">
+                          <input type="file" class="form-control-file" id="profileImage" name="profileImage" onchange="previewImage(event)">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Upload new image</button>
+                      </div>
+                    </div>
+                  </form>
             </div>
-            </hr><br>
 
-        </div><!--/col-3-->
-        <div class="col-sm-9">
-            <ul class="nav nav-tabs">
-                <li class="active" style="color: #0da3ee;"><a data-toggle="tab">Home</a></li>
+            <div class="col-xl-8">
+                <div class="card mb-4">
+                    <div class="card-header">Account Details</div>
+                    <div class="card-body">
+                        <form th:action="@{/users/update-userInfo}" method="post" id="registrationForm"
+                            th:object="${userInfo}">
 
-            </ul>
+                            <div class="mb-3 form-group">
+                                <label class="small mb-1" for="inputFullname">Fullname</label>
+                                <input type="text" id="inputFullname" th:field="*{fullName}" placeholder="Fullname" 
+                                class="form-control mb-4 col-4" required title="Please enter your full name">
+                            </div><hr>
 
+                            <div class="mb-3">
+                                <label class="small mb-1" for="inputPhone">Phone number</label>
+                                <input class="form-control" th:field="*{phoneNumber}" id="inputPhone" type="tel" 
+                                placeholder="Enter your phone number" pattern="\d{10,11}$" required title="Please enter a valid 10 or 11-digit phone number">
+                            </div><hr>
 
-            <div class="tab-content">
-                <div class="tab-pane active" id="home">
-                    <hr>
-                    <form class="form" th:action="@{/users/update-userInfo}" method="post" id="registrationForm" th:object="${userInfo}">
-                        <div class="form-group">
+                            <div class="mb-3">
+                                <label class="small mb-1" for="inputGender">Gender</label>
+                                <input class="form-control" th:field="*{sex}" id="inputGender" 
+                                type="tel" placeholder="Enter your gender" required title="Please enter your gender">
+                            </div><hr>
 
-                            <div class="col-xs-6">
-                                <input type="text" class="form-control" th:field="*{fullName}" id="first_name"
-                                    placeholder="Enter first name" title="enter your first name if any.">
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <br>
+                                    <button class="btn btn-lg btn-primary" type="submit"><i
+                                            class="glyphicon glyphicon-ok-sign"></i>
+                                        Save</button>
+                                    <button class="btn btn-lg btn-danger" type="reset"><i
+                                            class="glyphicon glyphicon-repeat"></i>
+                                        Reset</button>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <input type="text" class="form-control" th:field="*{phoneNumber}" id="phone"
-                                    placeholder="Enter phone number" title="enter your phone number if any.">
-                            </div>
-                        </div>
-
-
-                        <!-- <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <input type="email" class="form-control" th:field="*{email}" id="email"
-                                    placeholder="Enter email" title="enter your email.">
-                            </div>
-                        </div> -->
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <input type="text" class="form-control" th:field="*{sex}" id="sex"
-                                    placeholder="Enter sex" title="enter your sex.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                        </div>
-                        <div class="form-group">
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i
-                                        class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i>
-                                    Reset</button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <hr>
-
-                </div><!--/tab-pane-->
-                <div class="tab-pane" id="messages">
-
-                    <h2></h2>
-
-                    <hr>
-
-
-                </div><!--/tab-pane-->
-                <div class="tab-pane" id="settings">
-
-
-                    <hr>
-
+                        </form>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-            </div><!--/tab-pane-->
-        </div><!--/tab-content-->
-
-    </div><!--/col-9-->
-</div><!--/row-->
+    <div th:replace="fragments/fragments::userFooter"></div>
+    <div th:replace="fragments/fragments::userScript"></div>
+</body>

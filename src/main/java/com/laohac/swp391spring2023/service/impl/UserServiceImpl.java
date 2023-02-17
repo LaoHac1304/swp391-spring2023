@@ -133,6 +133,12 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public UserDTOResponse getCurrentUser() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
     /*@Override
     public UserDTOResponse login(OAuth2User user) {
         

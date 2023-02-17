@@ -14,7 +14,7 @@
 <body>
     <div class="container-fluid">
 
-        <form th:action="@{/member/login}"  method="post" class="form-login">
+        <form th:action="@{/users/login}"  method="post" class="form-login">
             <div th:if="${param.error}">
                 <h4 style="color: red">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</h4>
             </div>
@@ -36,7 +36,7 @@
                 <button type="button" class="google">
                     <img th:src="@{/images/googleicon.webp}" alt="" style="width: 15%;
                     height: 100%;">
-                    Login with Google
+                    <a th:href="@{/oauth2/authorization/google}">Login with Google</a>
                 </button>
             </div>
             <!--Forgot password here, update password here-->

@@ -1,6 +1,11 @@
 package com.laohac.swp391spring2023.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,16 +25,16 @@ public class MemberController {
     MemberService memberService;
 
     @GetMapping("/adminDB")
-    public String showAdminDB(){
-        return "adminDashboard/Adashboard";
+    public String showAdminDB(HttpSession session){
+       session.setAttribute("userSession", memberService.getCurrentUser());
+       return "adminDashboard/Adashboard";
     }
 
-    @PostMapping("/sign-up")
-    public String signUp(MemberDTORequest memberDTORequest){
-
-        /*MemberDTOReponse member = memberService.authenticate(memberDTORequest);*/
-        return null;
+    @GetMapping("/login")
+    public String showAdminLogin(){
+        return "home/login";
     }
+
     
     @GetMapping("/viewall")
     public String viewAllMember(Model model) {
@@ -64,6 +69,19 @@ public class MemberController {
         this.memberService.deleteMemberById(id);
         return "redirect:/member/viewall";
     }
+
+    @GetMapping("/logout")
+      public String fetchSignoutSite(HttpServletRequest request, HttpServletResponse response) {        
+        HttpSession session = request.getSession(false);
+        SecurityContextHolder.clearContext();
+  
+        session = request.getSession(false);
+        if(session != null) {
+            session.invalidate();
+        }
+  
+        return "redirect:/member/login";
+      }
     
     
 }

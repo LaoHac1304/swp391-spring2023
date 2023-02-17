@@ -12,7 +12,6 @@ import com.laohac.swp391spring2023.model.entities.User;
 public interface MemberRepository extends JpaRepository<User, Integer> {
 
     public Optional<User> findByUsername(String username);
-    
     public List<User> findAllByRole(String role);
     
 }

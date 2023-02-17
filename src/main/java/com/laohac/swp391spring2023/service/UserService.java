@@ -17,6 +17,8 @@ public interface UserService {
 
     public UserDTOResponse update(UserDTOUpdate userUpdate, String username);
 
+    public UserDTOResponse getCurrentUser();
+
     //public UserDTOResponse login(OAuth2User user);
     
 }

@@ -1,8 +1,11 @@
 package com.laohac.swp391spring2023.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +17,7 @@ import com.laohac.swp391spring2023.model.dto.UserDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOUpdate;
 import com.laohac.swp391spring2023.model.entities.User;
+import com.laohac.swp391spring2023.service.MemberService;
 import com.laohac.swp391spring2023.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,17 +30,28 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired 
+    MemberService memberService;
+
     @GetMapping("")
     public String home(Model model, User user){
         model.addAttribute("customer", user);
-        return "home/Register";
+        //return "home/Register";
+        return "home/userHP";
+    }
+
+    @GetMapping("/home")
+    public String showUserHome(HttpSession session){
+        //return "home/index";
+        session.setAttribute("userSession", memberService.getCurrentUser());
+        return "home/index";
     }
 
     @GetMapping("/login")
     public String showLogin(Model model){
         User user = new User();
         model.addAttribute("user", user);
-        return "home/login";
+        return "home/login1";
     }
 
     
@@ -84,6 +99,24 @@ public class UserController {
         session.setAttribute("userSession", userDTOResponse);
         return "redirect:/users/info";
     }
+
+    @GetMapping("/logout")
+      public String fetchSignoutSite(HttpServletRequest request, HttpServletResponse response) {        
+        HttpSession session = request.getSession(false);
+        SecurityContextHolder.clearContext();
+  
+        session = request.getSession(false);
+        if(session != null) {
+            session.invalidate();
+        }
+  
+        return "redirect:/homepage";
+        //return "homepage/login";
+      }
+
+    
+
+    
 
     
     /*@GetMapping("/login-google")

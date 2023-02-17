@@ -4,9 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.laohac.swp391spring2023.model.dto.MemberDTOReponse;
+import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.MemberRepository;
 import com.laohac.swp391spring2023.service.MemberService;
@@ -61,6 +66,27 @@ public class MemberServiceImpl implements MemberService {
         member.setRole("employee");
         member.setSex("Male");
         this.memberRepository.save(member);       
+    }
+
+    @Override
+    public UserDTOResponse getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String username = userDetails.getUsername();
+            Optional<User> uOptional = memberRepository.findByUsername(username);
+            User member = uOptional.get();
+            return UserDTOResponse
+            .builder()
+            .username(username)
+            .fullName(member.getFullName())
+            .email(member.getEmail())
+            .sex(member.getSex())
+            .phoneNumber(member.getPhoneNumber())
+            .role(member.getRole())
+            .build();    
+        }
+        return null;
     }
 
     

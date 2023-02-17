@@ -50,7 +50,7 @@
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="#!">Logout</a></li>
+                <li><a class="dropdown-item" th:href="@{/member/logout}">Logout</a></li>
             </ul>
         </li>
     </ul>
@@ -81,7 +81,7 @@
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link" th:href="@{/homepage/}" target="_blank">
+                        <a class="nav-link" th:href="@{/homepage}" target="_blank">
                             Homepage
                         </a>
                     </nav>
@@ -219,7 +219,7 @@
                             </li>
 
                             <!-- Logout -->
-                            <li><a class="dropdown-item" href="#!">Logout</a></li>
+                            <li><a class="dropdown-item" th:href="@{/users/logout}">Logout</a></li>
                         </ul>
                     </li>
                     <!-- backendCode End -->
@@ -663,7 +663,7 @@
 <header th:fragment="userHeader" class="header_wrapper">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" th:href="@{/homepage/}" href="#">
+            <a class="navbar-brand" th:href="@{/homepage}" href="#">
                 <img th:src="@{/images/logo.png}" style="width: 70%;" class="img-fluid" alt="logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -718,7 +718,7 @@
                             </li>
 
                             <!-- Logout -->
-                            <li><a class="dropdown-item" href="#!">Logout</a></li>
+                            <li><a class="dropdown-item" th:href="@{/users/logout}">Logout</a></li>
                         </ul>
                     </li>
                     <!-- backendCode End -->

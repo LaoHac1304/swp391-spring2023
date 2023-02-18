@@ -29,49 +29,63 @@
                     <div class="card mb-4">
                         <div class="card-header  content-box-title">
                             <i class="fas fa-chart-area me-1"></i>
-                            Add Employee</div>
+                            Add Employee
+                        </div>
 
-                        <div class="container">
-                            <div class="card-body">
-
-                                <form th:action="@{/member/save}" th:object="${member}">
-    
-                                    <div class="mb-3 form-group">
-                                        <label class="small mb-1">Username (how your name will appear to
-                                            other users on the site)</label>
-                                            <input type="text" th:field="*{username}" placeholder="Username"
-                                            class="col-4 form-control mb-4" required title="Please enter username">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <form th:action="@{/member/save}" th:object="${member}">
+                                            <div class="mb-3 form-group">
+                                                <label class="fw-normal mb-1">Username (how your name will appear to
+                                                    other users on the site)</label>
+                                                <input type="text" th:field="*{username}" placeholder="Username"
+                                                    class="col-4 form-control mb-4" required
+                                                    title="Please enter username">
+                                            </div>
+                                            <div class="mb-3 form-group">
+                                                <label class="fw-normal mb-1">Fullname</label>
+                                                <input type="text" th:field="*{fullName}" placeholder="Fullname"
+                                                    class="col-4 form-control mb-4" required
+                                                    title="Please enter full name">
+                                            </div>
+                                            <div class="mb-3 form-group">
+                                                <label class="fw-normal mb-1">Password</label>
+                                                <input type="text" th:field="*{password}"
+                                                    placeholder="Enter your password" class="col-4 form-control mb-4 "
+                                                    required pattern=".{6,}"
+                                                    title="Password must be at least 6 characters">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="fw-normal mb-1" for="inputEmailAddress">Email
+                                                    address</label>
+                                                <input type="email" th:field="*{email}"
+                                                    placeholder="Enter your email address"
+                                                    class="col-4 form-control mb-4 " required
+                                                    title="Please enter email address">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="fw-normal mb-1" for="inputPhone">Phone number</label>
+                                                <input class="col-4 form-control mb-4 " th:field="*{phoneNumber}"
+                                                    id="inputPhone" type="tel" placeholder="Enter your phone number"
+                                                    pattern="\d{10,11}$" required
+                                                    title="Please enter a valid 10 or 11-digit phone number">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary"> Save Employee</button>
+                                        </form>
                                     </div>
-    
-                                    <div class="mb-3 form-group">
-                                        <label class="small mb-1" >Fullname</label>
-                                            <input type="text" th:field="*{fullName}" placeholder="Fullname"
-                                            class="col-4 form-control mb-4" required title="Please enter full name">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Additional Information</h5>
+                                        <p class="card-text">Password must be at least 6 characters.</p>
+                                        <p class="card-text">'@' Must be include in the email address field.</p>
+                                        <p class="card-text">Phone number must be between 10 - 11 digits.</p>
                                     </div>
-
-                                    <div class="mb-3 form-group">
-                                        <label class="small mb-1" >Password</label>
-                                            <input type="text" th:field="*{password}" placeholder="Enter your password"
-                                            class="col-4 form-control mb-4 " required pattern=".{6,}" title="Password must be at least 6 characters">
-                                    </div>
-    
-                                    <div class="mb-3">
-                                        <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                        <input type="text" th:field="*{email}" placeholder="Enter your email address"
-                                        class="col-4 form-control mb-4 " required title="Please enter email address">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="small mb-1" for="inputPhone">Phone number</label>
-                                            <input class="col-4 form-control mb-4 " th:field="*{phoneNumber}" id="inputPhone" type="tel"
-                                                placeholder="Enter your phone number" pattern="\d{10,11}$" required title="Please enter a valid 10 or 11-digit phone number">
-                                    </div>
-    
-                                    <button type="submit" class="btn btn-primary"> Save Employee</button>
-                                </form>
+                                </div>
                             </div>
                         </div>
-                        
                     </div>
 
                 </div>

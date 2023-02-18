@@ -40,10 +40,13 @@ public class CustomerSecurityConfig {
     public SecurityFilterChain filterChain2(HttpSecurity httpSecurity) throws Exception{
 
         httpSecurity.authenticationProvider(authenticationProvider2());
+        
+        //httpSecurity.antMatcher("/users/**").authorizeRequests().anyRequest().hasAuthority("customer");
         httpSecurity.authorizeRequests()
-        .antMatchers("/homepage","/homepage/login","/homepage/logout").permitAll()
-        .antMatchers("/oauth2/**").permitAll();
-        httpSecurity.antMatcher("/users/**").authorizeRequests().anyRequest().hasAuthority("customer")
+        .antMatchers("/users/**").hasAuthority("customer")
+        .antMatchers("/homepage","/homepage/login","/homepage/logout"
+                        ,"/oauth2/**","/css/**", "/js/**","/images/**").permitAll()
+        .anyRequest().authenticated()
         .and()
         .formLogin()
             .loginPage("/users/login")
@@ -56,6 +59,8 @@ public class CustomerSecurityConfig {
                 .loginPage("/users/login")
                 .userInfoEndpoint().userService(oAuth2UserService)
                 .and()
+                .defaultSuccessUrl("/users/home")
+                .successHandler(oAuth2LoginSuccessHandler)
             .and()
             .logout()
             .invalidateHttpSession(true)
@@ -66,4 +71,7 @@ public class CustomerSecurityConfig {
     }
     @Autowired
     private CustomOAuth2UserService oAuth2UserService;
+
+    @Autowired
+    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 }

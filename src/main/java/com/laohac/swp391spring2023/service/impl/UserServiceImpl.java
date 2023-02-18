@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import com.laohac.swp391spring2023.config.CustomOAuth2User;
 import com.laohac.swp391spring2023.model.dto.UserDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOUpdate;
@@ -139,29 +140,24 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    /*@Override
-    public UserDTOResponse login(OAuth2User user) {
-        
-        UserDTOResponse userDTOResponse = new UserDTOResponse();
-        String username = user.getAttribute("given_name");
-        String email = user.getAttribute("email");
-
+    @Override
+    public boolean checkEmailExisted(String email) {
         Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent()) return true;
+        return false;
+    }
 
-        User newUser = new User();
+    @Override
+    public void createUserByEmail(CustomOAuth2User oAuth2User) {
+        
+        String email = oAuth2User.getEmail();
+        String fullName = oAuth2User.getFullName();
 
-        if (!userOptional.isPresent()){
-            newUser = User.builder().fullName(username).email(email).build();
-            userRepository.save(newUser);
-        }
+        User user = User.builder().email(email).fullName(fullName).role("customer").build();
 
-        userDTOResponse = UserDTOResponse
-                                .builder()
-                                .username(username)
-                                .email(email)
-                                .build();
-        System.out.println(newUser);
-        return userDTOResponse;*/
+        userRepository.save(user);
+        
+    }
         
     }
 

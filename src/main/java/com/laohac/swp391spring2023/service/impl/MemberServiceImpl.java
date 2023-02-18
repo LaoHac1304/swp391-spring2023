@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -14,18 +13,19 @@ import com.laohac.swp391spring2023.model.dto.MemberDTOReponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.MemberRepository;
+import com.laohac.swp391spring2023.repository.UserRepository;
 import com.laohac.swp391spring2023.service.MemberService;
 
 @Service
 public class MemberServiceImpl implements MemberService {
 
     @Autowired
-    MemberRepository memberRepository;
+    private MemberRepository memberRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     
-   
-    
-
     @Override
     public MemberDTOReponse authenticate(User memberDTORequest) {
         
@@ -75,7 +75,16 @@ public class MemberServiceImpl implements MemberService {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String username = userDetails.getUsername();
             Optional<User> uOptional = memberRepository.findByUsername(username);
-            User member = uOptional.get();
+            Optional<User> uOptional2 = userRepository.findByEmail(username);
+            User member = null;
+            if (uOptional.isPresent())
+                member = uOptional.get();
+            else
+                if (uOptional2.isPresent())
+                {
+                    member = uOptional2.get();
+                }
+            
             return UserDTOResponse
             .builder()
             .username(username)

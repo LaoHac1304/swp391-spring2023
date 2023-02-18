@@ -1,5 +1,7 @@
 package com.laohac.swp391spring2023.model.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,12 +15,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "user")
 public class User {
     
@@ -34,4 +36,5 @@ public class User {
     private String sex;
     private String phoneNumber;
     private String role;
+
 }

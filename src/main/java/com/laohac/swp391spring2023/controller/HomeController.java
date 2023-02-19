@@ -1,5 +1,7 @@
 package com.laohac.swp391spring2023.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,10 +11,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.laohac.swp391spring2023.model.dto.RouteDTORequest;
+import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.User;
+import com.laohac.swp391spring2023.repository.RouteRepository;
 import com.laohac.swp391spring2023.service.MemberService;
 
 @Controller
@@ -21,6 +26,19 @@ public class HomeController {
 
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private RouteRepository routeRepository;
+
+    @ModelAttribute
+    public void addCommonAttributes(Model model) {
+        RouteDTORequest routeDTORequest = new RouteDTORequest();
+        model.addAttribute("routeDTORequest", routeDTORequest);
+
+        List<Route> listRoute = routeRepository.findAll();
+        model.addAttribute("listStates", listRoute);
+
+    }
 
     
     @GetMapping("")

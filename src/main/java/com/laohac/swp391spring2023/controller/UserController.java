@@ -45,6 +45,10 @@ public class UserController {
     public void addCommonAttributes(Model model) {
         RouteDTORequest routeDTORequest = new RouteDTORequest();
         model.addAttribute("routeDTORequest", routeDTORequest);
+
+        List<Route> listRoute = routeRepository.findAll();
+        model.addAttribute("listStates", listRoute);
+
     }
     @GetMapping("")
     public String home(Model model, User user){
@@ -133,12 +137,15 @@ public class UserController {
         List<Trip> tripsInfo = userService.search(route);
         model.addAttribute("listTrips", tripsInfo);
 
+        // List<Route> listRoute = routeRepository.findAll();
+        // model.addAttribute("listStates", listRoute);
+
+        // for (Route route1 : listRoute) {
+        //     System.out.println(route1.getArrival());
+        // }
+
         return "home/searchPage";
       }
-
-    
-
-    
 
     
     /*@GetMapping("/login-google")

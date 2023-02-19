@@ -38,4 +38,7 @@ public class Car {
     private String plateNumber;
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     private List<Trip> trip;     
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+    private List<Seat> seats;
 }

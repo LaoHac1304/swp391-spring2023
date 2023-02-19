@@ -23,8 +23,18 @@
                         <th>Date</th>
                     </thead>
                     <tbody>
-                        <td><input type="text" placeholder="PICK UP PLACE"></td>
-                        <td><input type="text" placeholder="DROP OFF PLACE"></td>
+                        <td>
+                            <input type="search" placeholder="PICK UP PLACE" list="pickupList">
+                            <datalist id="pickupList">
+                                <option value="VUNG TAU">
+                            </datalist>
+                        </td>
+                        <td>
+                            <input type="search"  placeholder="DROP OFF PLACE" list="dropoffList">
+                            <datalist id="dropoffList">
+                                <option value="NHA TRANG">
+                            </datalist>
+                        </td>
                         <td><input type="date" value=""></td>
                         <td><button type="submit">Find</button></td>
                     </tbody>

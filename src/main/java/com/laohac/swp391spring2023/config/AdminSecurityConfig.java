@@ -37,7 +37,6 @@ public class AdminSecurityConfig {
     public SecurityFilterChain filterChain1(HttpSecurity httpSecurity) throws Exception{
 
         httpSecurity.authenticationProvider(authenticationProvider1());
-
         httpSecurity.authorizeRequests().antMatchers("/homepage","/homepage/login").permitAll();
         httpSecurity.antMatcher("/member/**").authorizeRequests().anyRequest().hasAuthority("admin")
         .and()

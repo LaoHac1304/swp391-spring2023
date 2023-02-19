@@ -269,7 +269,7 @@
         <div class="container booking-area">
 
             <!-- backendCode here -->
-            <form class="row">
+            <form class="row" th:action="@{/users/search-trip}" th:object="${routeDTORequest}">
                 <div class="col-lg mb-3 mb-lg-0">
                     <i class="fa-solid fa-calendar-days fa-lg "></i>
                     <label class="search-label">Date of departure</label>
@@ -278,12 +278,12 @@
                 <div class="col-lg mb-3 mb-lg-0">
                     <i class="fa-solid fa-map-location-dot fa-lg"></i>
                     <label class="search-label">Pick up place</label>
-                    <input class="form-control" type="text" placeholder="Pick up place" required="">
+                    <input class="form-control" type="text" th:field="*{state1}" placeholder="Pick up place" required="">
                 </div>
                 <div class="col-lg mb-3 mb-lg-0">
                     <i class="fa-solid fa-location-dot fa-lg"></i>
                     <label class="search-label">Drop off place</label>
-                    <input class="form-control" type="text" placeholder="Drop off place" required="">
+                    <input class="form-control" type="text" th:field="*{state2}" placeholder="Drop off place" required="">
                 </div>
                 <div class="col-lg mb-3 mb-lg-0">
                     <br>

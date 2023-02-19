@@ -1,5 +1,7 @@
 package com.laohac.swp391spring2023.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,10 +15,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.laohac.swp391spring2023.model.dto.RouteDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOUpdate;
+import com.laohac.swp391spring2023.model.entities.Route;
+import com.laohac.swp391spring2023.model.entities.Trip;
 import com.laohac.swp391spring2023.model.entities.User;
+import com.laohac.swp391spring2023.repository.RouteRepository;
 import com.laohac.swp391spring2023.service.MemberService;
 import com.laohac.swp391spring2023.service.UserService;
 
@@ -31,7 +37,16 @@ public class UserController {
     private UserService userService;
 
     @Autowired 
-    MemberService memberService;
+    private MemberService memberService;
+
+    @Autowired
+    private RouteRepository routeRepository;
+
+    @ModelAttribute
+    public void addCommonAttributes(Model model) {
+        RouteDTORequest routeDTORequest = new RouteDTORequest();
+        model.addAttribute("routeDTORequest", routeDTORequest);
+    }
 
     @GetMapping("")
     public String home(Model model, User user){
@@ -110,6 +125,20 @@ public class UserController {
   
         return "redirect:/homepage";
         //return "homepage/login";
+      }
+
+      @GetMapping("/search-trip")
+      public String search(@ModelAttribute("routeDTORequest") RouteDTORequest routeDTORequest, Model model){
+
+        
+        
+
+        Route route = routeRepository.findByState1AndState2(routeDTORequest.getState1().toUpperCase(), routeDTORequest.getState2().toUpperCase());
+        System.out.println(route);
+        List<Trip> tripsInfo = userService.search(route);
+        model.addAttribute("listTrips", tripsInfo);
+
+        return "home/index";
       }
 
     

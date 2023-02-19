@@ -1,9 +1,13 @@
 package com.laohac.swp391spring2023.service;
 
+import java.util.List;
+
 import com.laohac.swp391spring2023.config.CustomOAuth2User;
 import com.laohac.swp391spring2023.model.dto.UserDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOUpdate;
+import com.laohac.swp391spring2023.model.entities.Route;
+import com.laohac.swp391spring2023.model.entities.Trip;
 import com.laohac.swp391spring2023.model.entities.User;
 
 public interface UserService {
@@ -23,6 +27,8 @@ public interface UserService {
     public boolean checkEmailExisted(String email);
 
     public void createUserByEmail(CustomOAuth2User oAuth2User);
+
+    public List<Trip> search(Route route);
 
     //public UserDTOResponse login(OAuth2User user);
     

@@ -2,6 +2,7 @@ package com.laohac.swp391spring2023.service.impl;
 
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,10 @@ import com.laohac.swp391spring2023.model.Provider;
 import com.laohac.swp391spring2023.model.dto.UserDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOUpdate;
+import com.laohac.swp391spring2023.model.entities.Route;
+import com.laohac.swp391spring2023.model.entities.Trip;
 import com.laohac.swp391spring2023.model.entities.User;
+import com.laohac.swp391spring2023.repository.TripRepository;
 import com.laohac.swp391spring2023.repository.UserRepository;
 import com.laohac.swp391spring2023.service.UserService;
 
@@ -25,6 +29,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder2;
+
+    @Autowired
+    private TripRepository tripRepository;
 
     @Override
     public UserDTOResponse registerUser(User user) {
@@ -164,6 +171,14 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(user);
         
+    }
+
+    @Override
+    public List<Trip> search(Route route) {
+        
+        List<Trip> trips = tripRepository.findByRoute(route);
+        return trips;
+    
     }
         
     }

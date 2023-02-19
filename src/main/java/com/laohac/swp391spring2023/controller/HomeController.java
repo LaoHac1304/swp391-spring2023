@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.laohac.swp391spring2023.model.dto.RouteDTORequest;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.service.MemberService;
 
@@ -22,7 +24,12 @@ public class HomeController {
 
     
     @GetMapping("")
-    public String showHomePage(){
+    public String showHomePage(Model model){
+
+        
+        RouteDTORequest routeDTORequest = new RouteDTORequest();
+        model.addAttribute("routeDTORequest", routeDTORequest);
+        
         return "home/index";
     }
 

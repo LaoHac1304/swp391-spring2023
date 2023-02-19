@@ -34,33 +34,15 @@
         </div>
         <div class="filter">
             <table>
-                <thead>
-                    <th>Price</th>
-                    <th>Property type</th>
-                    <th>Time</th>
-                </thead>
                 <tbody>
-                    <td>
-                        <select name="" id="">
-                            <option value="">Low - High</option>
-                            <option value="">High - Low</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select name="" id="">
-                            <option value="">Ghế</option>
-                            <option value="">Giường</option>
-                            <option value="">Limousine</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select name="" id="">
-                            <option value="">0h - 6h</option>
-                            <option value="">6h - 12h</option>
-                            <option value="">12h - 18h</option>
-                            <option value="">18h - 24h</option>
-                        </select>
-                    </td>
+                    <tr th:each="trip: ${listTrips}">
+                        <td th:text="${trip.startTime}">Start Time</td>
+                        <td th:text="${trip.endTime}">End Time</td>
+                        <td th:text="${trip.car.getPlateNumber()}">Plate Number</td>
+                        <td th:text="${trip.car.carCompany.getName()}">Company Name</td>
+                        <td th:text="${trip.car.getCapacity()}">Plate Number</td>
+                        <td th:text="${trip.price}">Price</td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -68,22 +50,7 @@
 
 
         <!-- this is form template when rendering to a list of route -->
-        <div class="routeform">
-            <table>
-                <tr>
-                    <td width=72px rowspan="3"><img src="./img/car.jpg" alt="" height="100%" width="100%"></td>
-                    <td>12h - 1h30</td>
-                </tr>
-                <tr>
-                    <td><img src="./img/iconlocation.webp" alt="" height="3%" width="3%">Hồ Chí Minh</td>
-                </tr>
-                <tr>
-                    <td><img src="./img/iconlocation.webp" alt="" height="3%" width="3%" width=100px>Vũng Tàu</td>
-                    <td><button type="submit">Book now</button></td>
-                </tr>
-
-            </table>
-        </div>
+        
     </div>
 
     <div class="">

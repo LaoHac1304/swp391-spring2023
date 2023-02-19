@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{styleSearchPage.css}">
+    <link th:href="@{https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css}" rel="stylesheet" />
     <title>Booking Ticket</title>
 </head>
 
@@ -43,7 +44,19 @@
             </form>
         </div>
         <div class="filter">
-            <table>
+            <table id="datatablesSimple" border="1px" style="width: 400px;">
+
+                <thead>
+                    <tr>
+                        <td>Start Time</td>
+                        <td>End Time</td>
+                        <td>Plate Number</td>
+                        <td>Company Name</td>
+                        <td>Capacity</td>
+                        <td>Price</td>
+                        <td>Book Trip</td>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr th:each="trip: ${listTrips}">
                         <td th:text="${trip.startTime}">Start Time</td>
@@ -54,7 +67,6 @@
                         <td th:text="${trip.price}">Price</td>
                         <td><a th:href="@{/booking/{id}(id=${trip.id})}" class="btn btn-success">Book Trip</a>
                         </td>
-                        
                     </tr>
                 </tbody>
             </table>
@@ -70,6 +82,7 @@
     </div>
 
 
+<div th:replace="fragments/fragments::adminScript"></div>
 
 </body>
 

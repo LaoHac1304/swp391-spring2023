@@ -5,10 +5,11 @@ package com.laohac.swp391spring2023.service.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.laohac.swp391spring2023.config.CustomOAuth2User;
+import com.laohac.swp391spring2023.model.Provider;
 import com.laohac.swp391spring2023.model.dto.UserDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOUpdate;
@@ -22,6 +23,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder2;
+
     @Override
     public UserDTOResponse registerUser(User user) {
         
@@ -29,6 +33,9 @@ public class UserServiceImpl implements UserService {
         
         // successful validation
         user.setRole("customer");
+        String rawPassword = user.getPassword();
+        user.setPassword(passwordEncoder2.encode(rawPassword));
+        user.setProvider(Provider.LOCAL);
         userRepository.save(user);
         UserDTOResponse userDTOResponse = UserDTOResponse
                                 .builder()
@@ -153,7 +160,7 @@ public class UserServiceImpl implements UserService {
         String email = oAuth2User.getEmail();
         String fullName = oAuth2User.getFullName();
 
-        User user = User.builder().email(email).fullName(fullName).role("customer").build();
+        User user = User.builder().email(email).fullName(fullName).role("customer").provider(Provider.GOOGLE).build();
 
         userRepository.save(user);
         

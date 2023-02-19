@@ -9,7 +9,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -22,16 +21,18 @@ public class CustomerSecurityConfig {
         return new CustomerUserDetailsService();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder2(){
-        return NoOpPasswordEncoder.getInstance();
-    }
+    // @Bean
+    // public PasswordEncoder passwordEncoder2(){
+    //     //return NoOpPasswordEncoder.getInstance();
+    //     return new BCryptPasswordEncoder();
+        
+    // }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider2(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(customerUserDetailsService());
-        provider.setPasswordEncoder(passwordEncoder2());
+        provider.setPasswordEncoder(passwordEncoder2);
         return provider;
 
     }
@@ -41,11 +42,11 @@ public class CustomerSecurityConfig {
 
         httpSecurity.authenticationProvider(authenticationProvider2());
         
-        //httpSecurity.antMatcher("/users/**").authorizeRequests().anyRequest().hasAuthority("customer");
         httpSecurity.authorizeRequests()
-        .antMatchers("/users/**").hasAuthority("customer")
-        .antMatchers("/homepage","/homepage/login","/homepage/logout"
+        //.antMatchers("/users/**").hasAuthority("customer")
+        .antMatchers("/homepage","/homepage/login","/homepage/logout","/users","/users/save"
                         ,"/oauth2/**","/css/**", "/js/**","/images/**").permitAll()
+        .antMatchers("/users/**").hasAuthority("customer")
         .anyRequest().authenticated()
         .and()
         .formLogin()
@@ -74,4 +75,7 @@ public class CustomerSecurityConfig {
 
     @Autowired
     private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder2;
 }

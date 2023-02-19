@@ -22,7 +22,8 @@ public class AdminSecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder1(){
-        return NoOpPasswordEncoder.getInstance();
+        //return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 
     @Bean

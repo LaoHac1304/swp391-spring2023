@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.laohac.swp391spring2023.model.Provider;
 import com.laohac.swp391spring2023.model.dto.MemberDTOReponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.entities.User;
@@ -24,6 +26,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     
     @Override
@@ -65,6 +70,11 @@ public class MemberServiceImpl implements MemberService {
     public void addMember(User member) {
         member.setRole("employee");
         member.setSex("Male");
+
+        String rawPassword = member.getPassword();
+        member.setPassword(passwordEncoder.encode(rawPassword));
+        member.setProvider(Provider.LOCAL);
+        
         this.memberRepository.save(member);       
     }
 

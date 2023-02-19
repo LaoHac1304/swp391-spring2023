@@ -37,7 +37,7 @@ public class UserController {
     public String home(Model model, User user){
         model.addAttribute("customer", user);
         //return "home/Register";
-        return "home/userHP";
+        return "home/Register";
     }
 
     @GetMapping("/home")
@@ -53,8 +53,6 @@ public class UserController {
         model.addAttribute("user", user);
         return "home/login1";
     }
-
-    
 
     @PostMapping("/save")
     public String register (@ModelAttribute("customer") User user){

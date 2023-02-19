@@ -40,7 +40,7 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
          Set<GrantedAuthority> authorities = new HashSet<>();
          authorities.add(new SimpleGrantedAuthority("customer"));
          UserDetails userDetails = new org.springframework.security.core.userdetails.User(email, "123", authorities);
-         Authentication authentication1 = new UsernamePasswordAuthenticationToken(userDetails, "123", userDetails.getAuthorities());
+         //Authentication authentication1 = new UsernamePasswordAuthenticationToken(userDetails, "123", userDetails.getAuthorities());
          UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
             userDetails, null, authorities);
 

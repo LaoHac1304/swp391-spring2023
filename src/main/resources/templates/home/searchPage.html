@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleSearchPage.css">
+    <title>Booking Ticket</title>
+</head>
+
+<body>
+    <!-- show a list of available tickets for customer -->
+    <div class="container">
+        <!-- need to render pick up location and destination that customer choose -->
+        <h3>Pick up location - Destination</h3>
+        <div class="flex" width="100%">
+            <form class="row">
+                <table>
+                    <thead>
+                        <th>Pick up place</th>
+                        <th>Drop off place</th>
+                        <th>Date</th>
+                    </thead>
+                    <tbody>
+                        <td><input type="text" placeholder="PICK UP PLACE"></td>
+                        <td><input type="text" placeholder="DROP OFF PLACE"></td>
+                        <td><input type="date" value=""></td>
+                        <td><button type="submit">Find</button></td>
+                    </tbody>
+
+                </table>
+            </form>
+        </div>
+        <div class="filter">
+            <table>
+                <thead>
+                    <th>Price</th>
+                    <th>Property type</th>
+                    <th>Time</th>
+                </thead>
+                <tbody>
+                    <td>
+                        <select name="" id="">
+                            <option value="">Low - High</option>
+                            <option value="">High - Low</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="" id="">
+                            <option value="">Ghế</option>
+                            <option value="">Giường</option>
+                            <option value="">Limousine</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="" id="">
+                            <option value="">0h - 6h</option>
+                            <option value="">6h - 12h</option>
+                            <option value="">12h - 18h</option>
+                            <option value="">18h - 24h</option>
+                        </select>
+                    </td>
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <!-- this is form template when rendering to a list of route -->
+        <div class="routeform">
+            <table>
+                <tr>
+                    <td width=72px rowspan="3"><img src="./img/car.jpg" alt="" height="100%" width="100%"></td>
+                    <td>12h - 1h30</td>
+                </tr>
+                <tr>
+                    <td><img src="./img/iconlocation.webp" alt="" height="3%" width="3%">Hồ Chí Minh</td>
+                </tr>
+                <tr>
+                    <td><img src="./img/iconlocation.webp" alt="" height="3%" width="3%" width=100px>Vũng Tàu</td>
+                    <td><button type="submit">Book now</button></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <div class="">
+        <a href="#"></a>
+    </div>
+
+
+
+</body>
+
+</html>

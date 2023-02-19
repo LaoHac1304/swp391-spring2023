@@ -112,10 +112,22 @@ hr:not([size]) {
     height: 0px;
 }
 
+.seatChoose {
+    margin: 10px 0px 20px 114px;
+    font-size: 30px;
+}
+
 .userFooter {
     display: flex;
     flex-direction: column;
-    min-height: 57vh;
+    min-height: 53vh;
+    justify-content: flex-end;
+}
+
+.bookFooter {
+    display: flex;
+    flex-direction: column;
+    min-height: 30vh;
     justify-content: flex-end;
 }
 
@@ -177,8 +189,8 @@ img {
     display: inline-block;
 }
 
-.train {
-    margin: 20px auto;
+.bus {
+    margin: 20px auto 0px auto;
     max-width: 250px;
 }
 
@@ -206,9 +218,14 @@ img {
     flex-direction: row-reverse;
 }
 
-.train-body {
+.bus-body {
     border-right: 5px solid #d8d8d8;
     border-left: 5px solid #d8d8d8;
+}
+
+.bus-order{
+    background-color: rgba(245, 241, 241, 0.7);
+    margin:0 300px;
 }
 
 ol {
@@ -230,6 +247,7 @@ ol {
     padding: 5px;
     position: relative;
 }
+
 
 .seat:nth-child(2) {
     margin-right: 15%;
@@ -279,7 +297,7 @@ ol {
     font-weight: bold;
     line-height: 1.5rem;
     padding: 4px 0;
-    background: #F42536;
+    background: #3783b5;
     border-radius: 5px;
     -webkit-animation-duration: 300ms;
     animation-duration: 300ms;
@@ -295,7 +313,7 @@ ol {
     top: 1px;
     left: 50%;
     transform: translate(-50%, 0%);
-    background: rgba(255, 255, 255, 0.4);
+    /* background: rgba(255, 255, 255, 0.4); */
     border-radius: 3px;
 }
 

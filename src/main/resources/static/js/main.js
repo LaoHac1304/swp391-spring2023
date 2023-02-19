@@ -106,3 +106,20 @@ document.getElementById("profileImage").addEventListener("change", function() {
 
     return true;
   }
+
+  //Selected seats
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const selectedSeat = document.getElementById('selectedSeat');
+  
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('click', () => {
+      let count = 0;
+      checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          count++;
+        }
+      });
+      selectedSeat.textContent = `Selected seats: ${count}`;
+    });
+  });
+  

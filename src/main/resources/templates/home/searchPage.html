@@ -42,10 +42,10 @@
                         <td th:text="${trip.car.carCompany.getName()}">Company Name</td>
                         <td th:text="${trip.car.getCapacity()}">Plate Number</td>
                         <td th:text="${trip.price}">Price</td>
+                        <td><a th:href="@{/booking}">Book Trip</a></td>
                     </tr>
                 </tbody>
             </table>
-
         </div>
 
 

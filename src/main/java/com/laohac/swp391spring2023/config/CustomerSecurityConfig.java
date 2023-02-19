@@ -43,9 +43,9 @@ public class CustomerSecurityConfig {
         httpSecurity.authenticationProvider(authenticationProvider2());
         
         httpSecurity.authorizeRequests()
-        .antMatchers("/homepage","/homepage/login","/homepage/logout","/users","/users/save"
+        .antMatchers("/homepage","/homepage/login","/homepage/logout","/users","/users/save","/booking"
                         ,"/oauth2/**","/css/**", "/js/**","/images/**").permitAll()
-        //.antMatchers("/users/**").hasAuthority("customer")
+        .antMatchers("/users/**").hasAuthority("customer")
         .anyRequest().authenticated()
         .and()
         .formLogin()

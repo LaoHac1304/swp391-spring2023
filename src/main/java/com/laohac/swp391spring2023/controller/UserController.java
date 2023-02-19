@@ -41,13 +41,11 @@ public class UserController {
 
     @Autowired
     private RouteRepository routeRepository;
-
     @ModelAttribute
     public void addCommonAttributes(Model model) {
         RouteDTORequest routeDTORequest = new RouteDTORequest();
         model.addAttribute("routeDTORequest", routeDTORequest);
     }
-
     @GetMapping("")
     public String home(Model model, User user){
         model.addAttribute("customer", user);
@@ -130,15 +128,12 @@ public class UserController {
       @GetMapping("/search-trip")
       public String search(@ModelAttribute("routeDTORequest") RouteDTORequest routeDTORequest, Model model){
 
-        
-        
-
         Route route = routeRepository.findByState1AndState2(routeDTORequest.getState1().toUpperCase(), routeDTORequest.getState2().toUpperCase());
         System.out.println(route);
         List<Trip> tripsInfo = userService.search(route);
         model.addAttribute("listTrips", tripsInfo);
 
-        return "home/index";
+        return "home/searchPage";
       }
 
     

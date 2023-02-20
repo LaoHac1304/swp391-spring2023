@@ -54,6 +54,7 @@
                         <td>Company Name</td>
                         <td>Capacity</td>
                         <td>Price</td>
+                        <td>Day</td>
                         <td>Book Trip</td>
                     </tr>
                 </thead>
@@ -65,6 +66,7 @@
                         <td th:text="${trip.car.carCompany.getName()}">Company Name</td>
                         <td th:text="${trip.car.getCapacity()}">Plate Number</td>
                         <td th:text="${trip.price}">Price</td>
+                        <td th:text="${trip.day}">Price</td>
                         <td><a th:href="@{/booking/{id}(id=${trip.id})}" class="btn btn-success">Book Trip</a>
                         </td>
                     </tr>

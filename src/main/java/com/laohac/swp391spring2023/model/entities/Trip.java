@@ -1,6 +1,5 @@
 package com.laohac.swp391spring2023.model.entities;
 
-import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +12,7 @@ import javax.persistence.Table;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,16 +37,18 @@ public class Trip {
     @JoinColumn(name = "RouteID")
     private Route route;
     @Column(name = "StartTime")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime startTime;
+    @JsonFormat(pattern="HH:mm:ss", shape = Shape.STRING)
+    private String startTime;
     @Column(name = "EndTime")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime endTime;
+    @JsonFormat(pattern="HH:mm:ss", shape = Shape.STRING)
+    private String endTime;
     @ManyToOne
     @JoinColumn(name = "CarID")
     private Car car;
     private int price;
-
     private String departureDetail;
     private String arrivalDetail;
+    @Column(name = "Day")
+    @JsonFormat(pattern="YYYY-MM-dd", shape = Shape.STRING)
+    private String day;
 }

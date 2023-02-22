@@ -83,6 +83,12 @@ public class HomeController {
         //return "homepage/login";
       }
 
+      @GetMapping("/orderForm")
+      public String showOrderForm(){
+
+        return "home/orderForm";
+      }
+
     // @PostMapping("/sign-in")
     // public String login(HttpSession session ,Model model, @ModelAttribute("user") UserDTORequest userDTORequest){
 

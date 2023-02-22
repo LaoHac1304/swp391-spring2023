@@ -75,18 +75,22 @@ public class PaymentController {
 
     @GetMapping("/showAllSeats")
     public String getAllSeats(Model model){
-        Trip trip = new Trip();
+        Trip trip = tripRepository.findById(1);
         List<Seat> seatLists = seatRepository.findByTrip(trip);
+        
         model.addAttribute("listSeats",seatLists);
         return "home/orderForm";
     }
 
-    @PostMapping("/choose-seats/{id}")
-    public String chooseSeats(Model model, @RequestParam(name = "selectedSeats", required = false) List<Integer> selectedSeats){
+    @PostMapping("/choose-seats")
+    public String chooseSeats(@RequestParam(name = "selectedSeats", required = false) List<Integer> selectedSeats){
+
+        
 
         for (Integer id : selectedSeats) {
-            bookingService.chooseSeats(id.intValue());    
+            bookingService.chooseSeats(id);    
         }
-        return "/booking/showAllSeats";
+       //return "redirect:/booking/showAllSeats";
+       return "home/checkoutForm";
     }
 }

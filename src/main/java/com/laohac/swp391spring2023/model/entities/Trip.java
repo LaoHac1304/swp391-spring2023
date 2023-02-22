@@ -1,6 +1,9 @@
 package com.laohac.swp391spring2023.model.entities;
 
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -51,4 +55,8 @@ public class Trip {
     @Column(name = "Day")
     @JsonFormat(pattern="YYYY-MM-dd", shape = Shape.STRING)
     private String day;
+
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
+    private List<Seat> listAvailableSeats;
+
 }

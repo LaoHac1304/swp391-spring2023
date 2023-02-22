@@ -17,11 +17,13 @@ public class BookingServiceImpl implements BookingService {
     public void chooseSeats(int id) {
         
         Seat seat = seatRepository.findById(id);
-        if (!seat.isAvailableSeat()){
-            seat.setAvailableSeat(true);
+        if (seat.getAvailableSeat() == 0){
+            seat.setAvailableSeat(1);
             seatRepository.save(seat);
         }
-        throw new UnsupportedOperationException("Unimplemented method 'chooseSeats'");
+        return;
+
+        
     }
     
 }

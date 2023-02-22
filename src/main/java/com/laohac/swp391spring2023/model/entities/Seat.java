@@ -39,6 +39,6 @@ public class Seat {
     @JoinColumn(name = "TripID")
     private Trip trip;
 
-    private boolean availableSeat;
+    private int availableSeat;
     
 }

@@ -92,6 +92,7 @@
     width: 600px;
     margin: auto;
     margin-top: 20px;
+    background-color: rgba(250, 241, 242,0.6);
 
     
 
@@ -208,8 +209,8 @@
 .carcompany-name {
     margin-top: 30px;
     font-weight: bold;
-    width: 100%;
-    margin-left: 220px;
+    width: 502px;
+    /* margin-left: 220px; */
 }
 
 .route-line-bold-1 {
@@ -233,5 +234,5 @@
 .car-type {
     font-size: 20px;
     font-weight: bold;
-    margin-left: 330px;
+    margin-left: 310px;
 }

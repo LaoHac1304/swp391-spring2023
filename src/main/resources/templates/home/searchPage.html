@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/styleSearchPage.css}">
+
+    <link rel="stylesheet" href="./styleSearchPage.css" th:href="@{/css/styleSearchPage.css}">
+
     <title>Booking Ticket</title>
 </head>
 `
@@ -27,8 +29,18 @@
                         <th>Date</th>
                     </thead>
                     <tbody>
-                        <td><input type="text" id="search-key" name="search" class="search-input"></td>
-                        <td><input type="text" id="search-key" name="search" class="search-input"></td>
+                        <td>
+                            <input type="text" id="search-key" name="search" class="search-input" list="pickupList" required>
+                            <datalist id="pickupList">
+                                <option th:each="trip: ${listStates}" th:value="${trip.departure}">
+                            </datalist>
+                        </td>
+                        <td>
+                            <input type="text" id="search-key" name="search" class="search-input" required list="dropoffList">
+                            <datalist id="dropoffList">
+                                <option th:each="trip: ${listStates}" th:value="${trip.arrival}">
+                            </datalist>
+                        </td>
                         <td><input type="date" id="search-key" name="search" class="search-input"></td>
                         <td><button type="submit">Find</button></td>
                     </tbody>

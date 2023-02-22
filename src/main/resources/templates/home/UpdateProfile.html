@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/fragments::userHead"></div>
+
+<body style="
+color: #1a202c;
+text-align: left;
+
+background-color: rgb(182 191 203)">
+    <header th:replace="fragments/fragments::userHeader"></header>
+
+    <div class="container-xl px-4 mt-4">
+        <div class="row">
+            <div class="col-xl-4">
+
+                <form>
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Profile Picture</div>
+                        <div class="card-body text-center">
+                            <img class="img-account-profile rounded-circle mb-2" id="previewImage" src="" alt="">
+                            <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="profileImage" name="profileImage"
+                                    onchange="previewImage(event)">
+                            </div>
+                            <button class="btn btn-primary" type="submit">Upload new image</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-xl-8">
+                <div class="card mb-4">
+                    <div class="card-header">Account Details</div>
+                    <div class="card-body">
+                        <form th:action="@{/users/update-userInfo}" method="post" id="registrationForm"
+                            th:object="${userInfo}">
+
+                            <div class="mb-3 form-group">
+                                <label class="fw-normal mb-1" for="inputFullname">Fullname</label>
+                                <input type="text" id="inputFullname" th:field="*{fullName}" placeholder="Fullname"
+                                    class="form-control mb-4 col-5" required title="Please enter your full name">
+                            </div>
+                            <hr>
+
+                            <div class="mb-3">
+                                <label class="fw-normal mb-1" for="inputEmail">Email</label>
+                                <input class="form-control mb-4 col-5" th:field="*{email}" id="inputEmail" type="email"
+                                    placeholder="Enter your email" required title="Please enter a valid email!">
+                            </div>
+                            <hr>
+
+                            <div class="mb-3">
+                                <label class="fw-normal mb-1" for="inputPhone">Phone number</label>
+                                <input class="form-control mb-4 col-5" th:field="*{phoneNumber}" id="inputPhone"
+                                    type="tel" placeholder="Enter your phone number" pattern="\d{10,11}$" required
+                                    title="Please enter a valid 10 or 11-digit phone number">
+                            </div>
+                            <hr>
+
+                            <div class="mb-3">
+                                <label class="fw-normal mb-1" for="inputGender">Gender</label>
+                                <select th:field="*{sex}" id="inputGender">
+
+                                    <option th:value="MALE">Male</option>
+                                    <option th:value="FEMALE">Female</option>
+                                    <option th:value="OTHER">Other</option>
+                                </select>
+                            </div>
+                            <hr>
+
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <br>
+                                    <button class="btn btn-lg btn-primary" type="submit"><i
+                                            class="glyphicon glyphicon-ok-sign"></i>
+                                        Save</button>
+                                    <button class="btn btn-lg btn-danger" type="reset"><i
+                                            class="glyphicon glyphicon-repeat"></i>
+                                        Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/fragments::userFooter"></div>
+    <div th:replace="fragments/fragments::userScript"></div>
+</body>

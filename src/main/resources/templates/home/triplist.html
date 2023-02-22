@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/fragments::homeHead"></div>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+    <!-- Navbar section -->
+    <header th:replace="fragments/fragments::homeHeader"></header>
+    <!-- Navbar section exit -->
+
+    <main>
+        <div class="container" style="padding-top: 20px;">
+            <div style="width: 40%">
+                <ul class="trip-list">
+                    <li>
+                        <h2 class="trip-title">Trip 1</h2>
+                        <p class="trip-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                            volutpat velit eu odio fringilla, quis hendrerit neque volutpat.</p>
+                        <div class="trip-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Date:</span>
+                                <span class="detail-value">Jan 1, 2023</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Location:</span>
+                                <span class="detail-value">New York, USA</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Price:</span>
+                                <span class="detail-value">$1000</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h2 class="trip-title">Trip 2</h2>
+                        <p class="trip-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                            volutpat velit eu odio fringilla, quis hendrerit neque volutpat.</p>
+                        <div class="trip-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Date:</span>
+                                <span class="detail-value">Feb 1, 2023</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Location:</span>
+                                <span class="detail-value">Paris, France</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Price:</span>
+                                <span class="detail-value">$1500</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Footer section -->
+    <div th:replace="fragments/fragments::homeFooter"></div>
+    <!-- Footer section exit -->
+
+    <!-- Script -->
+    <div th:replace="fragments/fragments::homeScript"></div>
+</body>

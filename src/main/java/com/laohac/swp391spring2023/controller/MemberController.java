@@ -1,16 +1,19 @@
 package com.laohac.swp391spring2023.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.laohac.swp391spring2023.model.dto.MemberDTOReponse;
-import com.laohac.swp391spring2023.model.dto.MemberDTORequest;
-import com.laohac.swp391spring2023.model.entities.Member;
+import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.service.MemberService;
 
 @Controller
@@ -20,51 +23,68 @@ public class MemberController {
     @Autowired 
     MemberService memberService;
 
+    @GetMapping("/adminDB")
+    public String showAdminDB(HttpSession session, Authentication authentication){
+        if (authentication != null && authentication.isAuthenticated())
+            session.setAttribute("userSession", memberService.getCurrentUser());
+       return "adminDashboard/Adashboard";
+    }
+
     @GetMapping("/login")
-    public String showLogin(Model model) {
-        
-        Member member = new Member();
-        model.addAttribute("member", member);
-        return "home/login"; 
-    }
-
-    @GetMapping("/addEmployee")
-    public String showEmployeePage(Model model){
-        Member member = new Member();
-        model.addAttribute("employee", member);
-        return "adminDashboard/addEmployee";
-    }
-
-    @PostMapping("/memberLogin")
-    public String loginMember(@ModelAttribute("member") Member member){
-        MemberDTOReponse memberLogin = memberService.authenticate(member);
-        if (memberLogin != null)
-            return "adminDashboard/Adashboard";
+    public String showAdminLogin(Authentication authentication){
+        if (authentication != null && authentication.isAuthenticated()) {
+            return "redirect:/member/adminDB";
+        }
         return "home/login";
     }
 
-    @PostMapping("/add")
-    public String addMember(@ModelAttribute("employee") Member member) {
-        Member employee = new Member();
-        //employee = memberService.addMember(member);
-        return "adminDashboard/addEmployee";
-    }
-
-
-    @GetMapping("/adminDB")
-    public String showAdminDB(){
+    
+    @GetMapping("/viewall")
+    public String viewAllMember(Model model) {
+        model.addAttribute("listMembers", memberService.getAllMember());
         return "adminDashboard/Adashboard";
     }
 
+    @GetMapping("/add")
+    public String addMember(Model model) {
+        User member = new User();
+        model.addAttribute("member", member);
     
-
-    @PostMapping("/sign-up")
-    public String signUp(MemberDTORequest memberDTORequest){
-
-        /*MemberDTOReponse member = memberService.authenticate(memberDTORequest);*/
-        return null;
+        return "adminDashboard/addEmployee";
     }
 
+    @GetMapping("/save")
+    public String saveMember(@ModelAttribute("member") User member) {
+        memberService.addMember(member);
+        System.out.println(member);
+        return "redirect:/member/viewall";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateMember(@PathVariable(value = "id") int id, Model model) {
+        User member = memberService.getMemberById(id);
+        model.addAttribute("member", member);
+        return "adminDashboard/updateEmployee";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteMember(@PathVariable(value = "id") int id) {
+        this.memberService.deleteMemberById(id);
+        return "redirect:/member/viewall";
+    }
+
+    @GetMapping("/logout")
+      public String fetchSignoutSite(HttpServletRequest request, HttpServletResponse response) {        
+        HttpSession session = request.getSession(false);
+        SecurityContextHolder.clearContext();
+  
+        session = request.getSession(false);
+        if(session != null) {
+            session.invalidate();
+        }
+  
+        return "redirect:/member/login";
+      }
     
     
 }

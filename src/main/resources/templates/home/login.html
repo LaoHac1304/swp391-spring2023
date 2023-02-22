@@ -13,14 +13,22 @@
 
 <body>
     <div class="container-fluid">
-        <form th:action="@{/member/memberLogin}" th:object="${member}" method="post" class="form-login">
+
+        <form th:action="@{/member/login}"  method="post" class="form-login">
+            <div th:if="${param.error}">
+                <h4 style="color: red">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</h4>
+            </div>
             <h3>Login Here</h3>
             <label>Username</label><br>
-            <input type="text" class="form-control" th:field="*{username}" placeholder="Username">
+            <input type="username" class="form-control" name="username" placeholder="Username">
             <label class="lbpass">Password</label>
-            <input type="password" class="form-control" th:field="*{password}" placeholder="Password">
+            <input type="password" class="form-control" name="password"  placeholder="Password">
 
-            <a href="#" class="lbforgotpassword">Forgot password?</a>
+            <p class="lbregister"> Are you new here ? 
+                <!--Register page here-->
+                <a th:href="@{/users}">Register</a>
+            </p>
+            
             <button type="submit" class="login">Login</button>
 
             <div class="social">
@@ -31,6 +39,8 @@
                     Login with Google
                 </button>
             </div>
+            <!--Forgot password here, update password here-->
+            <a href="#" class="lbforgotpassword">Forgot password?</a>
         </form>
     </div>
 </body>

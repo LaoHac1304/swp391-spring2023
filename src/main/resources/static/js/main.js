@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             step = Math.abs(Math.floor(duration / range)),
             timer = setInterval(() => {
                 current += increment;
-                obj.textContent = current;
+                // obj.textContent = current;
                 if (current == end) {
                     clearInterval(timer);
                 }
@@ -78,20 +78,48 @@ var swiper = new Swiper(".our-partner", {
     },
 });
 
-// Music
-let playing = false;
+//Preview image
+document.getElementById("profileImage").addEventListener("change", function() {
+    var preview = document.getElementById("previewImage");
+    var file    = this.files[0];
+    var reader  = new FileReader();
 
-document.addEventListener("keydown", function(event) {
-  if (event.code === "Space") {
-    var music = document.getElementById("music");
-    if (playing === true) {
-      music.pause();
-      playing = false;
-    } else {
-      music.play();
-      playing = true;
+    reader.addEventListener("load", function () {
+      preview.src = reader.result;
+    }, false);
+
+    if (file) {
+      reader.readAsDataURL(file);
     }
+  });
+
+
+  //Validate password
+  function validatePassword() {
+    var password = document.getElementById("psw").value;
+    var repeatPassword = document.getElementById("pswRepeat").value;
+
+    if (password !== repeatPassword) {
+      alert("Passwords do not match.");
+      return false;
+    }
+
+    return true;
   }
-});
 
-
+  //Selected seats
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const selectedSeat = document.getElementById('selectedSeat');
+  
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('click', () => {
+      let count = 0;
+      checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          count++;
+        }
+      });
+      selectedSeat.textContent = `Selected seats: ${count}`;
+    });
+  });
+  

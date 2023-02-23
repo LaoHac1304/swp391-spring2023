@@ -4,6 +4,8 @@ package com.laohac.swp391spring2023.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDate;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -180,7 +182,14 @@ public class UserServiceImpl implements UserService {
         return trips;
     
     }
+
+    @Override
+    public List<Trip> searchByRouteAndDate(Route route, LocalDate date) {
         
+        List<Trip> trips = tripRepository.findByRouteAndDate(route, date);
+        return trips;
+       
+    }
     }
 
 

@@ -1,6 +1,11 @@
 package com.laohac.swp391spring2023.controller;
 
 import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +28,7 @@ import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.Trip;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.RouteRepository;
+import com.laohac.swp391spring2023.repository.TripRepository;
 import com.laohac.swp391spring2023.service.MemberService;
 import com.laohac.swp391spring2023.service.UserService;
 
@@ -41,6 +47,9 @@ public class UserController {
 
     @Autowired
     private RouteRepository routeRepository;
+    @Autowired
+    private TripRepository tripRepository;
+
     @ModelAttribute
     public void addCommonAttributes(Model model) {
         RouteDTORequest routeDTORequest = new RouteDTORequest();
@@ -130,15 +139,25 @@ public class UserController {
       }
 
       @GetMapping("/search-trip")
-      public String search(@ModelAttribute("routeDTORequest") RouteDTORequest routeDTORequest, Model model){
+      public String search(@ModelAttribute("routeDTORequest") RouteDTORequest routeDTORequest, Model model) throws ParseException{
+
+        String dateString = routeDTORequest.getDate();
+        
+
+        
+        LocalDate date = LocalDate.parse(dateString);
+
+        //System.out.println(date);
 
         Route route = routeRepository.findByState1AndState2(routeDTORequest.getState1().toUpperCase(), routeDTORequest.getState2().toUpperCase());
-        System.out.println(route);
-        List<Trip> tripsInfo = userService.search(route);
+        //Date date = routeDTORequest.getDate();
+        //System.out.println(routeDTORequest.getDate());
+        //Date date = tripRepository.findDateByRouteId(route.getId());
+        List<Trip> tripsInfo = userService.searchByRouteAndDate(route, date);
         model.addAttribute("listTrips", tripsInfo);
 
-        // List<Route> listRoute = routeRepository.findAll();
-        // model.addAttribute("listStates", listRoute);
+        List<Route> listRoute = routeRepository.findAll();
+        model.addAttribute("listStates", listRoute);
 
         // for (Route route1 : listRoute) {
         //     System.out.println(route1.getArrival());

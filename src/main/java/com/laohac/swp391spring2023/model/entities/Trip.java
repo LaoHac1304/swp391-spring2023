@@ -1,6 +1,8 @@
 package com.laohac.swp391spring2023.model.entities;
 
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -53,9 +56,8 @@ public class Trip {
     private String departureDetail;
     private String arrivalDetail;
     @Column(name = "Day")
-    @JsonFormat(pattern="YYYY-MM-dd", shape = Shape.STRING)
-    private String day;
-
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate date;
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
     private List<Seat> listAvailableSeats;
 

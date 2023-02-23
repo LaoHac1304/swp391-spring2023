@@ -189,39 +189,7 @@ img {
     display: inline-block;
 }
 
-.bus {
-    margin: 20px auto 0px auto;
-    max-width: 250px;
-}
 
-.exit {
-    display: flex;
-    flex-direction: row;
-    padding: 0.5rem 0;
-}
-
-.exit div {
-    flex: 1;
-    background: #d8d8d8;
-    text-align: center;
-    justify-content: center;
-    height: 40px;
-    line-height: 40px;
-}
-
-.exit div:nth-child(2) {
-    flex: 0 1 20%;
-    background: #fff;
-}
-
-.exit.back {
-    flex-direction: row-reverse;
-}
-
-.bus-body {
-    border-right: 5px solid #d8d8d8;
-    border-left: 5px solid #d8d8d8;
-}
 
 .bus-order{
     background-color: rgba(245, 241, 241, 0.7);
@@ -229,11 +197,7 @@ img {
     height: 535px;
 }
 
-ol {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+
 
 .seat {
     background-color: #444451;
@@ -435,6 +399,86 @@ a.main-btn3:hover {
 .number {
     color: rgb(22, 24, 41);
     font-size: 1.3rem;
+}
+
+.payment-form {
+    position: relative;
+    width: 100%;
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 4px;
+    margin-top: 12px;
+    transition: all 0.3s linear 0s;
+    overflow: hidden;
+    height: auto;
+    background: white;
+    padding: 0px 16px;
+}
+
+.flex-label{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.row-payment{
+    padding: 5px 0px;
+    border-bottom: 1px solid rgb(227, 227, 227);
+}
+
+.detail-content {
+    margin-left: 25px;
+}
+
+.trip-info-body {
+    padding: 20px;
+    background: none;
+    height: auto !important;
+}
+
+.span-payments {
+    display: flex;
+    align-content: stretch;
+    justify-content: center;
+    align-items: center;
+}
+
+.total {
+    font-weight: 500;
+    font-size: 22px;
+    color: rgb(72, 72, 72);
+}
+
+.total-price {
+    font-weight: 500;
+    font-size: 22px;
+    color: rgb(42, 88, 240);
+    text-align: right;
+}
+
+.table-name {
+    align-items: center;
+    font-size: 14px;
+    color: rgb(116, 116, 116);
+    font-weight: 300;
+    margin-top: 16px;
+}
+
+.table-group-divider {
+    height: 1px;
+    background: rgb(211, 209, 209);
+    margin-top: 16px;
+}
+
+.detailFooter{
+    display: flex;
+    flex-direction: column;
+    /* min-height: 53vh; */
+    justify-content: flex-end;
+}
+
+.table-value {
+    font-size: 18px;
+    color: rgb(51, 51, 51);
 }
 
 a.main-btn3.mt-2 {

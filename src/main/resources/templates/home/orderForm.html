@@ -6,96 +6,86 @@
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
     <div th:replace="fragments/fragments::homeHeader"></div>
     <main style="background-image: url(/images/cars/car3.jpg); background-size: cover; height: 535px;">
-        <div class="container">
-            <div class="bus-order">
-                <div class="row">
-                    <div class="seatChoose"><span>Choose your seats</span></div>
-                    <div class="col-sm-6">
-                        <div class="container-seat">
-                            <h2>Select your seat</h2>
-                            <div class="row-seat">
-                                <label for="seat-1">
-                                    <input type="checkbox" name="seat" id="seat-1">
-                                    <div class="seat">1</div>
-                                </label>
-                                <label for="seat-2">
-                                    <input type="checkbox" name="seat" id="seat-2">
-                                    <div class="seat">2</div>
-                                </label>
-                                <label for="seat-3">
-                                    <input type="checkbox" name="seat" id="seat-3">
-                                    <div class="seat">3</div>
-                                </label>
-                                <label for="seat-4">
-                                    <input type="checkbox" name="seat" id="seat-4">
-                                    <div class="seat">4</div>
-                                </label>
+        <form method="post" th:action="@{/booking/choose-seats}">
+
+            <div class="container">
+                <div class="bus-order">
+                    <div class="row">
+                        <div class="seatChoose"><span>Choose your seats</span></div>
+                        <div class="col-sm-6">
+                            <div class="container-seat">
+                                <h2>Select your seat</h2>
+                                
+                               
+    
+                                    <div style="max-width: 140px; max-height: 200px; display: flex; flex-wrap: wrap;">
+                                        <div th:each="seat : ${listSeats}">
+                                            <label th:for="'seat-' + ${seat.id}">
+                                                <input type="checkbox" th:value="${seat.id}" name="selectedSeats"
+                                                    th:id="'seat-' + ${seat.id}">
+    
+                                                <div class="seat" th:text="${seat.seatNumber}"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                
+                                
+    
+    
                             </div>
-                            <div class="row-seat">
-                                <label for="seat-5">
-                                    <input type="checkbox" name="seat" id="seat-5">
-                                    <div class="seat">5</div>
-                                </label>
-                                <label for="seat-6">
-                                    <input type="checkbox" name="seat" id="seat-6">
-                                    <div class="seat">6</div>
-                                </label>
-                                <label for="seat-7">
-                                    <input type="checkbox" name="seat" id="seat-7">
-                                    <div class="seat">7</div>
-                                </label>
-                                <label for="seat-8">
-                                    <input type="checkbox" name="seat" id="seat-8">
-                                    <div class="seat">8</div>
-                                </label>
-                            </div>
-                
                         </div>
+    
+                        <div class="col-sm-6">
+                            <br><br><br>
+                            <div class="seat">
+                                <label style="display: inline-block; width: 40.39px;
+                                         height: 32px; border-radius: 5px;
+                                         background: #3783b5; margin: 5px 5px;">1</label>
+    
+                                <span style="padding-top: 10px;"> Available</span>
+                            </div>
+    
+                            <div class="seat">
+                                <label style="display: inline-block; width: 40.39px;
+                                         height: 32px; border-radius: 5px;
+                                         background: #bada55; margin: 5px 5px;">2</label>
+                                <span style="padding-top: 10px;"> Choosen</span>
+                            </div>
+    
+                            <div class="seat">
+                                <label style="display: inline-block; width: 40.39px;
+                                         height: 32px; border-radius: 5px;
+                                         background: rgb(234, 0, 30); margin: 5px 5px;">3</label>
+                                <span style="padding-top: 10px;"> Booked</span>
+                            </div>
+    
+                            <div class="seat">
+                                <!-- <a class="btn btn-success" th:href=" @{/booking/choose-seats}">Confirm</a> -->
+                                <button type="submit">Submit</button>
+                               
+                                <!-- th:href="@{/booking/detail}" -->
+                            </div>
+                        </div>
+    
+    
                     </div>
 
-                    <div class="col-sm-6">
-                        <br><br><br>
-                        <div class="seat">
-                            <label style="display: inline-block; width: 40.39px;
-                                     height: 32px; border-radius: 5px;
-                                     background: #3783b5; margin: 5px 5px;">1</label>
-                                     
-                            <span style="padding-top: 10px;"> Available</span>
-                        </div>
+        </form>
+        
 
-                        <div class="seat">
-                            <label style="display: inline-block; width: 40.39px;
-                                     height: 32px; border-radius: 5px;
-                                     background: #bada55; margin: 5px 5px;">2</label>
-                            <span style="padding-top: 10px;"> Choosen</span>
-                        </div>
-
-                        <div class="seat">
-                            <label style="display: inline-block; width: 40.39px;
-                                     height: 32px; border-radius: 5px;
-                                     background: rgb(234, 0, 30); margin: 5px 5px;">3</label>
-                            <span style="padding-top: 10px;"> Booked</span>
-                        </div>
-
-                        <div class="seat">
-                            <a class="btn btn-success" th:href="@{/booking/detail}">Confirm</a>
-                        </div>
-                    </div>
-
-                </div>
-                
+            </div>
             </div>
 
             <!--   <div class="exit exit--back train-body"></div> -->
-            
+
         </div>
 
-        
 
-        
+
+
 
     </main>
-    
+
 
     <!-- Footer section -->
     <div th:replace="fragments/fragments::bookFooter"></div>

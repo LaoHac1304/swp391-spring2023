@@ -1,5 +1,8 @@
 package com.laohac.swp391spring2023.model.dto;
 
+import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,5 +19,7 @@ public class RouteDTORequest {
 
     private String state1;
     private String state2;
-    
+    // @DateTimeFormat(pattern="yyyy/MM/dd")
+    // private Date date;
+    private String date;
 }

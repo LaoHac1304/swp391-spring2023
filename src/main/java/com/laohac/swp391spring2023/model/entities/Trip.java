@@ -2,7 +2,6 @@ package com.laohac.swp391spring2023.model.entities;
 
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;

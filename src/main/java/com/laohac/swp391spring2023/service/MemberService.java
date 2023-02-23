@@ -6,13 +6,17 @@ import com.laohac.swp391spring2023.model.dto.MemberDTOReponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.entities.User;
 
-
 public interface MemberService {
 
     public MemberDTOReponse authenticate(User memberDTORequest);
+
     public List<User> getAllMember();
+
     public void addMember(User member);
+
     public User getMemberById(int id);
+
     public void deleteMemberById(int id);
+
     public UserDTOResponse getCurrentUser();
 }

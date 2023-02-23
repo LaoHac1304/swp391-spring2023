@@ -2,10 +2,7 @@ package com.laohac.swp391spring2023.controller;
 
 import java.util.List;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +25,6 @@ import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.Trip;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.RouteRepository;
-import com.laohac.swp391spring2023.repository.TripRepository;
 import com.laohac.swp391spring2023.service.MemberService;
 import com.laohac.swp391spring2023.service.UserService;
 
@@ -47,9 +43,7 @@ public class UserController {
 
     @Autowired
     private RouteRepository routeRepository;
-    @Autowired
-    private TripRepository tripRepository;
-
+    
     @ModelAttribute
     public void addCommonAttributes(Model model) {
         RouteDTORequest routeDTORequest = new RouteDTORequest();

@@ -2,7 +2,6 @@ package com.laohac.swp391spring2023.service;
 
 import java.util.List;
 import java.time.LocalDate;
-import java.util.Date;
 
 import com.laohac.swp391spring2023.config.CustomOAuth2User;
 import com.laohac.swp391spring2023.model.dto.UserDTORequest;
@@ -31,7 +30,7 @@ public interface UserService {
     public void createUserByEmail(CustomOAuth2User oAuth2User);
 
     public List<Trip> search(Route route);
+
     public List<Trip> searchByRouteAndDate(Route route, LocalDate date);
-    //public UserDTOResponse login(OAuth2User user);
-    
+
 }

@@ -149,9 +149,10 @@ public class UserController {
         //Date date = tripRepository.findDateByRouteId(route.getId());
         List<Trip> tripsInfo = userService.searchByRouteAndDate(route, date);
         model.addAttribute("listTrips", tripsInfo);
-
         List<Route> listRoute = routeRepository.findAll();
         model.addAttribute("listStates", listRoute);
+        model.addAttribute("route", route);
+
 
         // for (Route route1 : listRoute) {
         //     System.out.println(route1.getArrival());

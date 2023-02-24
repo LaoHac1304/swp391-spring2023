@@ -3,7 +3,6 @@ package com.laohac.swp391spring2023.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +46,9 @@ public class PaymentController {
         
         trip = tripRepository.findById(id);
         model.addAttribute("tripInfoCurrent", trip);
+        List<Seat> seatLists = seatRepository.findByTrip(trip);
+        
+        model.addAttribute("listSeats",seatLists);
         return "home/orderForm";
     }
 
@@ -67,30 +69,34 @@ public class PaymentController {
     }
 
     @GetMapping("/checkout")
-    public String showCheckoutForm(){
+    public String showCheckoutForm(Model model){
         return "home/checkoutForm";
     }
 
 
 
-    @GetMapping("/showAllSeats")
-    public String getAllSeats(Model model){
-        Trip trip = tripRepository.findById(1);
-        List<Seat> seatLists = seatRepository.findByTrip(trip);
+    // @GetMapping("/showAllSeats/{id}")
+    // public String getAllSeats(Model model, @PathVariable(value = "id") int id){
+    //     Trip trip = tripRepository.findById(id);
+    //     List<Seat> seatLists = seatRepository.findByTrip(trip);
         
-        model.addAttribute("listSeats",seatLists);
-        return "home/orderForm";
-    }
+    //     model.addAttribute("listSeats",seatLists);
+    //     return "home/orderForm";
+    // }
 
     @PostMapping("/choose-seats")
-    public String chooseSeats(@RequestParam(name = "selectedSeats", required = false) List<Integer> selectedSeats){
+    public String chooseSeats(@RequestParam(name = "selectedSeats", required = false) List<Integer> selectedSeats, 
+                                        Model model){
 
         
 
         for (Integer id : selectedSeats) {
             bookingService.chooseSeats(id);    
         }
-       //return "redirect:/booking/showAllSeats";
+
+        model.getAttribute("tripInfoCurrent");
+        System.out.println(model);
+
        return "home/checkoutForm";
     }
 }

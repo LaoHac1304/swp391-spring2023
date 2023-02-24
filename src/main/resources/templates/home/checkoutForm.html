@@ -81,11 +81,11 @@
                             </div>
                             <div class="table-info">
                                 <div class="table-name">Pick up place</div>
-                                <div class="table-value">Mien Dong Bus station</div>
+                                <div class="table-value" th:text="${tripInfoCurrent.route.getDeparture}">Mien Dong Bus station</div>
                             </div>
                             <div class="table-info">
                                 <div class="table-name">Drop off place</div>
-                                <div class="table-value">Vung Tau Bus station</div>
+                                <div class="table-value" th:text="${tripInfoCurrent.route.getArrival}">Vung Tau Bus station</div>
                             </div>
                             <!--  -->
 

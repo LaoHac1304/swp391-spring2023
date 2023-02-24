@@ -158,6 +158,7 @@
 
     <!-- Custom File's Link -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/homepageStyle.css}" />
+    <link rel="stylesheet" th:href="@{/css/styleSearchPage.css}">
     <!-- <link rel="stylesheet" th:href="css/responsive-style.css"> -->
 
 </head>
@@ -276,7 +277,7 @@
                 <div class="col-lg mb-3 mb-lg-0">
                     <i class="fa-solid fa-calendar-days fa-lg "></i>
                     <label class="search-label">Date of departure</label>
-                    <input type="date" class="form-control" th:field="*{date}" placeholder="Date">
+                    <input type="date" class="form-control" th:field="*{date}" placeholder="Date" required>
                 </div>
                 <div class="col-lg mb-3 mb-lg-0">
                     <i class="fa-solid fa-map-location-dot fa-lg"></i>
@@ -314,21 +315,21 @@
     <section id="guide" class="guides_wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div style="padding-top: 50px; padding-bottom: 50px;">
-                    <div class="col-sm-12 section-title text-center mb-5">
+                <div style="padding-top: 50px;">
+                    <div class="col-sm-12 section-title text-center">
                         <h5>We Are Here For You</h5>
                         <h3>How to booking on 24HR</h3>
                     </div>
-                    <div class="number font-size-18 row pt-5 text-center">
+                    <div class="number font-size-18 row text-center">
                         <div class="  col-12 col-md-6 col-lg-3 ">
-                            <div style=" font-size: 133px; font-weight: bold;">01</div>
+                            <div style=" font-size: 80px; font-weight: bold;">01</div>
                             <h3 style="color: #EA001E; text-transform: uppercase; margin-top: 10px;">Access
                             </h3>
                             <p class="number">Access to the system at 24HR. Then search for the journey presented in the
                                 Find Section.</p>
                         </div>
                         <div class="col-12 col-md-6 col-lg-3 mb-3">
-                            <div style=" font-size: 133px; font-weight: bold;">02</div>
+                            <div style=" font-size: 80px; font-weight: bold;">02</div>
                             <h3 style="color: #EA001E; text-transform: uppercase; margin-top: 10px;">Book ticket
                             </h3>
                             <p class="number">Select a flight and book by clicking on the fare section to see the total
@@ -336,7 +337,7 @@
                                 then view the flight specifics in the details area and select BOOK.</p>
                         </div>
                         <div class="col-12 col-md-6 col-lg-3  mb-3">
-                            <div style=" font-size: 133px; font-weight: bold;">03</div>
+                            <div style=" font-size: 80px; font-weight: bold;">03</div>
                             <h3 style="color: #EA001E; text-transform: uppercase; margin-top: 10px;">Fill information
                             </h3>
                             <p class="number">To proceed with the ticket purchase, provide the following information:
@@ -344,7 +345,7 @@
                                 contact information, and luggage information, then click Continue.</p>
                         </div>
                         <div class="col-12 col-md-6 col-lg-3  mb-3">
-                            <div style=" font-size: 133px; font-weight: bold;">04</div>
+                            <div style=" font-size: 80px; font-weight: bold;">04</div>
                             <h3 style="color: #EA001E; text-transform: uppercase; margin-top: 10px;">Payment</h3>
                             <p class="number">Choose a payment method and follow the on-screen instructions. A
                                 confirmation email for your order will be sent by 24HR.</p>
@@ -400,7 +401,7 @@
             </div>
 
 
-            <div class="counter mt-5">
+            <!-- <div class="counter mt-5">
                 <div class="container">
                     <div class="row text-center">
                         <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
@@ -429,18 +430,18 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
+            </div> -->
+            <br>
         </div>
     </section>
 </div>
 
 <!--Home service-->
 <div th:fragment="homeService">
-    <section id="services" class="services_wrapper">
+    <section id="services" class="services_wrapper" >
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 section-title text-center mb-5">
+                <div class="col-sm-12 section-title text-center">
                     <h5>We Are Here For You</h5>
                     <h3>Our Awesome Routes</h3>
                 </div>
@@ -468,7 +469,7 @@
                 </div>
                 <div class="col-lg-5 position-relative">
                     <!--Service Tab Menu Area Start-->
-                    <div class="service-menu-area">
+                    <div class="service-menu-area" style="padding-left: 20px;">
                         <ul style="list-style: none;" class="nav">
                             <li>
                                 <a data-bs-toggle="tab" href="#spa">
@@ -567,7 +568,7 @@
                     </ul>
                 </div>
 
-                <hr class="hr-footer">
+                <!-- <hr class="hr-footer"> -->
                 <div class="container-fluid copyright-section">
                     <p>Copyright <a href="#">© 24HR.</a> All Rights Reserved</p>
                 </div>
@@ -785,7 +786,7 @@
                     </ul>
                 </div>
 
-                <hr class="hr-footer">
+                <!-- <hr class="hr-footer"> -->
                 <div class="container-fluid copyright-section">
                     <p>Copyright <a href="#">© 24HR.</a> All Rights Reserved</p>
                 </div>
@@ -809,6 +810,183 @@
 </div>
 
 <!--Booking-->
+
+<!--Book head-->
+<head th:fragment="bookHead">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/icon type">
+    <title>24HR Car Rental</title>
+
+    <!-- FontAweSome-->
+    <script th:src="@{https://kit.fontawesome.com/bdbcf2ce1a.js}" crossorigin="anonymous"></script>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" th:href="@{/imagefavicon.png}">
+
+    <!-- Bootstrap 5 CDN Links -->
+    <link rel="stylesheet" type="text/css"
+        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css"
+        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{https://unpkg.com/swiper/swiper-bundle.min.css}">
+
+    <!-- Custom File's Link -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepageStyle.css}" />
+    <!-- <link rel="stylesheet" th:href="css/responsive-style.css"> -->
+
+</head>
+
+<!--Book Header-->
+<header th:fragment="bookHeader" class="header_wrapper">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/homepage/}" href="#">
+                <img th:src="@{/images/logo.png}" style="width: 70%;" class="img-fluid" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-stream navbar-toggler-icon"></i>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav menu-navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/homepage/#home}"
+                            href="#home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/homepage/#guide}" href="#guide">Guide</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/homepage/#services}" href="#services">Routes</a>
+                    </li>
+
+                    <!-- backendCode here -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Become Partner</a>
+                    </li>
+                    <!-- backendCode End -->
+
+
+                    <!-- <p class="nav-link" th:if="${session.userSession != null}" th:text="${session.userSession.fullName}"></p>
+                    <a class="nav-link" th:if="${session.userSession == null}" th:href="@{/homepage/login}" th:text="Login" >Login</a> -->
+
+                    <!-- backendCode Login here -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" th:if="${session.userSession == null}" th:href="@{/homepage/login}"
+                            th:text="Login">Login</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" th:if="${session.userSession != null}"
+                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
+                                class="fas fa-user fa-fw text-white"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end" th:if="${session.userSession != null}"
+                            aria-labelledby="navbarDropdown">
+                            <li class="dropdown-item" th:if="${session.userSession != null}"
+                                th:text="${session.userSession.fullName}"></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+
+                            <!-- Show and update profile-->
+                            <li><a class="dropdown-item" th:href="@{/users/info}">Profile</a></li>
+
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+
+                            <!-- Logout -->
+                            <li><a class="dropdown-item" th:href="@{/users/logout}">Logout</a></li>
+                        </ul>
+                    </li>
+                    <!-- backendCode End -->
+
+                    <li class="nav-item mt-3 mt-lg-0">
+                        <a class="main-btn" href="#home">Book Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!--Booking Banner-->
+<div th:fragment="bookBanner">
+    <section id="home" class="banner_wrapper p-0">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper image-slider">
+                <div class="swiper-slide image-slider" style="background-image: url(/images/slider/slider2.webp);">
+                    <div class="slide-caption text-center">
+                        <div>
+                            <h1>welcome to 24HR - CAR BOOKING</h1>
+                            <p>Need a ride? Contact us </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide image-slider" style="background-image: url(/images/slider/slider1.webp);">
+                    <div class="slide-caption text-center image-slider">
+                        <div>
+                            <h1>The Safest, Fastest, Cheapest</h1>
+                            <p>Hotline booking</p>
+                            <a href="tel:0976192474">
+                                <p style="font-size: larger;">0976192474</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-vertical">
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button"
+                    aria-label="Go to slide 1" aria-current="true"></span>
+                <span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span>
+            </div>
+        </div>
+
+        <div class="container booking-area">
+
+            <!-- backendCode here -->
+            <form class="row" th:action="@{/users/search-trip}" th:object="${routeDTORequest}">
+                <div class="col-lg mb-3 mb-lg-0">
+                    <i class="fa-solid fa-calendar-days fa-lg "></i>
+                    <label class="search-label">Date of departure</label>
+                    <input type="date" class="form-control" th:field="*{date}" placeholder="Date" required>
+                </div>
+                <div class="col-lg mb-3 mb-lg-0">
+                    <i class="fa-solid fa-map-location-dot fa-lg"></i>
+                    <label class="search-label">Pick up place</label>
+                    <input class="form-control" type="search" th:field="*{state1}" placeholder="Pick up place"
+                        list="pickupList" required>
+                    <datalist id="pickupList">
+                        <option th:each="trip: ${listStates}" th:value="${trip.departure}">
+                    </datalist>
+                </div>
+                <div class="col-lg mb-3 mb-lg-0">
+                    <i class="fa-solid fa-location-dot fa-lg"></i>
+                    <label class="search-label">Drop off place</label>
+                    <input class="form-control" type="search" th:field="*{state2}" placeholder="Drop off place"
+                        required list="dropoffList" >
+                    <datalist id="dropoffList">
+                        <option th:each="trip: ${listStates}" th:value="${trip.arrival}">
+                    </datalist>
+                </div>
+                <div class="col-lg mb-3 mb-lg-0">
+                    <br>
+                    <button type="submit" class="main-btn2 rounded-2 px-lg-3">
+                        <i style="color: white;" class="fa-solid fa-magnifying-glass fa-lg"></i>
+                        <span style="color: white;">Check Availability</span>
+                    </button>
+                </div>
+            </form>
+            <!-- backendCode End -->
+        </div>
+    </section>
+</div>
+
 <!--Booking footer-->
 <div class="bookFooter" th:fragment="bookFooter">
     <section id="contact" class="footer_wrapper mt-3 mt-md-0 pb-0">
@@ -849,7 +1027,7 @@
                     </ul>
                 </div>
 
-                <hr class="hr-footer">
+                <!-- <hr class="hr-footer"> -->
                 <div class="container-fluid copyright-section">
                     <p>Copyright <a href="#">© 24HR.</a> All Rights Reserved</p>
                 </div>
@@ -900,7 +1078,7 @@
                     </ul>
                 </div>
 
-                <hr class="hr-footer">
+                <!-- <hr class="hr-footer"> -->
                 <div class="container-fluid copyright-section">
                     <p>Copyright <a href="#">© 24HR.</a> All Rights Reserved</p>
                 </div>

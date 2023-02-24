@@ -26,14 +26,10 @@ DROP TABLE IF EXISTS `booking`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `booking` (
   `BookingID` int NOT NULL,
-  `CustomerID` smallint DEFAULT NULL,
-  `TripID` smallint DEFAULT NULL,
-  `Quantity` tinyint DEFAULT NULL,
-  PRIMARY KEY (`BookingID`),
-  KEY `FK_CustomerBooking` (`CustomerID`),
-  KEY `FK_TripBooking` (`TripID`),
-  CONSTRAINT `FK_CustomerBooking` FOREIGN KEY (`CustomerID`) REFERENCES `user` (`UserID`),
-  CONSTRAINT `FK_TripBooking` FOREIGN KEY (`TripID`) REFERENCES `tripinfor` (`TripID`)
+  `CustomerID` int DEFAULT NULL,
+  `TripID` int DEFAULT NULL,
+  `Quantity` int DEFAULT NULL,
+  PRIMARY KEY (`BookingID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -55,12 +51,10 @@ DROP TABLE IF EXISTS `bookingdetail`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bookingdetail` (
   `BDetailID` int NOT NULL,
-  `SeatNumber` tinyint DEFAULT NULL,
+  `SeatNumber` int DEFAULT NULL,
   `Price` decimal(4,2) DEFAULT NULL,
   `BookingID` int DEFAULT NULL,
-  PRIMARY KEY (`BDetailID`),
-  KEY `FK_BookingIDDetail` (`BookingID`),
-  CONSTRAINT `FK_BookingIDDetail` FOREIGN KEY (`BookingID`) REFERENCES `booking` (`BookingID`)
+  PRIMARY KEY (`BDetailID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -81,12 +75,12 @@ DROP TABLE IF EXISTS `car`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `car` (
-  `CarID` smallint NOT NULL AUTO_INCREMENT,
-  `Capacity` tinyint DEFAULT NULL,
-  `CompanyID` smallint DEFAULT NULL,
+  `CarID` int NOT NULL AUTO_INCREMENT,
+  `Capacity` int DEFAULT NULL,
+  `CompanyID` int DEFAULT NULL,
   `PlateNumber` varchar(20) NOT NULL,
   PRIMARY KEY (`CarID`),
-  KEY `FK_CompanyCar` (`CompanyID`),
+  KEY `FK_CompanyCar_idx` (`CompanyID`),
   CONSTRAINT `FK_CompanyCar` FOREIGN KEY (`CompanyID`) REFERENCES `carcompany` (`CompanyID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -97,7 +91,7 @@ CREATE TABLE `car` (
 
 LOCK TABLES `car` WRITE;
 /*!40000 ALTER TABLE `car` DISABLE KEYS */;
-INSERT INTO `car` VALUES (1,40,1,'50H1-01234'),(2,35,2,'50H1-05235'),(3,40,3,'50H1-89088'),(4,40,4,'72C1-19284'),(5,32,5,'60C1-78291'),(6,34,6,'70B2-65871'),(7,32,7,'69A1-99999'),(8,35,8,'76C1-11223'),(9,36,9,'70A1-12345'),(10,40,10,'47C1-88888');
+INSERT INTO `car` VALUES (1,25,1,'50H1-01234'),(2,20,2,'50H1-05235'),(3,30,3,'50H1-89088'),(4,35,4,'72C1-19284'),(5,25,5,'60C1-78291'),(6,15,6,'70B2-65871'),(7,20,7,'69A1-99999'),(8,35,8,'76C1-11223'),(9,36,9,'70A1-12345'),(10,37,10,'47C1-88888');
 /*!40000 ALTER TABLE `car` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,15 +103,15 @@ DROP TABLE IF EXISTS `carcompany`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `carcompany` (
-  `CompanyID` smallint NOT NULL AUTO_INCREMENT,
+  `CompanyID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `PhoneNumber` varchar(20) NOT NULL,
   `Address` varchar(50) DEFAULT NULL,
   `BusinessLicense` tinyint(1) DEFAULT NULL,
   `Province` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `RouteID` smallint DEFAULT NULL,
+  `RouteID` int DEFAULT NULL,
   PRIMARY KEY (`CompanyID`),
-  KEY `FK_RouteCarCompany` (`RouteID`),
+  KEY `FK_RouteCarCompany_idx` (`RouteID`),
   CONSTRAINT `FK_RouteCarCompany` FOREIGN KEY (`RouteID`) REFERENCES `route` (`RouteID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -146,7 +140,7 @@ CREATE TABLE `payment` (
   `TypeOfPayment` varchar(40) NOT NULL,
   `Total` decimal(4,2) DEFAULT NULL,
   PRIMARY KEY (`PayMentID`),
-  KEY `FK_BDetailIDPayMent` (`BDetailID`),
+  KEY `FK_BDetailIDPayMent_idx` (`BDetailID`),
   CONSTRAINT `FK_BDetailIDPayMent` FOREIGN KEY (`BDetailID`) REFERENCES `bookingdetail` (`BDetailID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -168,7 +162,7 @@ DROP TABLE IF EXISTS `route`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `route` (
-  `RouteID` smallint NOT NULL AUTO_INCREMENT,
+  `RouteID` int NOT NULL AUTO_INCREMENT,
   `Departure` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `Arrival` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`RouteID`)
@@ -195,14 +189,15 @@ DROP TABLE IF EXISTS `seat`;
 CREATE TABLE `seat` (
   `id` int NOT NULL AUTO_INCREMENT,
   `SeatNumber` int NOT NULL,
-  `CarID` smallint DEFAULT NULL,
+  `CarID` int DEFAULT NULL,
   `availableSeat` int NOT NULL,
   `TripID` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `SeatNumber` (`SeatNumber`),
-  KEY `fk_carid` (`CarID`),
-  CONSTRAINT `fk_carid` FOREIGN KEY (`CarID`) REFERENCES `car` (`CarID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fk_carid_idx` (`CarID`),
+  KEY `fk_tripid_idx` (`TripID`),
+  CONSTRAINT `fk_carid` FOREIGN KEY (`CarID`) REFERENCES `car` (`CarID`),
+  CONSTRAINT `fk_tripid` FOREIGN KEY (`TripID`) REFERENCES `tripinfor` (`TripID`)
+) ENGINE=InnoDB AUTO_INCREMENT=299 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,6 +206,7 @@ CREATE TABLE `seat` (
 
 LOCK TABLES `seat` WRITE;
 /*!40000 ALTER TABLE `seat` DISABLE KEYS */;
+INSERT INTO `seat` VALUES (1,1,1,0,1),(2,2,1,0,1),(3,3,1,0,1),(4,4,1,0,1),(5,5,1,0,1),(6,6,1,0,1),(7,7,1,0,1),(8,8,1,0,1),(9,9,1,0,1),(10,10,1,0,1),(11,11,1,0,1),(12,12,1,0,1),(13,13,1,0,1),(14,14,1,0,1),(15,15,1,0,1),(16,16,1,0,1),(17,17,1,0,1),(18,18,1,0,1),(19,19,1,0,1),(20,20,1,0,1),(21,21,1,0,1),(22,22,1,0,1),(23,23,1,0,1),(24,24,1,0,1),(25,25,1,0,1),(27,1,2,0,2),(28,2,2,0,2),(29,3,2,0,2),(30,4,2,0,2),(31,5,2,0,2),(32,6,2,0,2),(33,7,2,0,2),(34,8,2,0,2),(35,9,2,0,2),(36,10,2,0,2),(37,11,2,0,2),(38,12,2,0,2),(39,13,2,0,2),(40,14,2,0,2),(41,15,2,0,2),(42,16,2,0,2),(43,17,2,0,2),(44,18,2,0,2),(45,19,2,0,2),(46,20,2,0,2),(47,1,3,0,3),(48,2,3,0,3),(49,3,3,0,3),(50,4,3,0,3),(51,5,3,0,3),(52,6,3,0,3),(53,7,3,0,3),(54,8,3,0,3),(55,9,3,0,3),(56,10,3,0,3),(57,11,3,0,3),(58,12,3,0,3),(59,13,3,0,3),(60,14,3,0,3),(61,15,3,0,3),(62,16,3,0,3),(63,17,3,0,3),(64,18,3,0,3),(65,19,3,0,3),(66,20,3,0,3),(67,21,3,0,3),(68,22,3,0,3),(69,23,3,0,3),(70,24,3,0,3),(71,25,3,0,3),(72,26,3,0,3),(73,27,3,0,3),(74,28,3,0,3),(75,29,3,0,3),(76,30,3,0,3),(77,1,6,0,4),(78,2,6,0,4),(79,3,6,0,4),(80,4,6,0,4),(81,5,6,0,4),(82,6,6,0,4),(83,7,6,0,4),(84,8,6,0,4),(85,9,6,0,4),(86,10,6,0,4),(87,11,6,0,4),(88,12,6,0,4),(89,13,6,0,4),(90,14,6,0,4),(91,15,6,0,4),(92,1,7,0,5),(93,2,7,0,5),(94,3,7,0,5),(95,4,7,0,5),(96,5,7,0,5),(97,6,7,0,5),(98,7,7,0,5),(99,8,7,0,5),(100,9,7,0,5),(101,10,7,0,5),(102,11,7,0,5),(103,12,7,0,5),(104,13,7,0,5),(105,14,7,0,5),(106,15,7,0,5),(107,16,7,1,5),(108,17,7,0,5),(109,18,7,0,5),(110,19,7,0,5),(111,20,7,1,5),(112,1,4,0,6),(113,2,4,0,6),(114,3,4,0,6),(115,4,4,0,6),(116,5,4,0,6),(117,6,4,0,6),(118,7,4,0,6),(119,8,4,0,6),(120,9,4,0,6),(121,10,4,0,6),(122,11,4,0,6),(123,12,4,0,6),(124,13,4,0,6),(125,14,4,0,6),(126,15,4,0,6),(127,16,4,0,6),(128,17,4,0,6),(129,18,4,0,6),(130,19,4,0,6),(131,20,4,0,6),(132,21,4,0,6),(133,22,4,0,6),(134,23,4,0,6),(135,24,4,0,6),(136,25,4,0,6),(137,26,4,0,6),(138,27,4,0,6),(139,28,4,0,6),(140,29,4,0,6),(141,30,4,0,6),(142,31,4,0,6),(143,32,4,0,6),(144,33,4,0,6),(145,34,4,0,6),(146,35,4,0,6),(147,1,5,0,7),(148,2,5,0,7),(149,3,5,0,7),(150,4,5,0,7),(151,5,5,0,7),(152,6,5,0,7),(153,7,5,0,7),(154,8,5,0,7),(155,9,5,0,7),(156,10,5,0,7),(157,11,5,0,7),(158,12,5,0,7),(159,13,5,0,7),(160,14,5,0,7),(161,15,5,0,7),(162,16,5,0,7),(163,17,5,0,7),(164,18,5,0,7),(165,19,5,0,7),(166,20,5,0,7),(167,21,5,0,7),(168,22,5,0,7),(169,23,5,0,7),(170,24,5,0,7),(171,25,5,0,7),(172,1,8,0,8),(173,2,8,0,8),(174,3,8,0,8),(175,4,8,0,8),(176,5,8,0,8),(177,6,8,0,8),(178,7,8,0,8),(179,8,8,0,8),(180,9,8,0,8),(181,10,8,0,8),(182,11,8,0,8),(183,12,8,0,8),(184,13,8,0,8),(185,14,8,0,8),(186,15,8,0,8),(187,16,8,0,8),(188,17,8,0,8),(189,18,8,0,8),(190,19,8,0,8),(191,20,8,0,8),(192,21,8,0,8),(193,22,8,0,8),(194,23,8,0,8),(195,24,8,0,8),(196,25,8,0,8),(197,26,8,0,8),(198,27,8,0,8),(199,28,8,0,8),(200,29,8,0,8),(201,30,8,0,8),(202,31,8,0,8),(203,32,8,0,8),(204,33,8,0,8),(205,34,8,0,8),(206,35,8,0,8),(207,1,7,0,9),(208,2,7,0,9),(209,3,7,0,9),(210,4,7,0,9),(211,5,7,0,9),(212,6,7,0,9),(213,7,7,0,9),(214,8,7,0,9),(215,9,7,0,9),(216,10,7,0,9),(217,11,7,0,9),(218,12,7,0,9),(219,13,7,0,9),(220,14,7,0,9),(221,15,7,0,9),(222,16,7,0,9),(223,17,7,0,9),(224,18,7,0,9),(225,19,7,0,9),(226,20,7,0,9),(227,1,10,0,10),(228,2,10,0,10),(229,3,10,0,10),(230,4,10,0,10),(231,5,10,0,10),(232,6,10,0,10),(233,7,10,0,10),(234,8,10,0,10),(235,9,10,0,10),(236,10,10,0,10),(237,11,10,0,10),(238,12,10,0,10),(239,13,10,0,10),(240,14,10,0,10),(241,15,10,0,10),(242,16,10,0,10),(243,17,10,0,10),(244,18,10,0,10),(245,19,10,0,10),(246,20,10,0,10),(247,21,10,0,10),(248,22,10,0,10),(249,23,10,0,10),(250,24,10,0,10),(251,25,10,0,10),(252,26,10,0,10),(253,27,10,0,10),(254,28,10,0,10),(255,29,10,0,10),(256,30,10,0,10),(257,31,10,0,10),(258,32,10,0,10),(259,33,10,0,10),(260,34,10,0,10),(261,35,10,0,10),(262,36,10,0,10),(263,37,10,0,10),(264,1,6,0,11),(265,2,6,0,11),(266,3,6,0,11),(267,4,6,0,11),(268,5,6,0,11),(269,6,6,0,11),(270,7,6,0,11),(271,8,6,0,11),(272,9,6,0,11),(273,10,6,0,11),(274,11,6,0,11),(275,12,6,0,11),(276,13,6,0,11),(277,14,6,0,11),(278,15,6,0,11),(279,1,2,0,12),(280,2,2,0,12),(281,3,2,0,12),(282,4,2,0,12),(283,5,2,0,12),(284,6,2,0,12),(285,7,2,0,12),(286,8,2,0,12),(287,9,2,0,12),(288,10,2,0,12),(289,11,2,0,12),(290,12,2,0,12),(291,13,2,0,12),(292,14,2,0,12),(293,15,2,0,12),(294,16,2,0,12),(295,17,2,0,12),(296,18,2,0,12),(297,19,2,0,12),(298,20,2,0,12);
 /*!40000 ALTER TABLE `seat` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,18 +218,18 @@ DROP TABLE IF EXISTS `tripinfor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tripinfor` (
-  `TripID` smallint NOT NULL AUTO_INCREMENT,
-  `RouteID` smallint DEFAULT NULL,
+  `TripID` int NOT NULL AUTO_INCREMENT,
+  `RouteID` int DEFAULT NULL,
   `StartTime` time DEFAULT NULL,
   `EndTime` time DEFAULT NULL,
-  `CarID` smallint DEFAULT NULL,
+  `CarID` int DEFAULT NULL,
   `price` int NOT NULL,
   `arrivalDetail` varchar(255) DEFAULT NULL,
   `Day` date DEFAULT NULL,
   `departureDetail` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`TripID`),
-  KEY `FK_RouteTrip` (`RouteID`),
-  KEY `FK_CarTrip` (`CarID`),
+  KEY `FK_RouteTrip_idx` (`RouteID`),
+  KEY `FK_CarTrip_idx` (`CarID`),
   CONSTRAINT `FK_CarTrip` FOREIGN KEY (`CarID`) REFERENCES `car` (`CarID`),
   CONSTRAINT `FK_RouteTrip` FOREIGN KEY (`RouteID`) REFERENCES `route` (`RouteID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -257,7 +253,7 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `UserID` smallint NOT NULL AUTO_INCREMENT,
+  `UserID` int NOT NULL AUTO_INCREMENT,
   `Email` varchar(30) DEFAULT NULL,
   `PhoneNumber` varchar(20) DEFAULT NULL,
   `FullName` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
@@ -298,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-24  0:46:19
+-- Dump completed on 2023-02-24 20:41:16

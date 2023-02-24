@@ -26,7 +26,7 @@ public class DataLoader implements CommandLineRunner {
 
         // Trip trip = tripRepository.findById(12);
         // Car car = trip.getCar();
-        // for (int i=1;i<=35;i++){
+        // for (int i=1;i<=20;i++){
         
         //     Seat seat = Seat.builder()
         //                     .seatNumber(i)

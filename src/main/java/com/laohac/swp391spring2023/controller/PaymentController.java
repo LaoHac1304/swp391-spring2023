@@ -3,6 +3,8 @@ package com.laohac.swp391spring2023.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.laohac.swp391spring2023.model.dto.CheckOutInfoDTOReponse;
+import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.Seat;
 import com.laohac.swp391spring2023.model.entities.Trip;
@@ -69,24 +73,30 @@ public class PaymentController {
     }
 
     @GetMapping("/checkout/{id}")
-    public String showCheckoutForm(Model model, @PathVariable(value = "id") int id){
+    public String showCheckoutForm(Model model, @PathVariable(value = "id") int id, HttpSession session){
 
         Trip trip = new Trip();
         
         trip = tripRepository.findById(id);
         model.addAttribute("tripInfoCurrent", trip);
+
+        CheckOutInfoDTOReponse checkOutInfoDTOReponse = (CheckOutInfoDTOReponse) session.getAttribute("checkoutinfo");
+        model.addAttribute("checkoutinfo", checkOutInfoDTOReponse);
         
         return "home/checkoutForm";
     }
 
     @PostMapping("/choose-seats/{id}")
     public String chooseSeats(@RequestParam(name = "selectedSeats", required = false) List<Integer> selectedSeats, 
-                                        Model model, @PathVariable(value = "id") int id){
+                                        Model model, @PathVariable(value = "id") int id, HttpSession session){
 
         for (Integer idd : selectedSeats) {
             bookingService.chooseSeats(idd);    
         }
         model.addAttribute("selectedSeats", selectedSeats);
+        CheckOutInfoDTOReponse checkOutInfoDTOReponse = bookingService.showCheckOutInfo(selectedSeats, session);
+        
+        session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
 
        return "redirect:/booking/checkout/{id}";
     }

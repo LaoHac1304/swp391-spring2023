@@ -60,15 +60,15 @@
                             <!--  -->
                             <div class="table-info">
                                 <div class="table-name" style="margin-top: 0%;">Passenger</div>
-                                <div class="table-value">Lewis vip vl</div>
+                                <div class="table-value" th:text="${checkoutinfo.user.fullName}">Lewis vip vl</div>
                             </div>
                             <div class="table-info">
                                 <div class="table-name">Phone number</div>
-                                <div class="table-value">0123456789</div>
+                                <div class="table-value" th:text="${checkoutinfo.user.phoneNumber}">0123456789</div>
                             </div>
                             <div class="table-info">
                                 <div class="table-name">Email</div>
-                                <div class="table-value">lewisvipvl@gmail.com</div>
+                                <div class="table-value" th:text="${checkoutinfo.user.email}">lewisvipvl@gmail.com</div>
                             </div>
                             <!--  -->
 
@@ -77,7 +77,7 @@
                             <!--  -->
                             <div class="table-info">
                                 <div class="table-name">Car Company</div>
-                                <div class="table-value" th:text="${tripInfoCurrent.car.carCompany}">Hoa Mai</div>
+                                <div class="table-value" th:text="${tripInfoCurrent.car.carCompany.name}">Hoa Mai</div>
                             </div>
                             <div class="table-info">
                                 <div class="table-name">Pick up place</div>
@@ -94,7 +94,7 @@
                             <!--  -->
                             <div class="row">
                                 <div class="col-md-6 total">Total</div>
-                                <div class="col-md-6 total-price">200.000 VND</div>
+                                <div class="col-md-6 total-price" th:text="${checkoutinfo.priceTotal}" >200.000 VND</div>
                             </div>
                             <!--  -->
                         </div>

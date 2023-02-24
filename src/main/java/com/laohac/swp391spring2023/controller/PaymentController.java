@@ -68,35 +68,26 @@ public class PaymentController {
         return "home/ArrivalDepartureDetail";
     }
 
-    @GetMapping("/checkout")
-    public String showCheckoutForm(Model model){
+    @GetMapping("/checkout/{id}")
+    public String showCheckoutForm(Model model, @PathVariable(value = "id") int id){
+
+        Trip trip = new Trip();
+        
+        trip = tripRepository.findById(id);
+        model.addAttribute("tripInfoCurrent", trip);
+        
         return "home/checkoutForm";
     }
 
-
-
-    // @GetMapping("/showAllSeats/{id}")
-    // public String getAllSeats(Model model, @PathVariable(value = "id") int id){
-    //     Trip trip = tripRepository.findById(id);
-    //     List<Seat> seatLists = seatRepository.findByTrip(trip);
-        
-    //     model.addAttribute("listSeats",seatLists);
-    //     return "home/orderForm";
-    // }
-
-    @PostMapping("/choose-seats")
+    @PostMapping("/choose-seats/{id}")
     public String chooseSeats(@RequestParam(name = "selectedSeats", required = false) List<Integer> selectedSeats, 
-                                        Model model){
+                                        Model model, @PathVariable(value = "id") int id){
 
-        
-
-        for (Integer id : selectedSeats) {
-            bookingService.chooseSeats(id);    
+        for (Integer idd : selectedSeats) {
+            bookingService.chooseSeats(idd);    
         }
+        model.addAttribute("selectedSeats", selectedSeats);
 
-        model.getAttribute("tripInfoCurrent");
-        System.out.println(model);
-
-       return "home/checkoutForm";
+       return "redirect:/booking/checkout/{id}";
     }
 }

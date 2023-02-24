@@ -77,15 +77,15 @@
                             <!--  -->
                             <div class="table-info">
                                 <div class="table-name">Car Company</div>
-                                <div class="table-value">Hoa Mai</div>
+                                <div class="table-value" th:text="${tripInfoCurrent.car.carCompany}">Hoa Mai</div>
                             </div>
                             <div class="table-info">
                                 <div class="table-name">Pick up place</div>
-                                <div class="table-value" th:text="${tripInfoCurrent.route.getDeparture}">Mien Dong Bus station</div>
+                                <div class="table-value" th:text="${tripInfoCurrent.route.departure}" >Mien Dong Bus station</div>
                             </div>
                             <div class="table-info">
                                 <div class="table-name">Drop off place</div>
-                                <div class="table-value" th:text="${tripInfoCurrent.route.getArrival}">Vung Tau Bus station</div>
+                                <div class="table-value" th:text="${tripInfoCurrent.route.arrival}" >Vung Tau Bus station</div>
                             </div>
                             <!--  -->
 

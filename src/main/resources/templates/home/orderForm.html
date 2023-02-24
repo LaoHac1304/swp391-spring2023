@@ -6,7 +6,7 @@
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
     <div th:replace="fragments/fragments::homeHeader"></div>
     <main style="background-image: url(/images/cars/car3.jpg); background-size: cover; height: 535px;">
-        <form method="post" th:action="@{/booking/choose-seats}">
+        <form method="post" th:action="@{/booking/choose-seats/{id}(id=${tripInfoCurrent.id})}">
 
             <div class="container">
                 <div class="bus-order">

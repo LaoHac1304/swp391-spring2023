@@ -10,16 +10,24 @@
 
     <title>Booking Ticket</title>
 </head>
-`
+
+<head th:replace="fragments/fragments::bookHead"></head>
+
+
 
 <body>
+    <div th:replace="fragments/fragments::bookHeader"></div>
+    <div th:replace="fragments/fragments::bookBanner"></div>
     <!-- show a list of available tickets for customer -->
-    <div class="container">
+    <main>
+
+    </main>
+    <div class="container" style="padding-bottom: 20px;">
 
         <!-- need to render pick up location and destination that customer choose -->
         <h3 style="font-size: 40px; margin-bottom: 10px;">Pick up location - Destination</h3>
 
-        <div class="flex">
+        <!-- <div class="flex">
             <form class=" row" >
                 <table>
                     <thead class="destination-title">
@@ -45,8 +53,9 @@
                     </tbody>
                 </table>
             </form>
-        </div>
-        <div class="filter-container">
+        </div> -->
+
+        <div class="filter-container" style="padding-top: 40px;">
             <select name="" id="" class="filter">
                 <option value="">Price</option>
                 <option value="">Thấp - Cao</option>
@@ -70,44 +79,55 @@
             </table>
         </div>
 
-        <div class="route-option" data-v-008a65cb="" th:each="trip: ${listTrips}">
-            <div class="header-route" data-v-008a65cb="">
-                <span class="route-price" th:text="${trip.startTime}"></span>
-                -
-                <span class="route-price" th:text="${trip.endTime}"></span>
 
-            </div>
-            <div class="label" data-v-008a65cb="">
-                <span class="route-price" th:text="${trip.price} + ' VND'"></span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="car-type" data-v-008a65cb="" th:text="${trip.car.getCapacity()} + ' Seats'"></span> <!---->
-            </div>
-            <div class="route-line-container" data-v-008a65cb="">
-                <div class="route-line-list" data-v-008a65cb="">
-                    <div class="route-line-bold-1" data-v-008a65cb=""><img alt="pickup-bold"
-                            th:src="@{data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAn1BMVEUAAAAAAAAAgAAAVVUAbUkAYEAAYkUAYkMAYjwAYD4AYTwAYD0AYT4AYTwAYT0AYT0AYT0AYT0AYT0AYT0AYDwAYT0AYT0AYT0AYD0AYT3////+/v79/f39/fzv8/HV4dzL29WTr6I0d1orakwfZUQWY0IPY0APYT4HYj8MXzwGYT4DYT0AYjwAYT0AYTwAYD0AYDwAXTYAXDAAWS0ASwCRAZr+AAAAGnRSTlMAAQIDBxgaIi9Se5eZwsja4Orx9/r7/P39/ifZSUoAAAFmSURBVHjahVMJjoMwDHS37fY+odBAuQrlTmKO/79tTUBVVWmVERLKzCSxHRtGzOYAy83+eDGMy3G/WQLMZ/CBH4DV7iRwgjjtVgP5xhwW2yvi3WKMc8asO+J1uyD6vf/3wPFmC8klgUth35AffkmY9q/P0mTIJcoJHJkpz2uSxv1nNDnpH6CliWd1xgwWBznq3w55WJA8hy0nfSKrsqwmMxK9JRlWV2QDxTnmSdY0WZIjH9ZEXylb2OFt0tOib+O47Yt0dJCwA1ie0Obq/FdXR6Hvh1HdvVBRNp6WsBF3ofS0ewaOQvDsUuUgaQN7tIb8MS/qwPEervvwnKAuchW2hXs4IlPHJX3keK7j0uc5UZ8okuERLsgkocra0Hk4LoF+YZtVRCLDCxhj1mUT+0pWFj9uyrEyhtagv4KCFP8FKShIbZraQmlLrX0s7XNrG0bbcrqm1bX99+AIsqD4GBz96OmHVzv+f2mSel1r7cqaAAAAAElFTkSuQmCC}"
-                            width="16" height="16" data-v-008a65cb="" th:text="${trip.departureDetail}">
-                    </div>
-                    <span class="times-mod">-------------------</span>
-                    <div class="route-line-bold-2" data-v-008a65cb=""><img alt="destination-bold"
-                            th:src="@{data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAmCAMAAACS/WnbAAAA51BMVEUAAAD/AAD/ZjPmTRrvUCDwWh7yTSbzUSP2VSbwUiXwUCT4VSPxUyLyUSLwVSPxVSbyVSTtUSTzUiHuVCPvVSPxUyPxVCPxUyPvUyPwUyLwUyPxUyPwUyPwUiLxUiLvUyPwUiLwVCLvVCLwUyLvUyLvUiLwUyPwUiLvUyPvUyLwUiPwUyLvUiLvUiLwUiLvUyLwUiLvUiPxUyLwUiLwUyLvUiLwUiLvUyLvUyLwUyLvUiLwUiPvUiPvUiL////++ff83tX71sv1knTxZjzwXC70VCPyUyLxUyLwUiLvUiLvUSHvTx/vTh3N/rktAAAAPnRSTlMAAQUKEBEUFhsiIyQlJjM2OTk+SWBsbW5ueHuEhIiPk56rrra8xcfJ1dXW2Nna3OHi5efo6u3v9Pb5+vv7/K+Q08cAAAFUSURBVHjafdPllsIwEAXgu8YKrOHu7u5umQHe/3kWerophabfz9w5k2RyAunxwxPPlobDUjbu+XjEne9shwQRM5GgTvYbZp+pHZvsUp+44m0JviFaXki+CVuY+KDzT9nS1A+Ne8AKAzcuKsQKVMFZWLCSCAOOKhsOx9PpeGBD1YHfsRFv16vFYrXeGiXjX0SFzDfLuWa5kRUiijyxbqvlWsWWdZRHWzZYz6W1bNHGiHXH1VxaHVk3Qp91p8VcWpxY10eF7AqogjTZbUFpBPd2h9wH8TO2u+b4B46a3aBqDiBJ6lFTEoBrpn6smQtnCcEKIoGL9y4rdN+hiQlFgxh0RWILVMS/rx5b6H1BCrCFAAwPkfufFXnAlZccsQnlXmDyWiZTXn7FDVedWKK6C3ecDZJ5wwkLzqpgjag6YemtILS88AaF54wgEplnKD2Fms3Qk2npDzuS7aPkEDnLAAAAAElFTkSuQmCC}"
-                            width="16" height="19" data-v-008a65cb="" th:text="${trip.arrivalDetail}">
-                        <!---->
-                    </div> <!----> <!---->
-                    <div class="carcompany-name">
-                        <span class="route-price" th:text="${trip.car.carCompany.getName()} + ' Busline'"></span>
-                        <span class="route-price" style="margin-left: 200px;"
-                            th:text="${trip.car.getPlateNumber()}"></span>
-                    </div>
+        <div class="route-option" data-v-008a65cb="" th:each="trip: ${listTrips}">
+            <form th:action="@{/booking/{id}(id=${trip.id})}">
+                <div class="header-route" data-v-008a65cb="">
+                    <span class="route-price" th:text="${trip.startTime}"></span>
+                    -
+                    <span class="route-price" th:text="${trip.endTime}"></span>
+
                 </div>
-                <button type="submit" data-v-008a65cb="" class="action">
-                    <a th:href="@{/booking/{id}(id=${trip.id})}">Choose</a>
-                    
-                </button>
-            </div> <!----> <!---->
+                <div class="label" data-v-008a65cb="">
+                    <span class="route-price" th:text="${trip.price} + ' VND'"></span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="car-type" data-v-008a65cb="" th:text="${trip.car.getCapacity()} + ' Seats'"></span>
+                    <!---->
+                </div>
+                <div class="route-line-container" data-v-008a65cb="">
+                    <div class="route-line-list" data-v-008a65cb="">
+                        <div class="route-line-bold-1" data-v-008a65cb=""><img alt="pickup-bold"
+                                th:src="@{data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAn1BMVEUAAAAAAAAAgAAAVVUAbUkAYEAAYkUAYkMAYjwAYD4AYTwAYD0AYT4AYTwAYT0AYT0AYT0AYT0AYT0AYT0AYDwAYT0AYT0AYT0AYD0AYT3////+/v79/f39/fzv8/HV4dzL29WTr6I0d1orakwfZUQWY0IPY0APYT4HYj8MXzwGYT4DYT0AYjwAYT0AYTwAYD0AYDwAXTYAXDAAWS0ASwCRAZr+AAAAGnRSTlMAAQIDBxgaIi9Se5eZwsja4Orx9/r7/P39/ifZSUoAAAFmSURBVHjahVMJjoMwDHS37fY+odBAuQrlTmKO/79tTUBVVWmVERLKzCSxHRtGzOYAy83+eDGMy3G/WQLMZ/CBH4DV7iRwgjjtVgP5xhwW2yvi3WKMc8asO+J1uyD6vf/3wPFmC8klgUth35AffkmY9q/P0mTIJcoJHJkpz2uSxv1nNDnpH6CliWd1xgwWBznq3w55WJA8hy0nfSKrsqwmMxK9JRlWV2QDxTnmSdY0WZIjH9ZEXylb2OFt0tOib+O47Yt0dJCwA1ie0Obq/FdXR6Hvh1HdvVBRNp6WsBF3ofS0ewaOQvDsUuUgaQN7tIb8MS/qwPEervvwnKAuchW2hXs4IlPHJX3keK7j0uc5UZ8okuERLsgkocra0Hk4LoF+YZtVRCLDCxhj1mUT+0pWFj9uyrEyhtagv4KCFP8FKShIbZraQmlLrX0s7XNrG0bbcrqm1bX99+AIsqD4GBz96OmHVzv+f2mSel1r7cqaAAAAAElFTkSuQmCC}"
+                                width="16" height="16" data-v-008a65cb="" th:text="${trip.departureDetail}">
+                        </div>
+                        <span class="times-mod">-------------------</span>
+                        <div class="route-line-bold-2" data-v-008a65cb=""><img alt="destination-bold"
+                                th:src="@{data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAmCAMAAACS/WnbAAAA51BMVEUAAAD/AAD/ZjPmTRrvUCDwWh7yTSbzUSP2VSbwUiXwUCT4VSPxUyLyUSLwVSPxVSbyVSTtUSTzUiHuVCPvVSPxUyPxVCPxUyPvUyPwUyLwUyPxUyPwUyPwUiLxUiLvUyPwUiLwVCLvVCLwUyLvUyLvUiLwUyPwUiLvUyPvUyLwUiPwUyLvUiLvUiLwUiLvUyLwUiLvUiPxUyLwUiLwUyLvUiLwUiLvUyLvUyLwUyLvUiLwUiPvUiPvUiL////++ff83tX71sv1knTxZjzwXC70VCPyUyLxUyLwUiLvUiLvUSHvTx/vTh3N/rktAAAAPnRSTlMAAQUKEBEUFhsiIyQlJjM2OTk+SWBsbW5ueHuEhIiPk56rrra8xcfJ1dXW2Nna3OHi5efo6u3v9Pb5+vv7/K+Q08cAAAFUSURBVHjafdPllsIwEAXgu8YKrOHu7u5umQHe/3kWerophabfz9w5k2RyAunxwxPPlobDUjbu+XjEne9shwQRM5GgTvYbZp+pHZvsUp+44m0JviFaXki+CVuY+KDzT9nS1A+Ne8AKAzcuKsQKVMFZWLCSCAOOKhsOx9PpeGBD1YHfsRFv16vFYrXeGiXjX0SFzDfLuWa5kRUiijyxbqvlWsWWdZRHWzZYz6W1bNHGiHXH1VxaHVk3Qp91p8VcWpxY10eF7AqogjTZbUFpBPd2h9wH8TO2u+b4B46a3aBqDiBJ6lFTEoBrpn6smQtnCcEKIoGL9y4rdN+hiQlFgxh0RWILVMS/rx5b6H1BCrCFAAwPkfufFXnAlZccsQnlXmDyWiZTXn7FDVedWKK6C3ecDZJ5wwkLzqpgjag6YemtILS88AaF54wgEplnKD2Fms3Qk2npDzuS7aPkEDnLAAAAAElFTkSuQmCC}"
+                                width="16" height="19" data-v-008a65cb="" th:text="${trip.arrivalDetail}">
+                            <!---->
+                        </div> <!----> <!---->
+                        <div class="carcompany-name">
+                            <span class="route-price" th:text="${trip.car.carCompany.getName()} + ' Busline'"></span>
+                            <span class="route-price" style="margin-left: 200px;"
+                                th:text="${trip.car.getPlateNumber()}"></span>
+                        </div>
+                    </div>
+                    <button type="submit" data-v-008a65cb="" class="action">
+                        Book now
+                    </button>
+                </div>
+            </form>
+
         </div>
 
-        <div th:replace="fragments/fragments::homeScript"></div>
+
+
+
+    </div>
+
+    <div th:replace="fragments/fragments::homeScript"></div>
+    <div th:replace="fragments/fragments::bookFooter"></div>
 </body>
+
 
 </html>

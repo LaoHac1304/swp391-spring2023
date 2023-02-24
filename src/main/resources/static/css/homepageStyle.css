@@ -113,8 +113,9 @@ hr:not([size]) {
 }
 
 .seatChoose {
-    margin: 10px 0px 20px 114px;
+    text-align: center;
     font-size: 30px;
+    margin-bottom: 20px;
 }
 
 .userFooter {
@@ -122,6 +123,12 @@ hr:not([size]) {
     flex-direction: column;
     min-height: 53vh;
     justify-content: flex-end;
+}
+
+.row-desc {
+    padding-left: 30px;
+    padding-top: 10px;
+    border-left: 2px solid #434343;
 }
 
 .bookFooter {
@@ -161,11 +168,11 @@ hr:not([size]) {
     display: inline-block;
 }
 
-img {
+/* img {
     width: 20%;
     height: 20%;
 
-}
+} */
 
 .test {
     height: 50px;
@@ -189,12 +196,20 @@ img {
     display: inline-block;
 }
 
-
+.container-noRes {
+    /* width: 100%;
+    min-width: 1109px; */
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: auto;
+}
 
 .bus-order{
-    background-color: rgba(245, 241, 241, 0.7);
-    margin:0 300px;
+    background-color: rgba(245, 241, 241, 0.85);
+    margin:0px 200px;
     height: 535px;
+    margin-top: 10px;
 }
 
 
@@ -329,7 +344,7 @@ a {
 }
 
 section {
-    padding: 3.125rem 0;
+    padding: 2.5rem 0;
 }
 
 .main-btn {
@@ -398,7 +413,7 @@ a.main-btn3:hover {
 
 .number {
     color: rgb(22, 24, 41);
-    font-size: 1.3rem;
+    font-size: 1.0rem;
 }
 
 .payment-form {

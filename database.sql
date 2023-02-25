@@ -97,7 +97,7 @@ CREATE TABLE `car` (
 
 LOCK TABLES `car` WRITE;
 /*!40000 ALTER TABLE `car` DISABLE KEYS */;
-INSERT INTO `car` VALUES (1,25,1,'50H1-01234'),(2,20,2,'50H1-05235'),(3,30,3,'50H1-89088'),(4,35,4,'72C1-19284'),(5,25,5,'60C1-78291'),(6,15,6,'70B2-65871'),(7,20,7,'69A1-99999'),(8,35,8,'76C1-11223'),(9,36,9,'70A1-12345'),(10,37,10,'47C1-88888'),(11,22,11,'69B1-56789'),(12,34,12,'59A1-16871'),(13,22,13,'47C1-10011'),(14,32,14,'47B2-12344'),(15,32,15,'49C2-86819'),(16,32,16,'49C1-15689'),(17,32,1,'50C1-23865'),(18,22,17,'43A1-35681'),(19,34,18,'43A2-83176');
+INSERT INTO `car` VALUES (1,25,1,'50H1-01234'),(2,20,2,'50H1-05235'),(3,30,3,'50H1-89088'),(4,35,4,'72C1-19284'),(5,25,5,'49B1-23785'),(6,15,6,'70B2-65871'),(7,20,7,'69A1-99999'),(8,35,8,'76C1-11223'),(9,36,9,'70A1-12345'),(10,37,10,'47C1-88888'),(11,22,11,'69B1-56789'),(12,34,12,'59A1-16871'),(13,22,13,'47C1-10011'),(14,32,14,'47B2-12344'),(15,32,15,'49C2-86819'),(16,32,16,'49C1-15689'),(17,32,1,'50C1-23865'),(18,22,17,'43A1-35681'),(19,34,18,'43A2-83176');
 /*!40000 ALTER TABLE `car` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,6 +115,7 @@ CREATE TABLE `carcompany` (
   `Address` varchar(50) DEFAULT NULL,
   `BusinessLicense` tinyint(1) DEFAULT NULL,
   `Province` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `img_url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`CompanyID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -125,7 +126,7 @@ CREATE TABLE `carcompany` (
 
 LOCK TABLES `carcompany` WRITE;
 /*!40000 ALTER TABLE `carcompany` DISABLE KEYS */;
-INSERT INTO `carcompany` VALUES (1,'Phuong Trang','0908887655','District 1',1,'Ho Chi Minh'),(2,'Hoa Mai','19001234','District 5',1,'Ho Chi Minh'),(3,'Thanh Buoi','19008989','District 1',1,'Ho Chi Minh'),(4,'Toan Thang','19000001','District 7',1,'Vung Tau'),(5,'Cuong Seven','19008080','Long Thanh',1,'Dong Nai'),(6,'Dong Phuoc','19008080','Hoa Thanh',1,'Tay Ninh'),(7,'Tuan Hiep','19000102','Ca Mau',1,'Ca Mau'),(8,'Bay Viet','18001234','Quang Ngai',1,'Quang Ngai'),(9,'Le Hai','18008098','Tay Ninh',1,'Tay Ninh'),(10,'Tien Oanh','19001221','Buon Ma Thuot',1,'Dak Lak'),(11,'Hao','18000112','Ca Mau',1,'Ca Mau'),(12,'Ngoc Anh','0907123321','Quan 4',1,'TP HCM'),(13,'Tuan Trung','0908010020','Buon Ma Thuot',1,'DAK LAK'),(14,'Nguyen Diu','0902233433','Buon Ma Thuot',1,'DAK LAK'),(15,'An Anh Limousine','0988132154','DA LAT',1,'LAM DONG'),(16,'Trong Minh','0912345678','DA THIEN',1,'LAM DONG'),(17,'Kim Chi','0976123123','Da Nang',1,'Da Nang'),(18,'Duong Vu','19007878','BX. Trung Tam',1,'BX. Son Tay');
+INSERT INTO `carcompany` VALUES (1,'Phuong Trang','0908887655','District 1',1,'Ho Chi Minh','https://futabus.vn/img/SearchConsole/futa16x9.jpg'),(2,'Phuoc Hung','19001234','District 5',1,'Ho Chi Minh','https://limody.vn/wp-content/uploads/2020/12/xe-phuoc-hung-3.jpg'),(3,'Thanh Buoi','19008989','District 1',1,'Ho Chi Minh','https://static.vexere.com/production/images/1656960376767.jpeg?w=250&h=250'),(4,'Dan Anh','19000001','District 7',1,'Vung Tau','https://amazingdalat.com/media/upload/images/thue-xe/Limousine%20Dan%20Anh%20Da%20Lat.jpg'),(5,'Quoc Bao','19008080','Long Thanh',1,'Dong Nai','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLejSt82P3W9eW0q9mueQrJIXNypOF2FcW5w&usqp=CAU'),(6,'Thuan Y','19008080','Hoa Thanh',1,'Tay Ninh','https://vivutoday.com/wp-content/uploads/2021/03/THUAN-TIEN-3-1.jpg'),(7,'Thuan Tien','19000102','Ca Mau',1,'Ca Mau','https://limody.vn/wp-content/uploads/2020/09/xe-Thuan-Tien-1.jpg'),(8,'Bay Viet','18001234','Quang Ngai',1,'Quang Ngai','https://cdn.oto360.net/images/bus/canh_hoa.webp'),(9,'Minh Nghia','18008098','Tay Ninh',1,'Tay Ninh','https://storage.googleapis.com/blogvxr-uploads/2022/08/minh-nghia.jpg'),(10,'Tien Oanh','19001221','Buon Ma Thuot',1,'Dak Lak','https://kenhhomestay.com/wp-content/uploads/2019/06/nha-xe-tien-oanh.jpg'),(11,'Hao','18000112','Ca Mau',1,'Ca Mau','https://lh4.googleusercontent.com/i_YBqeBxMC5DhRgFZyPA3XJVdZljx0N6LdDlWLf-fOqU681IMxbYYaB6f1olsvj8COjcnCwz2Z0JYaUOjyLBCyhOoEC1cmpFygJnhuH5mwgLdHkNUF1crFgrPhxTGZw3oYsqUVuChuTf4p0pjxhsMgk'),(12,'Ngoc Anh','0907123321','Quan 4',1,'TP HCM','https://canthoplus.com/wp-content/uploads/2021/05/2-tong-dai-nha-xe-ngoc-anh-ca-mau.jpg'),(13,'Tuan Trung','0908010020','Buon Ma Thuot',1,'DAK LAK','https://xevati.com/wp-content/uploads/2021/11/Cac-dich-vu-tien-ich-tren-xe-Minh-Map.jpg'),(14,'Nguyen Diu','0902233433','Buon Ma Thuot',1,'DAK LAK','https://lh5.googleusercontent.com/BoC1r1dRzTNrVode5PjyPZINW_QXTL8D1tx-k-GiA2HWFQ9vPDOcVANr9LD25EHhLCz31ywyaQuX6uD0EpIWwyqJNNHG4Hcohn_SupIbVSRnXzZVjPXJMqBx1thtG4CBUcKCDvA-'),(15,'An Anh Limousine','0988132154','DA LAT',1,'LAM DONG','https://nhaxeananh.com/wp-content/uploads/2021/01/e0a7398df98308dd5192-1.jpg'),(16,'Trong Minh','0912345678','DA THIEN',1,'LAM DONG','https://megabus.vn/wp-content/uploads/2019/07/xe-tr%E1%BB%8Dng-minh-4.jpg'),(17,'Kim Chi','0976123123','Da Nang',1,'Da Nang','https://nhaxekimchi.com/wp-content/uploads/2022/07/3f6955aabe607d3e24713.jpg'),(18,'Duong Vu','19007878','BX. Trung Tam',1,'BX. Son Tay','https://saodieu.vn/media/transporter/116/1649156238_Xe-Duong-Vu-Da-Nang.jpg');
 /*!40000 ALTER TABLE `carcompany` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +227,7 @@ CREATE TABLE `tripinfor` (
   `StartTime` time DEFAULT NULL,
   `EndTime` time DEFAULT NULL,
   `CarID` int DEFAULT NULL,
-  `price` decimal(10,2) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
   `arrivalDetail` varchar(255) DEFAULT NULL,
   `Day` date DEFAULT NULL,
   `departureDetail` varchar(255) DEFAULT NULL,
@@ -244,7 +245,7 @@ CREATE TABLE `tripinfor` (
 
 LOCK TABLES `tripinfor` WRITE;
 /*!40000 ALTER TABLE `tripinfor` DISABLE KEYS */;
-INSERT INTO `tripinfor` VALUES (1,2,'19:00:00','03:05:00',1,255000.00,'BX. NHA TRANG','2023-02-24','BX. VUNG TAU'),(2,2,'08:00:00','16:30:00',2,250000.00,'VP. NHA TRANG','2023-02-24','VP. HOA MAI'),(3,2,'13:10:00','20:40:00',3,270000.00,'BX. NHA TRANG','2023-02-24','BX. VUNG TAU'),(4,1,'05:00:00','11:35:00',6,280000.00,'BX. DA LAT','2023-02-24','BX. MIEN DONG'),(5,1,'22:01:00','05:41:00',7,300000.00,'BX. DA LAT','2023-02-24','BX. MIEN TAY'),(6,1,'23:59:00','07:44:00',4,270000.00,'BX. DA THIEN','2023-02-25','VP AN DUONG VUONG'),(7,1,'07:00:00','21:00:00',5,240000.00,'BX. DA LAT','2023-02-24','BX. AN SUONG'),(8,1,'23:00:00','07:00:00',8,250000.00,'VP. DA LAT','2023-02-25','VP. TAN BINH'),(9,3,'15:30:00','01:55:00',7,300000.00,'BX. TRUNG TAM','2023-02-24','BX. BINH THUAN'),(10,3,'17:45:00','03:15:00',10,250000.00,'BX. TRUNG TAM','2023-02-24','BX. LA GI'),(11,3,'18:30:00','04:45:00',6,280000.00,'BX. CAN THO','2023-02-25','BX. MUI NE'),(12,3,'22:00:00','08:15:00',2,250000.00,'BX. CAN THO','2023-02-25','CHO LUONG SON'),(13,4,'21:30:00','05:05:00',11,320000.00,'BX. MIEN TAY','2023-02-26','BX. CA MAU'),(14,4,'12:00:00','20:10:00',12,200000.00,'TRAM XE NGOC ANH','2023-02-26','BX. CA MAU'),(15,6,'08:30:00','17:40:00',13,450000.00,'BX. NGA TU GA','2023-02-26','CU KUIN'),(16,6,'18:15:00','06:10:00',14,320000.00,'NGA TU AN SUONG','2023-02-27','VP. M\'DRAK'),(17,5,'12:00:00','19:00:00',15,420000.00,'VP. DA LAT','2023-02-27','VP. TAN BINH'),(18,5,'14:30:00','22:30:00',16,380000.00,'BX. DA THIEN','2023-02-28','BX. MIEN TAY'),(19,5,'11:00:00','17:35:00',17,300000.00,'BX. DA LAT','2023-03-01','BX. MIEN DONG'),(20,7,'22:00:00','06:20:00',11,320000.00,'BX. DONG TAM','2023-03-02','BX. MIEN TAY'),(21,7,'09:45:00','18:00:00',12,200000.00,'BX. CA MAU','2023-03-02','BX. MIEN TAY'),(22,7,'08:40:00','15:20:00',11,320000.00,'BX. CA MAU','2023-03-02','BX. MIEN TAY'),(23,8,'09:30:00','18:15:00',13,450000.00,'TP. BUON MA THUOT','2023-03-02','VP. TAN BINH'),(24,8,'19:15:00','04:40:00',14,320000.00,'TP. BUON MA THUOT','2023-03-02','NGA TU GA'),(25,9,'20:30:00','10:00:00',18,500000.00,'VP. DA NANG','2023-03-03','BX. NUOC NGAM'),(26,10,'16:30:00','05:30:00',18,500000.00,'BX. NUOC NGAM','2023-03-04','VP. DA NANG'),(27,9,'17:15:00','07:40:00',19,700000.00,'BX. TRUNG TAM',NULL,'VP.HA NOI'),(28,10,'14:00:00','06:40:00',19,700000.00,'VP.HA NOI',NULL,'BX. TRUNG TAM');
+INSERT INTO `tripinfor` VALUES (1,2,'19:00:00','03:05:00',1,255000,'BX. NHA TRANG','2023-02-24','BX. VUNG TAU'),(2,2,'08:00:00','16:30:00',2,250000,'VP. NHA TRANG','2023-02-24','VP. HOA MAI'),(3,2,'13:10:00','20:40:00',3,270000,'BX. NHA TRANG','2023-02-24','BX. VUNG TAU'),(4,1,'05:00:00','11:35:00',6,280000,'BX. DA LAT','2023-02-24','BX. MIEN DONG'),(5,1,'22:01:00','05:41:00',7,300000,'BX. DA LAT','2023-02-24','BX. MIEN TAY'),(6,1,'23:59:00','07:44:00',4,270000,'BX. DA THIEN','2023-02-25','VP AN DUONG VUONG'),(7,1,'07:00:00','21:00:00',5,240000,'BX. DA LAT','2023-02-24','BX. AN SUONG'),(8,1,'23:00:00','07:00:00',8,250000,'VP. DA LAT','2023-02-25','VP. TAN BINH'),(9,3,'15:30:00','01:55:00',7,300000,'BX. TRUNG TAM','2023-02-24','BX. BINH THUAN'),(10,3,'17:45:00','03:15:00',10,250000,'BX. TRUNG TAM','2023-02-24','BX. LA GI'),(11,3,'18:30:00','04:45:00',6,280000,'BX. CAN THO','2023-02-25','BX. MUI NE'),(12,3,'22:00:00','08:15:00',2,250000,'BX. CAN THO','2023-02-25','CHO LUONG SON'),(13,4,'21:30:00','05:05:00',11,320000,'BX. MIEN TAY','2023-02-24','BX. CA MAU'),(14,4,'12:00:00','20:10:00',12,200000,'TRAM XE NGOC ANH','2023-02-24','BX. CA MAU'),(15,6,'08:30:00','17:40:00',13,450000,'BX. NGA TU GA','2023-02-24','CU KUIN'),(16,6,'18:15:00','06:10:00',14,320000,'NGA TU AN SUONG','2023-02-24','VP. M\'DRAK'),(17,5,'12:00:00','19:00:00',15,420000,'VP. DA LAT','2023-02-24','VP. TAN BINH'),(18,5,'14:30:00','22:30:00',16,380000,'BX. DA THIEN','2023-02-24','BX. MIEN TAY'),(19,5,'11:00:00','17:35:00',17,300000,'BX. DA LAT','2023-02-24','BX. MIEN DONG'),(20,7,'22:00:00','06:20:00',11,320000,'BX. DONG TAM','2023-02-24','BX. MIEN TAY'),(21,7,'09:45:00','18:00:00',12,200000,'BX. CA MAU','2023-02-24','BX. MIEN TAY'),(22,7,'08:40:00','15:20:00',11,320000,'BX. CA MAU','2023-02-24','BX. MIEN TAY'),(23,8,'09:30:00','18:15:00',13,450000,'TP. BUON MA THUOT','2023-02-24','VP. TAN BINH'),(24,8,'19:15:00','04:40:00',14,320000,'TP. BUON MA THUOT','2023-02-24','NGA TU GA'),(25,9,'20:30:00','10:00:00',18,500000,'VP. DA NANG','2023-02-24','BX. NUOC NGAM'),(26,10,'16:30:00','05:30:00',18,500000,'BX. NUOC NGAM','2023-02-24','VP. DA NANG'),(27,9,'17:15:00','07:40:00',19,700000,'BX. TRUNG TAM','2023-02-24','VP.HA NOI'),(28,10,'14:00:00','06:40:00',19,700000,'VP.HA NOI','2023-02-24','BX. TRUNG TAM');
 /*!40000 ALTER TABLE `tripinfor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -283,10 +284,6 @@ INSERT INTO `user` VALUES (2,'nhan@gmail.com','0523350097','Vo Danh Nhan','Male'
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'etransporationdb'
---
-
---
 -- Dumping routines for database 'etransporationdb'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -299,4 +296,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-25 18:54:20
+-- Dump completed on 2023-02-25 20:28:11

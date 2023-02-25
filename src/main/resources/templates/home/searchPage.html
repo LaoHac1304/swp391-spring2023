@@ -54,10 +54,8 @@
             <form th:action="@{/booking/{id}(id=${trip.id})}">
                 <div class="TicketPC-Container" >
                     <div class="TicketPC-BodyFlex">
-                        <div class="image" style="position: relative;"><img class="operator"
-                                data-src="//static.vexere.com/production/images/1648100144878.jpeg?w=250&amp;h=250"
-                                alt="Huệ Nghĩa"
-                                src="https://kenhhomestay.com/wp-content/uploads/2019/05/nha-xe-ha-tuyen-1.jpg"><img
+                        <div class="image" style="position: relative;"><img th:src="@{${trip.car.carCompany.imgUrl}}" class="operator"
+                                ><img
                                 class="sticker-lazyloaded">
                         </div>
                         <div class="TicketPC-RightBody">

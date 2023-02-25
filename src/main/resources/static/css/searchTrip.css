@@ -312,8 +312,9 @@
     scroll-behavior: smooth;
     margin-bottom: 20px;
     margin-top: 10px;
-    width: 122.7px;
-
+    width: 150px;
+    text-align: left;
+    font-weight: 500;
 }
 
 .from-to {
@@ -425,6 +426,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: initial;
+    padding-left: 15px;
 }
 
 
@@ -549,6 +552,7 @@
     right: 0px;
     -webkit-box-pack: end;
     justify-content: flex-end;
+    text-align: right;
 }
 
 .info {
@@ -779,6 +783,8 @@
     
 .container-trip-page {
     text-align: center; 
+    margin-top: 100px;
+    margin-bottom: 70px;
 }    
 
 .flex {
@@ -788,7 +794,7 @@
     
 .filter-container {
  margin-top: 15px;
- margin-left: 200px;
+ /* margin-left: 200px; */
 }
 
 .search-input {

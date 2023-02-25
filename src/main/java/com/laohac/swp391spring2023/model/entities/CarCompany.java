@@ -37,5 +37,7 @@ public class CarCompany {
     private String province;
     @OneToMany(mappedBy = "carCompany", cascade = CascadeType.ALL)
     private List<Car> car;
-    
+    @Column(name = "img_url")
+    private String imgUrl;
+
 }

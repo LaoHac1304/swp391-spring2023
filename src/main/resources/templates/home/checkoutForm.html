@@ -60,15 +60,24 @@
                             <!--  -->
                             <div class="table-info">
                                 <div class="table-name" style="margin-top: 0%;">Passenger</div>
-                                <div class="table-value" th:text="${checkoutinfo.user.fullName}">Lewis vip vl</div>
+                                <th:block th:if="${checkoutinfo.user != null}">
+                                    <div class="table-value" th:text="${checkoutinfo.user.fullName}">Lewis vip vl</div>
+                                </th:block>
+                                <!-- <div class="table-value" th:text="${checkoutinfo.user.fullName}">Lewis vip vl</div> -->
                             </div>
                             <div class="table-info">
                                 <div class="table-name">Phone number</div>
-                                <div class="table-value" th:text="${checkoutinfo.user.phoneNumber}">0123456789</div>
+                                <th:block th:if="${checkoutinfo.user != null}">
+                                    <div class="table-value" th:text="${checkoutinfo.user.phoneNumber}">0123456789</div>
+                                </th:block>
+                                <!-- <div class="table-value" th:text="${checkoutinfo.user.phoneNumber}">0123456789</div> -->
                             </div>
                             <div class="table-info">
                                 <div class="table-name">Email</div>
-                                <div class="table-value" th:text="${checkoutinfo.user.email}">lewisvipvl@gmail.com</div>
+                                <th:block th:if="${checkoutinfo.user != null}">
+                                    <div class="table-value" th:text="${checkoutinfo.user.email}">lewisvipvl@gmail.com</div>
+                                </th:block>
+                                <!-- <div class="table-value" th:text="${checkoutinfo.user.email}">lewisvipvl@gmail.com</div> -->
                             </div>
                             <!--  -->
 

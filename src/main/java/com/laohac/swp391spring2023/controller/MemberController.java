@@ -1,5 +1,7 @@
 package com.laohac.swp391spring2023.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,7 +15,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.laohac.swp391spring2023.model.dto.MemberViewDTOReponse;
+import com.laohac.swp391spring2023.model.entities.Car;
+import com.laohac.swp391spring2023.model.entities.CarCompany;
 import com.laohac.swp391spring2023.model.entities.User;
+import com.laohac.swp391spring2023.repository.CarCompanyRepository;
+import com.laohac.swp391spring2023.repository.CarRepository;
 import com.laohac.swp391spring2023.service.MemberService;
 
 @Controller
@@ -21,13 +29,20 @@ import com.laohac.swp391spring2023.service.MemberService;
 public class MemberController {
 
     @Autowired 
-    MemberService memberService;
+    private MemberService memberService;
+
+    @Autowired
+    private CarCompanyRepository carCompanyRepository;
+
+    @Autowired
+    private CarRepository carRepository;
 
     @GetMapping("/adminDB")
     public String showAdminDB(HttpSession session, Authentication authentication){
         if (authentication != null && authentication.isAuthenticated())
             session.setAttribute("userSession", memberService.getCurrentUser());
-       return "adminDashboard/Adashboard";
+       //return "adminDashboard/Adashboard";
+       return "redirect:/member/viewall";
     }
 
     @GetMapping("/login")
@@ -41,7 +56,38 @@ public class MemberController {
     
     @GetMapping("/viewall")
     public String viewAllMember(Model model) {
-        model.addAttribute("listMembers", memberService.getAllMember());
+
+        int employees = 0;
+        int carCompanies = 0;
+        int orders = 0;
+        int cars = 0 ;
+
+
+        List<User> listUsers = memberService.getAllMember();
+        List<CarCompany> listCarCompanies = carCompanyRepository.findAll();
+        List<Car> listCars = carRepository.findAll();
+
+
+        if (!listUsers.isEmpty()) 
+            employees = listUsers.size();
+        if (!listCarCompanies.isEmpty())
+            carCompanies = listCarCompanies.size();
+        if (!listCars.isEmpty())
+            cars = listCars.size();
+        
+            
+        MemberViewDTOReponse memberViewDTOReponse = MemberViewDTOReponse.builder()
+                                                                        .employees(employees)
+                                                                        .carCompanies(carCompanies)
+                                                                        .cars(cars)
+                                                                        .build();
+
+        MemberViewDTOReponse.builder().employees(employees).carCompanies(carCompanies).cars(cars).build();
+
+        model.addAttribute("total", memberViewDTOReponse);
+        
+        model.addAttribute("listMembers", listUsers);
+
         return "adminDashboard/Adashboard";
     }
 

@@ -71,15 +71,16 @@
 	background-color: #272c4a;
 	margin-left: 10px;
 	padding: 10px;
+  display: flex;
 }
 
 .box p {
-  font-size: 35px;
+  font-size: 30px;
   color: white;
   font-weight: bold;
-  line-height: 30px;
-  padding-left: 10px;
-  margin-top: 20px;
+  /* line-height: 30px; */
+  /* padding-left: 10px; */
+  margin-top: 25px;
   display: inline-block;
 }
 
@@ -95,6 +96,7 @@
   margin-top: 35px !important;
   color: #818181;
   padding-right: 10px;
+  margin-left: 30px;
 } 
 
 *,
@@ -3087,7 +3089,9 @@ textarea.form-control-lg {
   pointer-events: none;
   opacity: 0.65;
 }
-
+#datatablesSimple {
+  border: 1px solid white;
+}
 .btn-primary {
   color: #fff;
   background-color: #0d6efd;

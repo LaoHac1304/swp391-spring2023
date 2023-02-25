@@ -10,6 +10,8 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard - SB Admin</title>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <link th:href="@{https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css}" rel="stylesheet" />
     <link th:href="@{/css/adminStyle.css}" rel="stylesheet" />
 
@@ -634,66 +636,6 @@
 <!--Home partner-->
 <div th:fragment="homePartner">
     <section id="whyus" class="service_section sec_ptb_150 pb-0 mb_100 text-black clearfix">
-        <!-- <div class="container">
-            <div class="section_title mb_30 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                <h3 class="title_text mb-0" style="color: red">
-                    -<span style="color: rgb(22, 24, 41);">We’ve partnered with the world’s best popular bus companies</span>-
-                </h3>
-            </div>
-            <div class="row justify-content-center" style="padding-top: 50px">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="service_primary text-center text-black aos-init aos-animate" data-aos="fade-up"
-                        data-aos-delay="100">
-                        <div class="item_icon">
-                            <i class="fas fa-shield-alt" style="font-size: 48px; color: #ea001e"></i>
-                        </div>
-                        <h3 class="item_title text-black">Secured Payment Guarantee</h3>
-                        <p class="mb-0 text-black">
-                            We make every effort to keep your financial information secure,
-                            whether you're sending money, paying bills, or making a
-                            purchase.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="service_primary text-center text-black aos-init aos-animate" data-aos="fade-up"
-                        data-aos-delay="500">
-                        <div class="item_icon">
-                            <i class="fas fa-bus" style="font-size: 48px; color: #ea001e"></i>
-                        </div>
-                        <h3 class="item_title text-black" style="padding-bottom: 50px;">Booking any Company's Car</h3>
-                        <p class="mb-0 text-black">
-                            200+ high quality car company. There are over 1000 active and
-                            diverse routes to choose from across the country.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="service_primary text-center text-black aos-init aos-animate" data-aos="fade-up"
-                        data-aos-delay="100">
-                        <div class="item_icon">
-                            <i class="fas fa-briefcase" style="font-size: 48px; color: #ea001e"></i>
-                        </div>
-                        <h3 class="item_title text-black" style="padding-bottom: 50px">
-                            Fast and Easy
-                        </h3>
-                        <p class="mb-0 text-black">
-                            Signing up for 24HR is free, and you can use your PayPal balance
-                            to make purchases and send money at no extra cost.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <br>
-            <div>
-                <a class="btn btn-joinus" th:href="@{/users}">Create an account</a>
-            </div>
-            <br />
-        </div> -->
-    
         <div class="container">
             <div class="row">
                 <div class="section-title text-center" style="margin-bottom: 30px;">

@@ -1,6 +1,18 @@
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
+var listMembers = /*[[${listMembers}]]*/ []; // get listMembers from model attribute
+
+
+
+var div = document.querySelector('div[data-total]');
+var total = parseInt(div.getAttribute('data-total'));
+function getTotal(total) {
+  // do something with the total
+  return total;
+}
+getTotal(total);
+
 
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
@@ -22,7 +34,7 @@ var myLineChart = new Chart(ctx, {
       pointHitRadius: 50,
       pointBorderWidth: 2,
       // data: [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984, 38451],
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      data: [2, total -4, total - 3, total - 2, total -1, total],
     }],
   },
   options: {
@@ -42,7 +54,7 @@ var myLineChart = new Chart(ctx, {
         ticks: {
           min: 0,
           // max: 40000,
-          max: 20000, // code function here
+          max: total + 5, // code function here
           maxTicksLimit: 5
         },
         gridLines: {
@@ -55,3 +67,5 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+
+

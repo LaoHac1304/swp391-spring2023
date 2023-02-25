@@ -78,21 +78,6 @@ var swiper = new Swiper(".our-partner", {
     },
 });
 
-//Preview image
-// document.getElementById("profileImage").addEventListener("change", function() {
-//     var preview = document.getElementById("previewImage");
-//     var file    = this.files[0];
-//     var reader  = new FileReader();
-
-//     reader.addEventListener("load", function () {
-//       preview.src = reader.result;
-//     }, false);
-
-//     if (file) {
-//       reader.readAsDataURL(file);
-//     }
-//   });
-
 
   //Validate password
   function validatePassword() {

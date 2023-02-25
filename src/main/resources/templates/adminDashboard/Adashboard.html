@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <div th:replace="fragments/fragments::adminHead"></div>
+    <div th:replace="fragments/fragments::adminHead">
+        
+    </div>
+    <head>
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    </head>
     <body class="sb-nav-fixed">
         <nav th:replace ="fragments/fragments::adminNavbar"></nav>
         <div id="layoutSidenav">
@@ -14,7 +21,8 @@
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="box mb-4">
-                                    <p>57<br><span>Employees</span></p>
+                                    <p th:text="${#lists.size(listMembers)} + ' Employees'"></p>
+                                    <div th:attr="data-total=${#lists.size(listMembers)}"></div>
                                     <i class="fa fa-user box-icon text-white"></i>
                                 </div>
                             </div>
@@ -63,7 +71,7 @@
                                 Employee Database
                             </div>
                             <div class="card-body text-white">
-                                <table id="datatablesSimple">
+                                <table id="datatablesSimple" class="myTable">
                                 <thead>
                                     <tr>
                                     <th>Full Name</th>
@@ -96,5 +104,12 @@
             </div>
         </div>
         <div th:replace ="fragments/fragments::adminScript"></div>
+        <script>
+            $(document).ready(function() {
+                $('#datatablesSimple').DataTable({
+                    "responsive": true
+                });
+            });
+        </script>
     </body>
 </html>

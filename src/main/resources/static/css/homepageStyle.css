@@ -526,12 +526,57 @@ a.main-btn3.mt-2:hover {
     font-size: x-large;
 }
 
-.partner-logo{
-    /* width: 100%; */
-    
+.select2-container .select2-selection--single .select2-selection__rendered {
+    display: block;
+    padding-left: 12px;
+    padding-right: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: antiquewhite;
 }
 
-.partner-container{
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #151515;
+    line-height: 40px;
+    text-align: left;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 50px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 25px;
+}
+
+.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+    border-color: transparent transparent #f00 transparent;
+    border-width: 0 4px 5px 4px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: #f90202 transparent transparent transparent;
+    border-style: solid;
+    border-width: 5px 4px 0 4px;
+    height: 0;
+    left: 50%;
+    margin-left: -4px;
+    margin-top: -2px;
+    position: absolute;
+    top: 50%;
+    width: 0;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border-radius: 4px;
+    height: 40px;
+    margin-top: 8px;
+    border: .0625px solid #F2C94C;
+}
+
+.partner-container {
     height: 144px;
     height: clamp(120px, 10vw, 144px);
     display: flex;
@@ -1176,7 +1221,7 @@ h5.text-decoration-underline.mb-4 {
     text-align: center;
     background-color: rgb(41, 45, 69);
     margin: 5px;
-    
+
 }
 
 .slider-img {
@@ -1189,13 +1234,13 @@ h5.text-decoration-underline.mb-4 {
     border-radius: 0%;
 }
 
-.slider-desc{
+.slider-desc {
     background-color: rgb(211, 178, 145);
     height: 96px;
     width: 100%;
 }
 
-.slider-desc-title{
+.slider-desc-title {
     font-weight: bold;
     font-size: 18px;
     color: rgb(255, 255, 255);
@@ -1204,7 +1249,7 @@ h5.text-decoration-underline.mb-4 {
     padding-left: 10px;
 }
 
-.slider-desc-fare{
+.slider-desc-fare {
     display: flex;
     color: rgb(255, 255, 255);
     font-size: 16px;

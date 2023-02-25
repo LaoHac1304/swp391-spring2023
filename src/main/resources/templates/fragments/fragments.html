@@ -309,8 +309,8 @@
                     <label class="search-label">Pick up place</label>
                     <select class="form-control" th:field="*{state1}" required data-placeholder="Pick up place"
                         style="width: 100%">
-                        <th:block th:each="trip: ${listStates}">
-                            <option th:value="${trip.departure}" th:text="${trip.departure}"></option>
+                        <th:block th:each="tripD : ${departure}">
+                            <option th:value="${tripD}" th:text="${tripD}"></option>
                         </th:block>
                     </select>
                 </div>
@@ -319,8 +319,8 @@
                     <label class="search-label">Drop off place</label>
                     <select class="form-control" th:field="*{state2}" required data-placeholder="Drop off place"
                         style="width: 100%">
-                        <th:block th:each="trip: ${listStates}">
-                            <option th:value="${trip.arrival}" th:text="${trip.arrival}"></option>
+                        <th:block th:each="tripA : ${arrival}">
+                            <option th:value="${tripA}" th:text="${tripA}"></option>
                         </th:block>
                     </select>
                 </div>

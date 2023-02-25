@@ -1,5 +1,6 @@
 package com.laohac.swp391spring2023.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -39,8 +40,9 @@ public class BookingServiceImpl implements BookingService {
         int id = listSeats.get(0);
         Seat seat = seatRepository.findById(id);
         Trip trip = seat.getTrip();
-        int price = trip.getPrice();
-        int priceTotal = price*(listSeats.size());
+        BigDecimal price = trip.getPrice();
+        int priceTotal = price.multiply(BigDecimal.valueOf(listSeats.size())).intValue();
+        // int priceTotal = price*(listSeats.size());
         return CheckOutInfoDTOReponse.builder().trip(trip).lSeats(listSeats).priceTotal(priceTotal).user(userDTOResponse).build();
         
     }

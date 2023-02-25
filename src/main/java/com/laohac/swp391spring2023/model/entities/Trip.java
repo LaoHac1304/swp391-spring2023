@@ -1,6 +1,7 @@
 package com.laohac.swp391spring2023.model.entities;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -51,7 +52,8 @@ public class Trip {
     @ManyToOne
     @JoinColumn(name = "CarID")
     private Car car;
-    private int price;
+    @Column(name = "price", precision = 10, scale = 2)
+    private BigDecimal price;
     private String departureDetail;
     private String arrivalDetail;
     @Column(name = "Day")

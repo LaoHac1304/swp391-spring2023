@@ -4,10 +4,18 @@ package com.laohac.swp391spring2023.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.transaction.Transactional;
+
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +31,10 @@ import com.laohac.swp391spring2023.repository.TripRepository;
 import com.laohac.swp391spring2023.repository.UserRepository;
 import com.laohac.swp391spring2023.service.UserService;
 
+import net.bytebuddy.utility.RandomString;
+
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -35,6 +46,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private TripRepository tripRepository;
 
+    @Autowired
+    private JavaMailSender mailSender;
+
     @Override
     public UserDTOResponse registerUser(User user) {
         
@@ -45,14 +59,69 @@ public class UserServiceImpl implements UserService {
         String rawPassword = user.getPassword();
         user.setPassword(passwordEncoder2.encode(rawPassword));
         user.setProvider(Provider.LOCAL);
+        user.setEnabled(0);
+
+        String randomCode = RandomString.make(64); 
+        user.setVerificationCode(randomCode);      
         userRepository.save(user);
+
+        
+
+
         UserDTOResponse userDTOResponse = UserDTOResponse
                                 .builder()
                                 .fullName(user.getFullName())
                                 .username(user.getUsername())
+                                .email(user.getEmail())
                                 .role("customer")
+                                .enabled(user.getEnabled())
+                                .verificationCode(user.getVerificationCode())
                                 .build();
         return userDTOResponse;
+    }
+
+    @Override
+    @Transactional
+    public boolean verify(String verificationCode){
+        User user = userRepository.findByVerificationCode(verificationCode);
+
+        if (user == null || user.getEnabled() > 0) return false;
+        user.setVerificationCode(null);
+        user.setEnabled(1);
+        userRepository.save(user);
+        //userRepository.enable(user.getId());
+        return true;
+        
+    }
+
+    @Override
+    public void sendVerificationEmail(UserDTOResponse user, String siteURL) 
+            throws UnsupportedEncodingException, MessagingException {
+        String subject ="Please verify your registration";
+        String senderName = "4Boys Team";
+        String mailContent = "<p>Dear " + user.getFullName() + ",</p>";
+        mailContent += "<p>Please click the link below to verify to your registration:</p>";
+        
+        String verifyURL = siteURL + "/users/verify?code=" + user.getVerificationCode();
+        mailContent += "<h3><a href=\"" + verifyURL + "\">VERIFY</a></h3>";
+        
+        mailContent += "<p>Thank you<br>4Boys Team</p>";
+
+        MimeMessage message = mailSender.createMimeMessage();
+
+        JavaMailSenderImpl emailSender = (JavaMailSenderImpl) mailSender;
+        emailSender.getJavaMailProperties().setProperty("mail.smtp.starttls.enable", "true");
+
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom("simnhankid13042002@gmail.com", senderName);
+        helper.setTo(user.getEmail());
+        helper.setSubject(subject);
+        helper.setText(mailContent, true);
+
+        
+
+        mailSender.send(message);
     }
 
     @Override

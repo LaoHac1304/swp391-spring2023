@@ -29,7 +29,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserID")
-    private int id;
+    private Integer id;
 
     private String email;
     private String username;
@@ -40,5 +40,10 @@ public class User {
     private String role;
     @Enumerated(EnumType.STRING)
     private Provider provider;
+
+    private int enabled;
+
+    @Column(name = "verification_code", updatable = false)
+    private String verificationCode;
 
 }

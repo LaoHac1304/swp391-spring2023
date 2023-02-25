@@ -19,5 +19,7 @@ public class UserDTOResponse {
     private String sex;
     private String phoneNumber;
     private String role;
+    private int enabled;
+    private String verificationCode;
     
 }

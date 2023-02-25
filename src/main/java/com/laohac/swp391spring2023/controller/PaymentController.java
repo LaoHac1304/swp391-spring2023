@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.laohac.swp391spring2023.model.dto.CheckOutInfoDTOReponse;
-import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.Seat;
 import com.laohac.swp391spring2023.model.entities.Trip;

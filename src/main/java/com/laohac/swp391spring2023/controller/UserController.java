@@ -1,14 +1,17 @@
 package com.laohac.swp391spring2023.controller;
 
 import java.util.List;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.time.LocalDate;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,7 +59,6 @@ public class UserController {
     @GetMapping("")
     public String home(Model model, User user){
         model.addAttribute("customer", user);
-        //return "home/Register";
         return "home/Register";
     }
 
@@ -74,12 +76,32 @@ public class UserController {
         return "home/login1";
     }
 
+    private String getSiteURL(HttpServletRequest request){
+        String siteURL = request.getRequestURL().toString();
+        return siteURL.replace(request.getServletPath(), "");
+    }
+
     @PostMapping("/save")
-    public String register (@ModelAttribute("customer") User user){
+    public String register (@ModelAttribute("customer") User user, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException{
 
         UserDTOResponse userDTOResponse = userService.registerUser(user);
+        
+        String siteURL = getSiteURL(request);
+        userService.sendVerificationEmail(userDTOResponse,siteURL);
+
         System.out.println(userDTOResponse.getFullName());
         return "redirect:/users/login";
+    }
+
+    @GetMapping("/verify")
+    public String verifyAccount(@Param("code") String code, Model model){
+        boolean verified = userService.verify(code);
+
+        String pageTitle = verified ? "Verification Succeeded!" : "Verification Failed";
+        model.addAttribute("pageTitle", pageTitle);
+        
+
+        return "home/" + (verified ? "verify_success" : "verify_fail");
     }
 
 

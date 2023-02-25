@@ -10,12 +10,5 @@ public class Swp391Spring2023Application {
 		SpringApplication.run(Swp391Spring2023Application.class, args);
 	}
 
-	/*@Bean
-	CommandLineRunner run(MemberService memberService){
-		return args -> {
-			memberService.addMember(new Member(0, "Admin", "AdminNhan", "05233", "itachi", "123"));	
-		}; 
-	};*/
-
 }
 

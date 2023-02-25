@@ -163,6 +163,10 @@
     <!-- FontAweSome-->
     <script th:src="@{https://kit.fontawesome.com/bdbcf2ce1a.js}" crossorigin="anonymous"></script>
 
+    <!--Select2-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
     <!-- FAVICON -->
     <link rel="icon" type="image/png" th:href="@{/imagefavicon.png}" />
 
@@ -298,24 +302,39 @@
                     <label class="search-label">Date of departure</label>
                     <input type="date" class="form-control" th:field="*{date}" placeholder="Date" required />
                 </div>
+
+
                 <div class="col-lg mb-3 mb-lg-0">
                     <i class="fa-solid fa-map-location-dot fa-lg"></i>
                     <label class="search-label">Pick up place</label>
-                    <input class="form-control" type="search" th:field="*{state1}" placeholder="Pick up place"
-                        list="pickupList" required />
-                    <datalist id="pickupList">
-                        <option th:each="trip: ${listStates}" th:value="${trip.departure}"></option>
-                    </datalist>
+                    <select class="form-control" th:field="*{state1}" required data-placeholder="Pick up place"
+                        style="width: 100%">
+                        <th:block th:each="trip: ${listStates}">
+                            <option th:value="${trip.departure}" th:text="${trip.departure}"></option>
+                        </th:block>
+                    </select>
                 </div>
                 <div class="col-lg mb-3 mb-lg-0">
                     <i class="fa-solid fa-location-dot fa-lg"></i>
                     <label class="search-label">Drop off place</label>
-                    <input class="form-control" type="search" th:field="*{state2}" placeholder="Drop off place" required
-                        list="dropoffList" />
-                    <datalist id="dropoffList">
-                        <option th:each="trip: ${listStates}" th:value="${trip.arrival}"></option>
-                    </datalist>
+                    <select class="form-control" th:field="*{state2}" required data-placeholder="Drop off place"
+                        style="width: 100%">
+                        <th:block th:each="trip: ${listStates}">
+                            <option th:value="${trip.arrival}" th:text="${trip.arrival}"></option>
+                        </th:block>
+                    </select>
                 </div>
+
+                <script>
+                    $(document).ready(function () {
+                        $('select').select2();
+                    });
+                </script>
+
+
+
+
+
                 <div class="col-lg mb-3 mb-lg-0">
                     <br />
                     <button type="submit" class="main-btn2 rounded-2 px-lg-3">
@@ -641,36 +660,44 @@
                 <div class="section-title text-center" style="margin-bottom: 30px;">
                     <h3>We’ve partnered with the world’s best popular bus companies</h3>
                 </div>
-                
+
                 <div class="col-lg-4">
                     <a href="https://futabus.vn/" target="_blank">
-                        <img class="partner-logo" src="https://futabus.vn/_nuxt/img/logo-buslines-small.b4bfbf7.png" alt="Futa">
+                        <img class="partner-logo" src="https://futabus.vn/_nuxt/img/logo-buslines-small.b4bfbf7.png"
+                            alt="Futa">
                     </a>
                 </div>
                 <div class="col-lg-4">
                     <a href="https://hoamaicar.com/" target="_blank">
-                        <img class="partner-logo" style="width: 109px;" src="https://hoamaicar.com/wp-content/uploads/2020/07/logo-hoamai.png" alt="Hoamai">
+                        <img class="partner-logo" style="width: 109px;"
+                            src="https://hoamaicar.com/wp-content/uploads/2020/07/logo-hoamai.png" alt="Hoamai">
                     </a>
                 </div>
                 <div class="col-lg-4">
                     <a href="https://kumhosamco.com.vn/" target="_blank">
-                        <img class="partner-logo" src="https://kumhosamco.com.vn/wp-content/uploads/LOGO-KUMHO-web2.png" alt="Kumho">
+                        <img class="partner-logo" src="https://kumhosamco.com.vn/wp-content/uploads/LOGO-KUMHO-web2.png"
+                            alt="Kumho">
                     </a>
                 </div>
                 <hr>
                 <div class="col-lg-4">
                     <a href="https://vielimousine.com/" target="_blank">
-                        <img class="partner-logo" src="https://vielimousine.com/wp-content/uploads/2022/01/VIE-LIMO-195x109.png" alt="vie">
+                        <img class="partner-logo"
+                            src="https://vielimousine.com/wp-content/uploads/2022/01/VIE-LIMO-195x109.png" alt="vie">
                     </a>
                 </div>
                 <div class="col-lg-4">
                     <a href="https://xekhanhphongvip.vn/" target="_blank">
-                        <img class="partner-logo" style="width: 109px;" src="https://xekhanhphongvip.vn/wp-content/uploads/2020/07/post-face-3-78.png" alt="xekhanhphongvip">
+                        <img class="partner-logo" style="width: 109px;"
+                            src="https://xekhanhphongvip.vn/wp-content/uploads/2020/07/post-face-3-78.png"
+                            alt="xekhanhphongvip">
                     </a>
                 </div>
                 <div class="col-lg-4">
                     <a href="https://nhaxetralanvien.com/" target="_blank">
-                        <img class="partner-logo" style="width: 109px;" src="https://nhaxetralanvien.com/wp-content/uploads/2020/07/TraLanVienLogo-2048x2048.png" alt="tralanvien">
+                        <img class="partner-logo" style="width: 109px;"
+                            src="https://nhaxetralanvien.com/wp-content/uploads/2020/07/TraLanVienLogo-2048x2048.png"
+                            alt="tralanvien">
                     </a>
                 </div>
 
@@ -679,7 +706,7 @@
             <hr style="color: black; border: black 1px solid;">
         </div>
     </section>
-    
+
 </div>
 <!--Home footer-->
 <div class="homeFooter" th:fragment="homeFooter">

@@ -19,8 +19,10 @@
     font-family: SFProText;
     margin-top: 10px;
     text-align: center;
-    margin-left: 500px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: center;
 }
 
 .container-search-trip:hover {

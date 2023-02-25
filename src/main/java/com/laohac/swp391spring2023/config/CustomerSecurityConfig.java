@@ -40,7 +40,7 @@ public class CustomerSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain2(HttpSecurity httpSecurity) throws Exception{
 
-        //httpSecurity.authenticationProvider(authenticationProvider2());
+        httpSecurity.authenticationProvider(authenticationProvider2());
         
         httpSecurity.authorizeRequests()
         // .antMatchers("/homepage","/homepage/login","/homepage/logout","/users","/users/save","/booking"

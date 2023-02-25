@@ -6,9 +6,9 @@
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
     <div style="background-image: url(/images/cars/car3.jpg); background-size: cover; padding-bottom: 10px;">
         <div th:replace="fragments/fragments::homeHeader"></div>
-        <main >
+        <main>
             <form method="post" th:action="@{/booking/choose-seats/{id}(id=${tripInfoCurrent.id})}">
-    
+
                 <div class="container">
                     <div class="bus-order">
                         <div class="row">
@@ -16,11 +16,11 @@
                             <div class="col-sm-6">
                                 <div class="container-seat">
                                     <h2 style="text-align: center;">Select your seat</h2>
-                                    
-                                   
-        
-                                        <div style="max-width: 140px; max-height: 200px; display: flex; flex-wrap: wrap;">
-                                            <div th:each="seat : ${listSeats}">
+
+
+
+                                    <!-- <div style="max-width: 140px; max-height: 200px; display: flex; flex-wrap: wrap;">
+                                            <div th:each="seat : ${listSeats}" >
                                                 <label th:for="'seat-' + ${seat.id}">
                                                     <input type="checkbox" th:value="${seat.id}" name="selectedSeats"
                                                         th:id="'seat-' + ${seat.id}">
@@ -29,58 +29,71 @@
                                                 </label>
                                             </div>
                                         </div>
-                                    
-                                    
-        
-        
+                                     -->
+                                    <div style="max-width: 165px; max-height: 200px; display: flex; flex-wrap: wrap;">
+                                        <div th:each="seat, status : ${listSeats}" class="seat-container">
+                                            <label th:for="'seat-' + ${seat.id}">
+                                                <input type="checkbox" th:value="${seat.id}" name="selectedSeats"
+                                                    th:id="'seat-' + ${seat.id}">
+                                                <div class="seat" th:text="${seat.seatNumber}"
+                                                    th:classappend="${status.count % 4 == 2 ? 'padded' : ''}"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+
+
+
                                 </div>
                             </div>
-        
+
                             <div class="col-sm-6 row-desc">
                                 <br><br><br>
                                 <div class="row ">
                                     <div class="seat col-sm-6">1</div>
                                     <span class="col-sm-6" style="align-self: center;">Available</span>
                                 </div>
-        
+
                                 <div class="row ">
-                                    <div class="seat col-sm-6" style="background-color: springgreen; color: black;">2</div>
+                                    <div class="seat col-sm-6" style="background-color: springgreen; color: black;">2
+                                    </div>
                                     <span class="col-sm-6" style="align-self: center;">Choosen</span>
                                 </div>
-        
+
                                 <div class="row ">
-                                    <div class="seat col-sm-6" style="background-color: crimson" >3</div>
+                                    <div class="seat col-sm-6" style="background-color: crimson">3</div>
                                     <span class="col-sm-6" style="align-self: center;">Booked</span>
                                 </div>
-        
-                                <div >
+
+                                <div>
                                     <!-- <a class="btn btn-success" th:href=" @{/booking/choose-seats}">Confirm</a> -->
                                     <button class="btn btn-success" type="submit">Submit</button>
-                                   
+
                                     <!-- th:href="@{/booking/detail}" -->
                                 </div>
                             </div>
-        
-        
+
+
                         </div>
-    
+
             </form>
-            
-    
-                </div>
-                </div>
-    
-                <!--   <div class="exit exit--back train-body"></div> -->
-    
-            </div>
-    
-    
-    
-    
-    
-        </main>
+
+
     </div>
-    
+    </div>
+
+    <!--   <div class="exit exit--back train-body"></div> -->
+
+    </div>
+
+
+
+
+
+    </main>
+    </div>
+
 
 
     <!-- Footer section -->

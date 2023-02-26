@@ -1,8 +1,11 @@
 package com.laohac.swp391spring2023.controller;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.laohac.swp391spring2023.model.dto.CheckOutInfoDTOReponse;
 import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.Seat;
 import com.laohac.swp391spring2023.model.entities.Trip;
@@ -47,6 +51,9 @@ public class PaymentController {
         
         trip = tripRepository.findById(id);
         model.addAttribute("tripInfoCurrent", trip);
+        List<Seat> seatLists = seatRepository.findByTrip(trip);
+        
+        model.addAttribute("listSeats",seatLists);
         return "home/orderForm";
     }
 
@@ -55,6 +62,18 @@ public class PaymentController {
 
         List<Route> listRoute = routeRepository.findAll();
         model.addAttribute("listStates", listRoute);
+
+        Set<String> listState1 = new HashSet<>();
+        Set<String> listState2 = new HashSet<>();
+
+        for (Route route : listRoute) {
+            listState1.add(route.getDeparture());
+            listState2.add(route.getArrival());    
+        }
+
+        model.addAttribute("departure", listState1);
+        model.addAttribute("arrival", listState2);
+
         for (Route route : listRoute) {
             System.out.println(route.getArrival());
         }
@@ -66,27 +85,32 @@ public class PaymentController {
         return "home/ArrivalDepartureDetail";
     }
 
-    @GetMapping("/checkout")
-    public String showCheckoutForm(){
+    @GetMapping("/checkout/{id}")
+    public String showCheckoutForm(Model model, @PathVariable(value = "id") int id, HttpSession session){
+
+        Trip trip = new Trip();
+        
+        trip = tripRepository.findById(id);
+        model.addAttribute("tripInfoCurrent", trip);
+
+        CheckOutInfoDTOReponse checkOutInfoDTOReponse = (CheckOutInfoDTOReponse) session.getAttribute("checkoutinfo");
+        model.addAttribute("checkoutinfo", checkOutInfoDTOReponse);
+        
         return "home/checkoutForm";
     }
 
-
-
-    @GetMapping("/showAllSeats")
-    public String getAllSeats(Model model){
-        Trip trip = new Trip();
-        List<Seat> seatLists = seatRepository.findByTrip(trip);
-        model.addAttribute("listSeats",seatLists);
-        return "home/orderForm";
-    }
-
     @PostMapping("/choose-seats/{id}")
-    public String chooseSeats(Model model, @RequestParam(name = "selectedSeats", required = false) List<Integer> selectedSeats){
+    public String chooseSeats(@RequestParam(name = "selectedSeats", required = false) List<Integer> selectedSeats, 
+                                        Model model, @PathVariable(value = "id") int id, HttpSession session){
 
-        for (Integer id : selectedSeats) {
-            bookingService.chooseSeats(id.intValue());    
+        for (Integer idd : selectedSeats) {
+            bookingService.chooseSeats(idd);    
         }
-        return "/booking/showAllSeats";
+        model.addAttribute("selectedSeats", selectedSeats);
+        CheckOutInfoDTOReponse checkOutInfoDTOReponse = bookingService.showCheckOutInfo(selectedSeats, session);
+        
+        session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
+
+       return "redirect:/booking/checkout/{id}";
     }
 }

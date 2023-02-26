@@ -1,6 +1,8 @@
 package com.laohac.swp391spring2023.controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +39,16 @@ public class HomeController {
 
         List<Route> listRoute = routeRepository.findAll();
         model.addAttribute("listStates", listRoute);
+
+        Set<String> listState1 = new HashSet<>();
+        Set<String> listState2 = new HashSet<>();
+
+        for (Route route : listRoute) {
+            listState1.add(route.getDeparture());
+            listState2.add(route.getArrival());    
+        }
+        model.addAttribute("departure", listState1);
+        model.addAttribute("arrival", listState2);
 
     }
 
@@ -81,6 +93,12 @@ public class HomeController {
   
         return "/homepage";
         //return "homepage/login";
+      }
+
+      @GetMapping("/orderForm")
+      public String showOrderForm(){
+
+        return "home/orderForm";
       }
 
     // @PostMapping("/sign-in")

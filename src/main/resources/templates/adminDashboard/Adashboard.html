@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <div th:replace="fragments/fragments::adminHead"></div>
+    <div th:replace="fragments/fragments::adminHead">
+        
+    </div>
+    <head>
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    </head>
     <body class="sb-nav-fixed">
         <nav th:replace ="fragments/fragments::adminNavbar"></nav>
         <div id="layoutSidenav">
@@ -14,25 +21,26 @@
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="box mb-4">
-                                    <p>57<br><span>Employees</span></p>
+                                    <p th:text="${total.employees} + ' Employees'"></p>
+                                    <div th:attr="data-total=${total.employees}"></div>
                                     <i class="fa fa-user box-icon text-white"></i>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="box mb-4">
-                                    <p>99<br><span>Bus company</span></p>
+                                    <p th:text="${total.carCompanies}">99<br><span>Bus company</span></p>
                                     <i class="fa fa-building box-icon text-white"></i>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="box mb-4">
-                                    <p>76<br><span>Orders</span></p>
+                                    <p th:text="${total.orders}">76<br><span>Orders</span></p>
                                     <i class="fa fa-shopping-bag box-icon text-white"></i>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="box mb-4">
-                                    <p>699<br><span>Bus</span></p>
+                                    <p th:text="${total.cars}">699<br><span>Bus</span></p>
                                     <i class="fa fa-bus box-icon text-white"></i>
                                 </div>
                             </div>
@@ -63,14 +71,13 @@
                                 Employee Database
                             </div>
                             <div class="card-body text-white">
-                                <table id="datatablesSimple">
+                                <table id="datatablesSimple" class="myTable">
                                 <thead>
                                     <tr>
                                     <th>Full Name</th>
                                     <th>Email</th>
                                     <th>Phone NUmber</th>
                                     <th>Username</th>
-                                    <th>Password</th>
                                     <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -80,7 +87,6 @@
                                         <td th:text="${member.email}">Full Name</td>
                                         <td th:text="${member.phoneNumber}">Phone Number</td>
                                         <td th:text="${member.username}">Username</td>
-                                        <td th:text="${member.password}">Password</td>
                                         <td><a th:href="@{update/{id}(id=${member.id})}" class="btn btn-success">Update</a>
                                             <a th:href="@{delete/{id}(id=${member.id})}" class="btn btn-warning">Delete</a>
                                         </td>
@@ -96,5 +102,12 @@
             </div>
         </div>
         <div th:replace ="fragments/fragments::adminScript"></div>
+        <script>
+            $(document).ready(function() {
+                $('#datatablesSimple').DataTable({
+                    "responsive": true
+                });
+            });
+        </script>
     </body>
 </html>

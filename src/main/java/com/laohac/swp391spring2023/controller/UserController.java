@@ -1,12 +1,19 @@
 package com.laohac.swp391spring2023.controller;
 
 import java.util.List;
+import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +48,7 @@ public class UserController {
 
     @Autowired
     private RouteRepository routeRepository;
+    
     @ModelAttribute
     public void addCommonAttributes(Model model) {
         RouteDTORequest routeDTORequest = new RouteDTORequest();
@@ -49,11 +57,23 @@ public class UserController {
         List<Route> listRoute = routeRepository.findAll();
         model.addAttribute("listStates", listRoute);
 
+        Set<String> listState1 = new HashSet<>();
+        Set<String> listState2 = new HashSet<>();
+
+        for (Route route : listRoute) {
+            listState1.add(route.getDeparture());
+            listState2.add(route.getArrival());    
+        }
+
+       
+
+        model.addAttribute("departure", listState1);
+        model.addAttribute("arrival", listState2);
+
     }
     @GetMapping("")
     public String home(Model model, User user){
         model.addAttribute("customer", user);
-        //return "home/Register";
         return "home/Register";
     }
 
@@ -71,12 +91,32 @@ public class UserController {
         return "home/login1";
     }
 
+    private String getSiteURL(HttpServletRequest request){
+        String siteURL = request.getRequestURL().toString();
+        return siteURL.replace(request.getServletPath(), "");
+    }
+
     @PostMapping("/save")
-    public String register (@ModelAttribute("customer") User user){
+    public String register (@ModelAttribute("customer") User user, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException{
 
         UserDTOResponse userDTOResponse = userService.registerUser(user);
+        
+        String siteURL = getSiteURL(request);
+        userService.sendVerificationEmail(userDTOResponse,siteURL);
+
         System.out.println(userDTOResponse.getFullName());
         return "redirect:/users/login";
+    }
+
+    @GetMapping("/verify")
+    public String verifyAccount(@Param("code") String code, Model model){
+        boolean verified = userService.verify(code);
+
+        String pageTitle = verified ? "Verification Succeeded!" : "Verification Failed";
+        model.addAttribute("pageTitle", pageTitle);
+        
+
+        return "home/" + (verified ? "verify_success" : "verify_fail");
     }
 
 
@@ -130,15 +170,26 @@ public class UserController {
       }
 
       @GetMapping("/search-trip")
-      public String search(@ModelAttribute("routeDTORequest") RouteDTORequest routeDTORequest, Model model){
+      public String search(@ModelAttribute("routeDTORequest") RouteDTORequest routeDTORequest, Model model) throws ParseException{
+
+        String dateString = routeDTORequest.getDate();
+        
+
+        
+        LocalDate date = LocalDate.parse(dateString);
+
+        //System.out.println(date);
 
         Route route = routeRepository.findByState1AndState2(routeDTORequest.getState1().toUpperCase(), routeDTORequest.getState2().toUpperCase());
-        System.out.println(route);
-        List<Trip> tripsInfo = userService.search(route);
+        //Date date = routeDTORequest.getDate();
+        //System.out.println(routeDTORequest.getDate());
+        //Date date = tripRepository.findDateByRouteId(route.getId());
+        List<Trip> tripsInfo = userService.searchByRouteAndDate(route, date);
         model.addAttribute("listTrips", tripsInfo);
+        List<Route> listRoute = routeRepository.findAll();
+        model.addAttribute("listStates", listRoute);
+        model.addAttribute("route", route);
 
-        // List<Route> listRoute = routeRepository.findAll();
-        // model.addAttribute("listStates", listRoute);
 
         // for (Route route1 : listRoute) {
         //     System.out.println(route1.getArrival());

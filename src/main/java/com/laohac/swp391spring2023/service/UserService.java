@@ -2,6 +2,11 @@ package com.laohac.swp391spring2023.service;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+
+import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
+
 import com.laohac.swp391spring2023.config.CustomOAuth2User;
 import com.laohac.swp391spring2023.model.dto.UserDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
@@ -30,6 +35,10 @@ public interface UserService {
 
     public List<Trip> search(Route route);
 
-    //public UserDTOResponse login(OAuth2User user);
-    
+    public List<Trip> searchByRouteAndDate(Route route, LocalDate date);
+
+    public void sendVerificationEmail(UserDTOResponse user, String siteUrl) throws UnsupportedEncodingException, MessagingException;
+
+    public boolean verify(String code);
+
 }

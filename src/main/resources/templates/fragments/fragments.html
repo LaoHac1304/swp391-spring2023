@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <!--Admin head-->
 
 <head th:fragment="adminHead">
@@ -11,22 +10,25 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard - SB Admin</title>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <link th:href="@{https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css}" rel="stylesheet" />
     <link th:href="@{/css/adminStyle.css}" rel="stylesheet" />
 
     <!-- turn off favicon-->
-    <link rel="icon" href="data:;base64,=">
+    <link rel="icon" href="data:;base64,=" />
 
     <script th:src="@{https://use.fontawesome.com/releases/v6.1.0/js/all.js}" crossorigin="anonymous"></script>
 </head>
 
 <!-- Admin navbar-->
-<nav th:fragment="adminNavbar" class="sb-topnav navbar navbar-expand navbar-dark ">
+<nav th:fragment="adminNavbar" class="sb-topnav navbar navbar-expand navbar-dark">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3" th:href="@{/member/viewall}">Dashboard</a>
     <!-- Sidebar Toggle-->
-    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 " id="sidebarToggle" href="#!"><i
-            class="fas fa-bars text-white"></i></button>
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+        <i class="fas fa-bars text-white"></i>
+    </button>
     <!-- Navbar Search-->
     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         <!-- <div class="input-group">
@@ -47,11 +49,15 @@
                     <hr class="dropdown-divider" />
                 </li>
 
-                <li><a class="dropdown-item" th:href="@{/users/info}">Settings</a></li>
+                <li>
+                    <a class="dropdown-item" th:href="@{/users/info}">Settings</a>
+                </li>
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" th:href="@{/member/logout}">Logout</a></li>
+                <li>
+                    <a class="dropdown-item" th:href="@{/member/logout}">Logout</a>
+                </li>
             </ul>
         </li>
     </ul>
@@ -64,12 +70,14 @@
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
                 <a class="nav-link" th:href="@{/member/viewall}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
                     Dashboard
                 </a>
 
                 <a class="nav-link" th:href="@{/member/add}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-user "></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                     Add Employee
                 </a>
 
@@ -77,7 +85,9 @@
                     aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Pages
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    <div class="sb-sidenav-collapse-arrow">
+                        <i class="fas fa-angle-down"></i>
+                    </div>
                 </a>
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                     data-bs-parent="#sidenavAccordion">
@@ -89,7 +99,9 @@
                 </div>
                 <div class="sb-sidenav-menu-heading">Addons</div>
                 <a class="nav-link" href="charts.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-chart-area"></i>
+                    </div>
                     Charts
                 </a>
                 <a class="nav-link" href="tables.html">
@@ -102,7 +114,7 @@
 </div>
 
 <!--Admin footer-->
-<footer th:fragment="adminFooter" class="py-4 mt-auto ">
+<footer th:fragment="adminFooter" class="py-4 mt-auto">
     <div class="container-fluid px-4 text-white">
         <div class="d-flex align-items-center justify-content-between small">
             <div>Copyright &copy; 24HR 2023</div>
@@ -129,37 +141,48 @@
     <script th:src="@{/js/datatables-simple-demo.js}"></script>
 </div>
 
-
 <!---------------------------------------------------------------------------------------------------------------------->
 
 <!--Home head-->
 
 <head th:fragment="homeHead">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" th:href="@{/images/logo.png}" type="image/icon type">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/icon type" />
     <title>24HR Car Rental</title>
+
+    <!--Jquery-->
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js}"></script>
+    <link rel="stylesheet" type="text/css"
+        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css}" />
+    <link rel="stylesheet" type="text/css"
+        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css}" />
+    <script type="text/javascript"
+        th:src="@{https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js}"></script>
 
     <!-- FontAweSome-->
     <script th:src="@{https://kit.fontawesome.com/bdbcf2ce1a.js}" crossorigin="anonymous"></script>
 
+    <!--Select2-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
     <!-- FAVICON -->
-    <link rel="icon" type="image/png" th:href="@{/imagefavicon.png}">
+    <link rel="icon" type="image/png" th:href="@{/imagefavicon.png}" />
 
     <!-- Bootstrap 5 CDN Links -->
     <link rel="stylesheet" type="text/css"
-        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css}">
+        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css"
-        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}">
+        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}" />
 
     <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" type="text/css" th:href="@{https://unpkg.com/swiper/swiper-bundle.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{https://unpkg.com/swiper/swiper-bundle.min.css}" />
 
     <!-- Custom File's Link -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/homepageStyle.css}" />
+    <link rel="stylesheet" th:href="@{/css/styleSearchPage.css}" />
     <!-- <link rel="stylesheet" th:href="css/responsive-style.css"> -->
-
 </head>
 
 <!--Home header/navbar-->
@@ -167,7 +190,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" th:href="@{/homepage/}" href="#">
-                <img th:src="@{/images/logo.png}" style="width: 70%;" class="img-fluid" alt="logo">
+                <img th:src="@{/images/logo.png}" style="width: 70%" class="img-fluid" alt="logo" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -176,7 +199,6 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav menu-navbar-nav">
-
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" th:href="@{/homepage/#home}"
                             href="#home">Home</a>
@@ -194,7 +216,6 @@
                         <a class="nav-link" href="#">Become Partner</a>
                     </li>
                     <!-- backendCode End -->
-
 
                     <!-- <p class="nav-link" th:if="${session.userSession != null}" th:text="${session.userSession.fullName}"></p>
                     <a class="nav-link" th:if="${session.userSession == null}" th:href="@{/homepage/login}" th:text="Login" >Login</a> -->
@@ -215,14 +236,18 @@
                             </li>
 
                             <!-- Show and update profile-->
-                            <li><a class="dropdown-item" th:href="@{/users/info}">Profile</a></li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/users/info}">Profile</a>
+                            </li>
 
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>
 
                             <!-- Logout -->
-                            <li><a class="dropdown-item" th:href="@{/users/logout}">Logout</a></li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/users/logout}">Logout</a>
+                            </li>
                         </ul>
                     </li>
                     <!-- backendCode End -->
@@ -241,21 +266,21 @@
     <section id="home" class="banner_wrapper p-0">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper image-slider">
-                <div class="swiper-slide image-slider" style="background-image: url(/images/slider/slider2.webp);">
+                <div class="swiper-slide image-slider" style="background-image: url(/images/slider/slider2.webp)">
                     <div class="slide-caption text-center">
                         <div>
                             <h1>welcome to 24HR - CAR BOOKING</h1>
-                            <p>Need a ride? Contact us </p>
+                            <p>Need a ride? Contact us</p>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide image-slider" style="background-image: url(/images/slider/slider1.webp);">
+                <div class="swiper-slide image-slider" style="background-image: url(/images/slider/slider1.webp)">
                     <div class="slide-caption text-center image-slider">
                         <div>
                             <h1>The Safest, Fastest, Cheapest</h1>
                             <p>Hotline booking</p>
                             <a href="tel:0976192474">
-                                <p style="font-size: larger;">0976192474</p>
+                                <p style="font-size: larger">0976192474</p>
                             </a>
                         </div>
                     </div>
@@ -270,37 +295,51 @@
         </div>
 
         <div class="container booking-area">
-
             <!-- backendCode here -->
             <form class="row" th:action="@{/users/search-trip}" th:object="${routeDTORequest}">
                 <div class="col-lg mb-3 mb-lg-0">
-                    <i class="fa-solid fa-calendar-days fa-lg "></i>
+                    <i class="fa-solid fa-calendar-days fa-lg"></i>
                     <label class="search-label">Date of departure</label>
-                    <input type="date" class="form-control" placeholder="Date">
+                    <input type="date" class="form-control" th:field="*{date}" placeholder="Date" required />
                 </div>
+
+
                 <div class="col-lg mb-3 mb-lg-0">
                     <i class="fa-solid fa-map-location-dot fa-lg"></i>
                     <label class="search-label">Pick up place</label>
-                    <input class="form-control" type="search" th:field="*{state1}" placeholder="Pick up place"
-                        list="pickupList" required>
-                    <datalist id="pickupList">
-                        <option th:each="trip: ${listStates}" th:value="${trip.departure}">
-                    </datalist>
+                    <select class="form-control" th:field="*{state1}" required data-placeholder="Pick up place"
+                        style="width: 100%">
+                        <th:block th:each="tripD : ${departure}">
+                            <option th:value="${tripD}" th:text="${tripD}"></option>
+                        </th:block>
+                    </select>
                 </div>
                 <div class="col-lg mb-3 mb-lg-0">
                     <i class="fa-solid fa-location-dot fa-lg"></i>
                     <label class="search-label">Drop off place</label>
-                    <input class="form-control" type="search" th:field="*{state2}" placeholder="Drop off place"
-                        required list="dropoffList" >
-                    <datalist id="dropoffList">
-                        <option th:each="trip: ${listStates}" th:value="${trip.arrival}">
-                    </datalist>
+                    <select class="form-control" th:field="*{state2}" required data-placeholder="Drop off place"
+                        style="width: 100%">
+                        <th:block th:each="tripA : ${arrival}">
+                            <option th:value="${tripA}" th:text="${tripA}"></option>
+                        </th:block>
+                    </select>
                 </div>
+
+                <script>
+                    $(document).ready(function () {
+                        $('select').select2();
+                    });
+                </script>
+
+
+
+
+
                 <div class="col-lg mb-3 mb-lg-0">
-                    <br>
+                    <br />
                     <button type="submit" class="main-btn2 rounded-2 px-lg-3">
-                        <i style="color: white;" class="fa-solid fa-magnifying-glass fa-lg"></i>
-                        <span style="color: white;">Check Availability</span>
+                        <i style="color: white" class="fa-solid fa-magnifying-glass fa-lg"></i>
+                        <span style="color: white">Check Availability</span>
                     </button>
                 </div>
             </form>
@@ -314,123 +353,143 @@
     <section id="guide" class="guides_wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div style="padding-top: 50px; padding-bottom: 50px;">
-                    <div class="col-sm-12 section-title text-center mb-5">
-                        <h5>We Are Here For You</h5>
+                <div style="padding-top: 50px">
+                    <div class="col-sm-12 section-title text-center">
+                        <!-- <h5>We Are Here For You</h5> -->
                         <h3>How to booking on 24HR</h3>
                     </div>
-                    <div class="number font-size-18 row pt-5 text-center">
-                        <div class="  col-12 col-md-6 col-lg-3 ">
-                            <div style=" font-size: 133px; font-weight: bold;">01</div>
-                            <h3 style="color: #EA001E; text-transform: uppercase; margin-top: 10px;">Access
+                    <div class="number font-size-18 row text-center">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div style="font-size: 80px; font-weight: bold">01</div>
+                            <h3 style="
+                    color: #ea001e;
+                    text-transform: uppercase;
+                    margin-top: 10px;
+                  ">
+                                Access
                             </h3>
-                            <p class="number">Access to the system at 24HR. Then search for the journey presented in the
-                                Find Section.</p>
+                            <p class="number">
+                                Access to the system at 24HR. Then search for the journey
+                                presented in the Find Section.
+                            </p>
                         </div>
                         <div class="col-12 col-md-6 col-lg-3 mb-3">
-                            <div style=" font-size: 133px; font-weight: bold;">02</div>
-                            <h3 style="color: #EA001E; text-transform: uppercase; margin-top: 10px;">Book ticket
+                            <div style="font-size: 80px; font-weight: bold">02</div>
+                            <h3 style="
+                    color: #ea001e;
+                    text-transform: uppercase;
+                    margin-top: 10px;
+                  ">
+                                Book ticket
                             </h3>
-                            <p class="number">Select a flight and book by clicking on the fare section to see the total
-                                invoice to be paid,
-                                then view the flight specifics in the details area and select BOOK.</p>
+                            <p class="number">
+                                Select a flight and book by clicking on the fare section to
+                                see the total invoice to be paid, then view the flight
+                                specifics in the details area and select BOOK.
+                            </p>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-3  mb-3">
-                            <div style=" font-size: 133px; font-weight: bold;">03</div>
-                            <h3 style="color: #EA001E; text-transform: uppercase; margin-top: 10px;">Fill information
+                        <div class="col-12 col-md-6 col-lg-3 mb-3">
+                            <div style="font-size: 80px; font-weight: bold">03</div>
+                            <h3 style="
+                    color: #ea001e;
+                    text-transform: uppercase;
+                    margin-top: 10px;
+                  ">
+                                Fill information
                             </h3>
-                            <p class="number">To proceed with the ticket purchase, provide the following information:
-                                customer information,
-                                contact information, and luggage information, then click Continue.</p>
+                            <p class="number">
+                                To proceed with the ticket purchase, provide the following
+                                information: customer information, contact information, and
+                                luggage information, then click Continue.
+                            </p>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-3  mb-3">
-                            <div style=" font-size: 133px; font-weight: bold;">04</div>
-                            <h3 style="color: #EA001E; text-transform: uppercase; margin-top: 10px;">Payment</h3>
-                            <p class="number">Choose a payment method and follow the on-screen instructions. A
-                                confirmation email for your order will be sent by 24HR.</p>
+                        <div class="col-12 col-md-6 col-lg-3 mb-3">
+                            <div style="font-size: 80px; font-weight: bold">04</div>
+                            <h3 style="
+                    color: #ea001e;
+                    text-transform: uppercase;
+                    margin-top: 10px;
+                  ">
+                                Payment
+                            </h3>
+                            <p class="number">
+                                Choose a payment method and follow the on-screen instructions.
+                                A confirmation email for your order will be sent by 24HR.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </section>
-    <section id="whyus" class="service_section sec_ptb_150 pb-0 mb_100 text-white clearfix"
-        data-bg-gradient="linear-gradient(0deg, #0C0C0F, #292D45)" style="background-image: linear-gradient(0deg, rgb(12, 12, 15), rgb(41, 45, 69));
-                padding-top: 30px;">
-        <div class="container">
+</div>
+
+<!--Home Why-->
+<div th:fragment="homeWhy">
+    <section id="whyus" class="service_section sec_ptb_150 pb-0 mb_100 text-black clearfix"
+        data-bg-gradient="linear-gradient(0deg, #0C0C0F, #292D45)" style="
+        
+        padding-top: 100px;
+      ">
+        <div class="container" style="padding-bottom: 10px;">
             <div class="section_title mb_30 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                <h2 class="title_text mb-0" style="color: red;">-<span
-                        style="color: white; font-family: 'Goldman', cursive;"> Why Us </span>-</h2>
+                <h3 class="title_text mb-0" style="color: red">
+                    -<span style="color: rgb(22, 24, 41);"> Why Us </span>-
+                </h3>
             </div>
-            <div class="row justify-content-center" style="padding-top: 50px;">
+            <div class="row justify-content-center" style="padding-top: 50px">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="service_primary text-center text-white aos-init aos-animate" data-aos="fade-up"
+                    <div class="service_primary text-center text-black aos-init aos-animate" data-aos="fade-up"
                         data-aos-delay="100">
-                        <div class="item_icon"><i class="fas fa-shield-alt"
-                                style="font-size: 48px; color: #EA001E;"></i></div>
-                        <h3 class="item_title text-white">Secured Payment Guarantee</h3>
-                        <p class="mb-0 text-white">We make every effort to keep your financial information secure,
-                            whether you're sending money, paying bills, or making a purchase.
+                        <div class="item_icon">
+                            <i class="fas fa-shield-alt" style="font-size: 48px; color: #ea001e"></i>
+                        </div>
+                        <h3 class="item_title text-black">Secured Payment Guarantee</h3>
+                        <p class="mb-0 text-black">
+                            We make every effort to keep your financial information secure,
+                            whether you're sending money, paying bills, or making a
+                            purchase.
                         </p>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="service_primary text-center text-white aos-init aos-animate" data-aos="fade-up"
+                    <div class="service_primary text-center text-black aos-init aos-animate" data-aos="fade-up"
                         data-aos-delay="500">
-                        <div class="item_icon"><i class="fas fa-bus" style="font-size: 48px; color: #EA001E;"></i></div>
-                        <h3 class="item_title text-white">Booking any Company's Car</h3>
-                        <p class="mb-0 text-white">200+ high quality car company. There are over 1000 active and diverse
-                            routes to choose from across the country.
+                        <div class="item_icon">
+                            <i class="fas fa-bus" style="font-size: 48px; color: #ea001e"></i>
+                        </div>
+                        <h3 class="item_title text-black" style="padding-bottom: 50px;">Booking any Company's Car</h3>
+                        <p class="mb-0 text-black">
+                            200+ high quality car company. There are over 1000 active and
+                            diverse routes to choose from across the country.
                         </p>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="service_primary text-center text-white aos-init aos-animate" data-aos="fade-up"
+                    <div class="service_primary text-center text-black aos-init aos-animate" data-aos="fade-up"
                         data-aos-delay="100">
-                        <div class="item_icon"><i class="fas fa-briefcase" style="font-size: 48px; color: #EA001E;"></i>
+                        <div class="item_icon">
+                            <i class="fas fa-briefcase" style="font-size: 48px; color: #ea001e"></i>
                         </div>
-                        <h3 class="item_title text-white" style="padding-bottom: 50px;">Fast and Easy</h3>
-                        <p class="mb-0 text-white">Signing up for 24HR is free, and you can use your PayPal balance to
-                            make purchases and send money at no extra cost.
+                        <h3 class="item_title text-black" style="padding-bottom: 50px">
+                            Fast and Easy
+                        </h3>
+                        <p class="mb-0 text-black">
+                            Signing up for 24HR is free, and you can use your PayPal balance
+                            to make purchases and send money at no extra cost.
                         </p>
                     </div>
                 </div>
             </div>
 
-
-            <div class="counter mt-5">
-                <div class="container">
-                    <div class="row text-center">
-                        <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
-                            <h1>
-                                <span id="count1">1287</span>+
-                            </h1>
-                            <p>Happy Clients</p>
-                        </div>
-                        <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
-                            <h1>
-                                <span id="count2">50</span>+
-                            </h1>
-                            <p>Cars in Fleet</p>
-                        </div>
-                        <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
-                            <h1>
-                                <span id="count3">1140</span>+
-                            </h1>
-                            <p>Five Start Ratings</p>
-                        </div>
-                        <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
-                            <h1>
-                                <span id="count4">110</span>+
-                            </h1>
-                            <p>Days in Business</p>
-                        </div>
-                    </div>
-                </div>
+            <br>
+            <div>
+                <a class="btn btn-joinus" th:href="@{/users}">Create an account</a>
             </div>
-
+            <br />
         </div>
     </section>
 </div>
@@ -440,46 +499,46 @@
     <section id="services" class="services_wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 section-title text-center mb-5">
-                    <h5>We Are Here For You</h5>
+                <div class="col-sm-12 section-title text-center">
                     <h3>Our Awesome Routes</h3>
                 </div>
             </div>
-            <div class="row align-items-center service-item-wrap">
+
+            <!-- <div class="row align-items-center service-item-wrap">
                 <div class="col-lg-7 p-lg-0">
 
-                    <!--Service Area Start-->
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade active show" id="spa" role="tabpanel">
-                            <img src="/images/routes/routes1.webp" alt="" class="image-size">
+                            <img src="/images/routes/routes1.webp" alt="" class="image-size" />
                         </div>
                         <div class="tab-pane fade" id="restaurent" role="tabpanel">
-                            <img src="/images/routes/routes2.webp" alt="" class="image-size">
+                            <img src="/images/routes/routes2.webp" alt="" class="image-size" />
                         </div>
                         <div class="tab-pane fade" id="swimming" role="tabpanel">
-                            <img src="/images/routes/routes3.webp" alt="" class="image-size">
+                            <img src="/images/routes/routes3.webp" alt="" class="image-size" />
                         </div>
                         <div class="tab-pane fade" id="conference" role="tabpanel">
-                            <img src="/images/routes/routes4.webp" alt="" class="image-size">
+                            <img src="/images/routes/routes4.webp" alt="" class="image-size" />
                         </div>
                     </div>
-                    <!--Service Area End-->
 
                 </div>
                 <div class="col-lg-5 position-relative">
-                    <!--Service Tab Menu Area Start-->
-                    <div class="service-menu-area">
-                        <ul style="list-style: none;" class="nav">
+
+                    <div class="service-menu-area" style="padding-left: 20px">
+                        <ul style="list-style: none" class="nav">
                             <li>
                                 <a data-bs-toggle="tab" href="#spa">
                                     <span class="service-icon">
                                         <i class="fa-solid fa-van-shuttle fa-2xl"></i>
                                     </span>
-                                    <h5 style="color: #000c21;">Ho Chi Minh City - Da Lat </h5>
-                                    <p style="color: black;"><span style="color: #EA001E ;">Distance: </span>
-                                        310km</p>
-                                    <p style="color: black;"><span style="color: #EA001E ;">Duration: </span>
-                                        8 hour</p>
+                                    <h5 style="color: #000c21">Ho Chi Minh City - Da Lat</h5>
+                                    <p style="color: black">
+                                        <span style="color: #ea001e">Distance: </span> 310km
+                                    </p>
+                                    <p style="color: black">
+                                        <span style="color: #ea001e">Duration: </span> 8 hour
+                                    </p>
                                 </a>
                             </li>
                             <li>
@@ -487,11 +546,13 @@
                                     <span class="service-icon">
                                         <i class="fa-solid fa-van-shuttle fa-2xl"></i>
                                     </span>
-                                    <h5 style="color: #000c21;">Ho Chi Minh City - Nha Trang </h5>
-                                    <p style="color: black;"><span style="color: #EA001E ;">Distance: </span>
-                                        426km</p>
-                                    <p style="color: black;"><span style="color: #EA001E ;">Duration: </span>
-                                        12 hour</p>
+                                    <h5 style="color: #000c21">Ho Chi Minh City - Nha Trang</h5>
+                                    <p style="color: black">
+                                        <span style="color: #ea001e">Distance: </span> 426km
+                                    </p>
+                                    <p style="color: black">
+                                        <span style="color: #ea001e">Duration: </span> 12 hour
+                                    </p>
                                 </a>
                             </li>
                             <li>
@@ -499,36 +560,156 @@
                                     <span class="service-icon">
                                         <i class="fa-solid fa-van-shuttle fa-2xl"></i>
                                     </span>
-                                    <h5 style="color: #000c21;">Ho Chi Minh City - Da Nang </h5>
-                                    <p style="color: black;"><span style="color: #EA001E ;">Distance: </span>
-                                        980km</p>
-                                    <p style="color: black;"><span style="color: #EA001E ;">Duration: </span>
-                                        20 hour</p>
+                                    <h5 style="color: #000c21">Ho Chi Minh City - Da Nang</h5>
+                                    <p style="color: black">
+                                        <span style="color: #ea001e">Distance: </span> 980km
+                                    </p>
+                                    <p style="color: black">
+                                        <span style="color: #ea001e">Duration: </span> 20 hour
+                                    </p>
                                 </a>
                             </li>
                             <li>
-                                <a style="margin-bottom: -17px;" data-bs-toggle="tab" href="#conference">
+                                <a style="margin-bottom: -17px" data-bs-toggle="tab" href="#conference">
                                     <span class="service-icon">
                                         <i class="fa-solid fa-van-shuttle fa-2xl"></i>
                                     </span>
-                                    <h5 style="color: #000c21;">Ho Chi Minh City - Can Tho</h5>
-                                    <p style="color: black;"><span style="color: #EA001E ;">Distance: </span>
-                                        166km</p>
-                                    <p style="color: black;"><span style="color: #EA001E ;">Duration: </span>
-                                        3.30 hour</p>
+                                    <h5 style="color: #000c21">Ho Chi Minh City - Can Tho</h5>
+                                    <p style="color: black">
+                                        <span style="color: #ea001e">Distance: </span> 166km
+                                    </p>
+                                    <p style="color: black">
+                                        <span style="color: #ea001e">Duration: </span> 3.30 hour
+                                    </p>
                                 </a>
                             </li>
                         </ul>
                     </div>
-                    <!--Service Tab Menu Area End-->
+
+                </div>
+            </div> -->
+
+            <div class="main-slider">
+                <div class="slider slider-nav">
+                    <div class="slider-container">
+                        <a href="">
+                            <div class="slider-img">
+                                <img src="/images/place/Dalat.jpg" alt="Dalat">
+                            </div>
+                            <div class="slider-desc" style="background-color: #7C6E4F;">
+                                <div class="slider-desc-title">Sai Gon - Da Lat</div>
+                                <div class="slider-desc-fare">200.000 vnd</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider-container">
+                        <a href="">
+                            <div class="slider-img">
+                                <img src="/images/place/vungtau.jpg" alt="vungtau">
+                            </div>
+                            <div class="slider-desc" style="background-color: #1B1E0A;">
+                                <div class="slider-desc-title">Vung Tau - Da Lat</div>
+                                <div class="slider-desc-fare">200.000 vnd</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider-container">
+                        <a href="">
+                            <div class="slider-img">
+                                <img src="/images/place/muine.jpg" alt="muine">
+                            </div>
+                            <div class="slider-desc" style="background-color: #1E3131;">
+                                <div class="slider-desc-title">Mui Ne - Da Lat</div>
+                                <div class="slider-desc-fare">200.000 vnd</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider-container">
+                        <a href="">
+                            <div class="slider-img">
+                                <img src="/images/place/nhatrang.jpg" alt="muine">
+                            </div>
+                            <div class="slider-desc" style="background-color: #8F9E9E;">
+                                <div class="slider-desc-title">Sai Gon - Nha Trang</div>
+                                <div class="slider-desc-fare">200.000 vnd</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider-container">
+                        <a href="">
+                            <div class="slider-img">
+                                <img src="/images/place/cantho.jpg" alt="muine">
+                            </div>
+                            <div class="slider-desc">
+                                <div class="slider-desc-title">Sai Gon - Can Tho</div>
+                                <div class="slider-desc-fare">200.000 vnd</div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 </div>
 
+<!--Home partner-->
+<div th:fragment="homePartner">
+    <section id="whyus" class="service_section sec_ptb_150 pb-0 mb_100 text-black clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="section-title text-center" style="margin-bottom: 30px;">
+                    <h3>We’ve partnered with the world’s best popular bus companies</h3>
+                </div>
+
+                <div class="col-lg-4">
+                    <a href="https://futabus.vn/" target="_blank">
+                        <img class="partner-logo" src="https://futabus.vn/_nuxt/img/logo-buslines-small.b4bfbf7.png"
+                            alt="Futa">
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <a href="https://hoamaicar.com/" target="_blank">
+                        <img class="partner-logo" style="width: 109px;"
+                            src="https://hoamaicar.com/wp-content/uploads/2020/07/logo-hoamai.png" alt="Hoamai">
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <a href="https://kumhosamco.com.vn/" target="_blank">
+                        <img class="partner-logo" src="https://kumhosamco.com.vn/wp-content/uploads/LOGO-KUMHO-web2.png"
+                            alt="Kumho">
+                    </a>
+                </div>
+                <hr>
+                <div class="col-lg-4">
+                    <a href="https://vielimousine.com/" target="_blank">
+                        <img class="partner-logo"
+                            src="https://vielimousine.com/wp-content/uploads/2022/01/VIE-LIMO-195x109.png" alt="vie">
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <a href="https://xekhanhphongvip.vn/" target="_blank">
+                        <img class="partner-logo" style="width: 109px;"
+                            src="https://xekhanhphongvip.vn/wp-content/uploads/2020/07/post-face-3-78.png"
+                            alt="xekhanhphongvip">
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <a href="https://nhaxetralanvien.com/" target="_blank">
+                        <img class="partner-logo" style="width: 109px;"
+                            src="https://nhaxetralanvien.com/wp-content/uploads/2020/07/TraLanVienLogo-2048x2048.png"
+                            alt="tralanvien">
+                    </a>
+                </div>
+
+            </div>
+            <br>
+            <hr style="color: black; border: black 1px solid;">
+        </div>
+    </section>
+
+</div>
 <!--Home footer-->
-<div class="userFooter" th:fragment="homeFooter">
+<div class="homeFooter" th:fragment="homeFooter">
     <section id="contact" class="footer_wrapper mt-3 mt-md-0 pb-0">
         <div class="container pb-3">
             <div class="row">
@@ -536,10 +717,17 @@
                     <h5>24HR Co., ltd</h5>
                     <div class="contact-info">
                         <ul class="list-unstyled">
-                            <li><a href="#"><i class="fa fa-home me-3"></i>Lot E2a-7, D1 Street, Hi-Tech Park, Long
-                                    Thanh My Ward, Thu Duc City, Ho Chi Minh City HCM.</a></li>
-                            <li><a href="#"><i class="fa fa-phone me-3"></i>(097) 6192474</a></li>
-                            <li><a href="#"><i class="fa fa-envelope me-3"></i>24hr@gmail.com</a></li>
+                            <li>
+                                <a href="#"><i class="fa fa-home me-3"></i>Lot E2a-7, D1 Street,
+                                    Hi-Tech Park, Long Thanh My Ward, Thu Duc City, Ho Chi Minh
+                                    City HCM.</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-phone me-3"></i>(097) 6192474</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-envelope me-3"></i>24hr@gmail.com</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -556,24 +744,30 @@
                 </div>
 
                 <div class="col-lg-3 col-md-6">
-
                     <h5>Stay Connected</h5>
 
                     <ul class="social-network d-flex align-items-center p-0">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                        <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+                        <li>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        </li>
                     </ul>
                 </div>
 
-                <hr class="hr-footer">
+                <!-- <hr class="hr-footer"> -->
                 <div class="container-fluid copyright-section">
                     <p>Copyright <a href="#">© 24HR.</a> All Rights Reserved</p>
                 </div>
             </div>
         </div>
-
     </section>
 </div>
 
@@ -585,6 +779,9 @@
 
     <!-- Swiper JS -->
     <script th:src="@{https://unpkg.com/swiper/swiper-bundle.min.js}"></script>
+
+    <script type="text/javascript"
+        th:src="@{https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js}"></script>
 
     <!-- Custom Js Link -->
     <script th:src="@{/js/main.js}"></script>
@@ -604,14 +801,14 @@
     <link th:href="@{/css/employeeStyle.css}" rel="stylesheet" />
 
     <!-- turn off favicon-->
-    <link rel="icon" href="data:;base64,=">
+    <link rel="icon" href="data:;base64,=" />
 
     <script th:src="@{https://use.fontawesome.com/releases/v6.1.0/js/all.js}" crossorigin="anonymous"></script>
 </head>
 
 <!--Employee footer-->
-<footer th:fragment="empFooter" class="py-4 mt-auto ">
-    <div class="container-fluid px-4 text-white">
+<footer th:fragment="empFooter" class="py-4 mt-auto">
+    <div class="container-fluid px-4 text-black">
         <div class="d-flex align-items-center justify-content-between small">
             <div>Copyright &copy; 24HR 2023</div>
             <div>
@@ -636,37 +833,35 @@
     <script th:src="@{/js/main.js}"></script>
 </div>
 
-
 <!------------------------------------------------------------------------------------------------------------>
 
 <!--User settings-->
 
 <head th:fragment="userHead">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" th:href="@{/images/logo.png}" type="image/icon type">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/icon type" />
     <title>Member profile</title>
 
     <!-- FontAweSome-->
     <script th:src="@{https://kit.fontawesome.com/bdbcf2ce1a.js}" crossorigin="anonymous"></script>
 
     <!-- FAVICON -->
-    <link rel="icon" type="image/png" th:href="@{/imagefavicon.png}">
+    <link rel="icon" type="image/png" th:href="@{/imagefavicon.png}" />
 
     <!-- Bootstrap 5 CDN Links -->
     <link rel="stylesheet" type="text/css"
-        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css}">
+        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css"
-        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}">
+        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}" />
 
     <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" type="text/css" th:href="@{https://unpkg.com/swiper/swiper-bundle.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{https://unpkg.com/swiper/swiper-bundle.min.css}" />
 
     <!-- Custom File's Link -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/homepageStyle.css}" />
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- <link rel="stylesheet" th:href="css/responsive-style.css"> -->
 </head>
@@ -676,7 +871,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" th:href="@{/homepage}" href="#">
-                <img th:src="@{/images/logo.png}" style="width: 70%;" class="img-fluid" alt="logo">
+                <img th:src="@{/images/logo.png}" style="width: 70%" class="img-fluid" alt="logo" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -685,7 +880,6 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav menu-navbar-nav">
-
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" th:href="@{/homepage/#home}"
                             href="#home">Home</a>
@@ -703,7 +897,6 @@
                         <a class="nav-link" href="partnerPage">Become Partner</a>
                     </li>
                     <!-- backendCode End -->
-
 
                     <!-- <p class="nav-link" th:if="${session.userSession != null}" th:text="${session.userSession.fullName}"></p>
                     <a class="nav-link" th:if="${session.userSession == null}" th:href="@{/homepage/login}" th:text="Login" >Login</a> -->
@@ -724,14 +917,18 @@
                             </li>
 
                             <!-- Show and update profile-->
-                            <li><a class="dropdown-item" th:href="@{/users/info}">Profile</a></li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/users/info}">Profile</a>
+                            </li>
 
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>
 
                             <!-- Logout -->
-                            <li><a class="dropdown-item" th:href="@{/users/logout}">Logout</a></li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/users/logout}">Logout</a>
+                            </li>
                         </ul>
                     </li>
                     <!-- backendCode End -->
@@ -754,10 +951,17 @@
                     <h5>24HR Co., ltd</h5>
                     <div class="contact-info">
                         <ul class="list-unstyled">
-                            <li><a href="#"><i class="fa fa-home me-3"></i>Lot E2a-7, D1 Street, Hi-Tech Park, Long
-                                    Thanh My Ward, Thu Duc City, Ho Chi Minh City HCM.</a></li>
-                            <li><a href="#"><i class="fa fa-phone me-3"></i>(097) 6192474</a></li>
-                            <li><a href="#"><i class="fa fa-envelope me-3"></i>24hr@gmail.com</a></li>
+                            <li>
+                                <a href="#"><i class="fa fa-home me-3"></i>Lot E2a-7, D1 Street,
+                                    Hi-Tech Park, Long Thanh My Ward, Thu Duc City, Ho Chi Minh
+                                    City HCM.</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-phone me-3"></i>(097) 6192474</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-envelope me-3"></i>24hr@gmail.com</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -774,24 +978,30 @@
                 </div>
 
                 <div class="col-lg-3 col-md-6">
-
                     <h5>Stay Connected</h5>
 
                     <ul class="social-network d-flex align-items-center p-0">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                        <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+                        <li>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        </li>
                     </ul>
                 </div>
 
-                <hr class="hr-footer">
+                <!-- <hr class="hr-footer"> -->
                 <div class="container-fluid copyright-section">
                     <p>Copyright <a href="#">© 24HR.</a> All Rights Reserved</p>
                 </div>
             </div>
         </div>
-
     </section>
 </div>
 
@@ -809,19 +1019,203 @@
 </div>
 
 <!--Booking-->
+
+<!--Book head-->
+
+<head th:fragment="bookHead">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/icon type" />
+    <title>24HR Car Rental</title>
+
+    <!-- FontAweSome-->
+    <script th:src="@{https://kit.fontawesome.com/bdbcf2ce1a.js}" crossorigin="anonymous"></script>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" th:href="@{/imagefavicon.png}" />
+
+    <!-- Bootstrap 5 CDN Links -->
+    <link rel="stylesheet" type="text/css"
+        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css"
+        th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}" />
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{https://unpkg.com/swiper/swiper-bundle.min.css}" />
+
+    <!-- Custom File's Link -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepageStyle.css}" />
+    <!-- <link rel="stylesheet" th:href="css/responsive-style.css"> -->
+</head>
+
+<!--Book Header-->
+<header th:fragment="bookHeader" class="header_wrapper">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/homepage/}" href="#">
+                <img th:src="@{/images/logo.png}" style="width: 70%" class="img-fluid" alt="logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-stream navbar-toggler-icon"></i>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav menu-navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/homepage/#home}"
+                            href="#home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/homepage/#guide}" href="#guide">Guide</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/homepage/#services}" href="#services">Routes</a>
+                    </li>
+
+                    <!-- backendCode here -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Become Partner</a>
+                    </li>
+                    <!-- backendCode End -->
+
+                    <!-- <p class="nav-link" th:if="${session.userSession != null}" th:text="${session.userSession.fullName}"></p>
+                    <a class="nav-link" th:if="${session.userSession == null}" th:href="@{/homepage/login}" th:text="Login" >Login</a> -->
+
+                    <!-- backendCode Login here -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" th:if="${session.userSession == null}" th:href="@{/homepage/login}"
+                            th:text="Login">Login</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" th:if="${session.userSession != null}"
+                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
+                                class="fas fa-user fa-fw text-white"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end" th:if="${session.userSession != null}"
+                            aria-labelledby="navbarDropdown">
+                            <li class="dropdown-item" th:if="${session.userSession != null}"
+                                th:text="${session.userSession.fullName}"></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+
+                            <!-- Show and update profile-->
+                            <li>
+                                <a class="dropdown-item" th:href="@{/users/info}">Profile</a>
+                            </li>
+
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+
+                            <!-- Logout -->
+                            <li>
+                                <a class="dropdown-item" th:href="@{/users/logout}">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- backendCode End -->
+
+                    <li class="nav-item mt-3 mt-lg-0">
+                        <a class="main-btn" href="#home">Book Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!--Booking Banner-->
+<div th:fragment="bookBanner">
+    <section id="home" class="banner_wrapper p-0">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper image-slider">
+                <div class="swiper-slide image-slider" style="background-image: url(/images/slider/slider2.webp)">
+                    <div class="slide-caption text-center">
+                        <div>
+                            <h1>welcome to 24HR - CAR BOOKING</h1>
+                            <p>Need a ride? Contact us</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide image-slider" style="background-image: url(/images/slider/slider1.webp)">
+                    <div class="slide-caption text-center image-slider">
+                        <div>
+                            <h1>The Safest, Fastest, Cheapest</h1>
+                            <p>Hotline booking</p>
+                            <a href="tel:0976192474">
+                                <p style="font-size: larger">0976192474</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-vertical">
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button"
+                    aria-label="Go to slide 1" aria-current="true"></span>
+                <span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span>
+            </div>
+        </div>
+
+        <div class="container booking-area">
+            <!-- backendCode here -->
+            <form class="row" th:action="@{/users/search-trip}" th:object="${routeDTORequest}">
+                <div class="col-lg mb-3 mb-lg-0">
+                    <i class="fa-solid fa-calendar-days fa-lg"></i>
+                    <label class="search-label">Date of departure</label>
+                    <input type="date" class="form-control" th:field="*{date}" placeholder="Date" required />
+                </div>
+                <div class="col-lg mb-3 mb-lg-0">
+                    <i class="fa-solid fa-map-location-dot fa-lg"></i>
+                    <label class="search-label">Pick up place</label>
+                    <input class="form-control" type="search" th:field="*{state1}" placeholder="Pick up place"
+                        list="pickupList" required />
+                    <datalist id="pickupList">
+                        <option th:each="trip: ${listStates}" th:value="${trip.departure}"></option>
+                    </datalist>
+                </div>
+                <div class="col-lg mb-3 mb-lg-0">
+                    <i class="fa-solid fa-location-dot fa-lg"></i>
+                    <label class="search-label">Drop off place</label>
+                    <input class="form-control" type="search" th:field="*{state2}" placeholder="Drop off place" required
+                        list="dropoffList" />
+                    <datalist id="dropoffList">
+                        <option th:each="trip: ${listStates}" th:value="${trip.arrival}"></option>
+                    </datalist>
+                </div>
+                <div class="col-lg mb-3 mb-lg-0">
+                    <br />
+                    <button type="submit" class="main-btn2 rounded-2 px-lg-3">
+                        <i style="color: white" class="fa-solid fa-magnifying-glass fa-lg"></i>
+                        <span style="color: white">Check Availability</span>
+                    </button>
+                </div>
+            </form>
+            <!-- backendCode End -->
+        </div>
+    </section>
+</div>
+
 <!--Booking footer-->
 <div class="bookFooter" th:fragment="bookFooter">
-    <section id="contact" class="footer_wrapper mt-3 mt-md-0 pb-0">
+    <section id="contact" class="footer_wrapper mt-3 mt-md-0">
         <div class="container pb-3">
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <h5>24HR Co., ltd</h5>
                     <div class="contact-info">
                         <ul class="list-unstyled">
-                            <li><a href="#"><i class="fa fa-home me-3"></i>Lot E2a-7, D1 Street, Hi-Tech Park, Long
-                                    Thanh My Ward, Thu Duc City, Ho Chi Minh City HCM.</a></li>
-                            <li><a href="#"><i class="fa fa-phone me-3"></i>(097) 6192474</a></li>
-                            <li><a href="#"><i class="fa fa-envelope me-3"></i>24hr@gmail.com</a></li>
+                            <li>
+                                <a href="#"><i class="fa fa-home me-3"></i>Lot E2a-7, D1 Street,
+                                    Hi-Tech Park, Long Thanh My Ward, Thu Duc City, Ho Chi Minh
+                                    City HCM.</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-phone me-3"></i>(097) 6192474</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-envelope me-3"></i>24hr@gmail.com</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -838,24 +1232,94 @@
                 </div>
 
                 <div class="col-lg-3 col-md-6">
-
                     <h5>Stay Connected</h5>
 
                     <ul class="social-network d-flex align-items-center p-0">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                        <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+                        <li>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        </li>
                     </ul>
                 </div>
 
-                <hr class="hr-footer">
+                <!-- <hr class="hr-footer"> -->
                 <div class="container-fluid copyright-section">
                     <p>Copyright <a href="#">© 24HR.</a> All Rights Reserved</p>
                 </div>
             </div>
         </div>
+    </section>
+</div>
 
+<!-- Order detail -->
+<!--Detail footer-->
+<div class="detailFooter" th:fragment="detailFooter">
+    <section id="contact" class="footer_wrapper mt-3 mt-md-0 pb-0">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <h5>24HR Co., ltd</h5>
+                    <div class="contact-info">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#"><i class="fa fa-home me-3"></i>Lot E2a-7, D1 Street,
+                                    Hi-Tech Park, Long Thanh My Ward, Thu Duc City, Ho Chi Minh
+                                    City HCM.</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-phone me-3"></i>(097) 6192474</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-envelope me-3"></i>24hr@gmail.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Useful Links</h5>
+                    <ul class="link-widget p-0">
+                        <li><a href="#home">Homepage</a></li>
+                        <li><a href="#guide">Guide</a></li>
+                        <li><a href="#whyus">Why Us</a></li>
+                        <li><a href="#services">Routes</a></li>
+                        <!-- <li><a href="#">Price</a></li>
+                        <li><a href="#">Rental</a></li> -->
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Stay Connected</h5>
+
+                    <ul class="social-network d-flex align-items-center p-0">
+                        <li>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- <hr class="hr-footer"> -->
+                <div class="container-fluid copyright-section">
+                    <p>Copyright <a href="#">© 24HR.</a> All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
     </section>
 </div>
 

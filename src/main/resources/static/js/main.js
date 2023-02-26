@@ -78,21 +78,6 @@ var swiper = new Swiper(".our-partner", {
     },
 });
 
-//Preview image
-document.getElementById("profileImage").addEventListener("change", function() {
-    var preview = document.getElementById("previewImage");
-    var file    = this.files[0];
-    var reader  = new FileReader();
-
-    reader.addEventListener("load", function () {
-      preview.src = reader.result;
-    }, false);
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  });
-
 
   //Validate password
   function validatePassword() {
@@ -122,4 +107,16 @@ document.getElementById("profileImage").addEventListener("change", function() {
       selectedSeat.textContent = `Selected seats: ${count}`;
     });
   });
+
+  //Slider
+  $('.slider-nav').slick({
+    slidesToShow: 4,
+    slidesToScroll: 3,
+    infinite: true,
+   // slidesToShow: 3,
+   // slidesToScroll: 3,
+    dots: true,   
+    focusOnSelect: true
+  });
+ 
   

@@ -1,22 +1,21 @@
 package com.laohac.swp391spring2023.model.dto;
 
-
-
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Builder
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RouteDTORequest {
+public class MemberViewDTOReponse {
 
-    private String state1;
-    private String state2;
-    private String date;
+    private int employees;
+    private int carCompanies;
+    private int orders;
+    private int cars;
+    
 }

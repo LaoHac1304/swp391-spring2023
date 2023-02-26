@@ -34,9 +34,15 @@
                                         <div th:each="seat, status : ${listSeats}" class="seat-container">
                                             <label th:for="'seat-' + ${seat.id}">
                                                 <input type="checkbox" th:value="${seat.id}" name="selectedSeats"
-                                                    th:id="'seat-' + ${seat.id}">
+                                                    th:id="'seat-' + ${seat.id}"
+                                                    th:disabled="${seat.availableSeat == 1}"
+                                                    th:onclick="checkSubmitButton()" />
+
+
                                                 <div class="seat" th:text="${seat.seatNumber}"
-                                                    th:classappend="${status.count % 4 == 2 ? 'padded' : ''}"></div>
+                                                    th:classappend="${status.count % 4 == 2 ? 'padded' : ''} + ${seat.availableSeat == 1 ? 'booked' : ''}">
+                                                </div>
+
                                             </label>
                                         </div>
                                     </div>
@@ -67,10 +73,10 @@
                                 </div>
 
                                 <div>
-                                    <!-- <a class="btn btn-success" th:href=" @{/booking/choose-seats}">Confirm</a> -->
-                                    <button class="btn btn-success" type="submit">Submit</button>
+                                    <!-- <button class="btn btn-success" type="submit">Submit</button> -->
+                                    <button  id="submit-button" class="btn btn-success"  title="Please select at least one seat before submitting"  type="submit" disabled
+                                    >Submit</button>
 
-                                    <!-- th:href="@{/booking/detail}" -->
                                 </div>
                             </div>
 
@@ -78,8 +84,6 @@
                         </div>
 
             </form>
-
-
     </div>
     </div>
 

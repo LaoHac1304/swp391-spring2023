@@ -122,3 +122,17 @@ $('.slider-nav').slick({
   
 
 
+function checkSubmitButton() {
+    var checkboxes = document.getElementsByName("selectedSeats");
+    var submitButton = document.getElementById("submit-button");
+  
+    for (var i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].checked) {
+        submitButton.disabled = false;
+        
+        return;
+      }
+    }
+    // submitButton.title = disabled;
+    submitButton.disabled = true;
+  }

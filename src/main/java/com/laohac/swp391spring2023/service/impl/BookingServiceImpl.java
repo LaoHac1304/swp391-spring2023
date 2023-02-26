@@ -118,7 +118,7 @@ public class BookingServiceImpl implements BookingService {
         String subject ="About your trip";
         String senderName = "4Boys Team";
         String mailContent = "<p>Dear " + user.getFullName() + ",</p>";
-        mailContent += "<p>Please click the link below to verify to your registration:</p>";
+        mailContent += "<p>Please click the link below to see your orders:</p>";
         
         String verifyURL = siteURL + "/users/info";
         mailContent += "<h3><a href=\"" + verifyURL + "\">Go to your orders</a></h3>";

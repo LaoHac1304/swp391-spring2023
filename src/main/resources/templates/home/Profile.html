@@ -105,6 +105,52 @@
 
                         </div>
                     </div>
+
+
+                    <div class="card mt-3">
+                        <div class="card-header content-box-title">
+                            <i class="fas fa-table me-1"></i>
+                            Orders History
+                        </div>
+                        <div class="card-body text-white">
+                            <table id="datatablesSimple" class="historyTable">
+                            <thead>
+                                <tr>
+                                <th>Departure</th>
+                                <th>Arrival</th>
+                                <th>Day</th>
+                                <th>Start time</th>
+                                <th>End time</th>
+                                <th>Price</th>
+                                <th>Seats</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="orderDetail: ${oderDetails}">
+                                    <!-- <td th:text="${member.fullName}"></td>
+                                    <td th:text="${member.email}">Full Name</td>
+                                    <td th:text="${member.phoneNumber}">Phone Number</td>
+                                    <td th:text="${member.username}">Username</td>
+                                    <td><a th:href="@{update/{id}(id=${member.id})}" class="btn btn-success">Update</a>
+                                        <a th:href="@{delete/{id}(id=${member.id})}" class="btn btn-warning">Delete</a>
+                                    </td> -->
+                                    <td th:text="${orderDetail.departure}">Departure</td>
+                                    <td th:text="${orderDetail.arrival}">Arrival</td>
+                                    <td th:text="${orderDetail.trip.date}">Day</td>
+                                    <td th:text="${orderDetail.trip.startTime}">Start time</td>
+                                    <td th:text="${orderDetail.trip.endTime}">End time</td>
+                                    <td th:text="${orderDetail.trip.price}">Price</td>
+                                    <td th:text="${orderDetail.listSeats}">Seats</td>
+                                    <td th:text="${orderDetail.quantity}">Quantity</td>
+                                    <td th:text="${orderDetail.total}">Total</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

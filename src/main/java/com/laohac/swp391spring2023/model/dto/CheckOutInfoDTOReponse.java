@@ -1,5 +1,6 @@
 package com.laohac.swp391spring2023.model.dto;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.laohac.swp391spring2023.model.entities.Trip;
@@ -20,5 +21,5 @@ public class CheckOutInfoDTOReponse {
     private UserDTOResponse user;
     private List<Integer> lSeats;
     private Trip trip;
-    private int priceTotal;
+    private BigDecimal priceTotal;
 }

@@ -1,5 +1,8 @@
 package com.laohac.swp391spring2023.model.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.laohac.swp391spring2023.model.Provider;
@@ -45,5 +49,8 @@ public class User {
 
     @Column(name = "verification_code", updatable = false)
     private String verificationCode;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<OrderDetail> orderDetails;
 
 }

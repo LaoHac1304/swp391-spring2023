@@ -1,9 +1,11 @@
 package com.laohac.swp391spring2023.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,10 +28,13 @@ import com.laohac.swp391spring2023.model.dto.RouteDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOUpdate;
+import com.laohac.swp391spring2023.model.entities.OrderDetail;
 import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.Trip;
 import com.laohac.swp391spring2023.model.entities.User;
+import com.laohac.swp391spring2023.repository.OrderDetailRepository;
 import com.laohac.swp391spring2023.repository.RouteRepository;
+import com.laohac.swp391spring2023.repository.UserRepository;
 import com.laohac.swp391spring2023.service.MemberService;
 import com.laohac.swp391spring2023.service.UserService;
 
@@ -48,6 +53,12 @@ public class UserController {
 
     @Autowired
     private RouteRepository routeRepository;
+
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
+
+    @Autowired
+    private UserRepository userRepository;
     
     @ModelAttribute
     public void addCommonAttributes(Model model) {
@@ -132,6 +143,16 @@ public class UserController {
     public String showInfo(Model model, HttpSession session){
         Object userCurrent = session.getAttribute("userSession");
         UserDTOResponse userDTOResponse = (UserDTOResponse) userCurrent;
+
+        Optional<User> userOptional = userRepository.findByEmail(userDTOResponse.getEmail());
+        User user = new User();  
+        if (userOptional.isPresent())      
+            user = userOptional.get();
+        Optional<List<OrderDetail>> orderDetailOptional = orderDetailRepository.findByCustomer(user);
+        List<OrderDetail> orderDetail = new ArrayList<>();
+        if (orderDetailOptional.isPresent())
+            orderDetail = orderDetailOptional.get();
+        model.addAttribute("oderDetails", orderDetail);
         model.addAttribute("userInfo", userDTOResponse);
         return "home/Profile";
     }

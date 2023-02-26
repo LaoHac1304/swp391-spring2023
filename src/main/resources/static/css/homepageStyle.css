@@ -324,6 +324,10 @@ input[type="checkbox"]:checked+.seat {
     }
 }
 
+.historyTable{
+    color: black;
+}
+
 .rubberBand {
     -webkit-animation-name: rubberBand;
     animation-name: rubberBand;

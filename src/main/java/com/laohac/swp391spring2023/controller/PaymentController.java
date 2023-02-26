@@ -113,4 +113,12 @@ public class PaymentController {
 
        return "redirect:/booking/checkout/{id}";
     }
+
+    @PostMapping("/save-order")
+    public String saveOrder(HttpSession session, Model model){
+
+        
+        bookingService.saveOrder(session);
+        return "redirect:/homepage";
+    }
 }

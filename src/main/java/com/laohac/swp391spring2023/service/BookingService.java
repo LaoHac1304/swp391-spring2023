@@ -11,5 +11,7 @@ public interface BookingService {
     public void chooseSeats(int id);
 
     public CheckOutInfoDTOReponse showCheckOutInfo(List<Integer> listSeats, HttpSession session);
+
+    public void saveOrder(HttpSession session);
     
 }

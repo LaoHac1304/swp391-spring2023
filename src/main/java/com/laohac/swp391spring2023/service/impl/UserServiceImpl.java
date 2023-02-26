@@ -259,6 +259,38 @@ public class UserServiceImpl implements UserService {
         return trips;
        
     }
+
+    @Override
+    public List<Trip> searchByRouteAndDateByPriceDesc(Route route, LocalDate date) {
+        
+        List<Trip> trips = tripRepository.findByRouteAndDateOrderByPriceDesc(route, date);
+        return trips;
+       
+    }
+
+    @Override
+    public List<Trip> searchByRouteAndDateByPriceAsc(Route route, LocalDate date) {
+        
+        List<Trip> trips = tripRepository.findByRouteAndDateOrderByPriceAsc(route, date);
+        return trips;
+       
+    }
+
+    @Override
+    public List<Trip> searchByRouteAndDateByStartTimeDesc(Route route, LocalDate date) {
+        
+        List<Trip> trips = tripRepository.findByRouteAndDateOrderByStartTimeDesc(route, date);
+        return trips;
+       
+    }
+
+    @Override
+    public List<Trip> searchByRouteAndDateByStartTimeAsc(Route route, LocalDate date) {
+        
+        List<Trip> trips = tripRepository.findByRouteAndDateOrderByStartTimeAsc(route, date);
+        return trips;
+       
+    }
     }
 
 

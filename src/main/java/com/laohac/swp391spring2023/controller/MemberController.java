@@ -120,7 +120,7 @@ public class MemberController {
     }
 
     @GetMapping("/logout")
-      public String fetchSignoutSite(HttpServletRequest request, HttpServletResponse response) {        
+    public String fetchSignoutSite(HttpServletRequest request, HttpServletResponse response) {        
         HttpSession session = request.getSession(false);
         SecurityContextHolder.clearContext();
   
@@ -131,6 +131,9 @@ public class MemberController {
   
         return "redirect:/member/login";
       }
-    
-    
+      @GetMapping("/setting")
+
+    public String setting(){
+        return "adminDashboard/setting";
+    }
 }

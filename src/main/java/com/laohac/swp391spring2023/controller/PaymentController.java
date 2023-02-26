@@ -1,7 +1,9 @@
 package com.laohac.swp391spring2023.controller;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -60,6 +62,18 @@ public class PaymentController {
 
         List<Route> listRoute = routeRepository.findAll();
         model.addAttribute("listStates", listRoute);
+
+        Set<String> listState1 = new HashSet<>();
+        Set<String> listState2 = new HashSet<>();
+
+        for (Route route : listRoute) {
+            listState1.add(route.getDeparture());
+            listState2.add(route.getArrival());    
+        }
+
+        model.addAttribute("departure", listState1);
+        model.addAttribute("arrival", listState2);
+
         for (Route route : listRoute) {
             System.out.println(route.getArrival());
         }

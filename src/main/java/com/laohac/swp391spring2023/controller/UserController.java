@@ -4,6 +4,8 @@ import java.util.List;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -54,6 +56,19 @@ public class UserController {
 
         List<Route> listRoute = routeRepository.findAll();
         model.addAttribute("listStates", listRoute);
+
+        Set<String> listState1 = new HashSet<>();
+        Set<String> listState2 = new HashSet<>();
+
+        for (Route route : listRoute) {
+            listState1.add(route.getDeparture());
+            listState2.add(route.getArrival());    
+        }
+
+       
+
+        model.addAttribute("departure", listState1);
+        model.addAttribute("arrival", listState2);
 
     }
     @GetMapping("")

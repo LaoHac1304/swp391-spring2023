@@ -49,28 +49,29 @@
         </div>
 
 
-
-        <div class="container-search-trip" th:each="trip: ${listTrips}">
-            <form th:action="@{/booking/{id}(id=${trip.id})}">
-                <div class="TicketPC-Container" >
+        <div class="container-search-trip" th:each="trip: ${listTrips}" >
+            <form th:action="@{/booking/{id}(id=${trip.id})}" id="myForm">
+                <div class="TicketPC-Container">
                     <div class="TicketPC-BodyFlex">
-                        <div class="image" style="position: relative;"><img th:src="@{${trip.car.carCompany.imgUrl}}" class="operator"
-                                ><img
-                                class="sticker-lazyloaded">
+                        <div class="image" style="position: relative;"><img th:src="@{${trip.car.carCompany.imgUrl}}"
+                                class="operator"><img class="sticker-lazyloaded">
                         </div>
                         <div class="TicketPC-RightBody">
                             <div class="TicketPC-TripInfo">
                                 <div class="bus-info">
-                                    <div class="bus-name" th:text="${trip.car.carCompany.getName()} + ' Busline'">Huệ Nghĩa</div>
+                                    <div class="bus-name" th:text="${trip.car.carCompany.getName()} + ' Busline'">Huệ
+                                        Nghĩa</div>
                                     <!-- <button type="button"
                                     class="ant-btn-bus-rating-button">
                                 </button> -->
                                 </div>
-                                <div class="seat-type" th:text="${trip.car.getPlateNumber()} + ' - ' +${trip.car.getCapacity()} + ' Seats'">Giường nằm 40 chỗ</div>
+                                <div class="seat-type"
+                                    th:text="${trip.car.getPlateNumber()} + ' - ' +${trip.car.getCapacity()} + ' Seats'">
+                                    Giường nằm 40 chỗ</div>
                                 <div class="from-to"><svg class="TicketPC-LocationRouteSVG"
                                         xmlns="http://www.w3.org/2000/svg" width="14" height="74" viewBox="0 0 14 74">
                                         <path fill="none" stroke="#787878" stroke-linecap="round" stroke-width="2"
-                                            stroke-dasharray="0 7"  d="M7 13.5v46"></path>
+                                            stroke-dasharray="0 7" d="M7 13.5v46"></path>
                                         <g fill="none" stroke="#01613D" stroke-width="3">
                                             <circle cx="7" cy="7" r="7" stroke="none"></circle>
                                             <circle cx="7" cy="7" r="5.5"></circle>
@@ -82,7 +83,8 @@
                                     <div class="from-to-content">
                                         <div class="content-from">
                                             <div class="hour" th:text="${trip.startTime}">10:50</div>
-                                            <div class="place" th:text="'• ' + ${trip.departureDetail}">• CD. Châu Đốc</div>
+                                            <div class="place" th:text="'• ' + ${trip.departureDetail}">• CD. Châu Đốc
+                                            </div>
                                         </div>
                                         <div class="content-to">
                                             <div class="hour" th:text="${trip.endTime}">13:00</div>
@@ -105,22 +107,25 @@
                                 <div class="info">
                                     <div class="seat-available-green">6 seats left </div>
                                 </div>
-    
-                                    <button data-tracking-event="selected_route" type="submit" class="ant-btn-btn-booking" style="text-align: right;">
-                                        <span>Book now</span>
-                                    </button>
-    
+
+                                <button data-tracking-event="selected_route" type="submit" class="ant-btn-btn-booking"
+                                    style="text-align: right;">
+                                    <span>Book now</span>
+                                </button>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
             </form>
-            
+
         </div>
-    </div>
-    <div th:replace="fragments/fragments::homeScript"></div>
-    <div th:replace="fragments/fragments::bookFooter"></div>
+        
+
+        <div th:replace="fragments/fragments::homeScript"></div>
+        
 </body>
-
-
+<br><br><br>
+<div th:replace="fragments/fragments::bookFooter"></div>
 </html>

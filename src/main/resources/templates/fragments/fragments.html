@@ -591,60 +591,90 @@
 
             <div class="main-slider">
                 <div class="slider slider-nav">
-                    <div class="slider-container">
-                        <a href="">
+                    <div class="slider-container">                
+                        <a id="search-trips-link" href="http://localhost:8080/users/search-trip?date=2023-02-27&amp;state1=TP+HCM&amp;state2=DA+LAT">
                             <div class="slider-img">
                                 <img src="/images/place/Dalat.jpg" alt="Dalat">
                             </div>
                             <div class="slider-desc" style="background-color: #7C6E4F;">
                                 <div class="slider-desc-title">Sai Gon - Da Lat</div>
-                                <div class="slider-desc-fare">200.000 vnd</div>
+                                <div class="slider-desc-fare">Just From 200.000 vnd</div>
                             </div>
-                        </a>
+                          </a>
+                          <script>
+                            var link = document.getElementById("search-trips-link");
+                            var date = new Date();
+                            var formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, "0") + "-" + date.getDate().toString().padStart(2, "0");
+                            link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP+HCM&state2=DA+LAT";
+                        </script>
                     </div>
                     <div class="slider-container">
-                        <a href="">
+                        <a id="search-trips-link" href="http://localhost:8080/users/search-trip?date=2023-02-27&amp;state1=VUNG+TAU&amp;state2=NHA+TRANG">
                             <div class="slider-img">
                                 <img src="/images/place/vungtau.jpg" alt="vungtau">
                             </div>
                             <div class="slider-desc" style="background-color: #1B1E0A;">
-                                <div class="slider-desc-title">Vung Tau - Da Lat</div>
+                                <div class="slider-desc-title">Vung Tau - Nha Trang</div>
                                 <div class="slider-desc-fare">200.000 vnd</div>
                             </div>
                         </a>
+                        <script>
+                            var link = document.getElementById("search-trips-link");
+                            var date = new Date();
+                            var formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, "0") + "-" + date.getDate().toString().padStart(2, "0");
+                            link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=VUNG+TAU&state2=NHA+TRANG";
+                        </script>
                     </div>
                     <div class="slider-container">
-                        <a href="">
+                        <a id="search-trips-link" href="http://localhost:8080/users/search-trip?date=2023-02-27&amp;state1=MUI+NE&amp;state2=CAN+THO">
                             <div class="slider-img">
                                 <img src="/images/place/muine.jpg" alt="muine">
                             </div>
                             <div class="slider-desc" style="background-color: #1E3131;">
-                                <div class="slider-desc-title">Mui Ne - Da Lat</div>
+                                <div class="slider-desc-title">Mui Ne - Can Tho</div>
                                 <div class="slider-desc-fare">200.000 vnd</div>
                             </div>
                         </a>
+                        <script>
+                            var link = document.getElementById("search-trips-link");
+                            var date = new Date();
+                            var formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, "0") + "-" + date.getDate().toString().padStart(2, "0");
+                            link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=MUI+NE&state2=CAN+THO";
+                        </script>
                     </div>
                     <div class="slider-container">
-                        <a href="">
+                        <a id="search-trips-link" href="http://localhost:8080/users/search-trip?date=2023-02-27&amp;state1=TP+HCM&amp;state2=CA+MAU">
                             <div class="slider-img">
                                 <img src="/images/place/nhatrang.jpg" alt="muine">
                             </div>
                             <div class="slider-desc" style="background-color: #8F9E9E;">
-                                <div class="slider-desc-title">Sai Gon - Nha Trang</div>
+                                <div class="slider-desc-title">Sai Gon - Ca Mau</div>
                                 <div class="slider-desc-fare">200.000 vnd</div>
                             </div>
                         </a>
+                        <script>
+                            var link = document.getElementById("search-trips-link");
+                            var date = new Date();
+                            var formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, "0") + "-" + date.getDate().toString().padStart(2, "0");
+                            link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP+HCM&state2=CA+MAU";
+                        </script>
                     </div>
                     <div class="slider-container">
-                        <a href="">
+                        <a id="search-trips-link" href="http://localhost:8080/users/search-trip?date=2023-02-27&amp;state1=TP+HCM&amp;state2=DAK+LAK">
                             <div class="slider-img">
                                 <img src="/images/place/cantho.jpg" alt="muine">
                             </div>
                             <div class="slider-desc">
-                                <div class="slider-desc-title">Sai Gon - Can Tho</div>
+                                <div class="slider-desc-title">Sai Gon - Dak Lak</div>
                                 <div class="slider-desc-fare">200.000 vnd</div>
                             </div>
                         </a>
+                        <script>
+                            var link = document.getElementById("search-trips-link");
+                            var date = new Date();
+                            var formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, "0") + "-" + date.getDate().toString().padStart(2, "0");
+                            link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP+HCM&state2=DAK+LAK";
+                        </script>
                     </div>
                 </div>
             </div>

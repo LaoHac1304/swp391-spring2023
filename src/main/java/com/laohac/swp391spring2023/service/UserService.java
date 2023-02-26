@@ -42,4 +42,11 @@ public interface UserService {
 
     public boolean verify(String code, HttpSession session);
 
+    public List<Trip> searchByRouteAndDateByPriceDesc(Route route, LocalDate date);
+
+    public List<Trip> searchByRouteAndDateByPriceAsc(Route route, LocalDate date);
+
+    public List<Trip> searchByRouteAndDateByStartTimeDesc(Route route, LocalDate date);
+
+    public List<Trip> searchByRouteAndDateByStartTimeAsc(Route route, LocalDate date);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
+import java.time.Clock;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -48,7 +49,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired 
+    @Autowired
     private MemberService memberService;
 
     @Autowired
@@ -59,7 +60,7 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-    
+
     @ModelAttribute
     public void addCommonAttributes(Model model) {
         RouteDTORequest routeDTORequest = new RouteDTORequest();
@@ -73,36 +74,35 @@ public class UserController {
 
         for (Route route : listRoute) {
             listState1.add(route.getDeparture());
-            listState2.add(route.getArrival());    
+            listState2.add(route.getArrival());
         }
-
-       
 
         model.addAttribute("departure", listState1);
         model.addAttribute("arrival", listState2);
 
     }
+
     @GetMapping("")
-    public String home(Model model, User user){
+    public String home(Model model, User user) {
         model.addAttribute("customer", user);
         return "home/Register";
     }
 
     @GetMapping("/home")
-    public String showUserHome(HttpSession session){
-        //return "home/index";
+    public String showUserHome(HttpSession session) {
+        // return "home/index";
         session.setAttribute("userSession", memberService.getCurrentUser());
         return "home/index";
     }
 
     @GetMapping("/login")
-    public String showLogin(Model model){
+    public String showLogin(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "home/login1";
     }
 
-    private String getSiteURL(HttpServletRequest request){
+    private String getSiteURL(HttpServletRequest request) {
         String siteURL = request.getRequestURL().toString();
         return siteURL.replace(request.getServletPath(), "");
     }
@@ -116,7 +116,7 @@ public class UserController {
         UserDTOResponse userDTOResponse = userService.registerUser(user, session);
         if (userDTOResponse == null) return "home/Register";
         String siteURL = getSiteURL(request);
-        userService.sendVerificationEmail(userDTOResponse,siteURL);
+        userService.sendVerificationEmail(userDTOResponse, siteURL);
 
         System.out.println(userDTOResponse.getFullName());
 
@@ -127,20 +127,18 @@ public class UserController {
     }
 
     @GetMapping("/verify")
+
     public String verifyAccount(@Param("code") String code, Model model, HttpSession session){
         boolean verified = userService.verify(code, session);
 
-
         String pageTitle = verified ? "Verification Succeeded!" : "Verification Failed";
         model.addAttribute("pageTitle", pageTitle);
-        
 
         return "home/" + (verified ? "verify_success" : "verify_fail");
     }
 
-
     @PostMapping("/sign-in")
-    public String login(Model model, @ModelAttribute("userInfo") UserDTORequest userDTORequest){
+    public String login(Model model, @ModelAttribute("userInfo") UserDTORequest userDTORequest) {
 
         UserDTOResponse userDTOResponse = userService.login(userDTORequest);
         System.out.println(userDTOResponse.getFullName());
@@ -148,13 +146,13 @@ public class UserController {
     }
 
     @GetMapping("/info")
-    public String showInfo(Model model, HttpSession session){
+    public String showInfo(Model model, HttpSession session) {
         Object userCurrent = session.getAttribute("userSession");
         UserDTOResponse userDTOResponse = (UserDTOResponse) userCurrent;
 
         Optional<User> userOptional = userRepository.findByEmail(userDTOResponse.getEmail());
-        User user = new User();  
-        if (userOptional.isPresent())      
+        User user = new User();
+        if (userOptional.isPresent())
             user = userOptional.get();
         Optional<List<OrderDetail>> orderDetailOptional = orderDetailRepository.findByCustomer(user);
         List<OrderDetail> orderDetail = new ArrayList<>();
@@ -166,7 +164,7 @@ public class UserController {
     }
 
     @GetMapping("/update-profile")
-    public String showUpdateForm(Model model, HttpSession session){
+    public String showUpdateForm(Model model, HttpSession session) {
 
         Object userCurrent = session.getAttribute("userSession");
         UserDTOResponse userDTOResponse = (UserDTOResponse) userCurrent;
@@ -175,7 +173,7 @@ public class UserController {
     }
 
     @PostMapping("/update-userInfo")
-    public String update(@ModelAttribute("userInfo") UserDTOUpdate userUpdate, HttpSession session){
+    public String update(@ModelAttribute("userInfo") UserDTOUpdate userUpdate, HttpSession session) {
         Object userCurrent = session.getAttribute("userSession");
         UserDTOResponse userDTOResponse = (UserDTOResponse) userCurrent;
         String username = userDTOResponse.getUsername();
@@ -185,57 +183,58 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-      public String fetchSignoutSite(HttpServletRequest request, HttpServletResponse response) {        
+    public String fetchSignoutSite(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         SecurityContextHolder.clearContext();
-  
+
         session = request.getSession(false);
-        if(session != null) {
+        if (session != null) {
             session.invalidate();
         }
-  
-        return "redirect:/homepage";
-        //return "homepage/login";
-      }
 
-      @GetMapping("/search-trip")
-      public String search(@ModelAttribute("routeDTORequest") RouteDTORequest routeDTORequest, Model model) throws ParseException{
+        return "redirect:/homepage";
+        // return "homepage/login";
+    }
+
+    @GetMapping("/search-trip")
+    public String search(@ModelAttribute("routeDTORequest") RouteDTORequest routeDTORequest, Model model) throws ParseException{
+
+        Clock clock = Clock.systemDefaultZone();
+        LocalDate currentDate = LocalDate.now(clock);
+        Route route2 = routeRepository.findByState1AndState2("TP HCM", "DA LAT");
 
         String dateString = routeDTORequest.getDate();
-        
-
-        
         LocalDate date = LocalDate.parse(dateString);
-
-        //System.out.println(date);
-
         Route route = routeRepository.findByState1AndState2(routeDTORequest.getState1().toUpperCase(), routeDTORequest.getState2().toUpperCase());
-        //Date date = routeDTORequest.getDate();
-        //System.out.println(routeDTORequest.getDate());
-        //Date date = tripRepository.findDateByRouteId(route.getId());
+        
         List<Trip> tripsInfo = userService.searchByRouteAndDate(route, date);
+        List<Trip> SaiGonDaLat = userService.searchByRouteAndDate(route2, currentDate);
+
+        //List<Trip> tripsInfo = userService.searchByRouteAndDateByPriceDesc(route, date);
+        // List<Trip> tripsInfo = userService.searchByRouteAndDateByPriceAsc(route, date);
+        //List<Trip> tripsInfo = userService.searchByRouteAndDateByStartTimeAsc(route, date);
+        // List<Trip> tripsInfo = userService.searchByRouteAndDateByStartTimeDesc(route, date);
+        
         model.addAttribute("listTrips", tripsInfo);
+        model.addAttribute("SaiGonDaLat", SaiGonDaLat);
+
         List<Route> listRoute = routeRepository.findAll();
         model.addAttribute("listStates", listRoute);
+
         model.addAttribute("route", route);
 
-
-        // for (Route route1 : listRoute) {
-        //     System.out.println(route1.getArrival());
-        // }
-
         return "home/searchPage";
-      }
+    }
 
-    
-    /*@GetMapping("/login-google")
-    public String login(Model model, @AuthenticationPrincipal OAuth2User user){
+    /*
+     * @GetMapping("/login-google")
+     * public String login(Model model, @AuthenticationPrincipal OAuth2User user){
+     * 
+     * UserDTOResponse userLogin = userService.login(user);
+     * model.addAttribute("user", userLogin);
+     * 
+     * return "index";
+     * }
+     */
 
-        UserDTOResponse userLogin = userService.login(user);
-        model.addAttribute("user", userLogin);
-
-        return "index";
-    }*/
-
-    
 }

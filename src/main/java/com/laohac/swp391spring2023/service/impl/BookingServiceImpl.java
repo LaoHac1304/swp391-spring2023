@@ -1,13 +1,19 @@
 package com.laohac.swp391spring2023.service.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.laohac.swp391spring2023.model.dto.CheckOutInfoDTOReponse;
@@ -33,6 +39,9 @@ public class BookingServiceImpl implements BookingService {
 
     @Autowired
     private  OrderDetailRepository orderDetailRepository;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Override
     public void chooseSeats(int id) {
@@ -95,9 +104,40 @@ public class BookingServiceImpl implements BookingService {
                             .listSeats(listSeats)
                             .build();
         orderDetailRepository.save(orderDetail);
+        session.setAttribute("orderDetailEmail", orderDetail);
         System.out.println("ahihi");
         
 
+    }
+
+    @Override
+    public void sendVerificationEmail(HttpSession session, String siteURL) 
+            throws UnsupportedEncodingException, MessagingException {
+
+        UserDTOResponse user = (UserDTOResponse) session.getAttribute("userSession");
+        String subject ="About your trip";
+        String senderName = "4Boys Team";
+        String mailContent = "<p>Dear " + user.getFullName() + ",</p>";
+        mailContent += "<p>Please click the link below to see your orders:</p>";
+        
+        String verifyURL = siteURL + "/users/info";
+        mailContent += "<h3><a href=\"" + verifyURL + "\">Go to your orders</a></h3>";
+        
+        mailContent += "<p>Thank you<br>4Boys Team</p>";
+
+        MimeMessage message = mailSender.createMimeMessage();
+
+        JavaMailSenderImpl emailSender = (JavaMailSenderImpl) mailSender;
+        emailSender.getJavaMailProperties().setProperty("mail.smtp.starttls.enable", "true");
+
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom("simnhankid13042002@gmail.com", senderName);
+        helper.setTo(user.getEmail());
+        helper.setSubject(subject);
+        helper.setText(mailContent, true);
+
+        mailSender.send(message);
     }
     
 }

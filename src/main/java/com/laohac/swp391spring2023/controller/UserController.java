@@ -108,21 +108,28 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public String register(@ModelAttribute("customer") User user, HttpServletRequest request)
-            throws UnsupportedEncodingException, MessagingException {
+    public String register (@ModelAttribute("customer") User user, HttpServletRequest request, HttpSession session) throws UnsupportedEncodingException, MessagingException{
 
-        UserDTOResponse userDTOResponse = userService.registerUser(user);
-
+        session.setAttribute("currentRegister", null);
+        session.setAttribute("errorEmail", null);
+        session.setAttribute("errorUsername", null);
+        UserDTOResponse userDTOResponse = userService.registerUser(user, session);
+        if (userDTOResponse == null) return "home/Register";
         String siteURL = getSiteURL(request);
         userService.sendVerificationEmail(userDTOResponse, siteURL);
 
         System.out.println(userDTOResponse.getFullName());
+
+        
+
+        
         return "redirect:/users/login";
     }
 
     @GetMapping("/verify")
-    public String verifyAccount(@Param("code") String code, Model model) {
-        boolean verified = userService.verify(code);
+
+    public String verifyAccount(@Param("code") String code, Model model, HttpSession session){
+        boolean verified = userService.verify(code, session);
 
         String pageTitle = verified ? "Verification Succeeded!" : "Verification Failed";
         model.addAttribute("pageTitle", pageTitle);

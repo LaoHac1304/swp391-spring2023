@@ -19,10 +19,12 @@
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Enter Email" th:field="*{email}" id="email" required
         title="Please enter email address">
+        <span th:text="${session.errorUsername}"></span>
 
       <label for="username"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" th:field="*{username}" id="username" required
         title="Please enter username">
+        <span th:text="${session.errorEmail}"></span>
 
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" th:field="*{password}" id="psw" required pattern=".{6,}" title="Password must be at least 6 characters">

@@ -56,12 +56,12 @@ public class UserServiceImpl implements UserService {
         boolean ok_email = true;
         if (userRepository.findByEmail(user.getEmail()).isPresent()) 
         {
-            session.setAttribute("errorEmail", "Email already exists");
+            session.setAttribute("errorEmail", " * Email already exists");
             ok_email = false;
         }
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
 
-            session.setAttribute("errorUsername", "Email already exists");
+            session.setAttribute("errorUsername", " * Username already exists");
             ok_username = false;
         }
 

@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import java.io.UnsupportedEncodingException;
@@ -49,12 +50,43 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private JavaMailSender mailSender;
 
+    private boolean validatied(User user, HttpSession session){
+
+        boolean ok_username = true;
+        boolean ok_email = true;
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) 
+        {
+            session.setAttribute("errorEmail", "Email already exists");
+            ok_email = false;
+        }
+        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+
+            session.setAttribute("errorUsername", "Email already exists");
+            ok_username = false;
+        }
+
+        if (!userRepository.findByEmail(user.getEmail()).isPresent()) 
+        {
+            session.setAttribute("errorEmail", null);
+            ok_email = true;
+        }
+        if (!userRepository.findByUsername(user.getUsername()).isPresent()) {
+
+            session.setAttribute("errorUsername", null);
+            ok_username = true;
+        }
+        
+        if (!ok_username || !ok_email) return false;
+        return true;
+    }
+
     @Override
-    public UserDTOResponse registerUser(User user) {
+    public UserDTOResponse registerUser(User user, HttpSession session) {
         
         // validation user
         
         // successful validation
+        if (!validatied(user, session)) return null;
         user.setRole("customer");
         String rawPassword = user.getPassword();
         user.setPassword(passwordEncoder2.encode(rawPassword));
@@ -62,8 +94,9 @@ public class UserServiceImpl implements UserService {
         user.setEnabled(0);
 
         String randomCode = RandomString.make(64); 
-        user.setVerificationCode(randomCode);      
-        userRepository.save(user);
+        user.setVerificationCode(randomCode); 
+        session.setAttribute("currentRegister", user);     
+        //userRepository.save(user);
 
         
 
@@ -82,9 +115,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public boolean verify(String verificationCode){
-        User user = userRepository.findByVerificationCode(verificationCode);
-
+    public boolean verify(String verificationCode, HttpSession session){
+        //User user = userRepository.findByVerificationCode(verificationCode);
+        User user = (User)session.getAttribute("currentRegister");
         if (user == null || user.getEnabled() > 0) return false;
         user.setVerificationCode(null);
         user.setEnabled(1);

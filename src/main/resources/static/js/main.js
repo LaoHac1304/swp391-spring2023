@@ -79,44 +79,46 @@ var swiper = new Swiper(".our-partner", {
 });
 
 
-  //Validate password
-  function validatePassword() {
+//Validate password
+function validatePassword() {
     var password = document.getElementById("psw").value;
     var repeatPassword = document.getElementById("pswRepeat").value;
 
     if (password !== repeatPassword) {
-      alert("Passwords do not match.");
-      return false;
+        alert("Passwords do not match.");
+        return false;
     }
 
     return true;
-  }
+}
 
-  //Selected seats
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  const selectedSeat = document.getElementById('selectedSeat');
-  
-  checkboxes.forEach(checkbox => {
+//Selected seats
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const selectedSeat = document.getElementById('selectedSeat');
+
+checkboxes.forEach(checkbox => {
     checkbox.addEventListener('click', () => {
-      let count = 0;
-      checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-          count++;
-        }
-      });
-      selectedSeat.textContent = `Selected seats: ${count}`;
+        let count = 0;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                count++;
+            }
+        });
+        selectedSeat.textContent = `Selected seats: ${count}`;
     });
-  });
+});
 
-  //Slider
-  $('.slider-nav').slick({
+//Slider
+$('.slider-nav').slick({
     slidesToShow: 4,
     slidesToScroll: 3,
     infinite: true,
-   // slidesToShow: 3,
-   // slidesToScroll: 3,
-    dots: true,   
+    // slidesToShow: 3,
+    // slidesToScroll: 3,
+    dots: true,
     focusOnSelect: true
-  });
- 
+});
+
   
+
+

@@ -30,7 +30,7 @@
                                             </div>
                                         </div>
                                      -->
-                                    <div style="max-width: 165px; max-height: 200px; display: flex; flex-wrap: wrap;">
+                                    <div style="max-width: 190px; max-height: 200px; display: flex; flex-wrap: wrap; padding-left: 10px;">
                                         <div th:each="seat, status : ${listSeats}" class="seat-container">
                                             <label th:for="'seat-' + ${seat.id}">
                                                 <input type="checkbox" th:value="${seat.id}" name="selectedSeats"
@@ -40,7 +40,7 @@
 
 
                                                 <div class="seat" th:text="${seat.seatNumber}"
-                                                    th:classappend="${status.count % 4 == 2 ? 'padded' : ''} + ${seat.availableSeat == 1 ? 'booked' : ''}">
+                                                    th:classappend="${status.count % 4 == 2 ? 'padded' : ''} + ' ' + ${seat.availableSeat == 1 ? 'booked' : ''}">
                                                 </div>
 
                                             </label>

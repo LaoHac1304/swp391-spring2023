@@ -62,4 +62,7 @@ public class Trip {
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
     private List<Seat> listAvailableSeats;
 
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
+    private List<OrderDetail> orderDetails;
+
 }

@@ -786,7 +786,11 @@
 .container-trip-page {
     text-align: center; 
     margin-top: 100px;
+<<<<<<< HEAD
     margin-bottom: 70px;
+=======
+    /* margin-bottom: 70px; */
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
 }    
 
 .flex {

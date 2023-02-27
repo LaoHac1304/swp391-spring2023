@@ -79,33 +79,39 @@ var swiper = new Swiper(".our-partner", {
 });
 
 
+<<<<<<< HEAD
   //Validate password
   function validatePassword() {
+=======
+//Validate password
+function validatePassword() {
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
     var password = document.getElementById("psw").value;
     var repeatPassword = document.getElementById("pswRepeat").value;
 
     if (password !== repeatPassword) {
-      alert("Passwords do not match.");
-      return false;
+        alert("Passwords do not match.");
+        return false;
     }
 
     return true;
-  }
+}
 
-  //Selected seats
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  const selectedSeat = document.getElementById('selectedSeat');
-  
-  checkboxes.forEach(checkbox => {
+//Selected seats
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const selectedSeat = document.getElementById('selectedSeat');
+
+checkboxes.forEach(checkbox => {
     checkbox.addEventListener('click', () => {
-      let count = 0;
-      checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-          count++;
-        }
-      });
-      selectedSeat.textContent = `Selected seats: ${count}`;
+        let count = 0;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                count++;
+            }
+        });
+        selectedSeat.textContent = `Selected seats: ${count}`;
     });
+<<<<<<< HEAD
   });
 
   //Slider
@@ -120,3 +126,35 @@ var swiper = new Swiper(".our-partner", {
   });
  
   
+=======
+});
+
+//Slider
+$('.slider-nav').slick({
+    slidesToShow: 4,
+    slidesToScroll: 3,
+    infinite: true,
+    // slidesToShow: 3,
+    // slidesToScroll: 3,
+    dots: true,
+    focusOnSelect: true
+});
+
+  
+
+
+function checkSubmitButton() {
+    var checkboxes = document.getElementsByName("selectedSeats");
+    var submitButton = document.getElementById("submit-button");
+  
+    for (var i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].checked) {
+        submitButton.disabled = false;
+        
+        return;
+      }
+    }
+    // submitButton.title = disabled;
+    submitButton.disabled = true;
+  }
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017

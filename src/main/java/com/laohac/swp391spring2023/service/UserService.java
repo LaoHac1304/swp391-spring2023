@@ -3,6 +3,10 @@ package com.laohac.swp391spring2023.service;
 import java.util.List;
 
 import javax.mail.MessagingException;
+<<<<<<< HEAD
+=======
+import javax.servlet.http.HttpSession;
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
 
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
@@ -17,7 +21,7 @@ import com.laohac.swp391spring2023.model.entities.User;
 
 public interface UserService {
 
-    public UserDTOResponse registerUser(User user);
+    public UserDTOResponse registerUser(User user, HttpSession session);
 
     public UserDTOResponse login(UserDTORequest userDTORequest);
 
@@ -39,6 +43,18 @@ public interface UserService {
 
     public void sendVerificationEmail(UserDTOResponse user, String siteUrl) throws UnsupportedEncodingException, MessagingException;
 
+<<<<<<< HEAD
     public boolean verify(String code);
 
+=======
+    public boolean verify(String code, HttpSession session);
+
+    public List<Trip> searchByRouteAndDateByPriceDesc(Route route, LocalDate date);
+
+    public List<Trip> searchByRouteAndDateByPriceAsc(Route route, LocalDate date);
+
+    public List<Trip> searchByRouteAndDateByStartTimeDesc(Route route, LocalDate date);
+
+    public List<Trip> searchByRouteAndDateByStartTimeAsc(Route route, LocalDate date);
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
 }

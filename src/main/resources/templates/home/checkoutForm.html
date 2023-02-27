@@ -7,6 +7,7 @@
     <header th:replace="fragments/fragments::homeHeader"></header>
     <br><br><br>
     <div class="container">
+<<<<<<< HEAD
         <form action="#">
             <div class="row">
 
@@ -16,6 +17,17 @@
                     <div class="payment-form">
                         <div class="list-group">
 
+=======
+        <form th:action="@{/booking/save-order}" method="post">
+            <div class="row">
+
+                
+                <div class="col-md-8" style="padding: 0px 8px;">
+                    <div class="form-control-lg text-center">Payment method</div>
+                    <div class="payment-form">
+                        <div class="list-group">
+
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
                             <div class="row-payment">
                                 <label class="flex-label">
                                     <span class="span-payments">
@@ -52,6 +64,7 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
 
                 <div class="col-md-4 " style="padding: 0px 8px;">
                     <div class="form-control-lg text-center">Trip detail</div>
@@ -114,6 +127,72 @@
                     <br>
                     <button type="submit" class="btn btn-success" style="width: 100%; min-height: 30px; height: 50px;">Finish Order</button>
                 </div>
+=======
+                <div class="col-md-4 " style="padding: 0px 8px;">
+
+                        <div class="form-control-lg text-center">Trip detail</div>
+                        <div class="payment-form">
+                            <div class="trip-info-body">
+                                <!--  -->
+                                <div class="table-info">
+                                    <div class="table-name" style="margin-top: 0%;">Passenger</div>
+                                    <th:block th:if="${checkoutinfo.user != null}">
+                                        <div class="table-value" th:text="${checkoutinfo.user.fullName}">Lewis vip vl</div>
+                                    </th:block>
+                                    <!-- <div class="table-value" th:text="${checkoutinfo.user.fullName}">Lewis vip vl</div> -->
+                                </div>
+                                <div class="table-info">
+                                    <div class="table-name">Phone number</div>
+                                    <th:block th:if="${checkoutinfo.user != null}">
+                                        <div class="table-value" th:text="${checkoutinfo.user.phoneNumber}">0123456789</div>
+                                    </th:block>
+                                    <!-- <div class="table-value" th:text="${checkoutinfo.user.phoneNumber}">0123456789</div> -->
+                                </div>
+                                <div class="table-info">
+                                    <div class="table-name">Email</div>
+                                    <th:block th:if="${checkoutinfo.user != null}">
+                                        <div class="table-value" th:text="${checkoutinfo.user.email}">lewisvipvl@gmail.com</div>
+                                    </th:block>
+                                    <!-- <div class="table-value" th:text="${checkoutinfo.user.email}">lewisvipvl@gmail.com</div> -->
+                                </div>
+                                <!--  -->
+    
+                                <div class="table-group-divider"></div>
+    
+                                <!--  -->
+                                <div class="table-info">
+                                    <div class="table-name">Car Company</div>
+                                    <div class="table-value" th:text="${tripInfoCurrent.car.carCompany.name}">Hoa Mai</div>
+                                </div>
+                                <div class="table-info">
+                                    <div class="table-name">Pick up place</div>
+                                    <div class="table-value" th:text="${tripInfoCurrent.route.departure}" >Mien Dong Bus station</div>
+                                </div>
+                                <div class="table-info">
+                                    <div class="table-name">Drop off place</div>
+                                    <div class="table-value" th:text="${tripInfoCurrent.route.arrival}" >Vung Tau Bus station</div>
+                                </div>
+                                <!--  -->
+    
+                                <div class="table-group-divider"></div>
+    
+                                <!--  -->
+                                <div class="row">
+                                    <div class="col-md-6 total">Total</div>
+                                    <div class="col-md-6 total-price" th:text="${checkoutinfo.priceTotal}" >200.000 VND</div>
+                                </div>
+                                <!--  -->
+                            </div>
+                        </div>
+    
+    
+    
+                        <br>
+                        <button type="submit" class="btn btn-success" style="width: 100%; min-height: 30px; height: 50px;">Finish Order</button>
+                    </div>
+                <!-- </form> -->
+                
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
 
 
             </div>

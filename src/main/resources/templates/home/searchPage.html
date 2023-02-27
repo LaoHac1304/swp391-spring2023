@@ -49,6 +49,7 @@
         </div>
 
 
+<<<<<<< HEAD
 
         <div class="container-search-trip" th:each="trip: ${listTrips}">
             <form th:action="@{/booking/{id}(id=${trip.id})}">
@@ -57,20 +58,43 @@
                         <div class="image" style="position: relative;"><img th:src="@{${trip.car.carCompany.imgUrl}}" class="operator"
                                 ><img
                                 class="sticker-lazyloaded">
+=======
+        <div class="container-search-trip" th:each="trip: ${listTrips}" >
+            <form th:action="@{/booking/{id}(id=${trip.id})}" id="myForm">
+                <div class="TicketPC-Container">
+                    <div class="TicketPC-BodyFlex">
+                        <div class="image" style="position: relative;"><img th:src="@{${trip.car.carCompany.imgUrl}}"
+                                class="operator"><img class="sticker-lazyloaded">
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
                         </div>
                         <div class="TicketPC-RightBody">
                             <div class="TicketPC-TripInfo">
                                 <div class="bus-info">
+<<<<<<< HEAD
                                     <div class="bus-name" th:text="${trip.car.carCompany.getName()} + ' Busline'">Huệ Nghĩa</div>
+=======
+                                    <div class="bus-name" th:text="${trip.car.carCompany.getName()} + ' Busline'">Huệ
+                                        Nghĩa</div>
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
                                     <!-- <button type="button"
                                     class="ant-btn-bus-rating-button">
                                 </button> -->
                                 </div>
+<<<<<<< HEAD
                                 <div class="seat-type" th:text="${trip.car.getPlateNumber()} + ' - ' +${trip.car.getCapacity()} + ' Seats'">Giường nằm 40 chỗ</div>
                                 <div class="from-to"><svg class="TicketPC-LocationRouteSVG"
                                         xmlns="http://www.w3.org/2000/svg" width="14" height="74" viewBox="0 0 14 74">
                                         <path fill="none" stroke="#787878" stroke-linecap="round" stroke-width="2"
                                             stroke-dasharray="0 7"  d="M7 13.5v46"></path>
+=======
+                                <div class="seat-type"
+                                    th:text="${trip.car.getPlateNumber()} + ' - ' +${trip.car.getCapacity()} + ' Seats'">
+                                    Giường nằm 40 chỗ</div>
+                                <div class="from-to"><svg class="TicketPC-LocationRouteSVG"
+                                        xmlns="http://www.w3.org/2000/svg" width="14" height="74" viewBox="0 0 14 74">
+                                        <path fill="none" stroke="#787878" stroke-linecap="round" stroke-width="2"
+                                            stroke-dasharray="0 7" d="M7 13.5v46"></path>
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
                                         <g fill="none" stroke="#01613D" stroke-width="3">
                                             <circle cx="7" cy="7" r="7" stroke="none"></circle>
                                             <circle cx="7" cy="7" r="5.5"></circle>
@@ -81,11 +105,20 @@
                                     </svg>
                                     <div class="from-to-content">
                                         <div class="content-from">
+<<<<<<< HEAD
                                             <div class="hour" th:text="${trip.startTime}">10:50</div>
                                             <div class="place" th:text="'• ' + ${trip.departureDetail}">• CD. Châu Đốc</div>
                                         </div>
                                         <div class="content-to">
                                             <div class="hour" th:text="${trip.endTime}">13:00</div>
+=======
+                                            <div class="hour" th:text="${#strings.substring(trip.startTime, 0, 5)}">10:50</div>
+                                            <div class="place" th:text="'• ' + ${trip.departureDetail}">• CD. Châu Đốc
+                                            </div>
+                                        </div>
+                                        <div class="content-to">
+                                            <div class="hour" th:text="${#strings.substring(trip.endTime, 0, 5)}">13:00</div>
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
                                             <div class="place" th:text="'• ' + ${trip.arrivalDetail}">• Cựu Hội</div>
                                         </div>
                                     </div>
@@ -105,15 +138,25 @@
                                 <div class="info">
                                     <div class="seat-available-green">6 seats left </div>
                                 </div>
+<<<<<<< HEAD
     
                                     <button data-tracking-event="selected_route" type="submit" class="ant-btn-btn-booking" style="text-align: right;">
                                         <span>Book now</span>
                                     </button>
     
+=======
+
+                                <button data-tracking-event="selected_route" type="submit" class="ant-btn-btn-booking"
+                                    style="text-align: right;">
+                                    <span>Book now</span>
+                                </button>
+
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
                             </div>
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
             </form>
             
         </div>
@@ -123,4 +166,17 @@
 </body>
 
 
+=======
+
+            </form>
+
+        </div>
+        
+
+        <div th:replace="fragments/fragments::homeScript"></div>
+        
+</body>
+<br><br><br>
+<div th:replace="fragments/fragments::bookFooter"></div>
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
 </html>

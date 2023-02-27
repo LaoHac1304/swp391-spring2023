@@ -1,10 +1,19 @@
 package com.laohac.swp391spring2023.controller;
 
 
+<<<<<<< HEAD
+=======
+import java.io.UnsupportedEncodingException;
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+<<<<<<< HEAD
+=======
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,4 +122,22 @@ public class PaymentController {
 
        return "redirect:/booking/checkout/{id}";
     }
+<<<<<<< HEAD
+=======
+
+    private String getSiteURL(HttpServletRequest request){
+        String siteURL = request.getRequestURL().toString();
+        return siteURL.replace(request.getServletPath(), "");
+    }
+
+    @PostMapping("/save-order")
+    public String saveOrder(HttpSession session, Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException{
+
+        
+        bookingService.saveOrder(session);
+        String siteURL = getSiteURL(request);
+        bookingService.sendVerificationEmail(session, siteURL);
+        return "redirect:/homepage";
+    }
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
 }

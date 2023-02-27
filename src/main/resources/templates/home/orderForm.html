@@ -30,6 +30,7 @@
                                             </div>
                                         </div>
                                      -->
+<<<<<<< HEAD
                                     <div style="max-width: 165px; max-height: 200px; display: flex; flex-wrap: wrap;">
                                         <div th:each="seat, status : ${listSeats}" class="seat-container">
                                             <label th:for="'seat-' + ${seat.id}">
@@ -37,6 +38,21 @@
                                                     th:id="'seat-' + ${seat.id}">
                                                 <div class="seat" th:text="${seat.seatNumber}"
                                                     th:classappend="${status.count % 4 == 2 ? 'padded' : ''}"></div>
+=======
+                                    <div style="max-width: 190px; max-height: 200px; display: flex; flex-wrap: wrap; padding-left: 10px;">
+                                        <div th:each="seat, status : ${listSeats}" class="seat-container">
+                                            <label th:for="'seat-' + ${seat.id}">
+                                                <input type="checkbox" th:value="${seat.id}" name="selectedSeats"
+                                                    th:id="'seat-' + ${seat.id}"
+                                                    th:disabled="${seat.availableSeat == 1}"
+                                                    th:onclick="checkSubmitButton()" />
+
+
+                                                <div class="seat" th:text="${seat.seatNumber}"
+                                                    th:classappend="${status.count % 4 == 2 ? 'padded' : ''} + ' ' + ${seat.availableSeat == 1 ? 'booked' : ''}">
+                                                </div>
+
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
                                             </label>
                                         </div>
                                     </div>
@@ -67,10 +83,17 @@
                                 </div>
 
                                 <div>
+<<<<<<< HEAD
                                     <!-- <a class="btn btn-success" th:href=" @{/booking/choose-seats}">Confirm</a> -->
                                     <button class="btn btn-success" type="submit">Submit</button>
 
                                     <!-- th:href="@{/booking/detail}" -->
+=======
+                                    <!-- <button class="btn btn-success" type="submit">Submit</button> -->
+                                    <button  id="submit-button" class="btn btn-success"  title="Please select at least one seat before submitting"  type="submit" disabled
+                                    >Submit</button>
+
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
                                 </div>
                             </div>
 
@@ -78,8 +101,11 @@
                         </div>
 
             </form>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 46e05d6f4ed2b1d01970301f7845e877c0fc6017
     </div>
     </div>
 

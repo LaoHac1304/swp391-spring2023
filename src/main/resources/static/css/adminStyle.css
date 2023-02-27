@@ -75,13 +75,15 @@
 }
 
 .box p {
-  font-size: 30px;
+  font-size: 25px;
   color: white;
   font-weight: bold;
   /* line-height: 30px; */
   /* padding-left: 10px; */
   margin-top: 25px;
+  width: 163px;
   display: inline-block;
+  height: 100px;
 }
 
 .box p span {

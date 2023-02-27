@@ -5,24 +5,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"> 
-    <script th:src="@{/js/bootstrap.js}"></script> 
+    <title>Customer Verification</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
     <link rel="stylesheet" th:href="@{/css/homepageStyle.css}">
 </head>
 
-<body>
+<body style="background-color: rgb(221, 225, 225);">
 
-    <div class="container">
-        <div class="text-center">
-            <h2>Customer Verification</h2>
-            <h4>Congratulation! Your account has been verified</h4>
-            <p><a th:href="@{/users/login}">Login Now</a></p>
+    <div class="container"
+        style="text-align: center; width: 500px; height: 330px; border: 1px solid rgb(246, 225, 225); margin: auto; margin-top: 100px; background-color: white; border-radius: 10px;padding: 0px;">
+
+        <img th:src="@{https://d226aj4ao1t61q.cloudfront.net/0w1grixmq_blog_confirmationmail.png}"
+            alt="Verify successfully"
+            style="width: 500px; height: 200px;border-top-right-radius: 10px;border-top-left-radius:10px; border-bottom-left-radius: 0px; border-bottom-right-radius: 0px   ;">
+
+        <div class="verify-msg">
+            <p>Thank you, your email has been verified. Your account is now active.</p>
+            <p>Please use the button below to login to your account.</p>
         </div>
+        <a th:href="@{/users/login}"
+            style="font-size: 20px; background-color: rgb(48, 126, 243); border: 1px solid rgb(249, 249, 249); border-radius: 3px; color: white; width: 300px; margin: auto; height: 40px; padding: 5px;">
+            Login
+            to your
+            account</a>
     </div>
 
-    
-    
+
+
 </body>
 
 </html>

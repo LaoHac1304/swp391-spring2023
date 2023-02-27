@@ -82,12 +82,12 @@
                                     </svg>
                                     <div class="from-to-content">
                                         <div class="content-from">
-                                            <div class="hour" th:text="${trip.startTime}">10:50</div>
+                                            <div class="hour" th:text="${#strings.substring(trip.startTime, 0, 5)}">10:50</div>
                                             <div class="place" th:text="'• ' + ${trip.departureDetail}">• CD. Châu Đốc
                                             </div>
                                         </div>
                                         <div class="content-to">
-                                            <div class="hour" th:text="${trip.endTime}">13:00</div>
+                                            <div class="hour" th:text="${#strings.substring(trip.endTime, 0, 5)}">13:00</div>
                                             <div class="place" th:text="'• ' + ${trip.arrivalDetail}">• Cựu Hội</div>
                                         </div>
                                     </div>

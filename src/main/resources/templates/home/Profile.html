@@ -121,7 +121,7 @@
                                         <th>Day</th>
                                         <th>Start time</th>
                                         <th>End time</th>
-                                        <th>Price</th>
+                                        <!-- <th>Price</th> -->
                                         <th>Seats</th>
                                         <th>Quantity</th>
                                         <th>Total</th>
@@ -139,9 +139,9 @@
                                         <td th:text="${orderDetail.departure}">Departure</td>
                                         <td th:text="${orderDetail.arrival}">Arrival</td>
                                         <td th:text="${orderDetail.trip.date}">Day</td>
-                                        <td th:text="${orderDetail.trip.startTime}">Start time</td>
-                                        <td th:text="${orderDetail.trip.endTime}">End time</td>
-                                        <td th:text="${orderDetail.trip.price}">Price</td>
+                                        <td th:text="${#strings.substring(orderDetail.trip.startTime, 0, 5)}">Start time</td> 
+                                        <td th:text="${#strings.substring(orderDetail.trip.endTime, 0, 5)}">End time</td> 
+                                        <!-- <td th:text="${orderDetail.trip.price}">Price</td> -->
                                         <td th:text="${orderDetail.listSeats}">Seats</td>
                                         <td th:text="${orderDetail.quantity}">Quantity</td>
                                         <td th:text="${orderDetail.total}">Total</td>

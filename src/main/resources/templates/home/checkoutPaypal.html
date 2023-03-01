@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Paypal Checkout</title>
+</head>
+<body>
+    <h1>Paypal Checkout</h1>
+    <form method="post" action="#" id="paypal-form">
+        <div id="paypal-button"></div>
+    </form>
+    
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD" data-sdk-integration-source="button-factory"></script>
+    <script>
+        paypal.Buttons({
+            createOrder: function() {
+                return fetch('/create-paypal-order', {
+                    method: 'POST'
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(data) {
+                    return data.id;
+                });
+            },
+            onApprove: function(data, actions) {
+                return fetch('/capture-paypal-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        orderID: data.orderID
+                    })
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(details) {
+                    alert('Payment completed! Thank you for your purchase.');
+                    // Redirect to a success page or do other post-payment processing
+                });
+            }
+        }).render('#paypal-button');
+    </script>
+</body>
+</html>

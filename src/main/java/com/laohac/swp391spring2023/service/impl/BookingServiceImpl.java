@@ -2,7 +2,6 @@ package com.laohac.swp391spring2023.service.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -77,7 +76,7 @@ public class BookingServiceImpl implements BookingService {
         Trip trip = checkOutInfoDTOReponse.getTrip();
         Car car = checkOutInfoDTOReponse.getTrip().getCar();
         int quantity = checkOutInfoDTOReponse.getLSeats().size();
-        Date date = new Date();
+        //Date date = new Date();
         String email = user.getEmail();
         String fullName = user.getFullName();
         String phoneNumber = user.getPhoneNumber();

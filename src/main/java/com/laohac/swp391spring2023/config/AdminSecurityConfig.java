@@ -39,7 +39,7 @@ public class AdminSecurityConfig {
         httpSecurity.authenticationProvider(authenticationProvider1());
 
         httpSecurity.authorizeRequests()
-        .antMatchers("/homepage","/homepage/login","/css/**", "/js/**","/images/**").permitAll();
+        .antMatchers("/", "/pay", "/homepage","/homepage/login","/css/**", "/js/**","/images/**").permitAll();
 
         httpSecurity .antMatcher("/member/**").authorizeRequests().anyRequest().hasAuthority("admin")
         .and()

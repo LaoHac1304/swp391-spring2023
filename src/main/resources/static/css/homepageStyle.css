@@ -118,6 +118,10 @@ hr:not([size]) {
     margin-bottom: 20px;
 }
 
+.seat-td {
+    height: 100%;
+}
+
 .userFooter {
     display: flex;
     flex-direction: column;
@@ -799,6 +803,14 @@ hr {
     padding: 2.125rem 1.875rem;
     position: relative;
     z-index: 2;
+}
+
+.datatable-table {
+    max-width: 100%;
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: separate;
+    font-size: 13.2px;
 }
 
 .form-control, .dataTable-input {

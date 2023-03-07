@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/fragments::homeHead"></div>
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"> 
-    <script th:src="@{/js/bootstrap.js}"></script> 
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
     <link rel="stylesheet" th:href="@{/css/homepageStyle.css}">
 </head>
 
-<body>
+<body style="background-image: url(/images/slider/slider1.webp); background-size: cover; 
+    font-family: 'Open Sans', sans-serif;">
 
     <div class="container-fluid">
 
 
-        <form th:action="@{/users/login}"  method="post" class="form-login">
+        <form th:action="@{/users/login}" method="post" class="form-login">
             <div th:if="${param.error}">
                 <h4 style="color: red">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</h4>
             </div>
@@ -24,17 +26,17 @@
             <label>Username</label><br>
             <input type="username" class="form-control" name="username" placeholder="Username">
             <label class="lbpass">Password</label>
-            <input type="password" class="form-control" name="password"  placeholder="Password">
+            <input type="password" class="form-control" name="password" placeholder="Password">
 
-            <p class="lbregister"> Are you new here ? 
+            <p class="lbregister"> Are you new here ?
                 <!--Register page here-->
                 <a th:href="@{/users}">Register</a>
             </p>
-            
+
             <button type="submit" class="login">Login</button>
 
             <div class="social">
-                
+
                 <button type="button" class="google">
                     <img th:src="@{/images/googleicon.webp}" alt="" style="width: 15%;
                     height: 100%;">
@@ -44,6 +46,10 @@
             <!--Forgot password here, update password here-->
             <a href="#" class="lbforgotpassword">Forgot password?</a>
         </form>
+    </div>
+
+    <!-- Script -->
+    <div th:replace="fragments/fragments::homeScript"></div>
     </div>
 </body>
 

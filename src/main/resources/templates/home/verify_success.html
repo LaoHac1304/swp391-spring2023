@@ -11,24 +11,36 @@
     <link rel="stylesheet" th:href="@{/css/homepageStyle.css}">
 </head>
 
-<body style="background-color: rgb(221, 225, 225);">
+<body style="background-image: url(/images/slider/slider1.webp); background-size: cover; 
+font-family: 'Open Sans', sans-serif;">
 
     <div class="container"
-        style="text-align: center; width: 500px; height: 330px; border: 1px solid rgb(246, 225, 225); margin: auto; margin-top: 100px; background-color: white; border-radius: 10px;padding: 0px;">
+       >
 
-        <img th:src="@{https://d226aj4ao1t61q.cloudfront.net/0w1grixmq_blog_confirmationmail.png}"
-            alt="Verify successfully"
-            style="width: 500px; height: 200px;border-top-right-radius: 10px;border-top-left-radius:10px; border-bottom-left-radius: 0px; border-bottom-right-radius: 0px   ;">
-
+        <div class="verify-form">
+            <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+                <i style="color: #9ABC66;
+                font-size: 100px;
+                line-height: 200px;
+                margin-left: -15px;" class="checkmark">✓</i>
+              </div>
+              <h1 style="color: #88B04B;
+              font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+              font-weight: 900;
+              font-size: 40px;
+              margin-bottom: 10px;">Success</h1>
         <div class="verify-msg">
-            <p>Thank you, your email has been verified. Your account is now active.</p>
-            <p>Please use the button below to login to your account.</p>
+            <p class="verify-msg">Thank you, your email has been verified. Your account is now active.</p>
+            <br>
+            <p class="verify-msg">Please use the button below to login to your account.</p>
         </div>
-        <a th:href="@{/users/login}"
-            style="font-size: 20px; background-color: rgb(48, 126, 243); border: 1px solid rgb(249, 249, 249); border-radius: 3px; color: white; width: 300px; margin: auto; height: 40px; padding: 5px;">
+        <br>
+        <a th:href="@{/users/login}" class="btn-verifysuccess">
             Login
             to your
             account</a>
+        </div>
+        
     </div>
 
 

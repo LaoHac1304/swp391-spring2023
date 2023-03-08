@@ -153,6 +153,7 @@
     <title>24HR Car Rental</title>
 
     <!--Jquery-->
+
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js}"></script>
     <link rel="stylesheet" type="text/css"
         th:href="@{https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css}" />
@@ -301,32 +302,38 @@
                 <div class="col-lg mb-3 mb-lg-0">
                     <i class="fa-solid fa-calendar-days fa-lg"></i>
                     <label class="search-label">Date of departure</label>
-                    <input type="date" class="form-control" th:field="*{date}" placeholder="Date" required
-                        min="2023-03-07" />
+                    <input type="date" class="form-control" th:field="*{date}" required id="myDate">
                     <script>
-                        let today = new Date().toISOString().split('T')[0];
+                        var today = new Date().toISOString().split('T')[0];
                         document.getElementById("myDate").setAttribute("min", today);
                     </script>
                 </div>
 
 
                 <div class="col-lg mb-3 mb-lg-0">
-                    <i class="fa-solid fa-map-location-dot fa-lg"></i>
-                    <label class="search-label">Pick up place</label>
+                    <div class="pickupLabel">
+                        <i class="fa-solid fa-map-location-dot fa-lg"></i>
+                        <label class="search-label">Pick up place</label>
+                    </div>
+
                     <select id="pickUpPlace" class="form-control" th:field="*{state1}" required
-                        data-placeholder="Pick up place" style="width: 100%">
-                        <option value="">-- Select an option --</option>
+                        data-placeholder="Pick up place" style="width: 100%" name="pickUpPlace">
+                        <option value="" hidden>-- Select an option --</option>
                         <th:block th:each="tripD : ${departure}">
                             <option th:value="${tripD}" th:text="${tripD}"></option>
                         </th:block>
                     </select>
+
                 </div>
                 <div class="col-lg mb-3 mb-lg-0">
-                    <i class="fa-solid fa-location-dot fa-lg"></i>
-                    <label class="search-label">Drop off place</label>
+                    <div class="dropoffLabel">
+                        <i class="fa-solid fa-location-dot fa-lg"></i>
+                        <label class="search-label">Drop off place</label>
+                    </div>
+
                     <select id="dropoffPlace" class="form-control" th:field="*{state2}" required
-                        data-placeholder="Drop off place" style="width: 100%">
-                        <option value="">-- Select an option --</option>
+                        data-placeholder="Drop off place" style="width: 100%" name="dropoffPlace">
+                        <option value="" hidden>-- Select an option --</option>
                         <th:block th:each="tripA : ${arrival}">
                             <option th:value="${tripA}" th:text="${tripA}"></option>
                         </th:block>
@@ -334,23 +341,6 @@
 
 
                 </div>
-
-                <script>
-                    $(document).ready(function () {
-                        $('select').select2();
-                    });
-
-                    $(document).ready(function () {
-                        $("#pickupPlace, #dropoffPlace").on("change", function () {
-                            var selectedValue = $(this).val();
-                            var otherSelect = $("#pickupPlace, #dropoffPlace").not(this);
-                            otherSelect.find("option[value='" + selectedValue + "']").prop("disabled", true);
-                        });
-                    });
-                </script>
-
-
-
 
 
                 <div class="col-lg mb-3 mb-lg-0">
@@ -360,6 +350,22 @@
                         <span style="color: white">Check Availability</span>
                     </button>
                 </div>
+
+                <script>
+                    const pickUpPlaceSelect = document.getElementById("pickUpPlace");
+                    const dropoffPlaceSelect = document.getElementById("dropoffPlace");
+
+                    pickUpPlaceSelect.addEventListener("change", (event) => {
+                        const selectedOptionText = event.target.options[event.target.selectedIndex].text;
+                        for (const option of dropoffPlaceSelect.options) {
+                            if (option.text === selectedOptionText) {
+                                option.disabled = true;
+                            } else {
+                                option.disabled = false;
+                            }
+                        }
+                    });
+                </script>
             </form>
             <!-- backendCode End -->
         </div>
@@ -522,91 +528,6 @@
                 </div>
             </div>
 
-            <!-- <div class="row align-items-center service-item-wrap">
-                <div class="col-lg-7 p-lg-0">
-
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade active show" id="spa" role="tabpanel">
-                            <img src="/images/routes/routes1.webp" alt="" class="image-size" />
-                        </div>
-                        <div class="tab-pane fade" id="restaurent" role="tabpanel">
-                            <img src="/images/routes/routes2.webp" alt="" class="image-size" />
-                        </div>
-                        <div class="tab-pane fade" id="swimming" role="tabpanel">
-                            <img src="/images/routes/routes3.webp" alt="" class="image-size" />
-                        </div>
-                        <div class="tab-pane fade" id="conference" role="tabpanel">
-                            <img src="/images/routes/routes4.webp" alt="" class="image-size" />
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-5 position-relative">
-
-                    <div class="service-menu-area" style="padding-left: 20px">
-                        <ul style="list-style: none" class="nav">
-                            <li>
-                                <a data-bs-toggle="tab" href="#spa">
-                                    <span class="service-icon">
-                                        <i class="fa-solid fa-van-shuttle fa-2xl"></i>
-                                    </span>
-                                    <h5 style="color: #000c21">Ho Chi Minh City - Da Lat</h5>
-                                    <p style="color: black">
-                                        <span style="color: #ea001e">Distance: </span> 310km
-                                    </p>
-                                    <p style="color: black">
-                                        <span style="color: #ea001e">Duration: </span> 8 hour
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a data-bs-toggle="tab" href="#restaurent">
-                                    <span class="service-icon">
-                                        <i class="fa-solid fa-van-shuttle fa-2xl"></i>
-                                    </span>
-                                    <h5 style="color: #000c21">Ho Chi Minh City - Nha Trang</h5>
-                                    <p style="color: black">
-                                        <span style="color: #ea001e">Distance: </span> 426km
-                                    </p>
-                                    <p style="color: black">
-                                        <span style="color: #ea001e">Duration: </span> 12 hour
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a data-bs-toggle="tab" href="#swimming">
-                                    <span class="service-icon">
-                                        <i class="fa-solid fa-van-shuttle fa-2xl"></i>
-                                    </span>
-                                    <h5 style="color: #000c21">Ho Chi Minh City - Da Nang</h5>
-                                    <p style="color: black">
-                                        <span style="color: #ea001e">Distance: </span> 980km
-                                    </p>
-                                    <p style="color: black">
-                                        <span style="color: #ea001e">Duration: </span> 20 hour
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a style="margin-bottom: -17px" data-bs-toggle="tab" href="#conference">
-                                    <span class="service-icon">
-                                        <i class="fa-solid fa-van-shuttle fa-2xl"></i>
-                                    </span>
-                                    <h5 style="color: #000c21">Ho Chi Minh City - Can Tho</h5>
-                                    <p style="color: black">
-                                        <span style="color: #ea001e">Distance: </span> 166km
-                                    </p>
-                                    <p style="color: black">
-                                        <span style="color: #ea001e">Duration: </span> 3.30 hour
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div> -->
-
             <div class="main-slider">
                 <div class="slider slider-nav">
                     <div class="slider-container">
@@ -701,6 +622,17 @@
                     </div>
                 </div>
             </div>
+            <script>
+                $('.slider-nav').slick({
+                    slidesToShow: 4,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    // slidesToShow: 3,
+                    // slidesToScroll: 3,
+                    dots: true,
+                    focusOnSelect: true
+                });
+            </script>
         </div>
     </section>
 </div>
@@ -838,6 +770,7 @@
 
     <!-- Custom Js Link -->
     <script th:src="@{/js/main.js}"></script>
+
 </div>
 
 <!------------------------------------------------------------------------------------------------------------>
@@ -1221,23 +1154,50 @@
                     <label class="search-label">Date of departure</label>
                     <input type="date" class="form-control" th:field="*{date}" placeholder="Date" required />
                 </div>
+
                 <div class="col-lg mb-3 mb-lg-0">
-                    <i class="fa-solid fa-map-location-dot fa-lg"></i>
-                    <label class="search-label">Pick up place</label>
-                    <input class="form-control" type="search" th:field="*{state1}" placeholder="Pick up place"
+                    <div class="pickupLabel">
+                        <i class="fa-solid fa-map-location-dot fa-lg"></i>
+                        <label class="search-label">Pick up place</label>
+                    </div>
+
+                    <!-- <input class="form-control" type="search" th:field="*{state1}" placeholder="Pick up place"
                         list="pickupList" required />
                     <datalist id="pickupList">
                         <option th:each="trip: ${listStates}" th:value="${trip.departure}"></option>
-                    </datalist>
+                    </datalist> -->
+
+                    <select id="pickUpPlace" class="form-control" th:field="*{state1}" required
+                        data-placeholder="Pick up place" style="width: 100%" name="pickUpPlace">
+                        <option value="" hidden>-- Select an option --</option>
+                        <th:block th:each="tripD : ${departure}">
+                            <option th:value="${tripD}" th:text="${tripD}"></option>
+                        </th:block>
+                    </select>
+
                 </div>
                 <div class="col-lg mb-3 mb-lg-0">
-                    <i class="fa-solid fa-location-dot fa-lg"></i>
-                    <label class="search-label">Drop off place</label>
-                    <input class="form-control" type="search" th:field="*{state2}" placeholder="Drop off place" required
+                    <div class="dropoffLabel">
+                        <i class="fa-solid fa-location-dot fa-lg"></i>
+                        <label class="search-label">Drop off place</label>
+                    </div>
+
+                    <!-- <input class="form-control" type="search" th:field="*{state2}" placeholder="Drop off place" required
                         list="dropoffList" />
                     <datalist id="dropoffList">
                         <option th:each="trip: ${listStates}" th:value="${trip.arrival}"></option>
-                    </datalist>
+                    </datalist> -->
+
+                    <select id="dropoffPlace" class="form-control" th:field="*{state2}" required
+                        data-placeholder="Drop off place" style="width: 100%" name="dropoffPlace">
+                        <option value="" hidden>-- Select an option --</option>
+                        <th:block th:each="tripA : ${arrival}">
+                            <option th:value="${tripA}" th:text="${tripA}"></option>
+                        </th:block>
+                    </select>
+
+
+
                 </div>
                 <div class="col-lg mb-3 mb-lg-0">
                     <br />
@@ -1246,6 +1206,8 @@
                         <span style="color: white">Check Availability</span>
                     </button>
                 </div>
+
+
             </form>
             <!-- backendCode End -->
         </div>

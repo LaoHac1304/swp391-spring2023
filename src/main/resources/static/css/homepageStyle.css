@@ -590,7 +590,8 @@ a.main-btn3.mt-2:hover {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    background-color: antiquewhite;
+    background-color: #ddd;
+
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -630,7 +631,7 @@ a.main-btn3.mt-2:hover {
     border-radius: 4px;
     height: 40px;
     margin-top: 8px;
-    border: .0625px solid #F2C94C;
+    /* border: .0625px solid #F2C94C; */
 }
 
 .partner-container {
@@ -869,6 +870,10 @@ hr {
     border-spacing: 0;
     border-collapse: separate;
     font-size: 13.2px;
+}
+
+.input-field{
+    margin-bottom: 10px;
 }
 
 .form-control,
@@ -1279,6 +1284,15 @@ h5.text-decoration-underline.mb-4 {
     background-color: #FFCC00;
 }
 
+.select2-container {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+    width: 100px !important;
+}
+
 .main-slider {
     font-family: Arial;
     width: 1000px;
@@ -1433,7 +1447,7 @@ h5.text-decoration-underline.mb-4 {
 }
 
 .footer_wrapper .copyright-section {
-    padding: 1.25rem 0 .3125rem;
+    /* padding: 1.25rem 0 .3125rem; */
     text-align: center;
 }
 

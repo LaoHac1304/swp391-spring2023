@@ -18,7 +18,7 @@
 <body>
     <div th:replace="fragments/fragments::bookHeader"></div>
     <div th:replace="fragments/fragments::bookBanner">
-        <script>
+        <!-- <script>
             const pickUpPlaceSelect1 = document.getElementById("pickUpPlace");
             const dropoffPlaceSelect1 = document.getElementById("dropoffPlace");
 
@@ -32,7 +32,7 @@
                     }
                 }
             });
-        </script>
+        </script> -->
     </div>
     <!-- show a list of available tickets for customer -->
     <div class="container-trip-page">
@@ -65,7 +65,7 @@
         </div>
 
 
-        <div class="container-search-trip" th:each="trip: ${listTrips}" >
+        <div class="container-search-trip" th:each="trip: ${listTrips}">
             <form th:action="@{/booking/{id}(id=${trip.id})}" id="myForm">
                 <div class="TicketPC-Container">
                     <div class="TicketPC-BodyFlex">
@@ -77,9 +77,6 @@
                                 <div class="bus-info">
                                     <div class="bus-name" th:text="${trip.car.carCompany.getName()} + ' Busline'">Huệ
                                         Nghĩa</div>
-                                    <!-- <button type="button"
-                                    class="ant-btn-bus-rating-button">
-                                </button> -->
                                 </div>
                                 <div class="seat-type"
                                     th:text="${trip.car.getPlateNumber()} + ' - ' +${trip.car.getCapacity()} + ' Seats'">
@@ -98,12 +95,14 @@
                                     </svg>
                                     <div class="from-to-content">
                                         <div class="content-from">
-                                            <div class="hour" th:text="${#strings.substring(trip.startTime, 0, 5)}">10:50</div>
+                                            <div class="hour" th:text="${#strings.substring(trip.startTime, 0, 5)}">
+                                                10:50</div>
                                             <div class="place" th:text="'• ' + ${trip.departureDetail}">• CD. Châu Đốc
                                             </div>
                                         </div>
                                         <div class="content-to">
-                                            <div class="hour" th:text="${#strings.substring(trip.endTime, 0, 5)}">13:00</div>
+                                            <div class="hour" th:text="${#strings.substring(trip.endTime, 0, 5)}">13:00
+                                            </div>
                                             <div class="place" th:text="'• ' + ${trip.arrivalDetail}">• Cựu Hội</div>
                                         </div>
                                     </div>
@@ -137,11 +136,12 @@
             </form>
 
         </div>
-        
+
 
         <div th:replace="fragments/fragments::homeScript"></div>
-        
+
 </body>
 <br><br><br>
 <div th:replace="fragments/fragments::bookFooter"></div>
+
 </html>

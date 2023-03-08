@@ -19,7 +19,7 @@
                             <div class="row-payment">
                                 <label class="flex-label">
                                     <span class="span-payments">
-                                        <input type="radio" name="paymentMethod" class="custom-radio"
+                                        <input type="radio" name="paymentMethod" value="paypal" class="custom-radio"
                                             style="height: min-content;">
                                     </span>
                                     <span class="span-payments" style="padding-left: 8px;">
@@ -36,7 +36,7 @@
                             <div class="row-payment">
                                 <label class="flex-label">
                                     <span class="span-payments">
-                                        <input type="radio" name="paymentMethod" class="custom-radio"
+                                        <input type="radio" name="paymentMethod" value="payonbus" class="custom-radio"
                                             style="height: min-content;">
                                     </span>
                                     <span class="span-payments" style="padding-left: 8px;">
@@ -120,6 +120,16 @@
 
             </div>
         </form>
+        <script>
+            const paymentRadioButtons = document.getElementsByName('paymentMethod');
+          
+            // add event listener to each radio button to update hidden input field
+            paymentRadioButtons.forEach(button => {
+              button.addEventListener('click', function() {
+                document.getElementById('paymentMethod').value = this.value;
+              });
+            });
+          </script>
     </div>
     <br><br>
     <div th:replace="fragments/fragments::detailFooter"></div>

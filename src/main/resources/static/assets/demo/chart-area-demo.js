@@ -4,14 +4,14 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 var listMembers = /*[[${listMembers}]]*/ []; // get listMembers from model attribute
 
 
-
+// Important
 var div = document.querySelector('div[data-total]');
 var total = parseInt(div.getAttribute('data-total'));
 function getTotal(total) {
-  // do something with the total
   return total;
 }
 getTotal(total);
+//
 
 
 // Area Chart Example
@@ -33,7 +33,6 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 50,
       pointBorderWidth: 2,
-      // data: [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984, 38451],
       data: [2, total -4, total - 3, total - 2, total -1, total],
     }],
   },

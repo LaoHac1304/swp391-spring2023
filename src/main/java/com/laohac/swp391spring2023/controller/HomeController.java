@@ -45,74 +45,83 @@ public class HomeController {
 
         for (Route route : listRoute) {
             listState1.add(route.getDeparture());
-            listState2.add(route.getArrival());    
+            listState2.add(route.getArrival());
         }
         model.addAttribute("departure", listState1);
         model.addAttribute("arrival", listState2);
 
     }
 
-    
     @GetMapping("")
-    public String showHomePage(Model model){
+    public String showHomePage(Model model) {
 
-        
         RouteDTORequest routeDTORequest = new RouteDTORequest();
         model.addAttribute("routeDTORequest", routeDTORequest);
-        
+
         return "home/index";
     }
 
     @GetMapping("/adminDashBord")
-    public String showAdminDashBoard(Model model){
+    public String showAdminDashBoard(Model model) {
         model.addAttribute("listMembers", memberService.getAllMember());
         return "adminDashboard/Adashboard";
     }
 
     @GetMapping("/customerDashBord")
-    public String showCustomerDashBoard(){
+    public String showCustomerDashBoard() {
         return "home/index";
     }
 
     @GetMapping("/login")
-    public String showLogin(Model model){
+    public String showLogin(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "redirect:/users/login";
     }
 
     @GetMapping("/logout")
-      public String fetchSignoutSite(HttpServletRequest request, HttpServletResponse response) {        
+    public String fetchSignoutSite(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         SecurityContextHolder.clearContext();
-  
+
         session = request.getSession(false);
-        if(session != null) {
+        if (session != null) {
             session.invalidate();
         }
-  
-        return "/homepage";
-        //return "homepage/login";
-      }
 
-      @GetMapping("/orderForm")
-      public String showOrderForm(){
+        return "/homepage";
+        // return "homepage/login";
+    }
+
+    @GetMapping("/orderForm")
+    public String showOrderForm() {
 
         return "home/orderForm";
-      }
+    }
 
     // @PostMapping("/sign-in")
-    // public String login(HttpSession session ,Model model, @ModelAttribute("user") UserDTORequest userDTORequest){
+    // public String login(HttpSession session ,Model model, @ModelAttribute("user")
+    // UserDTORequest userDTORequest){
 
-    //     UserDTOResponse userDTOResponse = userService.authenticated(userDTORequest);
-    //     if (userDTOResponse == null) return "home/login";
-    //     session.setAttribute("userSession", userDTOResponse);
-    //     if (userDTOResponse.getRole().equals("admin")){
-    //         //return "adminDashboard/Adashboard";
-    //         return "redirect:/member/viewall";
-    //     }
-    //     return "home/index";
+    // UserDTOResponse userDTOResponse = userService.authenticated(userDTORequest);
+    // if (userDTOResponse == null) return "home/login";
+    // session.setAttribute("userSession", userDTOResponse);
+    // if (userDTOResponse.getRole().equals("admin")){
+    // //return "adminDashboard/Adashboard";
+    // return "redirect:/member/viewall";
     // }
-    
-    
+    // return "home/index";
+    // }
+
+    @GetMapping("/verify_success")
+    public String showSuccess() {
+
+        return "home/verify_success";
+    }
+
+    @GetMapping("/verify_failure")
+    public String showFailure() {
+
+        return "home/verify_failure";
+    }
 }

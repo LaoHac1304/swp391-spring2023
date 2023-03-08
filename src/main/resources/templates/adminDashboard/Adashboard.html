@@ -12,6 +12,7 @@
         <nav th:replace ="fragments/fragments::adminNavbar"></nav>
         <div id="layoutSidenav">
             <div th:replace = "fragments/fragments::adminSideNav"></div>
+            <!-- Code user settings ở đây a ơi-->
             <div id="layoutSidenav_content">
 
                 <!--Main-->
@@ -22,6 +23,7 @@
                             <div class="col-xl-3 col-md-6">
                                 <div class="box mb-4">
                                     <p th:text="${total.employees} + ' Employees'"></p>
+                                    <!-- Important place-->
                                     <div th:attr="data-total=${total.employees}"></div>
                                     <i class="fa fa-user box-icon text-white"></i>
                                 </div>
@@ -97,9 +99,16 @@
                         </div>
                     </div>
                 </main>
-
+            
                 <footer th:replace="fragments/fragments::adminFooter"></footer>
             </div>
+
+
+
+
+
+
+            <!--đừng đụng ở dưới-->
         </div>
         <div th:replace ="fragments/fragments::adminScript"></div>
         <script>
@@ -111,3 +120,4 @@
         </script>
     </body>
 </html>
+

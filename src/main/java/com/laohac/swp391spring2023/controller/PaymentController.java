@@ -2,6 +2,8 @@ package com.laohac.swp391spring2023.controller;
 
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.laohac.swp391spring2023.model.dto.CheckOutInfoDTOReponse;
+import com.laohac.swp391spring2023.model.dto.PaypalUserInfo;
+import com.laohac.swp391spring2023.model.entities.OrderDetail;
 import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.Seat;
 import com.laohac.swp391spring2023.model.entities.Trip;
@@ -131,6 +135,16 @@ public class PaymentController {
         String siteURL = getSiteURL(request);
         bookingService.sendVerificationEmail(session, siteURL);
         if(paymentMethod.equals("paypal")){
+            OrderDetail orderDetail = (OrderDetail) session.getAttribute("orderDetailEmail");
+            BigDecimal divisor = new BigDecimal("25000");
+		    BigDecimal price = orderDetail.getTotal();
+            price = price.divide(divisor);
+            PaypalUserInfo paypalUserInfo = PaypalUserInfo.builder()
+                                            .fullName(orderDetail.getFullName())
+                                            .date(new Date())
+                                            .price(price)
+                                            .build();
+            model.addAttribute("paypalUserInfo", paypalUserInfo);
             return "redirect:/";
         }
         return "redirect:/homepage";

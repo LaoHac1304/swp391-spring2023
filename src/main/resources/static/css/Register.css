@@ -19,7 +19,7 @@ input[type=password] {
   color: #212529;
   background-color: #ddd;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: 1px solid #aaa;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -35,7 +35,7 @@ input[type=password]:focus {
 
 /* Overwrite default styles of hr */
 hr {
-  border: 1px solid #f1f1f1;
+  border: 1px solid #c7c0c0;
   margin-bottom: 25px;
 }
 

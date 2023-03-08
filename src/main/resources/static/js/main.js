@@ -138,10 +138,8 @@ function checkSubmitButton() {
 }
 
 $(document).ready(function () {
-    $('select').select2();
+    $('#sex').select2();
 });
-
-
 
 const pickUpPlaceSelect = document.getElementById("pickUpPlace");
 const dropoffPlaceSelect = document.getElementById("dropoffPlace");
@@ -156,3 +154,5 @@ pickUpPlaceSelect.addEventListener("change", (event) => {
         }
     }
 });
+
+

@@ -1,16 +1,88 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8" />
-<title>Paypal Payment</title>
+	<meta charset="UTF-8" />
+	<title>Paypal Payment</title>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet'
+		type='text/css'>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.3.2/css/simple-line-icons.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/homepageStyle.css}" />
+
+	<!-- Bootstrap 5 CDN Links -->
+	<link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css}" rel="stylesheet"
+		type="text/css">
+	<link rel="stylesheet" type="text/css"
+		th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}" />
+
 </head>
-<body>
-<h1>Paypal Payment with Spring Boot - ShareEverythings.com</h1>
-<form method="post" th:action="@{/pay}">
-	<input type="text" th:value="${price}" name="price" />
-	<button type="submit"> Payment with Paypal </button>
-</form>
+
+<body
+	style="font-family: 'Roboto', sans-serif; background-image: url(/images/slider/slider1.webp); background-size: cover;">
+	<!-- <h1 style="color: black;">Paypal Payment with Spring Boot - ShareEverythings.com</h1> -->
 
 
+
+
+	<form method="post" th:action="@{/pay}">
+		<input type="hidden" th:value="${price}" name="price" />
+		<div class="containerPaypal">
+			<div class="leftPaypal">
+				<div class="info-boxPaypal">
+					<div class="receiptPaypal">
+						Receipt for </br><span class="spanPaypal">24HR</span>
+					</div>
+					<div class="entryPaypal">
+						<i class="icon-wallet" aria-hidden="true"></i>
+						<p>Amount:</br><span class="spanPaypal" th:text="'$'+ ${price} + ' USD'"></span></p>
+					</div>
+					<div class="entryPaypal">
+						<i class="icon-calendar" aria-hidden="true"></i>
+						<p>Date:</br><span class="spanPaypal">Truyen date now vao day!</span></p>
+					</div>
+					<div class="entryPaypal">
+						<i class="icon-star" aria-hidden="true"></i>
+						<p>Issuer:</br><span class="spanPaypal">24HR</span></p>
+					</div>
+
+				</div>
+			</div>
+			<div class="rightPaypal">
+				<div class="contentPaypal">
+					<div class="headerPaypal">
+						<img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png">
+						<h4 class="h4Paypal">Oct 18, 2015 08:30:57 PDT TRUYEN DATE NOW VAO DAYYYYY</h4>
+					</div>
+					<div class="mainPaypal">
+						<h3 class="h3Paypal">24HR Booking Service</h3>
+						<h5 class="h5Paypal" th:text="'Total: '+'$'+ ${price} + ' USD'"></h5>
+					</div>
+					<div class="messagePaypal">
+						<p>Hello Truyen ten vao day,
+
+							</br>
+							You sent a payment of $20.00 USD to 24HR (<a class="aPaypal"
+								href="mailto:paypal@24HR.com">paypal@24HR.com</a>)</p>
+
+						<h6 class="h6Paypal">It may take a few moments for this</br>transaction to appear in your
+							account.
+						</h6>
+
+					</div>
+					<div class="footerPaypal">
+						<a class="aPaypal" href="#">www.paypal.com/help</a>
+						<!-- <h6 class="h6Paypal">Invoice ID: 108165</h6> -->
+					</div>
+					<br>
+					<button style="text-align: center; float: right; margin-bottom: 11px;" type="submit" class="btn btn-primary">
+						Checkout </button>
+					
+				</div>
+				<br>
+			</div>
+		</div>
+	</form>
 </body>
+
 </html>

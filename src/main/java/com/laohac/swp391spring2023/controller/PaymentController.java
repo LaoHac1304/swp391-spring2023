@@ -27,6 +27,7 @@ import com.laohac.swp391spring2023.repository.RouteRepository;
 import com.laohac.swp391spring2023.repository.SeatRepository;
 import com.laohac.swp391spring2023.repository.TripRepository;
 import com.laohac.swp391spring2023.service.BookingService;
+import com.nimbusds.oauth2.sdk.Request;
 
 import lombok.RequiredArgsConstructor;
 
@@ -98,7 +99,6 @@ public class PaymentController {
 
         CheckOutInfoDTOReponse checkOutInfoDTOReponse = (CheckOutInfoDTOReponse) session.getAttribute("checkoutinfo");
         model.addAttribute("checkoutinfo", checkOutInfoDTOReponse);
-        
         return "home/checkoutForm";
     }
 
@@ -123,12 +123,16 @@ public class PaymentController {
     }
 
     @PostMapping("/save-order")
-    public String saveOrder(HttpSession session, Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException{
+    public String saveOrder(@RequestParam(name = "paymentMethod") String paymentMethod, HttpSession session, Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException{
 
         
         bookingService.saveOrder(session);
+        
         String siteURL = getSiteURL(request);
         bookingService.sendVerificationEmail(session, siteURL);
+        if(paymentMethod.equals("paypal")){
+            return "redirect:/";
+        }
         return "redirect:/homepage";
     }
 

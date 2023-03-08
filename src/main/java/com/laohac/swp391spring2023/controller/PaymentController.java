@@ -3,6 +3,7 @@ package com.laohac.swp391spring2023.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -130,7 +131,10 @@ public class PaymentController {
     public String saveOrder(@RequestParam(name = "paymentMethod") String paymentMethod, HttpSession session, Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException{
 
         
-        bookingService.saveOrder(session);
+        if(paymentMethod.equals("paypal")) 
+            bookingService.saveOrder(session,true);
+        else 
+        bookingService.saveOrder(session,false);
         
         String siteURL = getSiteURL(request);
         bookingService.sendVerificationEmail(session, siteURL);
@@ -139,12 +143,17 @@ public class PaymentController {
             BigDecimal divisor = new BigDecimal("25000");
 		    BigDecimal price = orderDetail.getTotal();
             price = price.divide(divisor);
+
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String strDate = formatter.format(date);
+
             PaypalUserInfo paypalUserInfo = PaypalUserInfo.builder()
                                             .fullName(orderDetail.getFullName())
-                                            .date(new Date())
+                                            .date(strDate)
                                             .price(price)
                                             .build();
-            model.addAttribute("paypalUserInfo", paypalUserInfo);
+            session.setAttribute("paypalUserInfo", paypalUserInfo);
             return "redirect:/";
         }
         return "redirect:/homepage";

@@ -2,6 +2,7 @@ package com.laohac.swp391spring2023.service.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -81,7 +82,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void saveOrder(HttpSession session) {
+    public void saveOrder(HttpSession session, boolean isSaved) {
        
         CheckOutInfoDTOReponse checkOutInfoDTOReponse = (CheckOutInfoDTOReponse) session.getAttribute("checkoutinfo");
         
@@ -98,6 +99,21 @@ public class BookingServiceImpl implements BookingService {
         String arrival = trip.getArrivalDetail();
         String listSeats = checkOutInfoDTOReponse.getLSeats().toString();
 
+        String str = listSeats;
+        str = str.replaceAll("[\\[\\]\\s+]", "");
+        List<Integer> listSeatsInt = Arrays.stream(str.split(","))
+                                    .map(String::trim)
+                                    .mapToInt(Integer::parseInt)
+                                    .boxed()
+                                    .collect(Collectors.toList());
+        List<String> listSeatsNumber = new ArrayList<>();
+        for (Integer integer : listSeatsInt) {
+            Seat seat = seatRepository.findById(integer.intValue());
+            if (seat!=null){
+                listSeatsNumber.add(Integer.toString(seat.getSeatNumber()));
+            }
+        }
+
         OrderDetail orderDetail = new OrderDetail();
         orderDetail = OrderDetail
                             .builder()
@@ -113,10 +129,11 @@ public class BookingServiceImpl implements BookingService {
                             .departure(departure)
                             .arrival(arrival)
                             .listSeats(listSeats)
+                            .listSeatsNumber(String.join(",", listSeatsNumber))
                             .build();
-        orderDetailRepository.save(orderDetail);
+        if (!isSaved) orderDetailRepository.save(orderDetail);
         session.setAttribute("orderDetailEmail", orderDetail);
-        System.out.println("ahihi");
+       
         
 
     }

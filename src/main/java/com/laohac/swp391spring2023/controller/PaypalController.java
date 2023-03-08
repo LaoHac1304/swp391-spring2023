@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.laohac.swp391spring2023.model.PaypalPaymentIntent;
 import com.laohac.swp391spring2023.model.PaypalPaymentMethod;
 import com.laohac.swp391spring2023.model.dto.CheckOutInfoDTOReponse;
+import com.laohac.swp391spring2023.model.dto.PaypalUserInfo;
 import com.laohac.swp391spring2023.service.BookingService;
 import com.laohac.swp391spring2023.service.impl.PaypalServiceImpl;
 import com.laohac.swp391spring2023.utils.Utils;
@@ -42,6 +43,8 @@ public class PaypalController {
 		BigDecimal divisor = new BigDecimal("25000");
 		price = price.divide(divisor);
 		model.addAttribute("price", price);
+		PaypalUserInfo paypalUserInfo = (PaypalUserInfo) session.getAttribute("paypalUserInfo");
+		model.addAttribute("paypalUserInfo", paypalUserInfo);
 		return "home/indexPaypal";
 	}
 	@PostMapping("/pay")
@@ -75,7 +78,7 @@ public class PaypalController {
 	public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId, HttpSession session){
 		try {
 
-			bookingService.saveOrder(session);
+			bookingService.saveOrder(session,false);
 			Payment payment = paypalService.executePayment(paymentId, payerId);
 			if(payment.getState().equals("approved")){
 				

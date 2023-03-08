@@ -39,7 +39,7 @@
 					</div>
 					<div class="entryPaypal">
 						<i class="icon-calendar" aria-hidden="true"></i>
-						<p>Date:</br><span class="spanPaypal">Truyen date now vao day!</span></p>
+						<p>Date:</br><span th:text="${paypalUserInfo.date}" class="spanPaypal">Truyen date now vao day!</span></p>
 					</div>
 					<div class="entryPaypal">
 						<i class="icon-star" aria-hidden="true"></i>
@@ -52,14 +52,14 @@
 				<div class="contentPaypal">
 					<div class="headerPaypal">
 						<img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png">
-						<h4 class="h4Paypal">Oct 18, 2015 08:30:57 PDT TRUYEN DATE NOW VAO DAYYYYY</h4>
+						<h4 class="h4Paypal" th:text="${paypalUserInfo.date}">Oct 18, 2015 08:30:57 PDT TRUYEN DATE NOW VAO DAYYYYY</h4>
 					</div>
 					<div class="mainPaypal">
 						<h3 class="h3Paypal">24HR Booking Service</h3>
 						<h5 class="h5Paypal" th:text="'Total: '+'$'+ ${price} + ' USD'"></h5>
 					</div>
 					<div class="messagePaypal">
-						<p>Hello Truyen ten vao day,
+						<p th:text="${paypalUserInfo.fullName}">Hello Truyen ten vao day,
 
 							</br>
 							You sent a payment of $20.00 USD to 24HR (<a class="aPaypal"

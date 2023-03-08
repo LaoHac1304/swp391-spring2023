@@ -58,5 +58,6 @@ public class OrderDetail {
     private String departure;
     private String arrival;
     private String listSeats;
+    private String listSeatsNumber;
     
 }

@@ -41,11 +41,9 @@
         <h3 style="font-size: 40px; margin-bottom: 10px;">Pick up location - Destination</h3>
 
         <div class="filter-container">
-            <select name="" id="" class="filter">
-                <option value="">Price</option>
-                <option value="">Thấp - Cao</option>
-                <option value="">Cao - Thấp</option>
-            </select>
+
+            <button onclick="sortTripsByPrice()">Gia tang dan</button>
+            <button onclick="sortTripsByPriceDesc()">Gia giam dan</button>
 
             <select name="" id="" class="filter">
                 <option value="">Type</option>
@@ -138,7 +136,34 @@
 
         </div>
         
-
+        <script>
+            function sortTripsByPriceDesc() {
+                const trips = document.querySelectorAll('.container-search-trip');
+                const sortedTrips = Array.from(trips)
+                    .sort((a, b) => {
+                        const priceA = a.querySelector('.fare').innerText.replace(/[^0-9]/g, '');
+                        const priceB = b.querySelector('.fare').innerText.replace(/[^0-9]/g, '');
+                        return priceA - priceB;
+                    });
+                sortedTrips.forEach(trip => {
+                    trip.parentNode.insertBefore(trip, trip.parentNode.firstChild);
+                });
+            }
+        </script>
+        <script>
+            function sortTripsByPrice() {
+                const trips = document.querySelectorAll('.container-search-trip');
+                const sortedTrips = Array.from(trips)
+                    .sort((a, b) => {
+                        const priceA = a.querySelector('.fare').innerText.replace(/[^0-9]/g, '');
+                        const priceB = b.querySelector('.fare').innerText.replace(/[^0-9]/g, '');
+                        return priceB - priceA;
+                    });
+                sortedTrips.forEach(trip => {
+                    trip.parentNode.insertBefore(trip, trip.parentNode.firstChild);
+                });
+            }
+        </script>
         <div th:replace="fragments/fragments::homeScript"></div>
         
 </body>

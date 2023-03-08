@@ -119,20 +119,40 @@ $('.slider-nav').slick({
     focusOnSelect: true
 });
 
-  
+
 
 
 function checkSubmitButton() {
     var checkboxes = document.getElementsByName("selectedSeats");
     var submitButton = document.getElementById("submit-button");
-  
+
     for (var i = 0; i < checkboxes.length; i++) {
-      if (checkboxes[i].checked) {
-        submitButton.disabled = false;
-        
-        return;
-      }
+        if (checkboxes[i].checked) {
+            submitButton.disabled = false;
+
+            return;
+        }
     }
     // submitButton.title = disabled;
     submitButton.disabled = true;
-  }
+}
+
+$(document).ready(function () {
+    $('select').select2();
+});
+
+
+
+const pickUpPlaceSelect = document.getElementById("pickUpPlace");
+const dropoffPlaceSelect = document.getElementById("dropoffPlace");
+
+pickUpPlaceSelect.addEventListener("change", (event) => {
+    const selectedOptionText = event.target.options[event.target.selectedIndex].text;
+    for (const option of dropoffPlaceSelect.options) {
+        if (option.text === selectedOptionText) {
+            option.disabled = true;
+        } else {
+            option.disabled = false;
+        }
+    }
+});

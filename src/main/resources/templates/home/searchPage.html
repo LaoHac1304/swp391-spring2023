@@ -17,7 +17,23 @@
 
 <body>
     <div th:replace="fragments/fragments::bookHeader"></div>
-    <div th:replace="fragments/fragments::bookBanner"></div>
+    <div th:replace="fragments/fragments::bookBanner">
+        <script>
+            const pickUpPlaceSelect1 = document.getElementById("pickUpPlace");
+            const dropoffPlaceSelect1 = document.getElementById("dropoffPlace");
+
+            pickUpPlaceSelect1.addEventListener("change", (event) => {
+                const selectedOptionText = event.target.options[event.target.selectedIndex].text;
+                for (const option of dropoffPlaceSelect1.options) {
+                    if (option.text === selectedOptionText) {
+                        option.disabled = true;
+                    } else {
+                        option.disabled = false;
+                    }
+                }
+            });
+        </script>
+    </div>
     <!-- show a list of available tickets for customer -->
     <div class="container-trip-page">
 

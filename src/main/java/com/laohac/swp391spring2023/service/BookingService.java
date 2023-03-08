@@ -17,5 +17,9 @@ public interface BookingService {
     public void saveOrder(HttpSession session);
 
     public void sendVerificationEmail(HttpSession session, String siteURL) throws UnsupportedEncodingException, MessagingException;
+
+    public void cancelBooking(int bookingId);
+
+    public void cancelSeat(int id);
     
 }

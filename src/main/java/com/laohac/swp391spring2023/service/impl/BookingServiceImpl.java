@@ -2,7 +2,9 @@ package com.laohac.swp391spring2023.service.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -41,6 +43,7 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private JavaMailSender mailSender;
 
+
     @Override
     public void chooseSeats(int id) {
         
@@ -50,6 +53,16 @@ public class BookingServiceImpl implements BookingService {
             seatRepository.save(seat);
         }
         return;    
+    }
+
+    @Override
+    public void cancelSeat(int id){
+        Seat seat = seatRepository.findById(id);
+        if (seat != null){
+            seat.setAvailableSeat(0);
+            seatRepository.save(seat);
+        }
+        return;
     }
 
     @Override
@@ -136,6 +149,23 @@ public class BookingServiceImpl implements BookingService {
         helper.setText(mailContent, true);
 
         mailSender.send(message);
+    }
+
+    @Override
+    public void cancelBooking(int bookingId) {
+        
+        OrderDetail canceledOrderDetail = orderDetailRepository.findById(bookingId);
+        String str = canceledOrderDetail.getListSeats();
+        str = str.replaceAll("[\\[\\]\\s+]", "");
+        List<Integer> listSeats = Arrays.stream(str.split(","))
+                                    .map(String::trim)
+                                    .mapToInt(Integer::parseInt)
+                                    .boxed()
+                                    .collect(Collectors.toList());
+        for (Integer integer : listSeats) {
+            cancelSeat(integer);
+        }
+        orderDetailRepository.delete(canceledOrderDetail);
     }
     
 }

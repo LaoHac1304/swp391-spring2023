@@ -131,4 +131,10 @@ public class PaymentController {
         bookingService.sendVerificationEmail(session, siteURL);
         return "redirect:/homepage";
     }
+
+    @PostMapping("/cancel-booking")
+    public String cancelBooking(@RequestParam("bookingId") int bookingId){
+        bookingService.cancelBooking(bookingId);
+        return "redirect:/users/info";
+    }
 }

@@ -11,5 +11,7 @@ import com.laohac.swp391spring2023.model.entities.User;
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, Integer> {
 
     public Optional<List<OrderDetail>> findByCustomer(User user);
+
+    public OrderDetail findById(int id);
     
 }

@@ -590,7 +590,8 @@ a.main-btn3.mt-2:hover {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    background-color: antiquewhite;
+    background-color: #ddd;
+
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -630,7 +631,7 @@ a.main-btn3.mt-2:hover {
     border-radius: 4px;
     height: 40px;
     margin-top: 8px;
-    border: .0625px solid #F2C94C;
+    /* border: .0625px solid #F2C94C; */
 }
 
 .partner-container {
@@ -869,6 +870,10 @@ hr {
     border-spacing: 0;
     border-collapse: separate;
     font-size: 13.2px;
+}
+
+.input-field{
+    margin-bottom: 10px;
 }
 
 .form-control,
@@ -1279,6 +1284,15 @@ h5.text-decoration-underline.mb-4 {
     background-color: #FFCC00;
 }
 
+.select2-container {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+    width: 100px !important;
+}
+
 .main-slider {
     font-family: Arial;
     width: 1000px;
@@ -1334,6 +1348,181 @@ h5.text-decoration-underline.mb-4 {
     text-align: left;
     padding-left: 10px;
 }
+
+/* ========================================================*/
+.aPaypal {
+	color: #0e7aea;
+	text-decoration: none;
+}
+
+.h6Paypal {
+	color: #9aa3ab;
+	font-weight: 300;
+	line-height: 15px;
+}
+
+.h5Paypal {
+	color: #0078ff;
+    font-weight: 300;
+}
+
+.h4Paypal {
+	font-weight: 300;
+	font-size: 13px;
+	color: #97a2ad
+}
+
+.h3Paypal {
+	color: #58636a;
+	font-weight: 500;
+}
+
+.containerPaypal {
+	width: 50%;
+	height: 40%;
+	min-width: 636px;
+	min-height: 456px;
+	margin: auto;
+	margin-top: 6%;
+	overflow: hidden;
+	border-radius: 5px 5px 5px 5px;
+	-webkit-box-shadow: 0px 5px 21px 0px rgba(128,128,128,0.2);
+	-moz-box-shadow: 0px 5px 21px 0px rgba(128,128,128,0.2);
+	box-shadow: 0px 5px 21px 0px rgba(128,128,128,0.2);
+}
+
+.leftPaypal {
+	background-color: #1882ef;
+	width: 39%;
+	height: 457px;
+	border-radius: 5px 0 0 5px;
+	float: left;
+	color: #ffffff;
+}
+
+.info-boxPaypal {
+	margin-top: 35px;
+	margin-left: 35px;
+	margin-right: 35px;
+}
+
+.receiptPaypal {
+	font-weight: 300;
+	font-size: 15px;
+	line-height: 26px;
+	padding-top: 10px;
+  padding-bottom: 15px;
+	border-bottom: 1px solid #3895f4;
+	height: 15%;
+}
+
+.receipt > span {
+	font-weight: 500;
+	font-size: 21px;
+}
+
+.entryPaypal {
+	border-bottom: 1px solid #3895f4;
+	height: 15%;
+	overflow: hidden;
+	padding-top: 15px;
+    
+}
+
+.entryPaypal > p {
+	font-weight: 300;
+	font-size: 13px;
+	line-height: 26px;
+	margin-top: 0px !important;
+	float: left;
+    color:white;
+}
+
+.entryPaypal > i {
+	margin-top: 4px;
+	margin-right: 13px;
+	float: left;
+	color: #b4d8fc;
+}
+
+.spanPaypal {
+	font-weight: 500;
+	font-size: 16px;
+    color: white;
+}
+
+.entryPaypal:last-child {
+	border-bottom: none;
+}
+
+.rightPaypal {
+	background-color: #fefefe;
+	width: 61%;
+	height: 100%;
+	float: left;
+	border-radius: 0 5px 5px 0;
+}
+
+.contentPaypal {
+	margin-top: 50px;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
+.headerPaypal {
+	overflow: hidden;
+	border-bottom: 1px solid #d7e2e7;
+	height: 50px;
+}
+
+.headerPaypal > img {
+	width: 100px;
+	float: left;
+}
+
+.headerPaypal > h4 {
+	text-align: right;
+	margin-top: 10px;
+}
+
+.mainPaypal {
+	margin-top: 35px;
+}
+
+.messagePaypal {
+	margin-top: 40px;
+}
+
+.messagePaypal > p {
+	font-weight: 300;
+	font-size: 15px;
+	color: #7a838d;
+	line-height: 30px;
+}
+
+.messagePaypal > h6 {
+	margin-top: 10px;
+}
+
+/* .footerPaypal {
+	overflow: hidden;
+	border-top: 1px solid #d7e2e7;
+	margin-top: 40px;
+	padding-top: 30px;
+} */
+
+.footerPaypal > a {
+	font-size: 13px;
+	font-weight: 500;
+	float: left;
+}
+
+.footerPaypal > h6 {
+	color: #7a838d;
+	text-align: right;
+	margin-top: 0px !important;
+}
+/* =========================================================== */
 
 .our-partner-slider {
     background-color: var(--bg-color);
@@ -1433,9 +1622,11 @@ h5.text-decoration-underline.mb-4 {
 }
 
 .footer_wrapper .copyright-section {
-    padding: 1.25rem 0 .3125rem;
+    /* padding: 1.25rem 0 .3125rem; */
     text-align: center;
 }
+
+
 
 
 .footer_wrapper .copyright-section a {

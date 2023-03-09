@@ -6,23 +6,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"> 
-    <script th:src="@{/js/bootstrap.js}"></script> 
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
     <link rel="stylesheet" th:href="@{/css/homepageStyle.css}">
+    <!-- cài đặt icon -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body>
+<body
+    style="background: url(https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);">
 
     <div class="container">
-        <div class="text-center">
-            <h2>Customer Verification</h2>
-            <h4>Your account was already verified, or the verification code is invalid.</h4>
-            <p><a th:href="@{/users/login}">Login Now</a></p>
+        <div class="text-center" style="width: 600px;
+                    background-color: white;
+                    border-radius: 6px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    text-align: center;
+                    padding: 0 30px 30px;
+                    height: 330px;">
+            <!-- thêm icon -->
+            <ion-icon name="close-circle-outline" style="margin-top: -50px;
+                        font-size: 100px;
+                        background: red;
+                        border-radius: 50%;
+                        color: white;
+                        box-shadow: black;"></ion-icon>
+            <h2 style="font-weight: 500;
+                        font-size: 30px;
+                        margin: 30px 0 10px;color: #404F5E;">Customer Verification</h2>
+            <h4 style="color: #404F5E;">Your account was already verified, or the verification code is invalid.</h4>
+            <button style="width: 100%;
+                        margin-top: 50px;
+                        padding: 10px 0;
+                        background: red;
+                        border: none;
+                        outline: none;
+                        font-size: 20px;
+                        border-radius: 4px;
+                        color: white;
+                        cursor: pointer;
+                        box-sizing: black;"><a th:href="@{/users/login}" style="color: white;">Login Now</a></button>
         </div>
     </div>
 
-    
-    
+
+
 </body>
 
 </html>

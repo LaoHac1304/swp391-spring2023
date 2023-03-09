@@ -14,7 +14,7 @@ public interface BookingService {
 
     public CheckOutInfoDTOReponse showCheckOutInfo(List<Integer> listSeats, HttpSession session);
 
-    public void saveOrder(HttpSession session);
+    public void saveOrder(HttpSession session, boolean isSaved);
 
     public void sendVerificationEmail(HttpSession session, String siteURL) throws UnsupportedEncodingException, MessagingException;
 

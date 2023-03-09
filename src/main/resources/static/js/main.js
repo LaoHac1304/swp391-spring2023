@@ -138,10 +138,8 @@ function checkSubmitButton() {
 }
 
 $(document).ready(function () {
-    $('select').select2();
+    $('#sex').select2();
 });
-
-
 
 const pickUpPlaceSelect = document.getElementById("pickUpPlace");
 const dropoffPlaceSelect = document.getElementById("dropoffPlace");
@@ -156,15 +154,4 @@ pickUpPlaceSelect.addEventListener("change", (event) => {
         }
     }
 });
-    function toggleLists() {
-        var list1 = document.getElementById("list1");
-        var list2 = document.getElementById("list2");
-        
-        if (list1.style.display === "none") {
-        list1.style.display = "block";
-        list2.style.display = "none";
-        } else {
-        list1.style.display = "none";
-        list2.style.display = "block";
-        }
-    }
+

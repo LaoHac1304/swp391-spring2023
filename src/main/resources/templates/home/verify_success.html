@@ -14,33 +14,30 @@
 <body style="background-image: url(/images/slider/slider1.webp); background-size: cover; 
 font-family: 'Open Sans', sans-serif;">
 
-    <div class="container"
-       >
+    <div class="container">
 
-        <div class="verify-form">
+        <div class="verify-form" style="margin-top: 80px;">
             <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
                 <i style="color: #9ABC66;
                 font-size: 100px;
                 line-height: 200px;
                 margin-left: -15px;" class="checkmark">✓</i>
-              </div>
-              <h1 style="color: #88B04B;
-              font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-              font-weight: 900;
-              font-size: 40px;
-              margin-bottom: 10px;">Success</h1>
-        <div class="verify-msg">
-            <p class="verify-msg">Thank you, your email has been verified. Your account is now active.</p>
+            </div>
+            <h1 style="color: #88B04B;
+              font-family: " Nunito Sans", "Helvetica Neue" , sans-serif; font-weight: 900; font-size: 40px;
+                margin-bottom: 10px;">Success</h1>
+            <div class="verify-msg">
+                <p class="verify-msg">Thank you, your email has been verified. Your account is now active.</p>
+                <br>
+                <p class="verify-msg">Please use the button below to login to your account.</p>
+            </div>
             <br>
-            <p class="verify-msg">Please use the button below to login to your account.</p>
+            <a th:href="@{/users/login}" class="btn-verifysuccess">
+                Login
+                to your
+                account</a>
         </div>
-        <br>
-        <a th:href="@{/users/login}" class="btn-verifysuccess">
-            Login
-            to your
-            account</a>
-        </div>
-        
+
     </div>
 
 

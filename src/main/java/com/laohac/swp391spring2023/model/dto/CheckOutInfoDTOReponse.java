@@ -20,6 +20,7 @@ public class CheckOutInfoDTOReponse {
 
     private UserDTOResponse user;
     private List<Integer> lSeats;
+    private List<Integer> lSeatsNumber;
     private Trip trip;
     private BigDecimal priceTotal;
 }

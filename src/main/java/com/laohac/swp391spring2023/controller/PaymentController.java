@@ -2,6 +2,9 @@ package com.laohac.swp391spring2023.controller;
 
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.laohac.swp391spring2023.model.dto.CheckOutInfoDTOReponse;
+import com.laohac.swp391spring2023.model.dto.PaypalUserInfo;
+import com.laohac.swp391spring2023.model.entities.OrderDetail;
 import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.Seat;
 import com.laohac.swp391spring2023.model.entities.Trip;
@@ -126,11 +131,29 @@ public class PaymentController {
     public String saveOrder(@RequestParam(name = "paymentMethod") String paymentMethod, HttpSession session, Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException{
 
         
-        bookingService.saveOrder(session);
+        if(paymentMethod.equals("paypal")) 
+            bookingService.saveOrder(session,true);
+        else 
+        bookingService.saveOrder(session,false);
         
         String siteURL = getSiteURL(request);
         bookingService.sendVerificationEmail(session, siteURL);
         if(paymentMethod.equals("paypal")){
+            OrderDetail orderDetail = (OrderDetail) session.getAttribute("orderDetailEmail");
+            BigDecimal divisor = new BigDecimal("25000");
+		    BigDecimal price = orderDetail.getTotal();
+            price = price.divide(divisor);
+
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String strDate = formatter.format(date);
+
+            PaypalUserInfo paypalUserInfo = PaypalUserInfo.builder()
+                                            .fullName(orderDetail.getFullName())
+                                            .date(strDate)
+                                            .price(price)
+                                            .build();
+            session.setAttribute("paypalUserInfo", paypalUserInfo);
             return "redirect:/";
         }
         return "redirect:/homepage";

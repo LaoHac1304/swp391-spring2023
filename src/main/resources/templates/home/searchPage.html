@@ -34,35 +34,38 @@
             });
         </script> -->
     </div>
-    <!-- show a list of available tickets for customer -->
-    <div class="container-trip-page">
-
+    <div style="text-align: center;
+    padding-top: 70px;">
         <!-- need to render pick up location and destination that customer choose -->
         <h3 style="font-size: 40px; margin-bottom: 10px;">Pick up location - Destination</h3>
 
         <div class="filter-container">
-            <select name="" id="" class="filter">
-                <option value="">Price</option>
-                <option value="">Thấp - Cao</option>
-                <option value="">Cao - Thấp</option>
-            </select>
 
-            <select name="" id="" class="filter">
+            <button class="btn-sort" onclick="sortTripsByPrice()">Price ASC</button>
+            <button class="btn-sort" onclick="sortTripsByPriceDesc()">Price DESC </button>
+
+            <!-- <select name="" id="" class="filter">
                 <option value="">Type</option>
                 <option value="">Classic</option>
                 <option value="">Limousine</option>
                 <option value="">Bed</option>
-            </select>
+            </select> -->
 
-            <select name="" id="" class="filter">
+            <!-- <select name="" id="" class="filter">
                 <option value="">Time</option>
                 <option value="">0h - 6h</option>
                 <option value="">6h - 12h</option>
                 <option value="">12h - 18h</option>
                 <option value="">18h - 24h</option>
-            </select>
+            </select> -->
+
             </table>
         </div>
+    </div>
+    <!-- show a list of available tickets for customer -->
+    <div class="container-trip-page">
+
+        
 
 
         <div class="container-search-trip" th:each="trip: ${listTrips}">
@@ -137,6 +140,34 @@
 
         </div>
 
+        <script>
+            function sortTripsByPriceDesc() {
+                const trips = document.querySelectorAll('.container-search-trip');
+                const sortedTrips = Array.from(trips)
+                    .sort((a, b) => {
+                        const priceA = a.querySelector('.fare').innerText.replace(/[^0-9]/g, '');
+                        const priceB = b.querySelector('.fare').innerText.replace(/[^0-9]/g, '');
+                        return priceA - priceB;
+                    });
+                sortedTrips.forEach(trip => {
+                    trip.parentNode.insertBefore(trip, trip.parentNode.firstChild);
+                });
+            }
+        </script>
+        <script>
+            function sortTripsByPrice() {
+                const trips = document.querySelectorAll('.container-search-trip');
+                const sortedTrips = Array.from(trips)
+                    .sort((a, b) => {
+                        const priceA = a.querySelector('.fare').innerText.replace(/[^0-9]/g, '');
+                        const priceB = b.querySelector('.fare').innerText.replace(/[^0-9]/g, '');
+                        return priceB - priceA;
+                    });
+                sortedTrips.forEach(trip => {
+                    trip.parentNode.insertBefore(trip, trip.parentNode.firstChild);
+                });
+            }
+        </script>
 
         <div th:replace="fragments/fragments::homeScript"></div>
 

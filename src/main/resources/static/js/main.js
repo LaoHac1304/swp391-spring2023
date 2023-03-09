@@ -155,4 +155,3 @@ pickUpPlaceSelect.addEventListener("change", (event) => {
     }
 });
 
-

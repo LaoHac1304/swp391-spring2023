@@ -28,6 +28,10 @@
     padding: 0 26px 0 8px;
     min-width: 100px;
 }
+#list2 {
+    display: none;
+  }
+
 /* 
 @media (min-width: 576px) {
 

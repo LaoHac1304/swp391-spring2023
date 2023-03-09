@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.laohac.swp391spring2023.model.dto.RouteDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTORequest;
@@ -108,27 +109,26 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public String register (@ModelAttribute("customer") User user, HttpServletRequest request, HttpSession session) throws UnsupportedEncodingException, MessagingException{
+    public String register(@ModelAttribute("customer") User user, HttpServletRequest request, HttpSession session)
+            throws UnsupportedEncodingException, MessagingException {
 
         session.setAttribute("currentRegister", null);
         session.setAttribute("errorEmail", null);
         session.setAttribute("errorUsername", null);
         UserDTOResponse userDTOResponse = userService.registerUser(user, session);
-        if (userDTOResponse == null) return "home/Register";
+        if (userDTOResponse == null)
+            return "home/Register";
         String siteURL = getSiteURL(request);
         userService.sendVerificationEmail(userDTOResponse, siteURL);
 
         System.out.println(userDTOResponse.getFullName());
 
-        
-
-        
         return "redirect:/users/login";
     }
 
     @GetMapping("/verify")
 
-    public String verifyAccount(@Param("code") String code, Model model, HttpSession session){
+    public String verifyAccount(@Param("code") String code, Model model, HttpSession session) {
         boolean verified = userService.verify(code, session);
 
         String pageTitle = verified ? "Verification Succeeded!" : "Verification Failed";
@@ -197,26 +197,31 @@ public class UserController {
     }
 
     @GetMapping("/search-trip")
-    public String search(@ModelAttribute("routeDTORequest") RouteDTORequest routeDTORequest, Model model) throws ParseException{
-
-        Clock clock = Clock.systemDefaultZone();
-        LocalDate currentDate = LocalDate.now(clock);
-        Route route2 = routeRepository.findByState1AndState2("TP HCM", "DA LAT");
+    public String search(@ModelAttribute("routeDTORequest") RouteDTORequest routeDTORequest, Model model)
+            throws ParseException {
 
         String dateString = routeDTORequest.getDate();
         LocalDate date = LocalDate.parse(dateString);
-        Route route = routeRepository.findByState1AndState2(routeDTORequest.getState1().toUpperCase(), routeDTORequest.getState2().toUpperCase());
+        Route route = routeRepository.findByState1AndState2(routeDTORequest.getState1().toUpperCase(),
+                routeDTORequest.getState2().toUpperCase());
         
         List<Trip> tripsInfo = userService.searchByRouteAndDate(route, date);
-        List<Trip> SaiGonDaLat = userService.searchByRouteAndDate(route2, currentDate);
-
-        //List<Trip> tripsInfo = userService.searchByRouteAndDateByPriceDesc(route, date);
-        // List<Trip> tripsInfo = userService.searchByRouteAndDateByPriceAsc(route, date);
-        //List<Trip> tripsInfo = userService.searchByRouteAndDateByStartTimeAsc(route, date);
-        // List<Trip> tripsInfo = userService.searchByRouteAndDateByStartTimeDesc(route, date);
-        
         model.addAttribute("listTrips", tripsInfo);
-        model.addAttribute("SaiGonDaLat", SaiGonDaLat);
+
+        List<Trip> tripsDescByPrice = userService.searchByRouteAndDateByPriceDesc(route, date);
+        model.addAttribute("tripsDescByPrice", tripsDescByPrice);
+        
+        // List<Trip> tripsAscByPrice =
+        // userService.searchByRouteAndDateByPriceAsc(route, date);
+        // model.addAttribute("tripsAscByPrice", tripsAscByPrice);
+
+        // List<Trip> tripsAscByTime =
+        // userService.searchByRouteAndDateByStartTimeAsc(route, date);
+        // model.addAttribute("tripsAscByTime", tripsAscByTime);
+
+        // List<Trip> tripsDescByTime =
+        // userService.searchByRouteAndDateByStartTimeDesc(route, date);
+        // model.addAttribute("tripsDescByTime", tripsDescByTime);
 
         List<Route> listRoute = routeRepository.findAll();
         model.addAttribute("listStates", listRoute);
@@ -225,6 +230,8 @@ public class UserController {
 
         return "home/searchPage";
     }
+
+    
 
     /*
      * @GetMapping("/login-google")

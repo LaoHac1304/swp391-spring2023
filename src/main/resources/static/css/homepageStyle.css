@@ -1498,6 +1498,11 @@ h5.text-decoration-underline.mb-4 {
 	font-size: 15px;
 	color: #7a838d;
 	line-height: 30px;
+    margin-bottom: 0px;
+}
+
+.btn-paypal {
+    text-align: center; float: right; margin-bottom: 11px; margin-top: 11px;
 }
 
 .messagePaypal > h6 {

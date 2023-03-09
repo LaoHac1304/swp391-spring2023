@@ -155,4 +155,15 @@ pickUpPlaceSelect.addEventListener("change", (event) => {
     }
 });
 
+dropoffPlaceSelect.addEventListener("change", (event) => {
+    const selectedOptionText = event.target.options[event.target.selectedIndex].text;
+    for (const option of pickUpPlaceSelect.options) {
+        if (option.text === selectedOptionText) {
+            option.disabled = true;
+        } else {
+            option.disabled = false;
+        }
+    }
+});
+
 

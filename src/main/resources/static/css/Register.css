@@ -49,6 +49,8 @@ hr {
   cursor: pointer;
   width: 100%;
   /* opacity: 0.9; */
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .registerbtn:hover {

@@ -1229,6 +1229,17 @@
                             }
                         }
                     });
+
+                    dropoffPlaceSelect1.addEventListener("change", (event) => {
+                        const selectedOptionText = event.target.options[event.target.selectedIndex].text;
+                        for (const option of pickUpPlaceSelect1.options) {
+                            if (option.text === selectedOptionText) {
+                                option.disabled = true;
+                            } else {
+                                option.disabled = false;
+                            }
+                        }
+                    });
                 </script>
             </form>
             <!-- backendCode End -->

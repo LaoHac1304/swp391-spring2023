@@ -59,12 +59,12 @@
 						<h5 class="h5Paypal" th:text="'Total: '+'$'+ ${price} + ' USD'"></h5>
 					</div>
 					<div class="messagePaypal">
-						<p th:text="${paypalUserInfo.fullName}">Hello Truyen ten vao day,
+						<p th:text="'Hello ' + ${paypalUserInfo.fullName} +','">Hello Truyen ten vao day,
+						</p>
+						<p th:text="'You sent a payment of $' + ${price} + ' USD to 24HR' "> </p> (<a class="aPaypal"
+								href="mailto:paypal@24HR.com">paypal@24HR.com</a>)
 
-							</br>
-							You sent a payment of $20.00 USD to 24HR (<a class="aPaypal"
-								href="mailto:paypal@24HR.com">paypal@24HR.com</a>)</p>
-
+								<br>
 						<h6 class="h6Paypal">It may take a few moments for this</br>transaction to appear in your
 							account.
 						</h6>
@@ -75,7 +75,7 @@
 						<!-- <h6 class="h6Paypal">Invoice ID: 108165</h6> -->
 					</div>
 					<br>
-					<button style="text-align: center; float: right; margin-bottom: 11px;" type="submit" class="btn btn-primary">
+					<button type="submit" class="btn btn-paypal btn-primary">
 						Checkout </button>
 					
 				</div>

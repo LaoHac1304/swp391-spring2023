@@ -14,6 +14,7 @@ import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -287,7 +288,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Trip> searchByRouteAndDate(Route route, LocalDate date) {
-        
         List<Trip> trips = tripRepository.findByRouteAndDate(route, date);
         return trips;
        

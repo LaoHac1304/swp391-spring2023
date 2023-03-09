@@ -30,6 +30,38 @@
 
 }
 
+.btn-sort{
+    user-select: none;
+    word-wrap: normal;
+    font: inherit;
+    margin: 0;
+    text-transform: none;
+    font-family: inherit;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+    /* background: #fff url(data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E) right .75rem center/8px 10px no-repeat; */
+    /* background-image: linear-gradient(45deg, transparent 50%, grey 0), linear-gradient(135deg, grey 50%, transparent 0); */
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 16px) calc(1em - 2px), calc(100% - 10px) calc(1em - 2px);
+    width: 120px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgba(99, 114, 128, .1);
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    font-size: 13px !important;
+    margin-bottom: 5px;
+    margin-right: 8px;
+    height: 28px;
+    /* padding: 0 26px 0 8px; */
+    min-width: 100px;
+    text-align: center;
+}
+
 .TicketPC-Container {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -785,7 +817,7 @@
     
 .container-trip-page {
     text-align: center; 
-    margin-top: 100px;
+    margin-top: 50px;
     /* margin-bottom: 70px; */
 }    
 

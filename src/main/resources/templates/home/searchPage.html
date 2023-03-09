@@ -34,33 +34,38 @@
             });
         </script>
     </div>
-    <!-- show a list of available tickets for customer -->
-    <div class="container-trip-page">
-
+    <div style="text-align: center;
+    padding-top: 70px;">
         <!-- need to render pick up location and destination that customer choose -->
         <h3 style="font-size: 40px; margin-bottom: 10px;">Pick up location - Destination</h3>
 
         <div class="filter-container">
 
-            <button onclick="sortTripsByPrice()">Gia tang dan</button>
-            <button onclick="sortTripsByPriceDesc()">Gia giam dan</button>
+            <button class="btn-sort" onclick="sortTripsByPrice()">Price ASC</button>
+            <button class="btn-sort" onclick="sortTripsByPriceDesc()">Price DESC </button>
 
-            <select name="" id="" class="filter">
+            <!-- <select name="" id="" class="filter">
                 <option value="">Type</option>
                 <option value="">Classic</option>
                 <option value="">Limousine</option>
                 <option value="">Bed</option>
-            </select>
+            </select> -->
 
-            <select name="" id="" class="filter">
+            <!-- <select name="" id="" class="filter">
                 <option value="">Time</option>
                 <option value="">0h - 6h</option>
                 <option value="">6h - 12h</option>
                 <option value="">12h - 18h</option>
                 <option value="">18h - 24h</option>
-            </select>
+            </select> -->
+
             </table>
         </div>
+    </div>
+    <!-- show a list of available tickets for customer -->
+    <div class="container-trip-page">
+
+        
 
 
         <div class="container-search-trip" th:each="trip: ${listTrips}" >

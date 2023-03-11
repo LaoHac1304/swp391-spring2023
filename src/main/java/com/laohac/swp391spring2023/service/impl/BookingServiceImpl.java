@@ -2,6 +2,10 @@ package com.laohac.swp391spring2023.service.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +21,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import com.laohac.swp391spring2023.model.Status;
 import com.laohac.swp391spring2023.model.dto.CheckOutInfoDTOReponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.entities.Car;
@@ -169,9 +174,21 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void cancelBooking(int bookingId) {
+    public boolean cancelBooking(int bookingId) {
+        
         
         OrderDetail canceledOrderDetail = orderDetailRepository.findById(bookingId);
+
+        // get LocaldDateTime of the Trip
+        String time = canceledOrderDetail.getTrip().getStartTime();
+        LocalDate localDate = canceledOrderDetail.getTrip().getDate();
+        LocalTime localTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm:ss"));
+        LocalDateTime localDateTime = localDate.atTime(localTime);
+        //
+
+        LocalDateTime now = LocalDateTime.now();
+        if (localDateTime.isBefore(now.plusDays(1))) return false;
+
         String str = canceledOrderDetail.getListSeats();
         str = str.replaceAll("[\\[\\]\\s+]", "");
         List<Integer> listSeats = Arrays.stream(str.split(","))
@@ -182,7 +199,10 @@ public class BookingServiceImpl implements BookingService {
         for (Integer integer : listSeats) {
             cancelSeat(integer);
         }
-        orderDetailRepository.delete(canceledOrderDetail);
+        canceledOrderDetail.setStatus(Status.cancelled);
+        //orderDetailRepository.delete(canceledOrderDetail);
+        return true;
     }
+    
     
 }

@@ -2,6 +2,7 @@ package com.laohac.swp391spring2023.model.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.laohac.swp391spring2023.model.PaymentStatus;
+import com.laohac.swp391spring2023.model.PaymentType;
+import com.laohac.swp391spring2023.model.Status;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,19 +50,45 @@ public class OrderDetail {
     @ManyToOne
     @JoinColumn(name = "CarID")
     private Car car; // many to one
-    
+
     private int quantity;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     private String email;
+
     private String fullName;
+
     private String phoneNumber;
+
+    @Column(name = "Total")
     private BigDecimal total;
+
     private String departure;
+
     private String arrival;
+
+    @Column(name = "List_Seats_Id")
     private String listSeats;
+
+    @Column(name = "List_Seats_Number")
     private String listSeatsNumber;
-    
+
+    @Column(name = "Payment_Type")
+    private PaymentType paymentType;
+
+    @Column(name = "Payment_Status")
+    private PaymentStatus paymentStatus;
+
+    @Column(name = "Status")
+    private Status status;
+
+    @Column(name = "CreatedAt")
+    private LocalDateTime createdAt;
+
+    @Column(name = "UpdatedAt")
+    private LocalDateTime updatedAt;
+
+
 }

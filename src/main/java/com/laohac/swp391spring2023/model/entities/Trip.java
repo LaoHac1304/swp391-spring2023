@@ -3,6 +3,7 @@ package com.laohac.swp391spring2023.model.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -64,5 +65,11 @@ public class Trip {
 
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetails;
+
+    @Column(name = "Start_Date")
+    private LocalDateTime departureDate;
+    
+    @Column(name = "End_Date")
+    private LocalDateTime arrivalDate;
 
 }

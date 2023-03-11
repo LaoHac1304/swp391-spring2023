@@ -4,6 +4,7 @@ package com.laohac.swp391spring2023.controller;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -111,9 +112,9 @@ public class PaymentController {
     public String chooseSeats(@RequestParam(name = "selectedSeats", required = false) List<Integer> selectedSeats, 
                                         Model model, @PathVariable(value = "id") int id, HttpSession session){
 
-        for (Integer idd : selectedSeats) {
-            bookingService.chooseSeats(idd);    
-        }
+        // for (Integer idd : selectedSeats) {
+        //     bookingService.chooseSeats(idd);    
+        // }
         model.addAttribute("selectedSeats", selectedSeats);
         CheckOutInfoDTOReponse checkOutInfoDTOReponse = bookingService.showCheckOutInfo(selectedSeats, session);
         
@@ -156,6 +157,13 @@ public class PaymentController {
             session.setAttribute("paypalUserInfo", paypalUserInfo);
             return "redirect:/";
         }
+        CheckOutInfoDTOReponse checkOutInfoDTOReponse = 
+                (CheckOutInfoDTOReponse) session.getAttribute("checkoutinfo");
+        List<Integer> lSeats = new ArrayList<>();
+        lSeats = checkOutInfoDTOReponse.getLSeats();
+        for (Integer seat : lSeats) {
+             bookingService.chooseSeats(seat);    
+         }
         return "redirect:/homepage";
     }
 

@@ -129,7 +129,7 @@ public class UserController {
 
         System.out.println(userDTOResponse.getFullName());
 
-        return "redirect:/users/login";
+        return "redirect:/users#popupRegister"; //users#popupRegister
     }
 
     @GetMapping("/verify")

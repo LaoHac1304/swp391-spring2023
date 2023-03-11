@@ -115,7 +115,8 @@ public class PaymentController {
         // for (Integer idd : selectedSeats) {
         //     bookingService.chooseSeats(idd);    
         // }
-        model.addAttribute("selectedSeats", selectedSeats);
+        if (!selectedSeats.isEmpty())
+            session.setAttribute("selectedSeats", selectedSeats);
         CheckOutInfoDTOReponse checkOutInfoDTOReponse = bookingService.showCheckOutInfo(selectedSeats, session);
         
         session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);

@@ -119,9 +119,9 @@ public class HomeController {
         return "home/verify_success";
     }
 
-    @GetMapping("/verify_failure")
+    @GetMapping("/verify_fail")
     public String showFailure() {
 
-        return "home/verify_failure";
+        return "home/verify_fail";
     }
 }

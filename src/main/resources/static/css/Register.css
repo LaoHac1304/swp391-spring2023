@@ -42,21 +42,24 @@ hr {
 /* Set a style for the submit/register button */
 .registerbtn {
   background-color: #fff;
-  /* color: white; */
-  padding: 16px 20px;
-  /* margin: 8px 0; */
-  /* border: none; */
-  cursor: pointer;
-  width: 100%;
-  /* opacity: 0.9; */
-  font-size: 18px;
-  font-weight: 600;
+    color: black;
+    padding: 16px 20px;
+    /* margin: 8px 0; */
+    /* border: none; */
+    cursor: pointer;
+    width: 100%;
+    /* opacity: 0.9; */
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid black;
 }
 
 .registerbtn:hover {
   opacity: 1;
+  color: rgba(0,0,0,0.7);
+  border: 1px solid;
 }
-
 /* Add a blue text color to links */
 a {
   color: dodgerblue;
@@ -88,7 +91,7 @@ h3 {
   top: 50%;
   left: 50%;
   background-color: rgba(255, 255, 255, 0.97);
-  border-radius: 10px;
+  /* border-radius: 10px; */
   /* backdrop-filter: blur(10px); */
   border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);

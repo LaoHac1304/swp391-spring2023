@@ -85,6 +85,9 @@ public class UserController {
 
     @GetMapping("")
     public String home(Model model, User user) {
+        if (memberService.getCurrentUser() != null){
+            return "home/index";
+        }
         model.addAttribute("customer", user);
         return "home/Register";
     }
@@ -98,6 +101,9 @@ public class UserController {
 
     @GetMapping("/login")
     public String showLogin(Model model) {
+        if (memberService.getCurrentUser() != null){
+            return "home/index";
+        }
         User user = new User();
         model.addAttribute("user", user);
         return "home/login1";

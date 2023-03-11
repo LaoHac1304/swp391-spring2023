@@ -1,6 +1,8 @@
 package com.laohac.swp391spring2023.controller;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -81,7 +83,13 @@ public class PaypalController {
 			bookingService.saveOrder(session,false);
 			Payment payment = paypalService.executePayment(paymentId, payerId);
 			if(payment.getState().equals("approved")){
-				
+				CheckOutInfoDTOReponse checkOutInfoDTOReponse = 
+                (CheckOutInfoDTOReponse) session.getAttribute("checkoutinfo");
+        		List<Integer> lSeats = new ArrayList<>();
+        		lSeats = checkOutInfoDTOReponse.getLSeats();
+        		for (Integer seat : lSeats) {
+             		bookingService.chooseSeats(seat);    
+         }
 				return "home/success";
 			} 
 		} catch (PayPalRESTException e) {

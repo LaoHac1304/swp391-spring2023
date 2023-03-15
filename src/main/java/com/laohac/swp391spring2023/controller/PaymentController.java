@@ -4,6 +4,7 @@ package com.laohac.swp391spring2023.controller;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -115,7 +116,8 @@ public class PaymentController {
         // for (Integer idd : selectedSeats) {
         //     bookingService.chooseSeats(idd);    
         // }
-        model.addAttribute("selectedSeats", selectedSeats);
+        if (!selectedSeats.isEmpty())
+            session.setAttribute("selectedSeats", selectedSeats);
         CheckOutInfoDTOReponse checkOutInfoDTOReponse = bookingService.showCheckOutInfo(selectedSeats, session);
         
         session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
@@ -168,8 +170,12 @@ public class PaymentController {
     }
 
     @PostMapping("/cancel-booking")
-    public String cancelBooking(@RequestParam("bookingId") int bookingId){
-        bookingService.cancelBooking(bookingId);
+    public String cancelBooking(@RequestParam("bookingId") int bookingId, Model model){
+        
+        
+        if (bookingService.cancelBooking(bookingId) == false) 
+        model.addAttribute("errorMessage", "Sorry, it's too late to cancel this booking");
+
         return "redirect:/users/info";
     }
 }

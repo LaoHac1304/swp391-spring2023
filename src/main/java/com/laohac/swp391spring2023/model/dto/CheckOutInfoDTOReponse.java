@@ -3,6 +3,9 @@ package com.laohac.swp391spring2023.model.dto;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.laohac.swp391spring2023.model.PaymentStatus;
+import com.laohac.swp391spring2023.model.PaymentType;
+import com.laohac.swp391spring2023.model.Status;
 import com.laohac.swp391spring2023.model.entities.Trip;
 
 import lombok.AllArgsConstructor;
@@ -23,4 +26,7 @@ public class CheckOutInfoDTOReponse {
     private List<Integer> lSeatsNumber;
     private Trip trip;
     private BigDecimal priceTotal;
+    private PaymentStatus paymentStatus;
+    private PaymentType paymentType;
+    private Status status;
 }

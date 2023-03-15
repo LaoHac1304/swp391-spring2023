@@ -4,14 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -76,12 +69,15 @@ public class OrderDetail {
     private String listSeatsNumber;
 
     @Column(name = "Payment_Type")
+    @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
 
     @Column(name = "Payment_Status")
+    @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
 
     @Column(name = "Status")
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(name = "CreatedAt")

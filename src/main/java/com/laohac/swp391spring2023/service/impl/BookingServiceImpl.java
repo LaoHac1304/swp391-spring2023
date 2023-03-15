@@ -111,6 +111,7 @@ public class BookingServiceImpl implements BookingService {
                                     .mapToInt(Integer::parseInt)
                                     .boxed()
                                     .collect(Collectors.toList());
+
         List<String> listSeatsNumber = new ArrayList<>();
         for (Integer integer : listSeatsInt) {
             Seat seat = seatRepository.findById(integer.intValue());
@@ -135,6 +136,9 @@ public class BookingServiceImpl implements BookingService {
                             .arrival(arrival)
                             .listSeats(listSeats)
                             .listSeatsNumber(String.join(",", listSeatsNumber))
+                            .status(checkOutInfoDTOReponse.getStatus())
+                            .paymentType(checkOutInfoDTOReponse.getPaymentType())
+                            .paymentStatus(checkOutInfoDTOReponse.getPaymentStatus())
                             .build();
         if (!isSaved) orderDetailRepository.save(orderDetail);
         session.setAttribute("orderDetailEmail", orderDetail);
@@ -200,7 +204,8 @@ public class BookingServiceImpl implements BookingService {
             cancelSeat(integer);
         }
         canceledOrderDetail.setStatus(Status.cancelled);
-        //orderDetailRepository.delete(canceledOrderDetail);
+        orderDetailRepository.save(canceledOrderDetail);
+
         return true;
     }
     

@@ -128,7 +128,7 @@ $('.slider-nav').slick({
 function checkSubmitButton() {
     var checkboxes = document.getElementsByName("selectedSeats"); // cái này ông lấy tên từ bên nào qua
     var submitButton = document.getElementById("submit-button");
-    var selectedSeats = sessionStorage.getItem("selectedSeats");
+    // var selectedSeats = sessionStorage.getItem("SselectedSeats");
     var checkedCount = 0;
 
     for (var i = 0; i < checkboxes.length; i++) {
@@ -137,7 +137,7 @@ function checkSubmitButton() {
         }
     }
 
-    if (checkedCount >= 1 || selectedSeats != null) {
+    if (checkedCount >= 1) {
         submitButton.disabled = false;
     } else {
         submitButton.disabled = true;

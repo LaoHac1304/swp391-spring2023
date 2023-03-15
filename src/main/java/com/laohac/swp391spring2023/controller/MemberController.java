@@ -129,7 +129,7 @@ public class MemberController {
             session.invalidate();
         }
   
-        return "redirect:/member/login";
+        return "redirect:/homepage";
       }
       @GetMapping("/setting")
 

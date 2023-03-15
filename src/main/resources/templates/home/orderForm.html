@@ -7,7 +7,7 @@
     <div style="background-image: url(/images/cars/car3.jpg); background-size: cover; padding-bottom: 10px;">
         <div th:replace="fragments/fragments::homeHeader"></div>
         <main>
-            <form method="post" th:action="@{/booking/choose-seats/{id}(id=${tripInfoCurrent.id})}">
+            <form th:action="@{/booking/choose-seats/{id}(id=${tripInfoCurrent.id})}">
 
                 <div class="container">
                     <div class="bus-order">
@@ -80,11 +80,9 @@
                                     Submit
                                 </button> -->
 
-                                    <button id="submit-button" class="btn btn-success"
+                                    <button id="submit-button" class="btn btn-success" th:if = "${session.SselectedSeats}"
                                         title="Please select at least one seat before submitting" type="submit" disabled
-                                        th:if="${#session.getAttribute('selectedSeats')?.isEmpty()}">
-                                        Submit
-                                    </button>
+                                        >Submit</button>
 
 
 
@@ -131,15 +129,15 @@
         };
     </script> -->
 
-    <script>
+    <!-- <script>
         window.onload = function () {
             var submitButton = document.getElementById("submit-button");
 
-            if (sessionStorage.getItem("selectedSeats")) {
+            if (sessionStorage.getItem("SselectedSeats")) {
                 submitButton.disabled = true;
             }
         };
-    </script>
+    </script> -->
 
 
 </body>

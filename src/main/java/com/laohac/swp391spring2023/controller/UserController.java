@@ -232,6 +232,12 @@ public class UserController {
         model.addAttribute("listStates", listRoute);
 
         model.addAttribute("route", route);
+        showSearchPage(model);
+        return "home/searchPage";
+    }
+
+    @GetMapping("/search-page")
+    public String showSearchPage(Model model){
 
         return "home/searchPage";
     }

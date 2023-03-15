@@ -127,23 +127,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="orderDetail: ${oderDetails}">
-                                        <th:block th:if="${orderDetail.status != 'cancelled'}">
-                                            <td th:text="${orderDetail.departure}">Departure</td>
-                                            <td th:text="${orderDetail.arrival}">Arrival</td>
-                                            <td th:text="${orderDetail.trip.date}">Day</td>
-                                            <td th:text="${orderDetail.listSeatsNumber}" class="seat-td">Seats</td>
-                                            <td th:text="${orderDetail.quantity}">Quantity</td>
-                                            <td th:text="${orderDetail.total}">Total</td>
-                                            <td>
-                                                <form method="post" th:action="@{/booking/cancel-booking}">
+                                <tr th:each="orderDetail: ${orderDetails}">
+                                    <th:block th:if="${orderDetail.status == 'pending'}">
+                                        <td th:text="${orderDetail.departure}">Departure</td>
+                                        <td th:text="${orderDetail.arrival}">Arrival</td>
+                                        <td th:text="${orderDetail.trip.date}">Day</td>
+                                        <td th:text="${orderDetail.listSeatsNumber}" class="seat-td">Seats</td>
+                                        <td th:text="${orderDetail.quantity}">Quantity</td>
+                                        <td th:text="${orderDetail.total}">Total</td>
+                                        <td>
+                                            <form method="post" th:action="@{/booking/cancel-booking}">
                                                 <input type="hidden" name="bookingId" th:value="${orderDetail.id}">
                                                 <button type="submit" class="btn btn-warning">Cancel</button>
-                                                </form>
-                                            </td>
-                                        </th:block>
-                                        
-                                    </tr>
+                                            </form>
+                                        </td>
+                                    </th:block>
+                                </tr>
+
                                 </tbody>
                             </table>
                         </div>

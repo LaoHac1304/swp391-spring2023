@@ -39,15 +39,16 @@ public class AdminSecurityConfig {
         httpSecurity.authenticationProvider(authenticationProvider1());
 
         httpSecurity.authorizeRequests()
-        .antMatchers("/", "/pay", "/homepage","/homepage/login","/css/**", "/js/**","/images/**").permitAll();
+        .antMatchers("/css/**", "/js/**","/images/**").permitAll()
+        .antMatchers("/", "/pay", "/homepage","/homepage/login", "/users/login","/homepage/defaultSuccessUrl").permitAll();
 
         httpSecurity .antMatcher("/member/**").authorizeRequests().anyRequest().hasAuthority("admin")
         .and()
         .formLogin()
-            .loginPage("/member/login")
+            .loginPage("/users/login")
             .usernameParameter("username")
             .loginProcessingUrl("/member/login")
-            .defaultSuccessUrl("/member/adminDB")
+            .defaultSuccessUrl("/homepage/defaultSuccessUrl")
             .permitAll()
             .and()
             .logout()

@@ -15,7 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @Order(2)
 public class CustomerSecurityConfig {
-    
+
     @Bean
     public UserDetailsService customerUserDetailsService() {
         return new CustomerUserDetailsService();
@@ -25,7 +25,7 @@ public class CustomerSecurityConfig {
     // public PasswordEncoder passwordEncoder2(){
     //     //return NoOpPasswordEncoder.getInstance();
     //     return new BCryptPasswordEncoder();
-        
+
     // }
 
     @Bean
@@ -41,36 +41,38 @@ public class CustomerSecurityConfig {
     public SecurityFilterChain filterChain2(HttpSecurity httpSecurity) throws Exception{
 
         httpSecurity.authenticationProvider(authenticationProvider2());
-        
+
         httpSecurity.authorizeRequests()
+
         // .antMatchers("/homepage","/homepage/login","/homepage/logout","/users","/users/save","/booking","/users/verify"
         //                 ,"/oauth2/**","/css/**", "/js/**","/images/**").permitAll()
         .antMatchers("/", "/pay", "/homepage","/homepage/**","/users","/users/**","/trip","/trip/**"
+
                         ,"/booking","/booking/**","/users/verify"
                         ,"/oauth2/**","/css/**", "/js/**","/images/**")
-                        .permitAll()
-        //.antMatchers("/users/**").hasAuthority("customer")
-        .anyRequest().authenticated()
-        .and()
-        .formLogin()
-            .loginPage("/users/login")
-            .usernameParameter("username")
-            .loginProcessingUrl("/users/login")
-            .defaultSuccessUrl("/users/home")
-            .permitAll()
-            .and()
-            .oauth2Login()
+                .permitAll()
+                //.antMatchers("/users/**").hasAuthority("customer")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/users/login")
+                .usernameParameter("username")
+                .loginProcessingUrl("/users/login")
+                .defaultSuccessUrl("/users/home")
+                .permitAll()
+                .and()
+                .oauth2Login()
                 .loginPage("/users/login")
                 .userInfoEndpoint().userService(oAuth2UserService)
                 .and()
                 .defaultSuccessUrl("/users/home")
                 .successHandler(oAuth2LoginSuccessHandler)
-            .and()
-            .logout()
-            .invalidateHttpSession(true)
-            .deleteCookies("JSESSIONID")
-            .logoutUrl("/users/logout");
-        
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .logoutUrl("/users/logout");
+
         return httpSecurity.build();
     }
     @Autowired

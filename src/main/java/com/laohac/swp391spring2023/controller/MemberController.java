@@ -125,6 +125,7 @@ public class MemberController {
             session.invalidate();
         }
 
+
         return "redirect:/member/login";
     }
 

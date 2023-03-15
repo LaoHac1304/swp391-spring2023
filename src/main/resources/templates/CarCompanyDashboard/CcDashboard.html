@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="card mb-4">
+        <div class="card-header content-box-title">
+            <i class="fas fa-table me-1"></i>
+        </div>
+        <div class="card-body text-white">
+            <table id="datatablesSimple" class="myTable">
+            <thead>
+                <tr>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Price</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Car ID</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="trip: ${listTrips}">
+                    <td th:text="${trip.getRoute().getDeparture()}">Departure</td>
+                    <td th:text="${trip.getRoute().getArrival()}">Arrival</td>
+                    <td th:text="${trip.price}">Price</td>
+                    <td th:text="${trip.startTime}">Start</td>
+                    <td th:text="${trip.endTime}">End</td>
+                    <td th:text="${trip.getCar().getId}">End</td>
+                    <td th:text="${trip.departureDetail}">Pick Up</td>
+                    <td th:text="${trip.arrivalDetail}">Drop Off</td>
+                    <td th:text="${trip.date}">Day</td> 
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</body>
+</html>

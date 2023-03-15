@@ -28,7 +28,7 @@ import com.laohac.swp391spring2023.service.MemberService;
 @RequestMapping("/member")
 public class MemberController {
 
-    @Autowired 
+    @Autowired
     private MemberService memberService;
 
     @Autowired
@@ -38,54 +38,50 @@ public class MemberController {
     private CarRepository carRepository;
 
     @GetMapping("/adminDB")
-    public String showAdminDB(HttpSession session, Authentication authentication){
+    public String showAdminDB(HttpSession session, Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated())
             session.setAttribute("userSession", memberService.getCurrentUser());
-       //return "adminDashboard/Adashboard";
-       return "redirect:/member/viewall";
+        // return "adminDashboard/Adashboard";
+        return "redirect:/member/viewall";
     }
 
     @GetMapping("/login")
-    public String showAdminLogin(Authentication authentication){
+    public String showAdminLogin(Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) {
             return "redirect:/member/adminDB";
         }
         return "home/login";
     }
 
-    
     @GetMapping("/viewall")
     public String viewAllMember(Model model) {
 
         int employees = 0;
         int carCompanies = 0;
-        //int orders = 0;
-        int cars = 0 ;
-
+        // int orders = 0;
+        int cars = 0;
 
         List<User> listUsers = memberService.getAllMember();
         List<CarCompany> listCarCompanies = carCompanyRepository.findAll();
         List<Car> listCars = carRepository.findAll();
 
-
-        if (!listUsers.isEmpty()) 
+        if (!listUsers.isEmpty())
             employees = listUsers.size();
         if (!listCarCompanies.isEmpty())
             carCompanies = listCarCompanies.size();
         if (!listCars.isEmpty())
             cars = listCars.size();
-        
-            
+
         MemberViewDTOReponse memberViewDTOReponse = MemberViewDTOReponse.builder()
-                                                                        .employees(employees)
-                                                                        .carCompanies(carCompanies)
-                                                                        .cars(cars)
-                                                                        .build();
+                .employees(employees)
+                .carCompanies(carCompanies)
+                .cars(cars)
+                .build();
 
         MemberViewDTOReponse.builder().employees(employees).carCompanies(carCompanies).cars(cars).build();
 
         model.addAttribute("total", memberViewDTOReponse);
-        
+
         model.addAttribute("listMembers", listUsers);
 
         return "adminDashboard/Adashboard";
@@ -95,7 +91,7 @@ public class MemberController {
     public String addMember(Model model) {
         User member = new User();
         model.addAttribute("member", member);
-    
+
         return "adminDashboard/addEmployee";
     }
 
@@ -120,20 +116,20 @@ public class MemberController {
     }
 
     @GetMapping("/logout")
-    public String fetchSignoutSite(HttpServletRequest request, HttpServletResponse response) {        
+    public String fetchSignoutSite(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         SecurityContextHolder.clearContext();
-  
+
         session = request.getSession(false);
-        if(session != null) {
+        if (session != null) {
             session.invalidate();
         }
-  
-        return "redirect:/member/login";
-      }
-      @GetMapping("/setting")
 
-    public String setting(){
+        return "redirect:/member/login";
+    }
+
+    @GetMapping("/setting")
+    public String setting() {
         return "adminDashboard/setting";
     }
 }

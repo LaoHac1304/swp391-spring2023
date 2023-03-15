@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.laohac.swp391spring2023.model.dto.RouteDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTORequest;
@@ -214,8 +213,8 @@ public class UserController {
         List<Trip> tripsInfo = userService.searchByRouteAndDate(route, date);
         model.addAttribute("listTrips", tripsInfo);
 
-        List<Trip> tripsDescByPrice = userService.searchByRouteAndDateByPriceDesc(route, date);
-        model.addAttribute("tripsDescByPrice", tripsDescByPrice);
+        // List<Trip> tripsDescByPrice = userService.searchByRouteAndDateByPriceDesc(route, date);
+        // model.addAttribute("tripsDescByPrice", tripsDescByPrice);
         
         // List<Trip> tripsAscByPrice =
         // userService.searchByRouteAndDateByPriceAsc(route, date);

@@ -4,6 +4,7 @@ package com.laohac.swp391spring2023.controller;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -14,6 +15,9 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.laohac.swp391spring2023.model.PaymentStatus;
+import com.laohac.swp391spring2023.model.PaymentType;
+import com.laohac.swp391spring2023.model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,8 +59,10 @@ public class PaymentController {
     private BookingService bookingService;
 
     @GetMapping("/{id}")
-    public String payment(@PathVariable(value = "id") int id, Model model){
+    public String payment(@PathVariable(value = "id") int id, Model model, HttpSession session){
 
+        List<Integer> listSeats = new ArrayList<>();
+        session.setAttribute("SselectedSeats", listSeats);
         Trip trip = new Trip();
         
         trip = tripRepository.findById(id);
@@ -64,6 +70,8 @@ public class PaymentController {
         List<Seat> seatLists = seatRepository.findByTrip(trip);
         
         model.addAttribute("listSeats",seatLists);
+        
+        
         return "home/orderForm";
     }
 
@@ -108,14 +116,15 @@ public class PaymentController {
         return "home/checkoutForm";
     }
 
-    @PostMapping("/choose-seats/{id}")
+    @GetMapping("/choose-seats/{id}")
     public String chooseSeats(@RequestParam(name = "selectedSeats", required = false) List<Integer> selectedSeats, 
                                         Model model, @PathVariable(value = "id") int id, HttpSession session){
 
         // for (Integer idd : selectedSeats) {
         //     bookingService.chooseSeats(idd);    
         // }
-        model.addAttribute("selectedSeats", selectedSeats);
+        //if (!selectedSeats.isEmpty())
+            session.setAttribute("SselectedSeats", selectedSeats);
         CheckOutInfoDTOReponse checkOutInfoDTOReponse = bookingService.showCheckOutInfo(selectedSeats, session);
         
         session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
@@ -131,11 +140,26 @@ public class PaymentController {
     @PostMapping("/save-order")
     public String saveOrder(@RequestParam(name = "paymentMethod") String paymentMethod, HttpSession session, Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException{
 
+
+        CheckOutInfoDTOReponse checkOutInfoDTOReponse =
+                (CheckOutInfoDTOReponse) session.getAttribute("checkoutinfo");
+
+
         
-        if(paymentMethod.equals("paypal")) 
-            bookingService.saveOrder(session,true);
-        else 
-        bookingService.saveOrder(session,false);
+        if(paymentMethod.equals("paypal")) {
+            checkOutInfoDTOReponse.setStatus(Status.pending);
+            checkOutInfoDTOReponse.setPaymentType(PaymentType.paypal);
+            checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.paid);
+            session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
+            bookingService.saveOrder(session, true);
+        }
+        else {
+            checkOutInfoDTOReponse.setStatus(Status.pending);
+            checkOutInfoDTOReponse.setPaymentType(PaymentType.cash);
+            checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.pending);
+            session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
+            bookingService.saveOrder(session, false);
+        }
         
         String siteURL = getSiteURL(request);
         bookingService.sendVerificationEmail(session, siteURL);
@@ -157,8 +181,8 @@ public class PaymentController {
             session.setAttribute("paypalUserInfo", paypalUserInfo);
             return "redirect:/";
         }
-        CheckOutInfoDTOReponse checkOutInfoDTOReponse = 
-                (CheckOutInfoDTOReponse) session.getAttribute("checkoutinfo");
+
+
         List<Integer> lSeats = new ArrayList<>();
         lSeats = checkOutInfoDTOReponse.getLSeats();
         for (Integer seat : lSeats) {
@@ -168,8 +192,12 @@ public class PaymentController {
     }
 
     @PostMapping("/cancel-booking")
-    public String cancelBooking(@RequestParam("bookingId") int bookingId){
-        bookingService.cancelBooking(bookingId);
+    public String cancelBooking(@RequestParam("bookingId") int bookingId, Model model){
+        
+        
+        if (bookingService.cancelBooking(bookingId) == false) 
+            model.addAttribute("errorMessage", "Sorry, it's too late to cancel this booking");
+
         return "redirect:/users/info";
     }
 }

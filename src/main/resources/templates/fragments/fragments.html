@@ -298,7 +298,7 @@
 
         <div class="container booking-area">
             <!-- backendCode here -->
-            <form class="row" th:action="@{/users/search-trip}" th:object="${routeDTORequest}">
+            <form class="row" th:action="@{/users/search-trip}" method="GET" th:object="${routeDTORequest}">
                 <div class="col-lg mb-3 mb-lg-0">
                     <i class="fa-solid fa-calendar-days fa-lg"></i>
                     <label class="search-label">Date of departure</label>
@@ -333,7 +333,9 @@
                         <th:block th:each="tripD : ${departure}">
                             <option th:value="${tripD}" th:text="${tripD}"></option>
                         </th:block>
-                    </select>
+                    </select> 
+                    
+
 
                 </div>
                 <div class="col-lg mb-3 mb-lg-0">
@@ -350,7 +352,6 @@
                         </th:block>
                     </select>
 
-
                 </div>
 
 
@@ -362,12 +363,19 @@
                     </button>
                 </div>
 
-                
+
             </form>
+
+            
             <!-- backendCode End -->
+
         </div>
+
     </section>
+    
+
 </div>
+
 
 <!--Home guide-->
 <div th:fragment="homeGuide">
@@ -544,7 +552,7 @@
                                 link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP+HCM&state2=DA+LAT";
                             </script>
                         </a>
-                        
+
                     </div>
                     <div class="slider-container">
                         <a id="search-trips-link2"
@@ -563,7 +571,7 @@
                                 link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=VUNG+TAU&state2=NHA+TRANG";
                             </script>
                         </a>
-                        
+
                     </div>
                     <div class="slider-container">
                         <a id="search-trips-link3"
@@ -582,7 +590,7 @@
                                 link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=MUI+NE&state2=CAN+THO";
                             </script>
                         </a>
-                        
+
                     </div>
                     <div class="slider-container">
                         <a id="search-trips-link4"
@@ -601,7 +609,7 @@
                                 link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP+HCM&state2=CA+MAU";
                             </script>
                         </a>
-                        
+
                     </div>
                     <div class="slider-container">
                         <a id="search-trips-link"
@@ -620,7 +628,7 @@
                                 link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP+HCM&state2=DAK+LAK";
                             </script>
                         </a>
-                        
+
                     </div>
                 </div>
             </div>

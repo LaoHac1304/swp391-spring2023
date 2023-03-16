@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+<<<<<<< HEAD
     <form th:action="@{/trip/save}">
         <div>
         <label for="start-time">Start Time:</label>
@@ -47,6 +48,15 @@
                 <option value="">--Select a car--</option>
                 <th:block th:each="car : ${cars}">
                     <option th:value="${car.id}" th:text="${car.plateNumber}"></option>
+=======
+    <form th:action="@{/trip/save}" th:object="${trip}">
+        <!-- <div class="form-group">
+            <label>Route:</label>
+            <select class="form-control" th:field="*{route}">
+                <option value="">-- Select a route --</option>
+                <th:block th:each="route : ${routes}">
+                    <option th:value="${route}" th:text="${route.departure + ' - ' + route.arrival}"></option>
+>>>>>>> 0393a447c772b2a7d2dd9c715ccd7cfe5180122d
                 </th:block>
             </select>
         </div>

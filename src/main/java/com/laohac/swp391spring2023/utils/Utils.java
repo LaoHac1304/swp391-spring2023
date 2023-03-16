@@ -1,6 +1,10 @@
 package com.laohac.swp391spring2023.utils;
 
+import com.laohac.swp391spring2023.model.SpecialDay;
+
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.util.List;
 
 public class Utils {
 	public static String getBaseURL(HttpServletRequest request) {
@@ -18,5 +22,13 @@ public class Utils {
 	    	url.append("/");
 	    }
 	    return url.toString();
+	}
+
+	public static boolean isSpecialDay(LocalDate date){
+
+		for (SpecialDay specialDay : SpecialDay.values()){
+			if (specialDay.getDate().equals(date)) return true;
+		}
+		return false;
 	}
 }

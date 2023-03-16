@@ -7,7 +7,7 @@
     <div style="background-image: url(/images/cars/car3.jpg); background-size: cover; padding-bottom: 10px;">
         <div th:replace="fragments/fragments::homeHeader"></div>
         <main>
-            <form method="post" th:action="@{/booking/choose-seats/{id}(id=${tripInfoCurrent.id})}">
+            <form th:action="@{/booking/choose-seats/{id}(id=${tripInfoCurrent.id})}">
 
                 <div class="container">
                     <div class="bus-order">
@@ -17,27 +17,14 @@
                                 <div class="container-seat">
                                     <h2 style="text-align: center;">Select your seat</h2>
 
-
-
-                                    <!-- <div style="max-width: 140px; max-height: 200px; display: flex; flex-wrap: wrap;">
-                                            <div th:each="seat : ${listSeats}" >
-                                                <label th:for="'seat-' + ${seat.id}">
-                                                    <input type="checkbox" th:value="${seat.id}" name="selectedSeats"
-                                                        th:id="'seat-' + ${seat.id}">
-        
-                                                    <div class="seat" th:text="${seat.seatNumber}"></div>
-                                                </label>
-                                            </div>
-                                        </div>
-                                     -->
-                                    <div style="max-width: 190px; max-height: 200px; display: flex; flex-wrap: wrap; padding-left: 10px;">
+                                    <div
+                                        style="max-width: 190px; max-height: 200px; display: flex; flex-wrap: wrap; padding-left: 10px;">
                                         <div th:each="seat, status : ${listSeats}" class="seat-container">
                                             <label th:for="'seat-' + ${seat.id}">
                                                 <input type="checkbox" th:value="${seat.id}" name="selectedSeats"
                                                     th:id="'seat-' + ${seat.id}"
                                                     th:disabled="${seat.availableSeat == 1}"
                                                     th:onclick="checkSubmitButton()" />
-
 
                                                 <div class="seat" th:text="${seat.seatNumber}"
                                                     th:classappend="${status.count % 4 == 2 ? 'padded' : ''} + ' ' + ${seat.availableSeat == 1 ? 'booked' : ''}">
@@ -46,10 +33,6 @@
                                             </label>
                                         </div>
                                     </div>
-
-
-
-
 
                                 </div>
                             </div>
@@ -74,8 +57,38 @@
 
                                 <div>
                                     <!-- <button class="btn btn-success" type="submit">Submit</button> -->
-                                    <button  id="submit-button" class="btn btn-success"  title="Please select at least one seat before submitting"  type="submit" disabled
-                                    >Submit</button>
+                                    <!-- <button th:if="${listSeats.size}" id="submit-button" class="btn btn-success"
+                                        title="Please select at least one seat before submitting" type="submit"
+                                        disabled>Submit</button> -->
+                                    <!-- disable the button if selectedSeats is null -->
+                                    <!-- disable the button if listSeats is empty or selectedSeats has a size of 0 em ơi đừng khóc bóng tối sẽ tới bawstg em đi-->
+                                    <!-- enable the button if listSeats is not empty or selectedSeats is not null -->
+                                    <!-- enable the button if listSeats is not empty or selectedSeats is not null -->
+                                    <!-- enable the button if listSeats is not empty or selectedSeats is not null -->
+                                    <!-- <button th:if="${listSeats.size() > 0 or (#session.selectedSeats != null && #session.selectedSeats.size())}" 
+                                    id="submit-button" 
+                                    class="btn btn-success" 
+                                    title="Please select at least one seat before submitting" 
+                                    type="submit">
+                                Submit
+                                </button> -->
+                                    <!-- <button th:if="${ (listSeats.size() <= 0) && (#session.getAttribute('selectedSeats') == null)}" 
+                                    id="submit-button" 
+                                    class="btn btn-success" 
+                                    title="Please select at least one seat before submitting" 
+                                    type="submit" disabled>
+                                    Submit
+                                </button> -->
+
+                                    <button id="submit-button" class="btn btn-success" th:if = "${session.SselectedSeats}"
+                                        title="Please select at least one seat before submitting" type="submit" disabled
+                                        >Submit</button>
+
+
+
+
+
+
 
                                 </div>
                             </div>
@@ -106,5 +119,25 @@
 
     <!-- Script -->
     <div th:replace="fragments/fragments::homeScript"></div>
+
+    <!-- <script>
+        // Reset the checkboxes when the page is loaded, whether from the cache or the server
+        window.onpageshow = function (event) {
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = false;
+            }
+        };
+    </script> -->
+
+    <!-- <script>
+        window.onload = function () {
+            var submitButton = document.getElementById("submit-button");
+
+            if (sessionStorage.getItem("SselectedSeats")) {
+                submitButton.disabled = true;
+            }
+        };
+    </script> -->
+
 
 </body>

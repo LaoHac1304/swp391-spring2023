@@ -3,6 +3,7 @@ package com.laohac.swp391spring2023.model.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.laohac.swp391spring2023.utils.Utils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -64,5 +66,6 @@ public class Trip {
 
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetails;
-
+    @Column(name = "Is_Special_Day")
+    private Boolean isSpecialDay = Utils.isSpecialDay(date);
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.laohac.swp391spring2023.model.dto.RouteDTORequest;
+import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.RouteRepository;
@@ -119,9 +120,19 @@ public class HomeController {
         return "home/verify_success";
     }
 
-    @GetMapping("/verify_failure")
+    @GetMapping("/verify_fail")
     public String showFailure() {
 
-        return "home/verify_failure";
+        return "home/verify_fail";
     }
+    
+    @GetMapping("/defaultSuccessUrl")
+    public String showHomePage(){
+        UserDTOResponse userDTOResponse = memberService.getCurrentUser();
+        if (userDTOResponse.getRole().equals("admin")) return "redirect:/member/adminDB";
+        else return "redirect:/users/home";
+        
+    }
+
+
 }

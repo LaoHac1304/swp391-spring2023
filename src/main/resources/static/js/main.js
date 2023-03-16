@@ -87,6 +87,9 @@ function validatePassword() {
     if (password !== repeatPassword) {
         alert("Passwords do not match.");
         return false;
+    } else {
+        document.getElementById("popupRegister").style.display = "block";
+        return true;
     }
 
     return true;
@@ -123,18 +126,22 @@ $('.slider-nav').slick({
 
 
 function checkSubmitButton() {
-    var checkboxes = document.getElementsByName("selectedSeats");
+    var checkboxes = document.getElementsByName("selectedSeats"); // cái này ông lấy tên từ bên nào qua
     var submitButton = document.getElementById("submit-button");
+    // var selectedSeats = sessionStorage.getItem("SselectedSeats");
+    var checkedCount = 0;
 
     for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
-            submitButton.disabled = false;
-
-            return;
+            checkedCount++;
         }
     }
-    // submitButton.title = disabled;
-    submitButton.disabled = true;
+
+    if (checkedCount >= 1) {
+        submitButton.disabled = false;
+    } else {
+        submitButton.disabled = true;
+    }
 }
 
 $(document).ready(function () {

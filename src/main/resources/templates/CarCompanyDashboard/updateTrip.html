@@ -8,30 +8,31 @@
 </head>
 <body>
     <form th:action="@{/trip/save}">
+        <input type="hidden" th:field="*{id}">
         <div>
         <label for="start-time">Start Time:</label>
-        <input type="time" id="start-time" name="startTime" required>
+        <input type="time" id="start-time" name="startTime" th:placeholder="${trip.startTime}" required>
         </div>  
         <div>
         <label for="end-time">End Time:</label>
-        <input type="time" id="end-time" name="endTime" required>
+        <input type="time" id="end-time" name="endTime" th:placeholder="${trip.endTime}" required>
         </div>
         <div>
         <label for="price">Price:</label>
-        <input type="number" id="price" name="price" required>
+        <input type="number" id="price" name="price" th:placeholder="${trip.price}" required>
         </div>
 
         <div>
         <label for="departure-detail">Departure Detail:</label>
-        <input type="text" id="departure-detail" name="departureDetail" required>
+        <input type="text" id="departure-detail" name="departureDetail" th:placeholder="${trip.departureDetail}" required>
         </div>
         <div>
         <label for="arrival-detail">Arrival Detail:</label>
-        <input type="text" id="arrival-detail" name="arrivalDetail" required>
+        <input type="text" id="arrival-detail" name="arrivalDetail" th:placeholder="${trip.arrivalDetail}" required>
         <div>
         </div>
         <label for="arrival-detail">Date:</label>
-        <input type="date" id="arrival-date" name="date" required>
+        <input type="date" id="arrival-date" name="date" th:placeholder="${trip.date}" required>
         </div>
         <div>
         <label for="route">Route:</label>

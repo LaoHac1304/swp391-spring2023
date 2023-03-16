@@ -11,4 +11,8 @@ public interface TripService {
 
     public List<Trip> getAllTrip();
 
+    public Trip getTripById(int id);
+
+    public void deleteTripById(int id);
+
 }

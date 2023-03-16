@@ -98,7 +98,6 @@ public class MemberController {
     @GetMapping("/save")
     public String saveMember(@ModelAttribute("member") User member) {
         memberService.addMember(member);
-        System.out.println(member);
         return "redirect:/member/viewall";
     }
 

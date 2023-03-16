@@ -1,6 +1,7 @@
 package com.laohac.swp391spring2023.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.laohac.swp391spring2023.model.dto.TripDTO;
 import com.laohac.swp391spring2023.model.entities.Car;
@@ -23,17 +24,17 @@ public class TripServiceImpl implements TripService {
     @Override
     public void addTrip(TripDTO tripDTO) {
         Trip trip = new Trip();
+
         Route route = new Route();
-        route.setDeparture(tripDTO.getRoute().getDeparture());
-        route.setArrival(tripDTO.getRoute().getArrival());
-    
-        Car car = new Car();
-        car.setId(tripDTO.getCar().getId());
-    
+        route.setId(tripDTO.getRouteId());
         trip.setRoute(route);
-        trip.setStartTime(tripDTO.getStartTime());
-        trip.setEndTime(tripDTO.getEndTime());
+
+        Car car = new Car();
+        route.setId(tripDTO.getCarId());
         trip.setCar(car);
+        
+        trip.setStartTime(tripDTO.getStartTime());
+        trip.setEndTime(tripDTO.getEndTime());     
         trip.setPrice(tripDTO.getPrice());
         trip.setDepartureDetail(tripDTO.getDepartureDetail());
         trip.setArrivalDetail(tripDTO.getArrivalDetail());
@@ -46,5 +47,15 @@ public class TripServiceImpl implements TripService {
     @Transactional
     public List<Trip> getAllTrip(){
         return tripRepository.findAll();
+    }
+
+    @Override
+    public Trip getTripById(int id) {
+        return tripRepository.findById(id);
+    }
+
+    @Override  
+    public void deleteTripById(int id){
+        this.tripRepository.deleteById(id);
     }
 }

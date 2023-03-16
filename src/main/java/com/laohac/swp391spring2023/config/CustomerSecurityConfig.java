@@ -45,7 +45,7 @@ public class CustomerSecurityConfig {
         httpSecurity.authorizeRequests()
         // .antMatchers("/homepage","/homepage/login","/homepage/logout","/users","/users/save","/booking","/users/verify"
         //                 ,"/oauth2/**","/css/**", "/js/**","/images/**").permitAll()
-        .antMatchers("/", "/pay", "/homepage","/homepage/**","/users","/users/**","/trip","/trip/**"
+        .antMatchers("/", "/pay", "/homepage","/homepage/**","/users","/users/**","/trip","/trip/**","/route","/route/**","/car","car/**"
                         ,"/booking","/booking/**","/users/verify"
                         ,"/oauth2/**","/css/**", "/js/**","/images/**")
                         .permitAll()

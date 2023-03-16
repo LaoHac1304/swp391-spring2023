@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.laohac.swp391spring2023.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -84,7 +85,7 @@ public class UserController {
 
     @GetMapping("")
     public String home(Model model, User user) {
-        if (memberService.getCurrentUser() != null){
+        if (memberService.getCurrentUser() != null) {
             return "home/index";
         }
         model.addAttribute("customer", user);
@@ -100,7 +101,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String showLogin(Model model) {
-        if (memberService.getCurrentUser() != null){
+        if (memberService.getCurrentUser() != null) {
             return "home/index";
         }
         User user = new User();
@@ -128,7 +129,7 @@ public class UserController {
 
         System.out.println(userDTOResponse.getFullName());
 
-        return "redirect:/users#popupRegister"; //users#popupRegister
+        return "redirect:/users#popupRegister"; // users#popupRegister
     }
 
     @GetMapping("/verify")
@@ -205,17 +206,25 @@ public class UserController {
     public String search(@ModelAttribute("routeDTORequest") RouteDTORequest routeDTORequest, Model model)
             throws ParseException {
 
+        // if (routeDTORequest.getState1() == null || routeDTORequest.getState2() == null) {
+        //     List<Route> listRoute = routeRepository.findAll();
+        //     model.addAttribute("listStates", listRoute);
+        //     return "home/searchPage";
+        // }
+
         String dateString = routeDTORequest.getDate();
         LocalDate date = LocalDate.parse(dateString);
+        model.addAttribute("isSpecialDay", Utils.isSpecialDay(date));
         Route route = routeRepository.findByState1AndState2(routeDTORequest.getState1().toUpperCase(),
                 routeDTORequest.getState2().toUpperCase());
-        
+
         List<Trip> tripsInfo = userService.searchByRouteAndDate(route, date);
         model.addAttribute("listTrips", tripsInfo);
 
-        // List<Trip> tripsDescByPrice = userService.searchByRouteAndDateByPriceDesc(route, date);
+        // List<Trip> tripsDescByPrice =
+        // userService.searchByRouteAndDateByPriceDesc(route, date);
         // model.addAttribute("tripsDescByPrice", tripsDescByPrice);
-        
+
         // List<Trip> tripsAscByPrice =
         // userService.searchByRouteAndDateByPriceAsc(route, date);
         // model.addAttribute("tripsAscByPrice", tripsAscByPrice);
@@ -232,17 +241,9 @@ public class UserController {
         model.addAttribute("listStates", listRoute);
 
         model.addAttribute("route", route);
-        showSearchPage(model);
+        
         return "home/searchPage";
     }
-
-    @GetMapping("/search-page")
-    public String showSearchPage(Model model){
-
-        return "home/searchPage";
-    }
-
-    
 
     /*
      * @GetMapping("/login-google")

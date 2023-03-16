@@ -328,8 +328,9 @@
                     </div>
 
                     <select id="pickUpPlace" class="form-control" th:field="*{state1}" required
-                        data-placeholder="Pick up place" style="width: 100%" name="pickUpPlace">
-                        <option value="" hidden>-- Select an option --</option>
+                        data-placeholder="Pick up place" style="width: 100%">
+
+                        <option value="" hidden>-- Select pick up place --</option>
                         <th:block th:each="tripD : ${departure}">
                             <option th:value="${tripD}" th:text="${tripD}"></option>
                         </th:block>
@@ -343,8 +344,8 @@
                     </div>
 
                     <select id="dropoffPlace" class="form-control" th:field="*{state2}" required
-                        data-placeholder="Drop off place" style="width: 100%" name="dropoffPlace">
-                        <option value="" hidden>-- Select an option --</option>
+                        data-placeholder="Drop off place" style="width: 100%">
+                        <option value="" hidden>-- Select drop off place --</option>
                         <th:block th:each="tripA : ${arrival}">
                             <option th:value="${tripA}" th:text="${tripA}"></option>
                         </th:block>
@@ -362,7 +363,7 @@
                     </button>
                 </div>
 
-                
+
             </form>
             <!-- backendCode End -->
         </div>
@@ -544,7 +545,7 @@
                                 link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP+HCM&state2=DA+LAT";
                             </script>
                         </a>
-                        
+
                     </div>
                     <div class="slider-container">
                         <a id="search-trips-link2"
@@ -563,7 +564,7 @@
                                 link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=VUNG+TAU&state2=NHA+TRANG";
                             </script>
                         </a>
-                        
+
                     </div>
                     <div class="slider-container">
                         <a id="search-trips-link3"
@@ -582,7 +583,7 @@
                                 link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=MUI+NE&state2=CAN+THO";
                             </script>
                         </a>
-                        
+
                     </div>
                     <div class="slider-container">
                         <a id="search-trips-link4"
@@ -601,7 +602,7 @@
                                 link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP+HCM&state2=CA+MAU";
                             </script>
                         </a>
-                        
+
                     </div>
                     <div class="slider-container">
                         <a id="search-trips-link"
@@ -620,7 +621,7 @@
                                 link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP+HCM&state2=DAK+LAK";
                             </script>
                         </a>
-                        
+
                     </div>
                 </div>
             </div>
@@ -1139,7 +1140,7 @@
 
         <div class="container booking-area">
             <!-- backendCode here -->
-            <form class="row" th:action="@{/users/search-trip}" th:object="${routeDTORequest}">
+            <form id="searchForm" class="row" th:action="@{/users/search-trip}" th:object="${routeDTORequest}">
                 <div class="col-lg mb-3 mb-lg-0">
                     <i class="fa-solid fa-calendar-days fa-lg"></i>
                     <label class="search-label">Date of departure</label>
@@ -1168,43 +1169,32 @@
                         <label class="search-label">Pick up place</label>
                     </div>
 
-                    <!-- <input class="form-control" type="search" th:field="*{state1}" placeholder="Pick up place"
-                        list="pickupList" required />
-                    <datalist id="pickupList">
-                        <option th:each="trip: ${listStates}" th:value="${trip.departure}"></option>
-                    </datalist> -->
-                    <!-- th:field="*{state1}" -->
-                    <select id="pickUpPlace" class="form-control" required data-placeholder="Pick up place"
-                        style="width: 100%" name="pickUpPlace">
+                    <select id="pickUpPlace" class="form-control" name="state1" required
+                        data-placeholder="Pick up place" style="width: 100%">
 
-                        <option value="" hidden>-- Select an option --</option>
+                        <option value="" hidden>-- Select pick up place --</option>
                         <th:block th:each="tripD : ${departure}">
                             <option th:value="${tripD}" th:text="${tripD}"></option>
                         </th:block>
                     </select>
-                    <input type="hidden" th:field="*{state1}">
 
                 </div>
+
                 <div class="col-lg mb-3 mb-lg-0">
                     <div class="dropoffLabel">
                         <i class="fa-solid fa-location-dot fa-lg"></i>
                         <label class="search-label">Drop off place</label>
                     </div>
 
-                    <!-- <input class="form-control" type="search" th:field="*{state2}" placeholder="Drop off place" required
-                        list="dropoffList" />
-                    <datalist id="dropoffList">
-                        <option th:each="trip: ${listStates}" th:value="${trip.arrival}"></option>
-                    </datalist> -->
-                    <!-- th:field="*{state2}" -->
+
                     <select id="dropoffPlace" class="form-control" required data-placeholder="Drop off place"
-                        style="width: 100%" name="dropoffPlace">
-                        <option value="" hidden>-- Select an option --</option>
+                        style="width: 100%" name="state2">
+                        <option value="" hidden>-- Select drop off place --</option>
                         <th:block th:each="tripA : ${arrival}">
                             <option th:value="${tripA}" th:text="${tripA}"></option>
                         </th:block>
                     </select>
-                    <input type="hidden" th:field="*{state2}">
+                    <!-- <input type="hidden" th:field="*{state2}"> -->
 
                 </div>
                 <div class="col-lg mb-3 mb-lg-0">
@@ -1215,32 +1205,6 @@
                     </button>
                 </div>
 
-                <script>
-                    const pickUpPlaceSelect1 = document.getElementById("pickUpPlace");
-                    const dropoffPlaceSelect1 = document.getElementById("dropoffPlace");
-
-                    pickUpPlaceSelect1.addEventListener("change", (event) => {
-                        const selectedOptionText = event.target.options[event.target.selectedIndex].text;
-                        for (const option of dropoffPlaceSelect1.options) {
-                            if (option.text === selectedOptionText) {
-                                option.disabled = true;
-                            } else {
-                                option.disabled = false;
-                            }
-                        }
-                    });
-
-                    dropoffPlaceSelect1.addEventListener("change", (event) => {
-                        const selectedOptionText = event.target.options[event.target.selectedIndex].text;
-                        for (const option of pickUpPlaceSelect1.options) {
-                            if (option.text === selectedOptionText) {
-                                option.disabled = true;
-                            } else {
-                                option.disabled = false;
-                            }
-                        }
-                    });
-                </script>
             </form>
             <!-- backendCode End -->
         </div>

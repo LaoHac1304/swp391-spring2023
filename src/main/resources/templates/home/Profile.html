@@ -11,6 +11,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="fragments/fragments::userHead"></div>
 
+<head>
+    <!-- jQuery library (required) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- DataTables CSS and JS files (required) -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
+
+</head>
+
 <body style="
             color: #1a202c;
             text-align: left;
@@ -28,7 +38,7 @@
                                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Your avatar go here"
                                     class="rounded-circle" width="150">
                                 <div class="mt-3">
-                                    <h4 th:text="${userInfo.username}"></h4>
+                                    <h4 th:text="${userInfo.fullName}"></h4>
                                     <p class="text-muted font-size-sm" th:text="${userInfo.email}"></p>
                                     <p class="text-secondary mb-1" th:text="${userInfo.phoneNumber}"></p>
                                 </div>
@@ -114,6 +124,7 @@
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple" class="historyTable">
+                            <!-- <table id="myTable" class="historyTable"> -->
                                 <thead>
                                     <tr>
                                         <th>Departure</th>
@@ -123,29 +134,36 @@
                                         <th>Seats</th>
                                         <th>Quantity</th>
                                         <th>Total</th>
+                                        <th>Payment</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="orderDetail: ${orderDetails}">
-                                    <th:block th:if="${orderDetail.status == 'pending'}">
-                                        <td th:text="${orderDetail.departure}">Departure</td>
-                                        <td th:text="${orderDetail.arrival}">Arrival</td>
-                                        <td th:text="${orderDetail.trip.date}">Day</td>
-                                        <td th:text="${orderDetail.listSeatsNumber}" class="seat-td">Seats</td>
-                                        <td th:text="${orderDetail.quantity}">Quantity</td>
-                                        <td th:text="${orderDetail.total}">Total</td>
-                                        <td>
-                                            <form method="post" th:action="@{/booking/cancel-booking}">
-                                                <input type="hidden" name="bookingId" th:value="${orderDetail.id}">
-                                                <button type="submit" class="btn btn-warning">Cancel</button>
-                                            </form>
-                                        </td>
-                                    </th:block>
-                                </tr>
+                                    <tr class="tr-border" th:each="orderDetail: ${orderDetails}">
+                                        <!-- <th:block th:if="${orderDetail.status == 'pending'}"> -->
+                                        <th:block>
+                                            <td th:text="${orderDetail.departure}">Departure</td>
+                                            <td th:text="${orderDetail.arrival}">Arrival</td>
+                                            <td th:text="${orderDetail.trip.date}">Day</td>
+                                            <td th:text="${orderDetail.listSeatsNumber}" class="seat-td">Seats</td>
+                                            <td th:text="${orderDetail.quantity}">Quantity</td>
+                                            <td th:text="${orderDetail.total}">Total</td>
+                                            <td th:text="${orderDetail.paymentType}">Payment</td>
+                                            <td style="background-color: aquamarine;" th:text="${orderDetail.status}">Status</td>
+                                            <td>
+                                                <form method="post" th:action="@{/booking/cancel-booking}">
+                                                    <input type="hidden" name="bookingId" th:value="${orderDetail.id}">
+                                                    <button type="submit" class="btn btn-danger">Cancel</button>
+                                                </form>
+                                            </td>
+                                        </th:block>
+                                    </tr>
 
                                 </tbody>
                             </table>
+
+                            
                         </div>
 
                     </div>
@@ -157,7 +175,11 @@
     </div>
 
     <div th:replace="fragments/fragments::userFooter"></div>
-    <div th:replace="fragments/fragments::userScript"></div>
+    <div th:replace="fragments/fragments::userScript">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    </div>
+
 
 
 </body>

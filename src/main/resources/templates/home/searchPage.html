@@ -65,9 +65,6 @@
     <!-- show a list of available tickets for customer -->
     <div class="container-trip-page">
 
-        
-
-
         <div class="container-search-trip" th:each="trip: ${listTrips}">
             <form th:action="@{/booking/{id}(id=${trip.id})}" id="myForm">
                 <div class="TicketPC-Container">
@@ -125,7 +122,7 @@
                                 <div class="info">
                                     <div class="seat-available-green">6 seats left </div>
                                 </div>
-
+                                
                                 <button data-tracking-event="selected_route" type="submit" class="ant-btn-btn-booking"
                                     style="text-align: right;">
                                     <span>Book now</span>

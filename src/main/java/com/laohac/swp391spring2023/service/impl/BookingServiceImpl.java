@@ -203,7 +203,7 @@ public class BookingServiceImpl implements BookingService {
         for (Integer integer : listSeats) {
             cancelSeat(integer);
         }
-        canceledOrderDetail.setStatus(Status.cancelled);
+        canceledOrderDetail.setStatus(Status.CANCELLED);
         orderDetailRepository.save(canceledOrderDetail);
 
         return true;

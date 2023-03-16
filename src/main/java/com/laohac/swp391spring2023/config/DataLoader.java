@@ -1,7 +1,9 @@
 package com.laohac.swp391spring2023.config;
 
 import java.util.Date;
+import java.util.List;
 
+import com.laohac.swp391spring2023.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -37,8 +39,11 @@ public class DataLoader implements CommandLineRunner {
         //     seatRepository.save(seat);
         // }
 
-        
-        
+        List<Trip> trips = tripRepository.findAll();
+        for (Trip trip:trips) {
+            trip.setIsSpecialDay(Utils.isSpecialDay(trip.getDate()));
+            tripRepository.save(trip);
+        }
     }
     
     

@@ -49,7 +49,7 @@ public class TripController {
 
     @GetMapping("/save")
     public String saveTrip(@ModelAttribute("trip") TripDTO tripDTO) {
-        tripService.addTrip(tripDTO);
+        tripService.addTrip(tripDTO );
         System.out.println(tripDTO);
         return "redirect:/trip/viewall";
     }

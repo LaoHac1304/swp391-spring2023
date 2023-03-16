@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.laohac.swp391spring2023.utils.Utils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -65,11 +66,6 @@ public class Trip {
 
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetails;
-
-    @Column(name = "Start_Date")
-    private LocalDateTime departureDate;
-    
-    @Column(name = "End_Date")
-    private LocalDateTime arrivalDate;
-
+    @Column(name = "Is_Special_Day")
+    private Boolean isSpecialDay = Utils.isSpecialDay(date);
 }

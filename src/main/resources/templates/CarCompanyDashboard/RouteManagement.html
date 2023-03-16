@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="card mb-4">
+        <div class="card-header content-box-title">
+            <i class="fas fa-table me-1"></i>
+        </div>
+        <div class="card-body text-white">
+            <table id="datatablesSimple" class="myTable">
+            <thead>
+                <tr>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Actions</th>
+                <th><a th:href="@{/route/add}">Add New Route</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="route: ${listRoutes}">
+                    <td th:text="${route.departure}">Departure</td>
+                    <td th:text="${route.arrival}">Arrival</td>    
+                    <td>
+                        <a th:href="@{update/{id}(id=${route.id})}" class="btn btn-success">Update</a>
+                        <a th:href="@{delete/{id}(id=${route.id})}" class="btn btn-warning">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -147,16 +147,16 @@ public class PaymentController {
 
         
         if(paymentMethod.equals("paypal")) {
-            checkOutInfoDTOReponse.setStatus(Status.pending);
-            checkOutInfoDTOReponse.setPaymentType(PaymentType.paypal);
-            checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.paid);
+            checkOutInfoDTOReponse.setStatus(Status.PENDING);
+            checkOutInfoDTOReponse.setPaymentType(PaymentType.PAYPAL);
+            checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.PAID);
             session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
             bookingService.saveOrder(session, true);
         }
         else {
-            checkOutInfoDTOReponse.setStatus(Status.pending);
-            checkOutInfoDTOReponse.setPaymentType(PaymentType.cash);
-            checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.pending);
+            checkOutInfoDTOReponse.setStatus(Status.PENDING);
+            checkOutInfoDTOReponse.setPaymentType(PaymentType.CASH);
+            checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.PENDING);
             session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
             bookingService.saveOrder(session, false);
         }

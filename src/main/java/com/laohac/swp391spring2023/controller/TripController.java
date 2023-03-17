@@ -56,7 +56,6 @@ public class TripController {
     }
 
     @GetMapping("/save")
-<<<<<<< HEAD
     public String saveTrip(@ModelAttribute("trip") Trip trip) {
         tripRepository.save(trip);
         return "redirect:/trip/viewall";
@@ -79,11 +78,6 @@ public class TripController {
     @GetMapping("/delete/{id}")
     public String deleteTrip(@PathVariable(value = "id") int id) {
         this.tripService.deleteTripById(id);
-=======
-    public String saveTrip(@ModelAttribute("trip") TripDTO tripDTO) {
-        tripService.addTrip(tripDTO );
-        System.out.println(tripDTO);
->>>>>>> 0393a447c772b2a7d2dd9c715ccd7cfe5180122d
         return "redirect:/trip/viewall";
     }
 }

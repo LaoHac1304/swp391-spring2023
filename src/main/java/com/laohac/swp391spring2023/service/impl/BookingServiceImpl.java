@@ -103,8 +103,10 @@ public class BookingServiceImpl implements BookingService {
         String departure = trip.getArrivalDetail();
         String arrival = trip.getArrivalDetail();
         String listSeats = checkOutInfoDTOReponse.getLSeats().toString();
-
         String str = listSeats;
+        boolean isSpecialDay = trip.getIsSpecialDay();
+        checkOutInfoDTOReponse.setSpecialDay(isSpecialDay);
+        session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
         str = str.replaceAll("[\\[\\]\\s+]", "");
         List<Integer> listSeatsInt = Arrays.stream(str.split(","))
                                     .map(String::trim)
@@ -119,7 +121,7 @@ public class BookingServiceImpl implements BookingService {
                 listSeatsNumber.add(Integer.toString(seat.getSeatNumber()));
             }
         }
-
+        LocalDate today = LocalDate.now();
         OrderDetail orderDetail = new OrderDetail();
         orderDetail = OrderDetail
                             .builder()
@@ -127,7 +129,7 @@ public class BookingServiceImpl implements BookingService {
                             .trip(trip)
                             .car(car)
                             .quantity(quantity)
-                            .date(null)
+                            .date(today)
                             .email(email)
                             .fullName(fullName)
                             .phoneNumber(phoneNumber)

@@ -29,4 +29,5 @@ public class CheckOutInfoDTOReponse {
     private PaymentStatus paymentStatus;
     private PaymentType paymentType;
     private Status status;
+    private boolean isSpecialDay;
 }

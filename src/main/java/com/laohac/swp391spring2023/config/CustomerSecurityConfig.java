@@ -48,12 +48,7 @@ public class CustomerSecurityConfig {
 
         // .antMatchers("/homepage","/homepage/login","/homepage/logout","/users","/users/save","/booking","/users/verify"
         //                 ,"/oauth2/**","/css/**", "/js/**","/images/**").permitAll()
-<<<<<<< HEAD
         .antMatchers("/", "/pay", "/homepage","/homepage/**","/users","/users/**","/trip","/trip/**","/route","/route/**","/car","car/**"
-=======
-        .antMatchers("/", "/pay", "/homepage","/homepage/**","/users","/users/**","/trip","/trip/**"
-
->>>>>>> 0393a447c772b2a7d2dd9c715ccd7cfe5180122d
                         ,"/booking","/booking/**","/users/verify"
                         ,"/oauth2/**","/css/**", "/js/**","/images/**")
                 .permitAll()

@@ -34,7 +34,7 @@
                                 </div>
                             </div>
 
-                            <div class="row-payment" th:if="${checkoutinfo.isSpecialDay}">
+                            <div class="row-payment" th:if="${checkoutinfo.isSpecialDay == false}">
                                 <label class="flex-label">
                                     <span class="span-payments">
                                         <input type="radio" name="paymentMethod" value="payonbus" class="custom-radio"

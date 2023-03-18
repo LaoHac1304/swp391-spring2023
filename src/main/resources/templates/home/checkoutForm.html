@@ -161,7 +161,7 @@
                             <!--  -->
                             <div class="row">
                                 <div class="col-md-6 total">Total</div>
-                                <div class="col-md-6 total-price" th:text="${checkoutinfo.priceTotal}">200.000 VND</div>
+                                <div class="col-md-6 total-price" th:text="${T(com.laohac.swp391spring2023.controller.PaymentController).formatVND(checkoutinfo.priceTotal)}">200.000 VND</div>
                                 <!--                                    <div class="col-md-6 total-price" th:text="${checkoutinfo.priceTotal.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}" style="font-weight: bold !important;"></div>-->
 
                             </div>

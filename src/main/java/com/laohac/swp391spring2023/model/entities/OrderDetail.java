@@ -31,58 +31,38 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BookingID")
     private int id;
-
     @ManyToOne
     @JoinColumn(name = "CustomerID")
     private User customer; // many to one
-
     @ManyToOne
     @JoinColumn(name = "TripID")
     private Trip trip; // many to one
-
     @ManyToOne
     @JoinColumn(name = "CarID")
     private Car car; // many to one
-
     private int quantity;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
-
     private String email;
-
     private String fullName;
-
     private String phoneNumber;
-
     @Column(name = "Total")
     private BigDecimal total;
-
     private String departure;
-
     private String arrival;
-
     @Column(name = "List_Seats_Id")
     private String listSeats;
-
     @Column(name = "List_Seats_Number")
     private String listSeatsNumber;
-
     @Column(name = "Payment_Type")
     @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
-
     @Column(name = "Payment_Status")
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
-
     @Column(name = "Status")
     @Enumerated(EnumType.STRING)
     private Status status;
-
     @Column(name = "CreatedAt")
     private LocalDateTime createdAt;
-
     @Column(name = "UpdatedAt")
     private LocalDateTime updatedAt;
 

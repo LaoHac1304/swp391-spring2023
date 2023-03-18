@@ -3,13 +3,12 @@ package com.laohac.swp391spring2023.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -74,6 +73,13 @@ public class PaymentController {
         return "home/orderForm";
     }
 
+    public static String formatVND(BigDecimal price) {
+        DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance(Locale.forLanguageTag("vi-VN"));
+        formatter.setGroupingSize(3);
+        formatter.setGroupingUsed(true);
+        return formatter.format(price) + " ₫";
+    }
+
     @GetMapping("/list-place")
     public String listPlace(Model model) {
 
@@ -102,6 +108,25 @@ public class PaymentController {
         return "home/ArrivalDepartureDetail";
     }
 
+    private String getListSeatNumber(String str){
+        str = str.replaceAll("[\\[\\]\\s+]", "");
+
+        List<Integer> listSeatsInt = Arrays.stream(str.split(","))
+                .map(String::trim)
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .collect(Collectors.toList());
+
+        List<String> listSeatsNumber = new ArrayList<>();
+        for (Integer integer : listSeatsInt) {
+            Seat seat = seatRepository.findById(integer.intValue());
+            if (seat!=null){
+                listSeatsNumber.add(Integer.toString(seat.getSeatNumber()));
+            }
+        }
+        return String.join(",", listSeatsNumber);
+    }
+
     @GetMapping("/checkout/{id}")
     public String showCheckoutForm(Model model, @PathVariable(value = "id") int id, HttpSession session){
 
@@ -111,6 +136,8 @@ public class PaymentController {
         model.addAttribute("tripInfoCurrent", trip);
 
         CheckOutInfoDTOReponse checkOutInfoDTOReponse = (CheckOutInfoDTOReponse) session.getAttribute("checkoutinfo");
+        String listSeatNumber = getListSeatNumber(checkOutInfoDTOReponse.getLSeats().toString());
+        model.addAttribute("listSeatsNumber", listSeatNumber);
         model.addAttribute("checkoutinfo", checkOutInfoDTOReponse);
         return "home/checkoutForm";
     }
@@ -165,6 +192,7 @@ public class PaymentController {
         
         String siteURL = getSiteURL(request);
         bookingService.sendVerificationEmail(session, siteURL);
+
         if(paymentMethod.equals("paypal")){
             OrderDetail orderDetail = (OrderDetail) session.getAttribute("orderDetailEmail");
             BigDecimal divisor = new BigDecimal("25000");
@@ -202,4 +230,6 @@ public class PaymentController {
 
         return "redirect:/users/info";
     }
+
+
 }

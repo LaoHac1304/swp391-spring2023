@@ -1,65 +1,152 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Trip Management</title>
+    <style>
+        .trip-management-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .trip-management-table th,
+        .trip-management-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .trip-management-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: rgb(88, 84, 84);
+        }
+
+        .trip-management-table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .add-trip-btn {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 10px 20px;
+        }
+
+        .update-tripm-btn,
+        .delete-tripm-btn {
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 10px 20px;
+            margin-left: 10px;
+        }
+
+        .update-tripm-btn:hover {
+            background-color: rgb(46, 46, 206);
+        }
+
+        .delete-tripm-btn:hover {
+            background-color: rgb(221, 17, 17);
+        }
+
+        .delete-tripm-btn {
+            background-color: rgb(228, 64, 64);
+        }
+
+        .update-tripm-btn {
+            background-color: rgb(70, 70, 232);
+        }
+
+        .card-header-content-box-title {
+            position: relative;
+        }
+
+        .fas-fa-table-me-1 {
+            display: inline;
+            font-size: 30px;
+        }
+
+        .combine-icon-text {
+            text-align: right;
+            display: inline;
+            width: 1087.2px;
+            position: absolute;
+            right: 0px;
+            margin-top: 10px;
+        }
+
+        .add-trip-btn {
+            padding: 9px 10px 9px 5px;
+        }
+
+        .bx bx-plus {
+            padding: 5px 0px 3px 0px;
+            margin-top: 5px;
+        }
+    </style>
+
+
 </head>
+
 <body>
     <div class="card mb-4">
-        <div class="card-header content-box-title">
-            <i class="fas fa-table me-1"></i>
+        <div class="card-header-content-box-title">
+            <h2 class="fas-fa-table-me-1">Trip Details</h2>
+            <div class="combine-icon-text">
+                <a th:href="@{/trip/add}" class="add-trip-btn"><i class='bx bx-plus'></i>
+                    Add New Trip
+                </a>
+            </div>
         </div>
         <div class="card-body text-white">
-            
-            <table id="datatablesSimple" class="myTable">  
-            <thead>
-                <tr>
-                <th>Departure</th>
-                <th>Arrival</th>
-                <th>Price</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Car ID</th>
-                <th>Departure</th>
-                <th>Arrival</th>
-                <th>Date</th>
-                <th>Actions</th>
-                <th><a th:href="@{/trip/add}">Add New Trip</a></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="trip: ${listTrips}">
-<<<<<<< HEAD:src/main/resources/templates/CarCompanyDashboard/TripManagement.html
-                    <td th:text="${trip.getRoute().getDeparture()}">Departure</td>
-                    <td th:text="${trip.getRoute().getArrival()}">Arrival</td>
-                    <td th:text="${trip.price}">Price</td>
-                    <td th:text="${trip.startTime}">Start</td>
-                    <td th:text="${trip.endTime}">End</td>
-                    <td th:text="${trip.getCar().getPlateNumber}">Car</td>
-                    <td th:text="${trip.departureDetail}">Pick Up</td>
-                    <td th:text="${trip.arrivalDetail}">Drop Off</td>
-                    <td th:text="${trip.date}">Day</td>     
-                    <td>
-                        <a th:href="@{update/{id}(id=${trip.id})}" class="btn btn-success">Update</a>
-                        <a th:href="@{delete/{id}(id=${trip.id})}" class="btn btn-warning">Delete</a>
-                    </td>
-=======
-                    <td th:if="${trip.route!=null}" th:text="${trip.route.getDeparture()}">Departure</td>
-                    <td th:if="${trip.route!=null}" th:text="${trip.route.getArrival()}">Arrival</td>
-                    <td th:if="${trip.price!=null}" th:text="${trip.price}">Price</td>
-                    <td th:if="${trip.startTime!=null}" th:text="${trip.startTime}">Start</td>
-                    <td th:if="${trip.endTime!=null}" th:text="${trip.endTime}">End</td>
-                    <td th:if="${trip.car!=null}" th:text="${trip.car.getId}">End</td>
-                    <td th:if="${trip.departureDetail!=null}" th:text="${trip.departureDetail}">Pick Up</td>
-                    <td th:if="${trip.arrivalDetail!=null}" th:text="${trip.arrivalDetail}">Drop Off</td>
-                    <td th:if="${trip.date!=null}" th:text="${trip.date}">Day</td>
->>>>>>> 0393a447c772b2a7d2dd9c715ccd7cfe5180122d:src/main/resources/templates/CarCompanyDashboard/CcDashboard.html
-                </tr>
-            </tbody>
-        </table>
+
+            <table id="datatablesSimple" class="trip-management-table">
+                <thead>
+                    <tr>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+                        <th>Price</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Car ID</th>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="trip: ${listTrips}">
+                        <td th:text="${trip.getRoute().getDeparture()}">Departure</td>
+                        <td th:text="${trip.getRoute().getArrival()}">Arrival</td>
+                        <td th:text="${trip.price}">Price</td>
+                        <td th:text="${trip.startTime}">Start</td>
+                        <td th:text="${trip.endTime}">End</td>
+                        <td th:text="${trip.getCar().getPlateNumber}">Car</td>
+                        <td th:text="${trip.departureDetail}">Pick Up</td>
+                        <td th:text="${trip.arrivalDetail}">Drop Off</td>
+                        <td th:text="${trip.date}">Day</td>
+                        <td>
+                            <a th:href="@{update/{id}(id=${trip.id})}" class="update-tripm-btn">Update</a>
+                            <a th:href="@{delete/{id}(id=${trip.id})}" class="delete-tripm-btn">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
+
 </html>

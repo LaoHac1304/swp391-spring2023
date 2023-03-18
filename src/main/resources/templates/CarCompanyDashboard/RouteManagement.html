@@ -1,38 +1,170 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Route Management</title>
+
+    <style>
+        .myTable {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-top: 12px;
+        }
+
+        .myTable th,
+        .myTable td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .myTable th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333;
+            font-size: 25px;
+        }
+
+        .myTable tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .myTable tr:hover {
+            background-color: #ddd;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+        }
+
+        .btn:hover,
+        .btn:focus,
+        .btn:active {
+            color: #fff;
+            background-color: #286090;
+            border-color: #204d74;
+        }
+
+        .btn-success {
+            background-color: #5cb85c;
+            border-color: #4cae4c;
+            text-decoration: none;
+        }
+
+        .btn-success:hover,
+        .btn-success:focus,
+        .btn-success:active {
+            background-color: #449d44;
+            border-color: #398439;
+        }
+
+        .btn-warning {
+            background-color: #f0ad4e;
+            border-color: #eea236;
+            text-decoration: none;
+        }
+
+        .btn-warning:hover,
+        .btn-warning:focus,
+        .btn-warning:active {
+            background-color: #ec971f;
+            border-color: #d58512;
+        }
+
+        .bx bx-plus {
+            padding: 5px 0px 3px 0px;
+            margin-top: 5px;
+        }
+
+        .btn-add-route {
+            padding: 9px 10px 9px 5px;
+            text-decoration: none;
+            border: 1px solid white;
+            border-radius: 7px;
+            background-color: #508fc7;
+            color: white;
+            margin-right: 3px;
+        }
+
+        .card-content-box-title {
+            position: relative;
+        }
+
+        .icon-text {
+            text-align: right;
+            display: inline;
+            width: 1087.2px;
+            position: absolute;
+            right: 0px;
+            margin-top: 10px;
+        }
+
+        .route-title {
+            display: inline;
+            font-size: 30px;
+        }
+    </style>
+
 </head>
+
+
 <body>
     <div class="card mb-4">
-        <div class="card-header content-box-title">
-            <i class="fas fa-table me-1"></i>
+        <div class="card-content-box-title">
+            <h2 class="route-title">Route Management</h2>
+            <div class="icon-text">
+                <a th:href="@{/route/add}" class="btn-add-route"><i class='bx bx-plus'></i>Add New Route</a>
+            </div>
         </div>
         <div class="card-body text-white">
             <table id="datatablesSimple" class="myTable">
-            <thead>
-                <tr>
-                <th>Departure</th>
-                <th>Arrival</th>
-                <th>Actions</th>
-                <th><a th:href="@{/route/add}">Add New Route</a></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="route: ${listRoutes}">
-                    <td th:text="${route.departure}">Departure</td>
-                    <td th:text="${route.arrival}">Arrival</td>    
-                    <td>
-                        <a th:href="@{update/{id}(id=${route.id})}" class="btn btn-success">Update</a>
-                        <a th:href="@{delete/{id}(id=${route.id})}" class="btn btn-warning">Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+                        <th>Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="route: ${listRoutes}">
+                        <td th:text="${route.departure}">Departure</td>
+                        <td th:text="${route.arrival}">Arrival</td>
+                        <td>
+                            <a th:href="@{update/{id}(id=${route.id})}" class="btn btn-success">Update</a>
+                            <a th:href="@{delete/{id}(id=${route.id})}" class="btn btn-warning">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
+
 </html>

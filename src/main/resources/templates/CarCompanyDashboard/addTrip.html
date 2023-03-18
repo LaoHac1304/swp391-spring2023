@@ -1,66 +1,115 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add New Trip</title>
+    <style>
+        .body-add-trip {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin-top: 49.8px;
+            height: 92.2vh;
+            background-image: linear-gradient(to bottom right, #414141, #000000);
+            background-repeat: no-repeat;
+        }
+
+        .form-add-trip {
+            background-color: whitesmoke;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 600px;
+            margin: 0 auto;
+            /* margin-bottom: 20px; */
+        }
+
+        .label-add-trip-title {
+            font-weight: bold;
+        }
+
+        .input-add-trip-content {
+            width: 578px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .select-add-trip-content {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .btn-save-content-add-trip {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+    </style>
+
+
 </head>
-<body>
-<<<<<<< HEAD
-    <form th:action="@{/trip/save}">
+
+<body class="body-add-trip">
+    <form th:action="@{/trip/save}" class="form-add-trip">
         <div>
-        <label for="start-time">Start Time:</label>
-        <input type="time" id="start-time" name="startTime" required>
-        </div>  
-        <div>
-        <label for="end-time">End Time:</label>
-        <input type="time" id="end-time" name="endTime" required>
+            <label for="start-time" class="label-add-trip-title">Start Time:</label>
+            <input type="time" id="start-time" name="startTime" required class="input-add-trip-content">
         </div>
         <div>
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price" required>
+            <label for="end-time" class="label-add-trip-title">End Time:</label>
+            <input type="time" id="end-time" name="endTime" required class="input-add-trip-content">
+        </div>
+        <div>
+            <label for="price" style="font-weight: bold;">Price:</label>
+            <input type="number" id="price" name="price" required class="input-add-trip-content">
         </div>
 
         <div>
-        <label for="departure-detail">Departure Detail:</label>
-        <input type="text" id="departure-detail" name="departureDetail" required>
+            <label for="departure-detail" style="font-weight: bold;">Departure Detail:</label>
+            <input type="text" id="departure-detail" name="departureDetail" required class="input-add-trip-content">
         </div>
         <div>
-        <label for="arrival-detail">Arrival Detail:</label>
-        <input type="text" id="arrival-detail" name="arrivalDetail" required>
-        <div>
-        </div>
-        <label for="arrival-detail">Date:</label>
-        <input type="date" id="arrival-date" name="date" required>
-        </div>
-        <div>
-        <label for="route">Route:</label>
-        <select id="route" name="route.id" required>
-            <option value="">--Select a route--</option>
-            <th:block th:each="route : ${routes}">
-                <option th:value="${route.id}" th:text="${route.departure} + ' - ' + ${route.arrival}"></option>
-            </th:block>
-        </select>
+            <label for="arrival-detail" style="font-weight: bold;">Arrival Detail:</label>
+            <input type="text" id="arrival-detail" name="arrivalDetail" required class="input-add-trip-content">
+            <div>
+            </div>
+            <label for="arrival-detail" style="font-weight: bold;">Date:</label>
+            <input type="date" id="arrival-date" name="date" required class="input-add-trip-content">
         </div>
         <div>
-            <select id="car" name="car.id" required>
-                <option value="">--Select a car--</option>
-                <th:block th:each="car : ${cars}">
-                    <option th:value="${car.id}" th:text="${car.plateNumber}"></option>
-=======
-    <form th:action="@{/trip/save}" th:object="${trip}">
-        <!-- <div class="form-group">
-            <label>Route:</label>
-            <select class="form-control" th:field="*{route}">
-                <option value="">-- Select a route --</option>
+            <label for="route" style="font-weight: bold;">Route:</label>
+            <select id="route" name="route.id" required class="select-add-trip-content">
+                <option value="">--Select a route--</option>
                 <th:block th:each="route : ${routes}">
-                    <option th:value="${route}" th:text="${route.departure + ' - ' + route.arrival}"></option>
->>>>>>> 0393a447c772b2a7d2dd9c715ccd7cfe5180122d
+                    <option th:value="${route.id}" th:text="${route.departure} + ' - ' + ${route.arrival}"></option>
                 </th:block>
             </select>
         </div>
-        <button type="submit">Save</button>
+        <div>
+            <select id="car" name="car.id" required class="select-add-trip-content">
+                <option value="">--Select a car--</option>
+                <th:block th:each="car : ${cars}">
+                    <option th:value="${car.id}" th:text="${car.plateNumber}"></option>
+                </th:block>
+            </select>
+        </div>
+        <button type="submit" class="btn-save-content-add-trip">Save</button>
     </form>
 </body>
+
 </html>

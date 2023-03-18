@@ -1,6 +1,5 @@
 package com.laohac.swp391spring2023.config;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,13 +22,13 @@ public class CustomerSecurityConfig {
 
     // @Bean
     // public PasswordEncoder passwordEncoder2(){
-    //     //return NoOpPasswordEncoder.getInstance();
-    //     return new BCryptPasswordEncoder();
+    // //return NoOpPasswordEncoder.getInstance();
+    // return new BCryptPasswordEncoder();
 
     // }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider2(){
+    public DaoAuthenticationProvider authenticationProvider2() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(customerUserDetailsService());
         provider.setPasswordEncoder(passwordEncoder2);
@@ -38,24 +37,19 @@ public class CustomerSecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain2(HttpSecurity httpSecurity) throws Exception{
+    public SecurityFilterChain filterChain2(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity.authenticationProvider(authenticationProvider2());
 
         httpSecurity.authorizeRequests()
 
-        // .antMatchers("/homepage","/homepage/login","/homepage/logout","/users","/users/save","/booking","/users/verify"
-        //                 ,"/oauth2/**","/css/**", "/js/**","/images/**").permitAll()
-<<<<<<< HEAD
-        .antMatchers("/", "/pay", "/homepage","/homepage/**","/users","/users/**","/trip","/trip/**","/route","/route/**","/car","car/**"
-=======
-        .antMatchers("/", "/pay", "/homepage","/homepage/**","/users","/users/**","/trip","/trip/**"
-
->>>>>>> 0393a447c772b2a7d2dd9c715ccd7cfe5180122d
-                        ,"/booking","/booking/**","/users/verify"
-                        ,"/oauth2/**","/css/**", "/js/**","/images/**")
+                // .antMatchers("/homepage","/homepage/login","/homepage/logout","/users","/users/save","/booking","/users/verify"
+                // ,"/oauth2/**","/css/**", "/js/**","/images/**").permitAll()
+                .antMatchers("/", "/pay", "/homepage", "/homepage/**", "/users", "/users/**", "/trip", "/trip/**",
+                        "/route", "/route/**", "/car", "car/**", "/booking", "/booking/**", "/users/verify",
+                        "/oauth2/**", "/css/**", "/js/**", "/images/**")
                 .permitAll()
-                //.antMatchers("/users/**").hasAuthority("customer")
+                // .antMatchers("/users/**").hasAuthority("customer")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -79,6 +73,7 @@ public class CustomerSecurityConfig {
 
         return httpSecurity.build();
     }
+
     @Autowired
     private CustomOAuth2UserService oAuth2UserService;
 

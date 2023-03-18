@@ -3,13 +3,11 @@ package com.laohac.swp391spring2023.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -72,6 +70,13 @@ public class PaymentController {
         
         
         return "home/orderForm";
+    }
+
+    public static String formatVND(BigDecimal price) {
+        DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance(Locale.forLanguageTag("vi-VN"));
+        formatter.setGroupingSize(3);
+        formatter.setGroupingUsed(true);
+        return formatter.format(price) + " ₫";
     }
 
     @GetMapping("/list-place")
@@ -202,4 +207,6 @@ public class PaymentController {
 
         return "redirect:/users/info";
     }
+
+
 }

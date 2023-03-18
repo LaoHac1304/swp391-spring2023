@@ -121,7 +121,7 @@ public class BookingServiceImpl implements BookingService {
                 listSeatsNumber.add(Integer.toString(seat.getSeatNumber()));
             }
         }
-        LocalDate today = LocalDate.now();
+
         OrderDetail orderDetail = new OrderDetail();
         orderDetail = OrderDetail
                             .builder()
@@ -129,7 +129,6 @@ public class BookingServiceImpl implements BookingService {
                             .trip(trip)
                             .car(car)
                             .quantity(quantity)
-                            .date(today)
                             .email(email)
                             .fullName(fullName)
                             .phoneNumber(phoneNumber)
@@ -141,6 +140,8 @@ public class BookingServiceImpl implements BookingService {
                             .status(checkOutInfoDTOReponse.getStatus())
                             .paymentType(checkOutInfoDTOReponse.getPaymentType())
                             .paymentStatus(checkOutInfoDTOReponse.getPaymentStatus())
+                            .createdAt(LocalDateTime.now())
+                            .updatedAt(LocalDateTime.now())
                             .build();
         if (!isSaved) orderDetailRepository.save(orderDetail);
         session.setAttribute("orderDetailEmail", orderDetail);

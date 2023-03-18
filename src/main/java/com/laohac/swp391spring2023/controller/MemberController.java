@@ -162,7 +162,7 @@ public class MemberController {
         for (OrderDetail orderDetail : orderDetails) {
                 LocalDate date = orderDetail.getTrip().getDate();
                 if (date.getMonth().name().equalsIgnoreCase(month)){
-                    totalPrice.add(orderDetail.getTotal());
+                    totalPrice = totalPrice.add(orderDetail.getTotal());
                     totalTicket ++ ;
                 }
         }

@@ -124,7 +124,7 @@ $('.slider-nav').slick({
 
 
 
-
+// Check submit button
 function checkSubmitButton() {
     var checkboxes = document.getElementsByName("selectedSeats"); // cái này ông lấy tên từ bên nào qua
     var submitButton = document.getElementById("submit-button");
@@ -137,7 +137,7 @@ function checkSubmitButton() {
         }
     }
 
-    if (checkedCount >= 1 && checkedCount <= 10) {
+    if (checkedCount >= 1 && checkedCount <= 5) {
         submitButton.disabled = false;
     } else {
         submitButton.disabled = true;
@@ -149,6 +149,7 @@ $(document).ready(function () {
 });
 
 //===================================================================================
+// Valid search form
 const pickUpPlaceSelect = document.getElementById("pickUpPlace");
 const dropoffPlaceSelect = document.getElementById("dropoffPlace");
 

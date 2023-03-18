@@ -56,33 +56,10 @@
                                 </div>
 
                                 <div>
-                                    <!-- <button class="btn btn-success" type="submit">Submit</button> -->
-                                    <!-- <button th:if="${listSeats.size}" id="submit-button" class="btn btn-success"
-                                        title="Please select at least one seat before submitting" type="submit"
-                                        disabled>Submit</button> -->
-                                    <!-- disable the button if selectedSeats is null -->
-                                    <!-- disable the button if listSeats is empty or selectedSeats has a size of 0 em ơi đừng khóc bóng tối sẽ tới bawstg em đi-->
-                                    <!-- enable the button if listSeats is not empty or selectedSeats is not null -->
-                                    <!-- enable the button if listSeats is not empty or selectedSeats is not null -->
-                                    <!-- enable the button if listSeats is not empty or selectedSeats is not null -->
-                                    <!-- <button th:if="${listSeats.size() > 0 or (#session.selectedSeats != null && #session.selectedSeats.size())}" 
-                                    id="submit-button" 
-                                    class="btn btn-success" 
-                                    title="Please select at least one seat before submitting" 
-                                    type="submit">
-                                Submit
-                                </button> -->
-                                    <!-- <button th:if="${ (listSeats.size() <= 0) && (#session.getAttribute('selectedSeats') == null)}" 
-                                    id="submit-button" 
-                                    class="btn btn-success" 
-                                    title="Please select at least one seat before submitting" 
-                                    type="submit" disabled>
-                                    Submit
-                                </button> -->
 
-                                    <button id="submit-button" class="btn btn-success" th:if = "${session.SselectedSeats}"
-                                        title="Please select at least one seat before submitting" type="submit" disabled
-                                        >Submit</button>
+                                    <button id="submit-button" class="btn btn-success" th:if="${session.SselectedSeats}"
+                                        title="Please select at least one seat before submitting" type="submit"
+                                        disabled>Submit</button>
 
 
 

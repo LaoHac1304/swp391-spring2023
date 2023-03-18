@@ -19,14 +19,13 @@ import lombok.Setter;
 @Setter
 @Builder
 public class TripDTO {
-    private RouteDTO route;
+    private int routeId;
     private String startTime;
     private String endTime;
-    private Car car;
+    private int carId;
     private BigDecimal price;
     private String departureDetail;
     private String arrivalDetail;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate date;
-    
 }

@@ -165,7 +165,7 @@ public class UserController {
         List<OrderDetail> orderDetail = new ArrayList<>();
         if (orderDetailOptional.isPresent())
             orderDetail = orderDetailOptional.get();
-        model.addAttribute("oderDetails", orderDetail);
+        model.addAttribute("orderDetails", orderDetail);
         model.addAttribute("userInfo", userDTOResponse);
         return "home/Profile";
     }

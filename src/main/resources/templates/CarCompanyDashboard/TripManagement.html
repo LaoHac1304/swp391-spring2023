@@ -12,7 +12,8 @@
             <i class="fas fa-table me-1"></i>
         </div>
         <div class="card-body text-white">
-            <table id="datatablesSimple" class="myTable">
+            
+            <table id="datatablesSimple" class="myTable">  
             <thead>
                 <tr>
                 <th>Departure</th>
@@ -24,10 +25,27 @@
                 <th>Departure</th>
                 <th>Arrival</th>
                 <th>Date</th>
+                <th>Actions</th>
+                <th><a th:href="@{/trip/add}">Add New Trip</a></th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="trip: ${listTrips}">
+<<<<<<< HEAD:src/main/resources/templates/CarCompanyDashboard/TripManagement.html
+                    <td th:text="${trip.getRoute().getDeparture()}">Departure</td>
+                    <td th:text="${trip.getRoute().getArrival()}">Arrival</td>
+                    <td th:text="${trip.price}">Price</td>
+                    <td th:text="${trip.startTime}">Start</td>
+                    <td th:text="${trip.endTime}">End</td>
+                    <td th:text="${trip.getCar().getPlateNumber}">Car</td>
+                    <td th:text="${trip.departureDetail}">Pick Up</td>
+                    <td th:text="${trip.arrivalDetail}">Drop Off</td>
+                    <td th:text="${trip.date}">Day</td>     
+                    <td>
+                        <a th:href="@{update/{id}(id=${trip.id})}" class="btn btn-success">Update</a>
+                        <a th:href="@{delete/{id}(id=${trip.id})}" class="btn btn-warning">Delete</a>
+                    </td>
+=======
                     <td th:if="${trip.route!=null}" th:text="${trip.route.getDeparture()}">Departure</td>
                     <td th:if="${trip.route!=null}" th:text="${trip.route.getArrival()}">Arrival</td>
                     <td th:if="${trip.price!=null}" th:text="${trip.price}">Price</td>
@@ -37,6 +55,7 @@
                     <td th:if="${trip.departureDetail!=null}" th:text="${trip.departureDetail}">Pick Up</td>
                     <td th:if="${trip.arrivalDetail!=null}" th:text="${trip.arrivalDetail}">Drop Off</td>
                     <td th:if="${trip.date!=null}" th:text="${trip.date}">Day</td>
+>>>>>>> 0393a447c772b2a7d2dd9c715ccd7cfe5180122d:src/main/resources/templates/CarCompanyDashboard/CcDashboard.html
                 </tr>
             </tbody>
         </table>

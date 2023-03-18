@@ -10,3 +10,11 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 });
 
+$(document).ready(function() {
+    $('#myTable').DataTable({
+      "pageLength": 10, // Display 10 rows per page
+      "ordering": true, // Enable sorting
+      "searching": true // Enable searching
+    });
+  });
+

@@ -148,8 +148,10 @@ public class PaymentController {
         
         if(paymentMethod.equals("paypal")) {
             checkOutInfoDTOReponse.setStatus(Status.PENDING);
+
             checkOutInfoDTOReponse.setPaymentType(PaymentType.paypal);
             checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.paid);
+
             session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
             bookingService.saveOrder(session, true);
         }
@@ -157,6 +159,7 @@ public class PaymentController {
             checkOutInfoDTOReponse.setStatus(Status.PENDING);
             checkOutInfoDTOReponse.setPaymentType(PaymentType.cash);
             checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.pending);
+
             session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
             bookingService.saveOrder(session, false);
         }

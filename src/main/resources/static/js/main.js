@@ -148,6 +148,7 @@ $(document).ready(function () {
     $('#sex').select2();
 });
 
+//===================================================================================
 const pickUpPlaceSelect = document.getElementById("pickUpPlace");
 const dropoffPlaceSelect = document.getElementById("dropoffPlace");
 
@@ -173,5 +174,4 @@ dropoffPlaceSelect.addEventListener("change", (event) => {
         }
     }
 });
-
-
+//===================================================================================

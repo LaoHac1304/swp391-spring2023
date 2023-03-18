@@ -37,7 +37,6 @@ import com.laohac.swp391spring2023.repository.RouteRepository;
 import com.laohac.swp391spring2023.repository.SeatRepository;
 import com.laohac.swp391spring2023.repository.TripRepository;
 import com.laohac.swp391spring2023.service.BookingService;
-import com.nimbusds.oauth2.sdk.Request;
 
 import lombok.RequiredArgsConstructor;
 
@@ -149,16 +148,16 @@ public class PaymentController {
         if(paymentMethod.equals("paypal")) {
             checkOutInfoDTOReponse.setStatus(Status.PENDING);
 
-            checkOutInfoDTOReponse.setPaymentType(PaymentType.paypal);
-            checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.paid);
+            checkOutInfoDTOReponse.setPaymentType(PaymentType.PAYPAL);
+            checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.PAID);
 
             session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
             bookingService.saveOrder(session, true);
         }
         else {
             checkOutInfoDTOReponse.setStatus(Status.PENDING);
-            checkOutInfoDTOReponse.setPaymentType(PaymentType.cash);
-            checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.pending);
+            checkOutInfoDTOReponse.setPaymentType(PaymentType.CASH);
+            checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.PENDING);
 
             session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
             bookingService.saveOrder(session, false);

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.laohac.swp391spring2023.model.Month;
+import com.laohac.swp391spring2023.model.Status;
 import com.laohac.swp391spring2023.model.dto.MemberViewDTOReponse;
 import com.laohac.swp391spring2023.model.entities.Car;
 import com.laohac.swp391spring2023.model.entities.CarCompany;
@@ -51,7 +52,6 @@ public class MemberController {
     public String showAdminDB(HttpSession session, Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated())
             session.setAttribute("userSession", memberService.getCurrentUser());
-        // return "adminDashboard/Adashboard";
         return "redirect:/member/viewall";
     }
 
@@ -155,12 +155,12 @@ public class MemberController {
     
     private ProfitDTOReponse getProfitWithMonth(String month){
         
-        List<OrderDetail> orderDetails = orderDetailRepository.findByStatus("CONFIRMED");
+        List<OrderDetail> orderDetails = orderDetailRepository.findByStatus(Status.CONFIRMED);
        
         BigDecimal totalPrice = new BigDecimal(0);
         int totalTicket = 0;
         for (OrderDetail orderDetail : orderDetails) {
-                LocalDate date = orderDetail.getDate();
+                LocalDate date = orderDetail.getTrip().getDate();
                 if (date.getMonth().name().equalsIgnoreCase(month)){
                     totalPrice.add(orderDetail.getTotal());
                     totalTicket ++ ;

@@ -1,11 +1,17 @@
 package com.laohac.swp391spring2023.controller;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.laohac.swp391spring2023.model.dto.ProfitDTOReponse;
+import com.laohac.swp391spring2023.repository.OrderDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,9 +22,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.laohac.swp391spring2023.model.Month;
 import com.laohac.swp391spring2023.model.dto.MemberViewDTOReponse;
 import com.laohac.swp391spring2023.model.entities.Car;
 import com.laohac.swp391spring2023.model.entities.CarCompany;
+import com.laohac.swp391spring2023.model.entities.OrderDetail;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.CarCompanyRepository;
 import com.laohac.swp391spring2023.repository.CarRepository;
@@ -36,6 +44,8 @@ public class MemberController {
 
     @Autowired
     private CarRepository carRepository;
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
 
     @GetMapping("/adminDB")
     public String showAdminDB(HttpSession session, Authentication authentication) {
@@ -80,9 +90,18 @@ public class MemberController {
 
         MemberViewDTOReponse.builder().employees(employees).carCompanies(carCompanies).cars(cars).build();
 
+        Map<String, ProfitDTOReponse> wrapper = new HashMap<>();
+
+        for (Month month : Month.values()) {
+            ProfitDTOReponse profitDTOReponse = getProfitWithMonth(month.getMonthName());
+            wrapper.put(month.getMonthName(), profitDTOReponse);
+        }
+
         model.addAttribute("total", memberViewDTOReponse);
 
         model.addAttribute("listMembers", listUsers);
+
+        model.addAttribute("profit", wrapper);
 
         return "adminDashboard/Adashboard";
     }
@@ -126,11 +145,35 @@ public class MemberController {
         }
 
 
-        return "redirect:/member/login";
+        return "redirect:/homepage";
     }
 
     @GetMapping("/setting")
     public String setting() {
         return "adminDashboard/setting";
+    }
+
+    
+    private ProfitDTOReponse getProfitWithMonth(String month){
+        
+        List<OrderDetail> orderDetails = orderDetailRepository.findByStatus("CONFIRMED");
+       
+        BigDecimal totalPrice = new BigDecimal(0);
+        int totalTicket = 0;
+        for (OrderDetail orderDetail : orderDetails) {
+                LocalDate date = orderDetail.getDate();
+                if (date.getMonth().name().equalsIgnoreCase(month)){
+                    totalPrice.add(orderDetail.getTotal());
+                    totalTicket ++ ;
+                }
+        }
+        ProfitDTOReponse profitDTOReponse = ProfitDTOReponse
+                                            .builder()
+                                            .month(month)
+                                            .totalPrice(totalPrice)
+                                            .totalTicket(totalTicket)
+                                            .build();
+        return profitDTOReponse;
+        
     }
 }

@@ -1,57 +1,121 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Update Trip</title>
+    <style>
+        .body-update-trip {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin-top: 49.8px;
+            height: 92.2vh;
+            background-image: linear-gradient(to right, #434343 0%, black 100%);
+            background-repeat: no-repeat;
+        }
+
+        .form-update-trip {
+            background-color: whitesmoke;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 600px;
+            margin: 0 auto;
+            /* margin-bottom: 20px; */
+        }
+
+        .label-update-trip-title {
+            font-weight: bold;
+        }
+
+        .input-update-trip-content {
+            width: 578px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .select-update-trip-content {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .btn-save-content-update-trip {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+    </style>
+
 </head>
-<body>
-    <form th:action="@{/trip/save}">
+
+<body class="body-update-trip">
+    <form th:action="@{/trip/save}" class="form-update-trip">
         <input type="hidden" th:field="*{id}">
         <div>
-        <label for="start-time">Start Time:</label>
-        <input type="time" id="start-time" name="startTime" th:placeholder="${trip.startTime}" required>
-        </div>  
-        <div>
-        <label for="end-time">End Time:</label>
-        <input type="time" id="end-time" name="endTime" th:placeholder="${trip.endTime}" required>
+            <label for="start-time" class="label-update-trip-title">Start Time:</label>
+            <input type="time" id="start-time" name="startTime" th:placeholder="${trip.startTime}" required
+                class="input-update-trip-content">
         </div>
         <div>
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price" th:placeholder="${trip.price}" required>
+            <label for="end-time" class="label-update-trip-title">End Time:</label>
+            <input type="time" id="end-time" name="endTime" th:placeholder="${trip.endTime}" required
+                class="input-update-trip-content">
+        </div>
+        <div>
+            <label for="price" style="font-weight: bold;">Price:</label>
+            <input type="number" id="price" name="price" th:placeholder="${trip.price}" required
+                class="input-update-trip-content">
         </div>
 
         <div>
-        <label for="departure-detail">Departure Detail:</label>
-        <input type="text" id="departure-detail" name="departureDetail" th:placeholder="${trip.departureDetail}" required>
+            <label for="departure-detail" style="font-weight: bold;">Departure Detail:</label>
+            <input type="text" id="departure-detail" name="departureDetail" th:placeholder="${trip.departureDetail}"
+                required class="input-update-trip-content">
         </div>
         <div>
-        <label for="arrival-detail">Arrival Detail:</label>
-        <input type="text" id="arrival-detail" name="arrivalDetail" th:placeholder="${trip.arrivalDetail}" required>
-        <div>
-        </div>
-        <label for="arrival-detail">Date:</label>
-        <input type="date" id="arrival-date" name="date" th:placeholder="${trip.date}" required>
-        </div>
-        <div>
-        <label for="route">Route:</label>
-        <select id="route" name="route.id" required>
-            <option value="">--Select a route--</option>
-            <th:block th:each="route : ${routes}">
-                <option th:value="${route.id}" th:text="${route.departure} + ' - ' + ${route.arrival}"></option>
-            </th:block>
-        </select>
+            <label for="arrival-detail" style="font-weight: bold;">Arrival Detail:</label>
+            <input type="text" id="arrival-detail" name="arrivalDetail" th:placeholder="${trip.arrivalDetail}" required
+                class="input-update-trip-content">
+            <div>
+            </div>
+            <label for="arrival-detail" style="font-weight: bold;">Date:</label>
+            <input type="date" id="arrival-date" name="date" th:placeholder="${trip.date}" required
+                class="input-update-trip-content">
         </div>
         <div>
-            <select id="car" name="car.id" required>
+            <label for="route" style="font-weight: bold;">Route:</label>
+            <select id="route" name="route.id" required class="select-update-trip-content">
+                <option value="">--Select a route--</option>
+                <th:block th:each="route : ${routes}">
+                    <option th:value="${route.id}" th:text="${route.departure} + ' - ' + ${route.arrival}"></option>
+                </th:block>
+            </select>
+        </div>
+        <div>
+            <select id="car" name="car.id" required class="select-update-trip-content">
                 <option value="">--Select a car--</option>
                 <th:block th:each="car : ${cars}">
                     <option th:value="${car.id}" th:text="${car.plateNumber}"></option>
                 </th:block>
             </select>
         </div>
-        <button type="submit">Save</button>
+        <button type="submit" class="btn-save-content-update-trip">Save</button>
     </form>
 </body>
+
 </html>

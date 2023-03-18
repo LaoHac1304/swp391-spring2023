@@ -107,7 +107,9 @@ public class BookingServiceImpl implements BookingService {
         boolean isSpecialDay = trip.getIsSpecialDay();
         checkOutInfoDTOReponse.setSpecialDay(isSpecialDay);
         session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
+
         str = str.replaceAll("[\\[\\]\\s+]", "");
+
         List<Integer> listSeatsInt = Arrays.stream(str.split(","))
                                     .map(String::trim)
                                     .mapToInt(Integer::parseInt)

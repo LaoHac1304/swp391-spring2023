@@ -137,7 +137,7 @@ function checkSubmitButton() {
         }
     }
 
-    if (checkedCount >= 1) {
+    if (checkedCount >= 1 && checkedCount <= 10) {
         submitButton.disabled = false;
     } else {
         submitButton.disabled = true;

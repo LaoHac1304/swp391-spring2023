@@ -571,6 +571,15 @@ a.main-btn3:hover {
 .table-value {
     font-size: 18px;
     color: rgb(51, 51, 51);
+    font-weight: 400;
+    border: none;
+    text-align: center;
+    height: 13px;
+}
+
+.table-value:focus-visible {
+    outline: none;
+    background-color: #e4fdc2;
 }
 
 a.main-btn3.mt-2 {
@@ -1451,20 +1460,20 @@ h5.text-decoration-underline.mb-4 {
 }
 
 .h6Paypal {
-    color: #9aa3ab;
+    color: #6d8499;
     font-weight: 300;
     line-height: 15px;
 }
 
 .h5Paypal {
-    color: #0078ff;
+    color: #3f4f61;
     font-weight: 300;
 }
 
 .h4Paypal {
     font-weight: 300;
     font-size: 13px;
-    color: #97a2ad
+    color: #042d5a;
 }
 
 .h3Paypal {
@@ -1586,10 +1595,11 @@ h5.text-decoration-underline.mb-4 {
 
 .messagePaypal {
     margin-top: 40px;
+    font-weight: 500;
 }
 
 .messagePaypal>p {
-    font-weight: 300;
+    font-weight: 400px;
     font-size: 15px;
     color: #7a838d;
     line-height: 30px;

@@ -110,15 +110,22 @@
                             </div>
                             <div class="TicketPC-FareInfo">
                                 <div>
-                                    <div class="fare" th:text="${trip.price} +'đ'">
-                                        <div> 160.000đ</div>
-                                    </div>
+<!--                                    <div class="fare" th:text="${trip.price} +'đ'">-->
+<!--                                        <div> 160.000đ</div>-->
+<!--                                    </div>-->
+                                    <div class="fare" th:text="${T(com.laohac.swp391spring2023.controller.PaymentController).formatVND(trip.price)}"></div>
+
+
+
                                     <div class="fareSmall">
                                         <div class="small"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="TicketPC-DetailAndAction">
+                                <div th:if="${isSpecialDay}">
+                                    <h5>Prepaid trip</h5>
+                                </div>
                                 <div class="info">
                                     <div class="seat-available-green">6 seats left </div>
                                 </div>

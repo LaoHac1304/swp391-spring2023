@@ -1,8 +1,15 @@
 package com.laohac.swp391spring2023.service.impl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+import com.laohac.swp391spring2023.model.dto.ProfitDTOReponse;
+import com.laohac.swp391spring2023.model.entities.OrderDetail;
+import com.laohac.swp391spring2023.repository.OrderDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,6 +36,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
 
     
     @Override
@@ -108,6 +117,7 @@ public class MemberServiceImpl implements MemberService {
         return null;
     }
 
-    
-    
+   
+
+
 }

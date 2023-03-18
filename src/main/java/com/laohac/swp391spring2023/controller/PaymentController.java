@@ -3,13 +3,11 @@ package com.laohac.swp391spring2023.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +35,6 @@ import com.laohac.swp391spring2023.repository.RouteRepository;
 import com.laohac.swp391spring2023.repository.SeatRepository;
 import com.laohac.swp391spring2023.repository.TripRepository;
 import com.laohac.swp391spring2023.service.BookingService;
-import com.nimbusds.oauth2.sdk.Request;
 
 import lombok.RequiredArgsConstructor;
 
@@ -73,6 +70,13 @@ public class PaymentController {
         
         
         return "home/orderForm";
+    }
+
+    public static String formatVND(BigDecimal price) {
+        DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance(Locale.forLanguageTag("vi-VN"));
+        formatter.setGroupingSize(3);
+        formatter.setGroupingUsed(true);
+        return formatter.format(price) + " ₫";
     }
 
     @GetMapping("/list-place")
@@ -148,8 +152,10 @@ public class PaymentController {
         
         if(paymentMethod.equals("paypal")) {
             checkOutInfoDTOReponse.setStatus(Status.PENDING);
+
             checkOutInfoDTOReponse.setPaymentType(PaymentType.PAYPAL);
             checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.PAID);
+
             session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
             bookingService.saveOrder(session, true);
         }
@@ -157,6 +163,7 @@ public class PaymentController {
             checkOutInfoDTOReponse.setStatus(Status.PENDING);
             checkOutInfoDTOReponse.setPaymentType(PaymentType.CASH);
             checkOutInfoDTOReponse.setPaymentStatus(PaymentStatus.PENDING);
+
             session.setAttribute("checkoutinfo", checkOutInfoDTOReponse);
             bookingService.saveOrder(session, false);
         }
@@ -200,4 +207,6 @@ public class PaymentController {
 
         return "redirect:/users/info";
     }
+
+
 }

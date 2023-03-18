@@ -19,4 +19,6 @@ public interface MemberService {
     public void deleteMemberById(int id);
 
     public UserDTOResponse getCurrentUser();
+
+    
 }

@@ -13,5 +13,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
     public Optional<List<OrderDetail>> findByCustomer(User user);
 
     public OrderDetail findById(int id);
+    public List<OrderDetail> findByStatus(String status);
     
 }

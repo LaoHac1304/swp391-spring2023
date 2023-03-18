@@ -39,11 +39,11 @@ public class DataLoader implements CommandLineRunner {
         //     seatRepository.save(seat);
         // }
 
-        List<Trip> trips = tripRepository.findAll();
-        for (Trip trip:trips) {
-            trip.setIsSpecialDay(Utils.isSpecialDay(trip.getDate()));
-            tripRepository.save(trip);
-        }
+        // List<Trip> trips = tripRepository.findAll();
+        // for (Trip trip:trips) {
+        //     trip.setIsSpecialDay(Utils.isSpecialDay(trip.getDate()));
+        //     tripRepository.save(trip);
+        // }
     }
     
     

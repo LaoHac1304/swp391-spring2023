@@ -45,6 +45,6 @@ public class User {
     private List<OrderDetail> orderDetails;
     @OneToOne
     @JoinColumn(name = "Company")
-    private  CarCompany carCompany;
+    private  CarCompany carCompany = null;
 
 }

@@ -42,7 +42,9 @@ public class CarController {
 
     @GetMapping("/save")
     public String saveTrip(@ModelAttribute("car") Car car) {
+        car.initSeats();
         carRepository.save(car);
+
         return "redirect:/car/viewall";
     }
 

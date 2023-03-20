@@ -117,11 +117,10 @@
                     <tr>
                         <th>Route</th>
                         <th>Price</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
+                        <th>Time</th>
                         <th>Car</th>
-                        <th>Departure</th>
-                        <th>Arrival</th>
+                        <th>Pick Up</th>
+                        <th>Drop Off</th>
                         <th>Date</th>
                         <th>Actions</th>
                     </tr>
@@ -130,8 +129,7 @@
                     <tr th:each="trip: ${listTrips}">
                         <td th:text="${trip.getRoute().getDeparture() + ' - ' + trip.getRoute().getArrival()}">Route</td>
                         <td th:text="${trip.price}">Price</td>
-                        <td th:text="${trip.startTime}">Start</td>
-                        <td th:text="${trip.endTime}">End</td>
+                        <td th:text="${trip.startTime + ' - ' + trip.endTime}">Start</td>
                         <td th:text="${trip.getCar().getPlateNumber}">Car</td>
                         <td th:text="${trip.departureDetail}">Pick Up</td>
                         <td th:text="${trip.arrivalDetail}">Drop Off</td>

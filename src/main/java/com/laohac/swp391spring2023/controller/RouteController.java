@@ -2,6 +2,8 @@ package com.laohac.swp391spring2023.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +14,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.repository.RouteRepository;
+import com.laohac.swp391spring2023.service.MemberService;
 import com.laohac.swp391spring2023.service.RouteService;
 
 @Controller
 @RequestMapping("/route")
 public class RouteController {
+
     @Autowired
     RouteRepository routeRepository;
+
+    @Autowired
+    private MemberService memberService;
+
     @Autowired
     RouteService routeService;
+
+    @GetMapping("")
+    public String showEmployee(HttpSession session){
+        session.setAttribute("userSession", memberService.getCurrentUser());
+        return "redirect:/route/viewall";
+    }
 
     @GetMapping("/viewall")
     public String viewAllRoute(Model model) {

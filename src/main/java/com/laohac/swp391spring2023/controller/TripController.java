@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.laohac.swp391spring2023.model.entities.Car;
 import com.laohac.swp391spring2023.model.entities.Route;
@@ -34,8 +35,11 @@ public class TripController {
     CarRepository carRepository;
 
     @GetMapping("/viewall")
-    public String viewAllTrip(Model model) {
-        List<Trip> listTrips = tripService.getAllTrip();
+    public String viewAllTrip(@RequestParam("departure") String departure,
+    @RequestParam("arrival") String arrival,
+    Model model) {
+        Route route = routeRepository.findByState1AndState2(departure, arrival);
+        List<Trip> listTrips = tripService.searchByRoute(route);
         System.out.println(listTrips);
         model.addAttribute("listTrips", listTrips);
         return "CarCompanyDashboard/TripManagement";

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Route</title>
+
+    <style>
+        .add-route-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+            background: linear-gradient(to bottom right, #93a5cf, #e4efe9);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .add-route-form {
+            width: 350px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
+
+        .label-title {
+            font-size: 25px;
+            text-transform: capitalize;
+            color: rgb(23, 8, 8);
+
+        }
+
+        .input-add-route {
+            font-size: 21px;
+            padding: 15px 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 15px;
+            margin-top: 5px;
+        }
+
+        .btn-save-add-route {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+            padding: 10px 15px;
+            width: 50%;
+            border-radius: 5px;
+            border: 1px solid white
+        }
+    </style>
+
+</head>
+
+<body class="add-route-body">
+    <form th:action="@{/car/save}" class="add-route-form">
+        <h1>Add new car form</h1>
+        <div>
+            <label for="capacity" class="label-title">Input Capacity</label>
+            <input type="text" id="capacity" name="capacity" required class="input-add-route">
+        </div>
+        <div>
+            <label for="plateNumber" class="label-title">Input Plate Number</label>
+            <input type="text" id="plateNumber" name="plateNumber" required class="input-add-route">
+        </div>
+        <div>
+            <button type="submit" class="btn-save-add-route">Save</button>
+    </form>
+</body>
+
+</html>

@@ -8,6 +8,46 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Trip Management</title>
     <style>
+        .sidebar {
+            width: 10%;
+            background-color: gray;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            padding: 5px 10px;
+        }
+
+
+        .card {
+            float: right;
+            width: 86.5%;
+        }
+
         .trip-management-table {
             width: 100%;
             border-collapse: collapse;
@@ -101,6 +141,13 @@
 </head>
 
 <body>
+    <div class="sidebar">
+        <h3>Add Route</h3>
+        <ul>
+            <li><a href="#"><i class='bx bxs-user'></i>Profile</a></li>
+            <li><a href="#"><i class='bx bx-log-out'></i>Sign Out</a></li>
+        </ul>
+    </div>
     <div class="card mb-4">
         <div class="card-header-content-box-title">
             <h2 class="fas-fa-table-me-1">Trip Details</h2>

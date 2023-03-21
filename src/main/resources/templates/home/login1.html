@@ -22,7 +22,15 @@
             <div th:if="${param.error}">
                 <h4 style="color: red">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</h4>
             </div>
-            <h3>Login Here</h3>
+            <div class="row">
+                <a th:href="@{/homepage}">
+                    <i class="fa-solid fa-arrow-left" style="color: rgb(22, 24, 41);">
+                    </i>
+                </a>
+                
+                <h3>Login Here</h3>
+            </div>
+            
             <label>Username</label><br>
             <input type="username" class="form-control" name="username" placeholder="Username">
             <label class="lbpass">Password</label>

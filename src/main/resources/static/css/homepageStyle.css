@@ -137,7 +137,7 @@ hr:not([size]) {
 }
 
 .row-desc {
-    padding-left: 30px;
+    /* padding-left: 30px; */
     padding-top: 10px;
     border-left: 2px solid #434343;
 }
@@ -219,7 +219,7 @@ hr:not([size]) {
 }
 
 .bus-order {
-    background-color: rgba(245, 241, 241, 0.85);
+    background-color: rgba(245, 241, 241, 0.97);
     margin: 0px 200px;
     height: 535px;
     margin-top: 10px;

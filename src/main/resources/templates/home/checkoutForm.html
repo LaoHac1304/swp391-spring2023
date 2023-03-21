@@ -118,11 +118,24 @@
                             <div class="table-group-divider"></div>
 
                             <!--  -->
-                            <div class="table-info">
-                                <div class="table-name">Car Company</div>
-                                <div class="table-value" th:text="${tripInfoCurrent.car.carCompany.name}">Hoa Mai</div>
-
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="table-info">
+                                        <div class="table-name">Car Company</div>
+                                        <div class="table-value" th:text="${tripInfoCurrent.car.carCompany.name}">Hoa Mai</div>
+        
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="table-info">
+                                        <div class="table-name">Seat Number</div>
+                                        <div class="table-value" th:each="seatNumber : ${checkoutinfo.lSeatsNumber}"
+                                         th:text="${seatNumber}">Hoa Mai</div>
+        
+                                    </div>
+                                </div>
                             </div>
+                            
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="table-info">

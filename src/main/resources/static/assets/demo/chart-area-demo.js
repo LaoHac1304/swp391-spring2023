@@ -6,8 +6,8 @@ var listMembers = /*[[${listMembers}]]*/ []; // get listMembers from model attri
 
 
 // Important
-var div = document.querySelector('div[data-total]');
-var total = parseInt(div.getAttribute('data-total'));
+// var div = document.querySelector('div[data-total]');
+// var total = parseInt(div.getAttribute('data-total'));
 
 
 console.log(profit);
@@ -15,20 +15,20 @@ console.log(profit);
 //Set up data for Labels and data
 var months = ["January", "February", "March", "April", "May", "June"];
 var profitValues = Object.values(profit);
-var ticketValues = months.map(function(month) {
+var priceValues = months.map(function(month) {
   var monthData = profitValues.find(function(data) {
     return data.month === month;
   });
-  return monthData.totalTicket;
+  return monthData.totalPrice;
 });
 
 // Set up the max options 
-var maxTicket = 0;
+var maxPrice = 0;
 for (var month in profit) {
   if (profit.hasOwnProperty(month)) {
-    var totalTicket = profit[month].totalTicket;
-    if (totalTicket > maxTicket) {
-      maxTicket = totalTicket;
+    var totalPrice = profit[month].totalPrice;
+    if (totalPrice > maxPrice) {
+      maxPrice = totalPrice;
     }
   }
 }
@@ -40,7 +40,7 @@ var myLineChart = new Chart(ctx, {
   data: {
     // labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
     // labels: ["January", "February", "March", "April", "May", "June"],
-    labels: months,
+    labels: months ,
     datasets: [{
       label: "Tickets",
       lineTension: 0.3,
@@ -54,7 +54,7 @@ var myLineChart = new Chart(ctx, {
       pointHitRadius: 50,
       pointBorderWidth: 2,
       // data: [2, total -4, total - 3, total - 2, total -1, total],
-      data: ticketValues,
+      data: priceValues,
     }],
   },
   options: {
@@ -67,15 +67,15 @@ var myLineChart = new Chart(ctx, {
           display: false
         },
         ticks: {
-          maxTicksLimit: 7
+          maxTicksLimit: 10
         }
       }],
       yAxes: [{
         ticks: {
           min: 0,
           // max: 40000,
-          max: maxTicket + 5, // code function here
-          maxTicksLimit: 10
+          max: Math.ceil(maxPrice + maxPrice * 20 / 100), // code function here
+          maxTicksLimit: 10,
         },
         gridLines: {
           color: "rgba(0, 0, 0, .125)",
@@ -89,4 +89,4 @@ var myLineChart = new Chart(ctx, {
 });
 
 
-console.log(maxTicket)
+console.log(maxPrice)

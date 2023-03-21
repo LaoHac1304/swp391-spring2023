@@ -574,7 +574,7 @@
                                                 <th>Departure</th>
                                                 <th>Arrival</th>
                                                 <th>Actions</th>
-
+                                                <th>Detail</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -587,6 +587,7 @@
                                                     <a th:href="@{delete/{id}(id=${route.id})}"
                                                         class="btn btn-warning">Delete</a>
                                                 </td>
+                                                <td><a th:href="@{/trip/viewall(departure=${route.departure},arrival=${route.arrival})}">View list trip</a></td>
                                             </tr>
                                         </tbody>
                                     </table>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.laohac.swp391spring2023.model.entities.Car;
 import com.laohac.swp391spring2023.model.entities.Route;
@@ -16,6 +17,8 @@ import com.laohac.swp391spring2023.model.entities.Trip;
 import com.laohac.swp391spring2023.repository.CarRepository;
 import com.laohac.swp391spring2023.repository.RouteRepository;
 import com.laohac.swp391spring2023.repository.TripRepository;
+import com.laohac.swp391spring2023.service.CarService;
+import com.laohac.swp391spring2023.service.MemberService;
 import com.laohac.swp391spring2023.service.TripService;
 
 @Controller
@@ -31,11 +34,24 @@ public class TripController {
     RouteRepository routeRepository;
 
     @Autowired
+    MemberService memberService;
+
+    @Autowired
+    CarService carService;
+
+    @Autowired
     CarRepository carRepository;
 
     @GetMapping("/viewall")
-    public String viewAllTrip(Model model) {
-        List<Trip> listTrips = tripService.getAllTrip();
+    public String viewAllTrip(@RequestParam("departure") String departure,
+                              @RequestParam("arrival") String arrival,  
+                              Model model) {
+                        
+        int id = memberService.getCurrentUser().getCarCompanyId();         
+        Car car = carService.getCarById(id);       
+        Route route = routeRepository.findByState1AndState2(departure, arrival);
+        // List<Trip> listTrips = tripService.searchByRoute(route);
+        List<Trip> listTrips = tripService.searchByRouteAndCar(route, car);
         System.out.println(listTrips);
         model.addAttribute("listTrips", listTrips);
         return "CarCompanyDashboard/TripManagement";

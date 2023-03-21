@@ -33,6 +33,7 @@ import com.laohac.swp391spring2023.repository.OrderDetailRepository;
 import com.laohac.swp391spring2023.repository.SeatRepository;
 import com.laohac.swp391spring2023.repository.UserRepository;
 import com.laohac.swp391spring2023.service.BookingService;
+import com.laohac.swp391spring2023.service.MemberService;
 
 @Service
 public class BookingServiceImpl implements BookingService {
@@ -48,6 +49,9 @@ public class BookingServiceImpl implements BookingService {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    @Autowired
+    private MemberService memberService;
 
 
     @Override
@@ -89,9 +93,20 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public void saveOrder(HttpSession session, boolean isSaved) {
        
-        CheckOutInfoDTOReponse checkOutInfoDTOReponse = (CheckOutInfoDTOReponse) session.getAttribute("checkoutinfo");
+        UserDTOResponse userCurrent = memberService.getCurrentUser();
         
-        User user = (userRepository.findByEmail(checkOutInfoDTOReponse.getUser().getEmail())).get();
+        CheckOutInfoDTOReponse checkOutInfoDTOReponse = (CheckOutInfoDTOReponse) session.getAttribute("checkoutinfo");
+        User user = new User();
+        if (userCurrent != null){
+
+            user = (userRepository.findByEmail(checkOutInfoDTOReponse.getUser().getEmail())).get();
+        }
+       
+        CheckOutInfoDTOReponse checkTmpUser = (CheckOutInfoDTOReponse) session.getAttribute("checkoutTmpInfo");
+        user.setEmail(checkTmpUser.getEmail());
+        user.setFullName(checkTmpUser.getFullName());
+        user.setPhoneNumber(checkTmpUser.getPhoneNumber());
+        
         Trip trip = checkOutInfoDTOReponse.getTrip();
         Car car = checkOutInfoDTOReponse.getTrip().getCar();
         int quantity = checkOutInfoDTOReponse.getLSeats().size();
@@ -145,7 +160,7 @@ public class BookingServiceImpl implements BookingService {
                             .createdAt(LocalDateTime.now())
                             .updatedAt(LocalDateTime.now())
                             .build();
-        if (!isSaved) orderDetailRepository.save(orderDetail);
+        if (!isSaved && userCurrent!=null) orderDetailRepository.save(orderDetail);
         session.setAttribute("orderDetailEmail", orderDetail);
        
         
@@ -157,9 +172,12 @@ public class BookingServiceImpl implements BookingService {
             throws UnsupportedEncodingException, MessagingException {
 
         UserDTOResponse user = (UserDTOResponse) session.getAttribute("userSession");
+        CheckOutInfoDTOReponse checkOutInfoDTOReponse = (CheckOutInfoDTOReponse) session.getAttribute("checkoutTmpInfo");
+        String fullName = checkOutInfoDTOReponse.getFullName();
+        String email = checkOutInfoDTOReponse.getEmail();
         String subject ="About your trip";
         String senderName = "4Boys Team";
-        String mailContent = "<p>Dear " + user.getFullName() + ",</p>";
+        String mailContent = "<p>Dear " + fullName + ",</p>";
         mailContent += "<p>Please click the link below to see your orders:</p>";
         
         String verifyURL = siteURL + "/users/info";
@@ -175,7 +193,7 @@ public class BookingServiceImpl implements BookingService {
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
         helper.setFrom("simnhankid13042002@gmail.com", senderName);
-        helper.setTo(user.getEmail());
+        helper.setTo(email);
         helper.setSubject(subject);
         helper.setText(mailContent, true);
 

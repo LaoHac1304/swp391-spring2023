@@ -131,7 +131,11 @@ public class HomeController {
     public String showHomePage(){
         UserDTOResponse userDTOResponse = memberService.getCurrentUser();
         if (userDTOResponse.getRole().equals("admin")) return "redirect:/member/adminDB";
-        else return "redirect:/users/home";
+        else
+            if (userDTOResponse.getRole().equals("customer"))
+                return "redirect:/users/home";
+            else
+                return "redirect:/route/viewall";
         
     }
 

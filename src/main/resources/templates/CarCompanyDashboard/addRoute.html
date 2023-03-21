@@ -1,22 +1,94 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Route</title>
-
+    <title>Document</title>
     <style>
-        .add-route-body {
+        .sidebar {
+            width: 200px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            padding: 5px 10px;
+        }
+
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+
+
+        /* Style for the navigation bar */
+        .navbar {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .navbar h3 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Style for the content */
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        /* style for content */
+        .add-route-body {
+            /* display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             font-family: sans-serif;
             background: linear-gradient(to bottom right, #93a5cf, #e4efe9);
             background-position: center;
+            background-size: cover; */
+            margin-top: 0px;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgb(0, 0, 0, 0.75)), url(https://th.bing.com/th/id/R.578ac222c605460718ce92f845f9e053?rik=FadszsgHT6LpVg&riu=http%3a%2f%2fdata.1freewallpapers.com%2fdownload%2fcity-night-road-traffic-buildings.jpg&ehk=%2boGKYschweFAfc9M4DYS%2beW1JSP11ZiUXWMs4OQk3qo%3d&risl=&pid=ImgRaw&r=0);
+            /* background-image: url(https://images.unsplash.com/photo-1542242476-5a3565835a38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80); */
             background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         .add-route-form {
@@ -31,7 +103,7 @@
         .label-title {
             font-size: 25px;
             text-transform: capitalize;
-            color: rgb(23, 8, 8);
+            color: white;
 
         }
 
@@ -43,6 +115,7 @@
             width: 100%;
             margin-bottom: 15px;
             margin-top: 5px;
+            border: 1px solid black;
         }
 
         .btn-save-add-route {
@@ -54,23 +127,61 @@
             border-radius: 5px;
             border: 1px solid white
         }
-    </style>
 
+        .sidebar>ul>li:hover {
+            background-color: #333;
+        }
+
+        .sidebar>ul>li {
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .bxs-user {
+            margin-right: 10px;
+        }
+
+        .bx-log-out {
+            margin-right: 10px;
+        }
+    </style>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </style>
 </head>
 
 <body class="add-route-body">
-    <form th:action="@{/route/save}" class="add-route-form">
-        <div>
-            <label for="departure" class="label-title">Departure</label>
-            <input type="text" id="departure" name="departure" required class="input-add-route">
+    <div>
+        <div class="sidebar">
+            <h3>Add Route</h3>
+            <ul>
+                <li><a href="#"><i class='bx bxs-user'></i>Profile</a></li>
+                <li><a href="#"><i class='bx bx-log-out'></i>Sign Out</a></li>
+            </ul>
         </div>
-        <div>
-            <label for="arrival" class="label-title">Arrival</label>
-            <input type="text" id="arrival" name="arrival" required class="input-add-route">
+
+        <div class="navbar">
+            <h3>My Website</h3>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
         </div>
-        <div>
-            <button type="submit" class="btn-save-add-route">Save</button>
-    </form>
+
+        <div class="content">
+            <form th:action="@{/route/save}" class="add-route-form">
+                <div>
+                    <label for="departure" class="label-title">Departure</label>
+                    <input type="text" id="departure" name="departure" required class="input-add-route">
+                </div>
+                <div>
+                    <label for="arrival" class="label-title">Arrival</label>
+                    <input type="text" id="arrival" name="arrival" required class="input-add-route">
+                </div>
+                <div>
+                    <button type="submit" class="btn-save-add-route">Save</button>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -41,14 +41,20 @@ background-color: rgb(182 191 203)">
                             <div class="mb-3 form-group">
                                 <label class="fw-normal mb-1" for="inputFullname">Fullname</label>
                                 <input type="text" id="inputFullname" th:field="*{fullName}" placeholder="Fullname"
-                                    class="form-control mb-4 col-5" required title="Please enter your full name">
+                                    class="form-control mb-4 col-5" required title="Please enter your full name"
+                                    pattern="^[a-zA-Z]+(?:\s[a-zA-Z]+)*$"
+                                    oninvalid="this.setCustomValidity('Please enter a valid full name')"
+                                    oninput="this.setCustomValidity('')">
                             </div>
                             <hr>
 
                             <div class="mb-3">
                                 <label class="fw-normal mb-1" for="inputEmail">Email</label>
                                 <input class="form-control mb-4 col-5" th:field="*{email}" id="inputEmail" type="email"
-                                    placeholder="Enter your email" required title="Please enter a valid email!">
+                                    placeholder="example@example.com" required title="Please enter a valid email!"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                    oninvalid="this.setCustomValidity('Please enter a valid mail')"
+                                    oninput="this.setCustomValidity('')">
                             </div>
                             <hr>
 

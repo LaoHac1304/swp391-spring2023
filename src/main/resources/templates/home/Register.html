@@ -18,7 +18,17 @@ font-family: 'Open Sans', sans-serif;">
     <form onsubmit="return validatePassword()" th:action="@{/users/save}" method="post" th:object="${customer}"
       class="RegisterForm">
       <div class="row">
-        <h3>Register</h3>
+        <div class="col-md-2" style="float: left;">
+          <a th:href="@{/users/login}" style="color: rgb(22, 24, 41);">
+            <i class="fa-solid fa-arrow-left" style="    margin-top: 25px;">
+            </i>
+          </a>
+        </div>
+        <div class="col-md-8" style="padding-top: 10px; ">
+          <h3>Register</h3>
+        </div>
+        <div class="col-md-2"></div>
+
         <hr>
 
         <div class="col-md-6">
@@ -26,14 +36,17 @@ font-family: 'Open Sans', sans-serif;">
             <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
             <label for="email">Email <span style="color: red;" th:text="${session.errorEmail}"></span></label>
             <input type="text" placeholder="example@example.com" th:field="*{email}" id="email" required
-              title="Please enter email address">
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              oninvalid="this.setCustomValidity('Please enter a valid mail')" oninput="this.setCustomValidity('')">
           </div>
 
           <div class="input-field">
             <span><i aria-hidden="true" class="fa fa-user"></i></span>
             <label for="username">Username <span style="color: red;" th:text="${session.errorUsername}"></span></label>
             <input type="text" placeholder="myusername123" th:field="*{username}" id="username" required
-              title="Please enter username">
+              title="Username must be at least 6 characters long, start with a letter and contain only letters and numbers"
+              pattern="[A-Za-z][A-Za-z0-9]{5,}" oninvalid="this.setCustomValidity('Please enter a valid username')"
+              oninput="this.setCustomValidity('')">
 
           </div>
 
@@ -42,14 +55,17 @@ font-family: 'Open Sans', sans-serif;">
             <span><i aria-hidden="true" class="fa fa-lock"></i></span>
             <label for="psw">Password</label>
             <input type="password" placeholder="Enter Password" th:field="*{password}" id="psw" required pattern=".{6,}"
-              title="Password must be at least 6 characters">
+              title="Password must be at least 6 characters"
+              oninvalid="this.setCustomValidity('Password must be at least 6 characters')"
+              oninput="this.setCustomValidity('')">
           </div>
 
           <div class="input-field">
 
             <span><i aria-hidden="true" class="fa fa-lock"></i></span>
             <label for="psw-repeat">Repeat Password</label>
-            <input type="password" placeholder="Repeat Password" id="pswRepeat" required title="Please enter password">
+            <input type="password" placeholder="Repeat Password" id="pswRepeat" required title="Please enter password"
+            >
 
             <span id="message"></span>
           </div>
@@ -62,7 +78,9 @@ font-family: 'Open Sans', sans-serif;">
             <span><i aria-hidden="true" class="fa fa-phone"></i></span>
             <label for="pnumber">Phone Number</label>
             <input type="text" placeholder="(0)555-555-5555" th:field="*{phoneNumber}" id="pnumber" pattern="\d{10,11}$"
-              required title="Please enter a valid 10 or 11-digit phone number">
+              required title="Please enter a valid 10 or 11-digit phone number"
+              oninvalid="this.setCustomValidity('Please enter a valid 10 or 11-digit phone number')"
+              oninput="this.setCustomValidity('')">
           </div>
 
           <div class="input-field">
@@ -70,7 +88,8 @@ font-family: 'Open Sans', sans-serif;">
             <span><i aria-hidden="true" class="fa fa-user"></i></span>
             <label for="fullname">Full Name</label>
             <input type="text" placeholder="John Doe" th:field="*{fullName}" id="fullName" required
-              title="Please enter Fullname">
+              title="Please enter Fullname" pattern="^[a-zA-Z]+(?:\s[a-zA-Z]+)*$"
+              oninvalid="this.setCustomValidity('Please enter a valid full name')" oninput="this.setCustomValidity('')">
           </div>
 
           <div style="margin-top: 35px;">
@@ -84,7 +103,6 @@ font-family: 'Open Sans', sans-serif;">
               <option value="other">Other</option>
             </select>
           </div>
-
 
         </div>
         <hr>

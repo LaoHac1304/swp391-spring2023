@@ -103,6 +103,10 @@ public class MemberServiceImpl implements MemberService {
                 {
                     member = uOptional2.get();
                 }
+            int carCompanyId = 0;
+            if (member.getCarCompany()!= null){
+                carCompanyId = member.getCarCompany().getId();
+            }
             
             return UserDTOResponse
             .builder()
@@ -112,6 +116,7 @@ public class MemberServiceImpl implements MemberService {
             .sex(member.getSex())
             .phoneNumber(member.getPhoneNumber())
             .role(member.getRole())
+            .carCompanyId(carCompanyId)
             .build();    
         }
         return null;

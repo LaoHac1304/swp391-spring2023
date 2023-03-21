@@ -41,7 +41,7 @@ public class AdminSecurityConfig {
 
         httpSecurity.authorizeRequests()
         .antMatchers("/css/**", "/js/**","/images/**").permitAll()
-        .antMatchers("/", "/pay", "/homepage","/homepage/login", "/users/login","/homepage/defaultSuccessUrl").permitAll();
+        .antMatchers("/", "/pay/**", "/homepage","/homepage/login", "/users/login","/homepage/defaultSuccessUrl").permitAll();
 
         httpSecurity .antMatcher("/member/**").authorizeRequests().anyRequest().hasAuthority("admin")
         .and()

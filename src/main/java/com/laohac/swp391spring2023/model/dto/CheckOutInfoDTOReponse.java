@@ -30,4 +30,7 @@ public class CheckOutInfoDTOReponse {
     private PaymentType paymentType;
     private Status status;
     private boolean isSpecialDay;
+    private String fullName;
+    private String phoneNumber;
+    private String email;
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.repository.RouteRepository;
+import com.laohac.swp391spring2023.service.MemberService;
 import com.laohac.swp391spring2023.service.RouteService;
 
 @Controller
@@ -21,6 +22,8 @@ public class RouteController {
     RouteRepository routeRepository;
     @Autowired
     RouteService routeService;
+    @Autowired
+    MemberService memberService;
 
     @GetMapping("/viewall")
     public String viewAllRoute(Model model) {

@@ -58,4 +58,18 @@ public class TripServiceImpl implements TripService {
     public void deleteTripById(int id){
         this.tripRepository.deleteById(id);
     }
+
+    @Override
+    public List<Trip> searchByRoute(Route route) {
+        List<Trip> trips = tripRepository.findByRoute(route);
+        return trips;
+    }
+
+    @Override
+    public List<Trip> searchByRouteAndCar(Route route, Car car) {
+        List<Trip> trips = tripRepository.findByRouteAndCar(route, car);
+        return trips;
+    }
+
+    
 }

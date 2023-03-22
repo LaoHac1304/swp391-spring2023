@@ -151,6 +151,8 @@ public class UserController {
         System.out.println(userDTOResponse.getFullName());
         return "home/index";
     }
+
+    
     @PreAuthorize("hasAuthority('customer')")
     @GetMapping("/info")
     public String showInfo(Model model, HttpSession session) {

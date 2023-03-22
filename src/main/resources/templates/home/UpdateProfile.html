@@ -20,12 +20,12 @@ background-color: rgb(182 191 203)">
                             <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Your avatar go here"
                                 class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>Son Ga</h4>
+                                <h4 th:text="${userInfo.fullName}"></h4>
                                 <div style="width: 200px;">
 
-                                    <p class="text-muted font-size-sm">son@gmail.com</p>
+                                    <p class="text-muted font-size-sm" th:text="${userInfo.email}"></p>
                                 </div>
-                                <p class="text-secondary mb-1">0899248435</p>
+                                <p class="text-secondary mb-1" th:text="${userInfo.phoneNumber}"></p>
                             </div>
                         </div>
                     </div>

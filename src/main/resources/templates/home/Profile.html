@@ -118,7 +118,7 @@
                                     <a class="btn btn-info " target="__blank"
                                         th:href="@{/users/update-profile}">Edit</a>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-1" th:if="${userInfo.provider == 'LOCAL'}">
                                     <!--Edit profile here-->
                                     <a class="btn btn-info " style="width: 151px;" target="__blank"
                                         th:href="@{/users/changePassword}">Change Password</a>

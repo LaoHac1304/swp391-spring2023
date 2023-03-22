@@ -9,7 +9,9 @@
     <br><br>
     <div class="container">
 
-        <form th:action="@{/booking/save-order}" method="post" th:object="${checkoutTmpInfo}">
+
+        <form onsubmit="return popupCheckout()" th:action="@{/booking/save-order}" method="post"
+            th:object="${checkoutTmpInfo}">
             <div class="row">
                 <div class="col-md-1">
                     <a onclick="goBack()">
@@ -31,8 +33,8 @@
                             <div class="row-payment">
                                 <label class="flex-label">
                                     <span class="span-payments">
-                                        <input type="radio" name="paymentMethod" value="paypal" class="custom-radio"
-                                            style="height: min-content;" required
+                                        <input type="radio" id="paymentMethod" name="paymentMethod" value="paypal"
+                                            class="custom-radio" style="height: min-content;" required
                                             oninvalid="this.setCustomValidity('Please choose a payment method')"
                                             oninput="this.setCustomValidity('')">
 
@@ -50,8 +52,8 @@
                             <div class="row-payment" th:if="${checkoutinfo.isSpecialDay == false}">
                                 <label class="flex-label">
                                     <span class="span-payments">
-                                        <input type="radio" name="paymentMethod" value="payonbus" class="custom-radio"
-                                            style="height: min-content;">
+                                        <input type="radio" id="paymentMethod" name="paymentMethod" value="payonbus"
+                                            class="custom-radio" style="height: min-content;">
                                     </span>
                                     <span class="span-payments" style="padding-left: 8px;">
                                         <img th:src="@{/images/bus.png}" alt="Bus logo" style="border-radius: 0%;">
@@ -66,6 +68,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-4 " style="padding: 0px 8px;">
 
                     <div class="form-control-lg text-center">Trip detail</div>
@@ -144,8 +147,9 @@
                                 <div class="col-md-6">
                                     <div class="table-info">
                                         <div class="table-name">Seat Number</div>
-                                        <div class="table-value" th:each="seatNumber : ${checkoutinfo.lSeatsNumber}"
-                                            th:text="${seatNumber}">Hoa Mai</div>
+
+                                        <div class="table-value" th:text="${listSeatsNumber}">Hoa Mai</div>
+
 
                                     </div>
                                 </div>
@@ -189,22 +193,22 @@
                     </div>
 
                     <br>
-                    <button type="submit" class="btn btn-success" style="width: 100%; min-height: 30px; height: 50px;"
-                        id="myBtn">Finish Order</button>
-                </div>
-                <div id="myModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <div>
-                            <img th:src="@{/images/check.png}" alt="" class="image-check-pop-up">
-                        </div>
-                        <p style="color: black;font-size: 45px;margin-top: 20px;">Payment successful</p>
-                        <p style="margin-top: 20px;">Please wait a moment to complete process</p>
-                    </div>
+
+                    <button id="checkoutBtn" type="submit" class="btn btn-success"
+                        style="width: 100%; min-height: 30px; height: 50px;">Finish Order</button>
                 </div>
                 <!-- </form> -->
+
+
+
+                <!--End pop up-->
+
+
+
             </div>
+
         </form>
+
         <script>
             const paymentRadioButtons = document.getElementsByName('paymentMethod');
 
@@ -215,36 +219,44 @@
                 });
             });
 
-            var modal = document.getElementById("myModal");
 
 
-            var btn = document.getElementById("myBtn");
-
-
-            var span = document.getElementsByClassName("close")[0];
-
-
-            btn.onclick = function () {
-                modal.style.display = "block";
-            }
-
-
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
         </script>
+
+        <!--POP UP-->
+        <a href="#popupCheckout"></a>
+
+        <div id="popupCheckout" class="overlay-co">
+            <div class="popup" style="width: 500px;">
+                <!-- <h2>Info box</h2> -->
+                <div
+                    style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto; margin-bottom: 20px;">
+                    <i class="checkmark">✓</i>
+                </div>
+                <!-- <a class="close" href="#">&times;</a> -->
+                <div class="contentRegister">
+                    <p class="lead">Thank for your booking!</p>
+                    <p class="lead"><strong>Please check <a href="https://mail.google.com/mail/u/0/#inbox"
+                                target="_blank">your
+                                email</a></strong> for further instructions</p>
+                    <br>
+                    <br>
+                    <h6 style="color: black;">Redirecting...</h6>
+                    <!-- <div style="text-align: center; left:50%; margin-top: 10px;">
+                <a th:href="@{/homepage/}" class="btn btn-primary">Continue</a>
+            </div> -->
+
+                </div>
+            </div>
+        </div>
 
 
     </div>
     <br>
     <div th:replace="fragments/fragments::detailFooter"></div>
     <div th:replace="fragments/fragments::homeScript"></div>
+
+
 </body>
 
 </html>

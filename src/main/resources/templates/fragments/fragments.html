@@ -23,7 +23,7 @@
 </head>
 
 <!-- Admin navbar-->
-<nav th:fragment="adminNavbar" class="sb-topnav navbar navbar-expand navbar-dark">
+<nav th:fragment="adminNavbar" class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #272c4a;">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3" th:href="@{/member/viewall}">Dashboard</a>
     <!-- Sidebar Toggle-->
@@ -51,7 +51,7 @@
                 </li>
 
                 <li>
-                    <a class="dropdown-item" th:href="@{/member/setting}">Settings</a>
+                    <a class="dropdown-item" th:href="@{/member/setting}">Profile</a>
                 </li>
                 <li>
                     <hr class="dropdown-divider" />
@@ -96,6 +96,7 @@
                         <a class="nav-link" th:href="@{/homepage}" target="_blank">
                             Homepage
                         </a>
+                        <a class="nav-link" th:href="@{/member/setting}">Profile</a>
                     </nav>
                 </div>
                 <!-- <div class="sb-sidenav-menu-heading">Addons</div>
@@ -334,8 +335,8 @@
                         <th:block th:each="tripD : ${departure}">
                             <option th:value="${tripD}" th:text="${tripD}"></option>
                         </th:block>
-                    </select> 
-                    
+                    </select>
+
 
 
                 </div>
@@ -367,13 +368,13 @@
 
             </form>
 
-            
+
             <!-- backendCode End -->
 
         </div>
 
     </section>
-    
+
 
 </div>
 
@@ -544,7 +545,7 @@
                                 <img src="/images/place/Dalat.jpg" alt="Dalat">
                             </div>
                             <div class="slider-desc" style="background-color: #7C6E4F;">
-                                <div class="slider-desc-title">Sai Gon - Da Lat</div>
+                                <div class="slider-desc-title">Sài Gòn - Đà Lạt</div>
                                 <div class="slider-desc-fare">Just From 200.000 vnd</div>
                             </div>
                             <script>
@@ -563,7 +564,7 @@
                                 <img src="/images/place/vungtau.jpg" alt="vungtau">
                             </div>
                             <div class="slider-desc" style="background-color: #1B1E0A;">
-                                <div class="slider-desc-title">Vung Tau - Nha Trang</div>
+                                <div class="slider-desc-title">Vũng Tàu - Nha Trang</div>
                                 <div class="slider-desc-fare">200.000 vnd</div>
                             </div>
                             <script>
@@ -582,7 +583,7 @@
                                 <img src="/images/place/muine.jpg" alt="muine">
                             </div>
                             <div class="slider-desc" style="background-color: #1E3131;">
-                                <div class="slider-desc-title">Mui Ne - Can Tho</div>
+                                <div class="slider-desc-title">Mũi Né - Cần Thơ</div>
                                 <div class="slider-desc-fare">200.000 vnd</div>
                             </div>
                             <script>
@@ -601,7 +602,7 @@
                                 <img src="/images/place/nhatrang.jpg" alt="muine">
                             </div>
                             <div class="slider-desc" style="background-color: #8F9E9E;">
-                                <div class="slider-desc-title">Sai Gon - Ca Mau</div>
+                                <div class="slider-desc-title">Sài Gòn - Cà Mau</div>
                                 <div class="slider-desc-fare">200.000 vnd</div>
                             </div>
                             <script>
@@ -620,7 +621,7 @@
                                 <img src="/images/place/cantho.jpg" alt="muine">
                             </div>
                             <div class="slider-desc">
-                                <div class="slider-desc-title">Sai Gon - Dak Lak</div>
+                                <div class="slider-desc-title">Sài Gòn - Đăk Lăk</div>
                                 <div class="slider-desc-fare">200.000 vnd</div>
                             </div>
                             <script>

@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +57,13 @@ public class PaymentController {
     @Autowired
     private BookingService bookingService;
 
+    @ModelAttribute
+    public void addCommonAttributes(Model model) {
+       CheckOutInfoDTOReponse checkOutInfoDTOReponse = new CheckOutInfoDTOReponse();
+       model.addAttribute("checkoutTmpInfo", checkOutInfoDTOReponse);
+
+    }
+
     @GetMapping("/{id}")
     public String payment(@PathVariable(value = "id") int id, Model model, HttpSession session){
 
@@ -72,6 +80,7 @@ public class PaymentController {
         
         return "home/orderForm";
     }
+
 
     public static String formatVND(BigDecimal price) {
         DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance(Locale.forLanguageTag("vi-VN"));
@@ -164,13 +173,17 @@ public class PaymentController {
     }
 
     @PostMapping("/save-order")
-    public String saveOrder(@RequestParam(name = "paymentMethod") String paymentMethod, HttpSession session, Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException{
+    public String saveOrder(@RequestParam(name = "paymentMethod") String paymentMethod, 
+                                    HttpSession session, Model model, HttpServletRequest request, 
+                                    @ModelAttribute("checkoutTmpInfo") CheckOutInfoDTOReponse checkoutTmpInfo) 
+                                    throws UnsupportedEncodingException, MessagingException{
 
 
         CheckOutInfoDTOReponse checkOutInfoDTOReponse =
                 (CheckOutInfoDTOReponse) session.getAttribute("checkoutinfo");
+        session.setAttribute("checkoutTmpInfo", checkoutTmpInfo);
 
-
+        
         
         if(paymentMethod.equals("paypal")) {
             checkOutInfoDTOReponse.setStatus(Status.PENDING);

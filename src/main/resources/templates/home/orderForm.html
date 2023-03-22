@@ -4,7 +4,8 @@
 <div th:replace="fragments/fragments::homeHead"></div>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
-    <div style="background-image: url(/images/cars/car3.jpg); background-size: cover; padding-bottom: 10px;">
+    <div style="background-image: url(/images/slider/slider1.webp); background-size: cover; 
+    font-family: 'Open Sans', sans-serif; padding-bottom: 10px;">
         <div th:replace="fragments/fragments::homeHeader"></div>
         <main>
             <form th:action="@{/booking/choose-seats/{id}(id=${tripInfoCurrent.id})}">
@@ -12,7 +13,10 @@
                 <div class="container">
                     <div class="bus-order">
                         <div class="row">
-                            <div class="seatChoose">Choose your seats</div>
+                            <div class="seatChoose">
+                                <br>
+                                <h2>Choose your seats</h2>
+                            </div>
                             <div class="col-sm-6">
                                 <div class="container-seat">
                                     <h2 style="text-align: center;">Select your seat</h2>
@@ -38,33 +42,43 @@
                             </div>
 
                             <div class="col-sm-6 row-desc">
-                                <br><br><br>
-                                <div class="row ">
+                                <h4 style="padding-right: 20px ;">Please select at least 1 seat to submit</h4>
+                                <br>
+                                
+                                <div class="row " style="padding-left: 80px;">
                                     <div class="seat col-sm-6">1</div>
                                     <span class="col-sm-6" style="align-self: center;">Available</span>
                                 </div>
 
-                                <div class="row ">
+                                <div class="row" style="padding-left: 80px;">
                                     <div class="seat col-sm-6" style="background-color: springgreen; color: black;">2
                                     </div>
                                     <span class="col-sm-6" style="align-self: center;">Choosen</span>
                                 </div>
 
-                                <div class="row ">
+                                <div class="row " style="padding-left: 80px;">
                                     <div class="seat col-sm-6" style="background-color: crimson">3</div>
                                     <span class="col-sm-6" style="align-self: center;">Booked</span>
                                 </div>
 
                                 <div>
-
-                                    <button id="submit-button" class="btn btn-success" th:if="${session.SselectedSeats}"
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-sm-6">
+                                            <button type="button" class="btn btn-warning" onclick="goBack()">Go Back</button>
+                                            <script>
+                                                function goBack() {
+                                                  window.history.back();
+                                                }
+                                                </script>
+                                        </div>
+                                        <div class="col-sm-6" style="padding-left: 0px;">
+                                            <button id="submit-button" class="btn btn-success" th:if="${session.SselectedSeats}"
                                         title="Please select at least one seat before submitting" type="submit"
                                         disabled>Submit</button>
-
-
-
-
-
+                                        </div>
+                                    </div>
+                                    
 
 
                                 </div>

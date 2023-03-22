@@ -167,7 +167,8 @@
                                             <td th:text="${orderDetail.trip.date}">Day</td>
                                             <td th:text="${orderDetail.listSeatsNumber}" class="seat-td">Seats</td>
                                             <td th:text="${orderDetail.quantity}">Quantity</td>
-                                            <td th:text="${orderDetail.total}">Total</td>
+                                            <td th:text="${T(com.laohac.swp391spring2023.controller.PaymentController).formatVND(orderDetail.total)}">Total</td>
+                                            
                                             <td th:text="${orderDetail.paymentType}">Payment</td>
                                             <td style="background-color: aquamarine;" th:text="${orderDetail.status}">Status</td>
                                             <td>

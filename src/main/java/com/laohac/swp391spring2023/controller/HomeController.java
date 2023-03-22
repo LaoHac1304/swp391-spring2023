@@ -189,8 +189,10 @@ public class HomeController {
 
     @PostMapping("/reset-password")
     public String processResetPasswordForm(@RequestParam("email") String email, @RequestParam("code") String code,
+
             @RequestParam("newPassword") String password, @RequestParam("confirmPassword") String confirmPassword,
             Model model) {
+
 
         if (password == null || password.isEmpty()) {
             model.addAttribute("error", "Password cannot be empty");

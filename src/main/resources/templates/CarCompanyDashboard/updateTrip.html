@@ -68,33 +68,33 @@
         <input type="hidden" th:field="*{id}">
         <div>
             <label for="start-time" class="label-update-trip-title">Start Time:</label>
-            <input type="time" id="start-time" name="startTime" th:placeholder="${trip.startTime}" required
+            <input type="time" id="start-time" name="startTime" th:value="${trip.startTime}" required
                 class="input-update-trip-content">
         </div>
         <div>
             <label for="end-time" class="label-update-trip-title">End Time:</label>
-            <input type="time" id="end-time" name="endTime" th:placeholder="${trip.endTime}" required
+            <input type="time" id="end-time" name="endTime" th:value="${trip.endTime}" required
                 class="input-update-trip-content">
         </div>
         <div>
             <label for="price" style="font-weight: bold;">Price:</label>
-            <input type="number" id="price" name="price" th:placeholder="${trip.price}" required
+            <input type="number" id="price" name="price" th:value="${trip.price}" required
                 class="input-update-trip-content">
         </div>
 
         <div>
             <label for="departure-detail" style="font-weight: bold;">Departure Detail:</label>
-            <input type="text" id="departure-detail" name="departureDetail" th:placeholder="${trip.departureDetail}"
+            <input type="text" id="departure-detail" name="departureDetail" th:value="${trip.departureDetail}"
                 required class="input-update-trip-content">
         </div>
         <div>
             <label for="arrival-detail" style="font-weight: bold;">Arrival Detail:</label>
-            <input type="text" id="arrival-detail" name="arrivalDetail" th:placeholder="${trip.arrivalDetail}" required
+            <input type="text" id="arrival-detail" name="arrivalDetail" th:value="${trip.arrivalDetail}" required
                 class="input-update-trip-content">
             <div>
             </div>
             <label for="arrival-detail" style="font-weight: bold;">Date:</label>
-            <input type="date" id="arrival-date" name="date" th:placeholder="${trip.date}" required
+            <input type="date" id="arrival-date" name="date" th:value="${trip.date}" required
                 class="input-update-trip-content">
         </div>
         <div>
@@ -107,9 +107,9 @@
             </select>
         </div>
         <div>
-            <select id="car" name="car.id" required class="select-update-trip-content">
+            <select id="car" name="car.id" required class="select-add-trip-content">
                 <option value="">--Select a car--</option>
-                <th:block th:each="car : ${cars}">
+                <th:block th:each="car : ${cars}" th:if="${car.carCompany.id == currentUserId}">
                     <option th:value="${car.id}" th:text="${car.plateNumber}"></option>
                 </th:block>
             </select>

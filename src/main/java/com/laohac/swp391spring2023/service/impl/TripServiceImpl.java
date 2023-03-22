@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.laohac.swp391spring2023.model.dto.TripDTO;
 import com.laohac.swp391spring2023.model.entities.Car;
+import com.laohac.swp391spring2023.model.entities.CarCompany;
 import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.Trip;
 import com.laohac.swp391spring2023.service.TripService;
@@ -70,6 +71,18 @@ public class TripServiceImpl implements TripService {
         List<Trip> trips = tripRepository.findByRouteAndCar(route, car);
         return trips;
     }
+
+    // @Override
+    // public List<Trip> searchByRouteAndListCar(Route route, List<Car> cars) {
+    //     List<Trip> trips = tripRepository.findByRouteAndListCar(route, cars);
+    //     return trips;
+    // }
+
+    // @Override
+    // // public List<Trip> searchByRouteAndCarCompany(Route route, CarCompany carCompany) {
+    // //     List<Trip> trips = tripRepository.findByRouteAndCarCompany(route, carCompany);
+    // //     return trips;
+    // // }
 
     
 }

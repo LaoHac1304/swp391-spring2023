@@ -2,11 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:replace="fragments/fragments::homeHead"></div>
+<link rel="stylesheet" th:href="@{/css/checkOutPopUpMsg.css}">
 
 <body>
     <header th:replace="fragments/fragments::homeHeader"></header>
     <br><br>
     <div class="container">
+
 
         <form onsubmit="return popupCheckout()" th:action="@{/booking/save-order}" method="post"
             th:object="${checkoutTmpInfo}">
@@ -145,7 +147,9 @@
                                 <div class="col-md-6">
                                     <div class="table-info">
                                         <div class="table-name">Seat Number</div>
+
                                         <div class="table-value" th:text="${listSeatsNumber}">Hoa Mai</div>
+
 
                                     </div>
                                 </div>
@@ -189,6 +193,7 @@
                     </div>
 
                     <br>
+
                     <button id="checkoutBtn" type="submit" class="btn btn-success"
                         style="width: 100%; min-height: 30px; height: 50px;">Finish Order</button>
                 </div>
@@ -197,6 +202,7 @@
 
 
                 <!--End pop up-->
+
 
 
             </div>
@@ -212,6 +218,7 @@
                     document.getElementById('paymentMethod').value = this.value;
                 });
             });
+
 
 
         </script>
@@ -242,6 +249,7 @@
                 </div>
             </div>
         </div>
+
 
     </div>
     <br>

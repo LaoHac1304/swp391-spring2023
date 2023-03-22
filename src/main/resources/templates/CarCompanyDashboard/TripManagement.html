@@ -151,23 +151,20 @@
     <div class="card mb-4">
         <div class="card-header-content-box-title">
             <h2 class="fas-fa-table-me-1">Trip Details</h2>
-            <div class="combine-icon-text">
-                <a th:href="@{/trip/add}" class="add-trip-btn"><i class='bx bx-plus'></i>
-                    Add New Trip
-                </a>
-            </div>
         </div>
+        <a th:href="@{/trip/add}" class="add-trip-btn"><i class='bx bx-plus'></i>
+            Add New Trip
+        </a>
         <div class="card-body text-white">
 
             <table id="datatablesSimple" class="trip-management-table">
                 <thead>
                     <tr>
-                        <th>Departure</th>
                         <th>Arrival</th>
+                        <th>Departure</th>
                         <th>Price</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Car ID</th>
+                        <th>Time</th>
+                        <th>Car</th>
                         <th>Departure</th>
                         <th>Arrival</th>
                         <th>Date</th>
@@ -179,8 +176,7 @@
                         <td th:text="${trip.getRoute().getDeparture()}">Departure</td>
                         <td th:text="${trip.getRoute().getArrival()}">Arrival</td>
                         <td th:text="${trip.price}">Price</td>
-                        <td th:text="${trip.startTime}">Start</td>
-                        <td th:text="${trip.endTime}">End</td>
+                        <td th:text="${trip.startTime + ' - ' + trip.endTime}">Start</td>
                         <td th:text="${trip.getCar().getPlateNumber}">Car</td>
                         <td th:text="${trip.departureDetail}">Pick Up</td>
                         <td th:text="${trip.arrivalDetail}">Drop Off</td>

@@ -562,9 +562,15 @@
                         <div class="card-body px-0 pb-2">
                             <div class="card mb-4">
                                 <div class="card-content-box-title">
-                                    <h2 class="route-title" style="margin-left: 10px;">Route Management</h2>
+                                    <h2 class="route-title" style="margin-left: 10px;">DashBoard</h2>
                                     <div class="icon-text">
                                         <a th:href="@{/route/add}" class="btn-add-route"><i class='bx bx-plus'></i></a>
+                                    </div>
+                                    <div class="combine-icon-text">
+                                        <a th:href="@{/trip/add}" class="add-trip-btn"><i class='bx bx-plus'></i>
+                                            Add New Trip
+                                        </a>
+                                        <th><a th:href="@{/car/viewall}">Manage Car</a></th>
                                     </div>
                                 </div>
                                 <div class="card-body text-white">
@@ -579,18 +585,18 @@
                                         </thead>
                                         <tbody>
                                             <tr th:each="route: ${listRoutes}">
-                                                <td th:text="${route.departure}">Departure</td>
-                                                <td th:text="${route.arrival}">Arrival</td>
-                                                <td>
-                                                    <a th:href="@{update/{id}(id=${route.id})}"
-                                                        class="btn btn-success">Update</a>
-                                                    <a th:href="@{delete/{id}(id=${route.id})}"
-                                                        class="btn btn-warning">Delete</a>
-                                                </td>
-                                                <td><a th:href="@{/trip/viewall(departure=${route.departure},arrival=${route.arrival})}">View list trip</a></td>
+                                              <td th:text="${route.departure}">Departure</td>
+                                              <td th:text="${route.arrival}">Arrival</td>
+                                              <td>
+                                                <a th:href="@{update/{id}(id=${route.id})}" class="btn btn-success">Update</a>
+                                                <a th:href="@{delete/{id}(id=${route.id})}" class="btn btn-warning">Delete</a>
+                                              </td>
+                                              <td>
+                                                <a th:href="@{/trip/viewall(departure=${route.departure},arrival=${route.arrival})}">View list trip</a>
+                                              </td>
                                             </tr>
-                                        </tbody>
-                                    </table>
+                                          </tbody>  
+                                        </table>
                                 </div>
                             </div>
                         </div>

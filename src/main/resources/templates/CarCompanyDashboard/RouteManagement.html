@@ -127,7 +127,8 @@
             border-radius: 7px;
             background-color: #508fc7;
             color: white;
-            margin-right: 3px;
+            margin-left: 4px;
+            font-size: 16px;
         }
 
         .card-content-box-title {
@@ -146,6 +147,26 @@
         .route-title {
             display: inline;
             font-size: 30px;
+        }
+
+        .add-trip-btn {
+            background-color: rgb(233, 185, 233);
+            padding: 12px;
+            border-radius: 7px;
+            border: 1px solid white;
+            color: white;
+        }
+
+        .manage-car-btn {
+            border: 1px solid white;
+            padding: 12px;
+            border-radius: 7px;
+            background-color: black;
+            color: white;
+        }
+
+        .combine-icon-text {
+            margin-left: 1000px;
         }
     </style>
 
@@ -564,13 +585,18 @@
                                 <div class="card-content-box-title">
                                     <h2 class="route-title" style="margin-left: 10px;">DashBoard</h2>
                                     <div class="icon-text">
-                                        <a th:href="@{/route/add}" class="btn-add-route"><i class='bx bx-plus'></i></a>
+
                                     </div>
-                                    <div class="combine-icon-text">
+                                    <div class="combine-icon-text" style="display: inline;">
+
+                                        <a th:href="@{/car/viewall}" class="manage-car-btn"><i
+                                                class='bx bxs-user'></i><span style="margin-left: 7px;">Manage
+                                                Car</span></a>
                                         <a th:href="@{/trip/add}" class="add-trip-btn"><i class='bx bx-plus'></i>
                                             Add New Trip
                                         </a>
-                                        <th><a th:href="@{/car/viewall}">Manage Car</a></th>
+                                        <a th:href="@{/route/add}" class="btn-add-route"><i class='bx bx-plus'>Add new
+                                                route</i></a>
                                     </div>
                                 </div>
                                 <div class="card-body text-white">
@@ -585,18 +611,22 @@
                                         </thead>
                                         <tbody>
                                             <tr th:each="route: ${listRoutes}">
-                                              <td th:text="${route.departure}">Departure</td>
-                                              <td th:text="${route.arrival}">Arrival</td>
-                                              <td>
-                                                <a th:href="@{update/{id}(id=${route.id})}" class="btn btn-success">Update</a>
-                                                <a th:href="@{delete/{id}(id=${route.id})}" class="btn btn-warning">Delete</a>
-                                              </td>
-                                              <td>
-                                                <a th:href="@{/trip/viewall(departure=${route.departure},arrival=${route.arrival})}">View list trip</a>
-                                              </td>
+                                                <td th:text="${route.departure}">Departure</td>
+                                                <td th:text="${route.arrival}">Arrival</td>
+                                                <td>
+                                                    <a th:href="@{update/{id}(id=${route.id})}"
+                                                        class="btn btn-success">Update</a>
+                                                    <a th:href="@{delete/{id}(id=${route.id})}"
+                                                        class="btn btn-warning">Delete</a>
+                                                </td>
+                                                <td>
+                                                    <a
+                                                        th:href="@{/trip/viewall(departure=${route.departure},arrival=${route.arrival})}">View
+                                                        list trip</a>
+                                                </td>
                                             </tr>
-                                          </tbody>  
-                                        </table>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

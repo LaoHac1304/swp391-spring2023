@@ -1,39 +1,132 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Document</title>
+    <style>
+        .myTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .myTable th,
+        .myTable td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .myTable th {
+            background-color: #f2f2f2;
+        }
+
+        .myTable tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .btn {
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            margin-right: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border: none;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            background-color: #f2f2f2;
+            border-bottom: none;
+            font-weight: bold;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header i {
+            margin-right: 10px;
+        }
+
+        .card-body {
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .bx-plus {
+            border: 2px solid rgb(79, 84, 86);
+            border-radius: 50%;
+            padding: 5px;
+            font-size: 25px;
+        }
+    </style>
+
 </head>
+
 <body>
     <div class="card mb-4">
         <div class="card-header content-box-title">
-            <i class="fas fa-table me-1"></i>
+            <i class="fas fa-table me-1">
+                <h2 style="font-size: 30px;">Car details</h2>
+            </i>
+            <a th:href="@{/car/add}"><i class='bx bx-plus'></i></a>
         </div>
         <div class="card-body text-white">
             <table id="datatablesSimple" class="myTable">
-                <a th:href="@{/route/viewall}">Return to DashBoard</a>
-            <thead>
-                <tr>
-                <th>Plate Number</th>
-                <th>Capacity</th>
-                <th>Actions</th>
-                <th><a th:href="@{/car/add}">Add New Car</a></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="car: ${listCars}">
-                    <td th:text="${car.plateNumber}">Departure</td>
-                    <td th:text="${car.capacity}">Departure</td>
-                    <td>
-                        <a th:href="@{update/{id}(id=${car.id})}" class="btn btn-success">Update</a>
-                        <a th:href="@{delete/{id}(id=${car.id})}" class="btn btn-warning">Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Capacity</th>
+                        <th>Plate Number</th>
+                        <th>Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="car: ${listCars}">
+                        <td th:text="${car.id}"></td>
+                        <td th:text="${car.capacity}">Departure</td>
+                        <td th:text="${car.plateNumber}">Departure</td>
+                        <td>
+                            <a th:href="@{update/{id}(id=${car.id})}" class="btn btn-success"><i class='bx bx-edit-alt'
+                                    style="margin-right: 10px;"></i><span>Update</span></a>
+                            <a th:href="@{delete/{id}(id=${car.id})}" class="btn btn-warning"><i class='bx bx-trash'
+                                    style="margin-right: 10px;"></i><span>Delete</span></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
+
 </html>

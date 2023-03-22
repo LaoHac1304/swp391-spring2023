@@ -189,46 +189,47 @@ public class HomeController {
 
     @PostMapping("/reset-password")
     public String processResetPasswordForm(@RequestParam("email") String email, @RequestParam("code") String code,
-        @RequestParam("newPassword") String password, @RequestParam("confirmPassword") String confirmPassword,
-        Model model) {
 
-    if (password == null || password.isEmpty()) {
-        model.addAttribute("error", "Password cannot be empty");
-        return "/home/forgotPassword";
+            @RequestParam("newPassword") String password, @RequestParam("confirmPassword") String confirmPassword,
+            Model model) {
+
+
+        if (password == null || password.isEmpty()) {
+            model.addAttribute("error", "Password cannot be empty");
+            return "/home/forgotPassword";
+        }
+
+        if (!password.equals(confirmPassword)) {
+            model.addAttribute("error", "Passwords do not match");
+            return "/home/forgotPassword";
+        }
+
+        User user = userRepository.findByEmail(email).orElse(null);
+        if (user == null) {
+            model.addAttribute("error", "Email not found");
+            return "/home/forgotPassword";
+        }
+
+        int resetCode;
+        try {
+            resetCode = Integer.parseInt(code);
+        } catch (NumberFormatException e) {
+            model.addAttribute("error", "Invalid code");
+            return "/home/forgotPassword";
+        }
+
+        if (user.getResetCode() != resetCode) {
+            model.addAttribute("error", "Invalid code");
+            return "/home/forgotPassword";
+        }
+
+        // Update the user's password and reset code
+        user.setPassword(password);
+        user.setResetCode(0);
+        userRepository.save(user);
+
+        model.addAttribute("passwordChanged", true);
+        return "redirect:/login";
     }
-
-    if (!password.equals(confirmPassword)) {
-        model.addAttribute("error", "Passwords do not match");
-        return "/home/forgotPassword";
-    }
-
-    User user = userRepository.findByEmail(email).orElse(null);
-    if (user == null) {
-        model.addAttribute("error", "Email not found");
-        return "/home/forgotPassword";
-    }
-
-    int resetCode;
-    try {
-        resetCode = Integer.parseInt(code);
-    } catch (NumberFormatException e) {
-        model.addAttribute("error", "Invalid code");
-        return "/home/forgotPassword";
-    }
-
-    if (user.getResetCode() != resetCode) {
-        model.addAttribute("error", "Invalid code");
-        return "/home/forgotPassword";
-    }
-
-    // Update the user's password and reset code
-    user.setPassword(password);
-    user.setResetCode(0);
-    userRepository.save(user);
-
-    model.addAttribute("passwordChanged", true);
-    return "redirect:/login";
-}
-
 
 }

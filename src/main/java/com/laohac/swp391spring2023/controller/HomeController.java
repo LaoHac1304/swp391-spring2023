@@ -138,12 +138,18 @@ public class HomeController {
     }
 
     @GetMapping("/defaultSuccessUrl")
-    public String showHomePage() {
+    public String showHomePage(HttpServletRequest request, Model model) {
         UserDTOResponse userDTOResponse = memberService.getCurrentUser();
         if (userDTOResponse.getRole().equals("admin"))
             return "redirect:/member/adminDB";
-        else if (userDTOResponse.getRole().equals("customer"))
+        else if (userDTOResponse.getRole().equals("customer")){
+            String referer = request.getHeader("referer");
+
+        // Redirect the user back to the previous page
+            //return "redirect:" + referer;
             return "redirect:/users/home";
+        }
+            
         else
             return "redirect:/route/viewall";
 

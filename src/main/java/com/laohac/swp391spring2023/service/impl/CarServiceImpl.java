@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.laohac.swp391spring2023.model.entities.Car;
+import com.laohac.swp391spring2023.model.entities.CarCompany;
 import com.laohac.swp391spring2023.repository.CarRepository;
 import com.laohac.swp391spring2023.service.CarService;
 
@@ -37,5 +38,12 @@ public class CarServiceImpl implements CarService {
     public void deleteCarById(int id) {
         this.carRepository.deleteById(id);
     }
+
+    @Override
+    public List<Car> getListCarByCarCompany(CarCompany carCompany) {
+        return this.carRepository.findByCarCompany(carCompany);
+    }
+
+
     
 }

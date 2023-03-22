@@ -28,7 +28,6 @@ public class RouteController {
     @GetMapping("/viewall")
     public String viewAllRoute(Model model) {
         List<Route> listRoutes = routeService.getAllRoute();
-        System.out.println(listRoutes);
         model.addAttribute("listRoutes", listRoutes);
         return "CarCompanyDashboard/RouteManagement";
     }

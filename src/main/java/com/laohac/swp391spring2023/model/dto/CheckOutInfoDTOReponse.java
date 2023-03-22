@@ -33,4 +33,5 @@ public class CheckOutInfoDTOReponse {
     private String fullName;
     private String phoneNumber;
     private String email;
+    private List<String> listSeatNumber;
 }

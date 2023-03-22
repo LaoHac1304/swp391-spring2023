@@ -90,7 +90,7 @@ public class PaypalController {
         		for (Integer seat : lSeats) {
              		bookingService.chooseSeats(seat);    
          }
-				return "home/success";
+				return "redirect:/homepage";
 			} 
 		} catch (PayPalRESTException e) {
 			log.error(e.getMessage());

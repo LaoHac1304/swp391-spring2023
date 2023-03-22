@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -187,7 +188,7 @@ public class HomeController {
     }
 
     @PostMapping("/reset-password")
-public String processResetPasswordForm(@RequestParam("email") String email, @RequestParam("code") String code,
+    public String processResetPasswordForm(@RequestParam("email") String email, @RequestParam("code") String code,
         @RequestParam("newPassword") String password, @RequestParam("confirmPassword") String confirmPassword,
         Model model) {
 

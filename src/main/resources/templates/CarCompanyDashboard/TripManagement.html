@@ -162,12 +162,11 @@
             <table id="datatablesSimple" class="trip-management-table">
                 <thead>
                     <tr>
-                        <th>Departure</th>
                         <th>Arrival</th>
+                        <th>Departure</th>
                         <th>Price</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Car ID</th>
+                        <th>Time</th>
+                        <th>Car</th>
                         <th>Departure</th>
                         <th>Arrival</th>
                         <th>Date</th>
@@ -179,8 +178,7 @@
                         <td th:text="${trip.getRoute().getDeparture()}">Departure</td>
                         <td th:text="${trip.getRoute().getArrival()}">Arrival</td>
                         <td th:text="${trip.price}">Price</td>
-                        <td th:text="${trip.startTime}">Start</td>
-                        <td th:text="${trip.endTime}">End</td>
+                        <td th:text="${trip.startTime + ' - ' + trip.endTime}">Start</td>
                         <td th:text="${trip.getCar().getPlateNumber}">Car</td>
                         <td th:text="${trip.departureDetail}">Pick Up</td>
                         <td th:text="${trip.arrivalDetail}">Drop Off</td>

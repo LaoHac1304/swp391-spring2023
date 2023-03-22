@@ -44,7 +44,7 @@
                             <div class="col-sm-6 row-desc">
                                 <h4 style="padding-right: 20px ;">Please select at least 1 seat to submit</h4>
                                 <br>
-                                
+
                                 <div class="row " style="padding-left: 80px;">
                                     <div class="seat col-sm-6">1</div>
                                     <span class="col-sm-6" style="align-self: center;">Available</span>
@@ -65,42 +65,33 @@
                                     <br>
                                     <div class="row ">
                                         <div class="col-sm-6">
-                                            <button type="button" class="btn btn-warning" onclick="goBack()">Go Back</button>
+                                            <button type="button" class="btn btn-warning" onclick="goBack()">Go
+                                                Back</button>
                                             <script>
                                                 function goBack() {
-                                                  window.history.back();
+                                                    window.history.back();
                                                 }
-                                                </script>
+                                            </script>
                                         </div>
                                         <div class="col-sm-6" style="padding-left: 0px;">
-                                            <button id="submit-button" class="btn btn-success" th:if="${session.SselectedSeats}"
-                                        title="Please select at least one seat before submitting" type="submit"
-                                        disabled>Submit</button>
+                                            <button id="submit-button" class="btn btn-success"
+                                                th:if="${session.SselectedSeats}"
+                                                title="Please select at least one seat before submitting" type="submit"
+                                                disabled>Submit</button>
                                         </div>
                                     </div>
-                                    
-
 
                                 </div>
                             </div>
-
-
                         </div>
 
+                    </div>
+                </div>
             </form>
-    </div>
-    </div>
-
-    <!--   <div class="exit exit--back train-body"></div> -->
-
+        </main>
     </div>
 
 
-
-
-
-    </main>
-    </div>
 
 
 

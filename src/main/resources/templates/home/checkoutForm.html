@@ -7,22 +7,23 @@
     <header th:replace="fragments/fragments::homeHeader"></header>
     <br><br>
     <div class="container">
-          
-        <form th:action="@{/booking/save-order}" method="post" th:object = "${checkoutTmpInfo}">
+
+        <form onsubmit="return popupCheckout()" th:action="@{/booking/save-order}" method="post"
+            th:object="${checkoutTmpInfo}">
             <div class="row">
                 <div class="col-md-1">
-                    <a  onclick="goBack()">
+                    <a onclick="goBack()">
                         <i class="fa-solid fa-arrow-left" style="color: rgb(22, 24, 41);">
                         </i>
                         <script>
                             function goBack() {
-                              window.history.back();
+                                window.history.back();
                             }
-                            </script>
+                        </script>
                     </a>
                 </div>
                 <div class="col-md-7" style="padding: 0px 8px;">
-                    
+
                     <div class="form-control-lg text-center">Payment method</div>
                     <div class="payment-form">
                         <div class="list-group">
@@ -30,11 +31,11 @@
                             <div class="row-payment">
                                 <label class="flex-label">
                                     <span class="span-payments">
-                                        <input type="radio" name="paymentMethod" value="paypal" class="custom-radio"
-                                            style="height: min-content;" required
+                                        <input type="radio" id="paymentMethod" name="paymentMethod" value="paypal"
+                                            class="custom-radio" style="height: min-content;" required
                                             oninvalid="this.setCustomValidity('Please choose a payment method')"
-                                             oninput="this.setCustomValidity('')">
-                                              
+                                            oninput="this.setCustomValidity('')">
+
                                     </span>
                                     <span class="span-payments" style="padding-left: 8px;">
                                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/PayPal_Logo_Icon_2014.svg"
@@ -49,8 +50,8 @@
                             <div class="row-payment" th:if="${checkoutinfo.isSpecialDay == false}">
                                 <label class="flex-label">
                                     <span class="span-payments">
-                                        <input type="radio" name="paymentMethod" value="payonbus" class="custom-radio"
-                                            style="height: min-content;">
+                                        <input type="radio" id="paymentMethod" name="paymentMethod" value="payonbus"
+                                            class="custom-radio" style="height: min-content;">
                                     </span>
                                     <span class="span-payments" style="padding-left: 8px;">
                                         <img th:src="@{/images/bus.png}" alt="Bus logo" style="border-radius: 0%;">
@@ -65,6 +66,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-4 " style="padding: 0px 8px;">
 
                     <div class="form-control-lg text-center">Trip detail</div>
@@ -75,32 +77,32 @@
                                 <div class="table-name" style="margin-top: 0%;">Passenger</div>
                                 <th:block th:if="${checkoutinfo.user != null}">
                                     <!-- <div class="table-value" th:text="${checkoutinfo.user.fullName}">Lewis vip vl</div> -->
-                                    <input class="table-value" type="text" name="fullName" 
+                                    <input class="table-value" type="text" name="fullName"
                                         th:value="${checkoutinfo.user.fullName}" id="" required
-                                        oninvalid="this.setCustomValidity('Please fill your name')"
-                                        oninput="this.setCustomValidity('')">
-                                </th:block > 
-
-                                <th:block  th:unless="${checkoutinfo.user != null}">
-                                    <input class="table-value" type="text" name="fullName" th:field="*{fullName}"
-                                        id="" required placeholder="Your name"
                                         oninvalid="this.setCustomValidity('Please fill your name')"
                                         oninput="this.setCustomValidity('')">
                                 </th:block>
 
-                                
+                                <th:block th:unless="${checkoutinfo.user != null}">
+                                    <input class="table-value" type="text" name="fullName" th:field="*{fullName}" id=""
+                                        required placeholder="Your name"
+                                        oninvalid="this.setCustomValidity('Please fill your name')"
+                                        oninput="this.setCustomValidity('')">
+                                </th:block>
+
+
                                 <!-- <div class="table-value" th:text="${checkoutinfo.user.fullName}">Lewis vip vl</div> -->
                             </div>
                             <div class="table-info">
                                 <div class="table-name">Phone number</div>
                                 <th:block th:if="${checkoutinfo.user != null}">
                                     <!-- <div class="table-value" th:text="${checkoutinfo.user.phoneNumber}">0123456789</div> -->
-                                    <input class="table-value" type="text" name="phoneNumber" 
+                                    <input class="table-value" type="text" name="phoneNumber"
                                         th:value="${checkoutinfo.user.phoneNumber}" id="" required
                                         oninvalid="this.setCustomValidity('Please fill your phone number')"
                                         oninput="this.setCustomValidity('')">
                                 </th:block>
-                                <th:block  th:unless="${checkoutinfo.user != null}">
+                                <th:block th:unless="${checkoutinfo.user != null}">
                                     <input class="table-value" type="text" name="phoneNumber" th:field="*{phoneNumber}"
                                         placeholder="Your phone" id="" required
                                         oninvalid="this.setCustomValidity('Please fill your phone number')"
@@ -112,12 +114,13 @@
                                 <div class="table-name">Email</div>
                                 <th:block th:if="${checkoutinfo.user != null}">
                                     <!-- <div class="table-value" th:text="${checkoutinfo.user.email}">lewisvipvl@gmail.com</div> -->
-                                    <input class="table-value" type="text" name="email" 
-                                    th:value="${checkoutinfo.user.email}" id="" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                    oninvalid="this.setCustomValidity('Please fill your email address')"
+                                    <input class="table-value" type="text" name="email"
+                                        th:value="${checkoutinfo.user.email}" id="" required
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                        oninvalid="this.setCustomValidity('Please fill your email address')"
                                         oninput="this.setCustomValidity('')">
                                 </th:block>
-                                <th:block  th:unless="${checkoutinfo.user != null}">
+                                <th:block th:unless="${checkoutinfo.user != null}">
                                     <input class="table-value" type="text" name="email" th:field="*{email}"
                                         placeholder="Your email" id="" required
                                         oninvalid="this.setCustomValidity('Please fill your email address')"
@@ -134,38 +137,40 @@
                                 <div class="col-md-6">
                                     <div class="table-info">
                                         <div class="table-name">Car Company</div>
-                                        <div class="table-value" th:text="${tripInfoCurrent.car.carCompany.name}">Hoa Mai</div>
-        
+                                        <div class="table-value" th:text="${tripInfoCurrent.car.carCompany.name}">Hoa
+                                            Mai</div>
+
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="table-info">
                                         <div class="table-name">Seat Number</div>
-                                        <div class="table-value" th:each="seatNumber : ${checkoutinfo.lSeatsNumber}"
-                                         th:text="${seatNumber}">Hoa Mai</div>
-        
+                                        <div class="table-value" th:text="${listSeatsNumber}">Hoa Mai</div>
+
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="table-info">
                                         <div class="table-name">Pick up place</div>
-                                        <div class="table-value" th:text="${tripInfoCurrent.route.departure}" >Mien Dong Bus station</div>
+                                        <div class="table-value" th:text="${tripInfoCurrent.route.departure}">Mien Dong
+                                            Bus station</div>
                                     </div>
                                 </div>
-                                
+
 
                                 <div class="col-md-6">
                                     <div class="table-info">
                                         <div class="table-name">Drop off place</div>
-                                        <div class="table-value" th:text="${tripInfoCurrent.route.arrival}" >Vung Tau Bus station</div>
+                                        <div class="table-value" th:text="${tripInfoCurrent.route.arrival}">Vung Tau Bus
+                                            station</div>
                                     </div>
                                 </div>
-                                
+
                             </div>
-                            
+
                             <!--  -->
 
                             <div class="table-group-divider"></div>
@@ -173,7 +178,9 @@
                             <!--  -->
                             <div class="row">
                                 <div class="col-md-6 total">Total</div>
-                                <div class="col-md-6 total-price" th:text="${T(com.laohac.swp391spring2023.controller.PaymentController).formatVND(checkoutinfo.priceTotal)}">200.000 VND</div>
+                                <div class="col-md-6 total-price"
+                                    th:text="${T(com.laohac.swp391spring2023.controller.PaymentController).formatVND(checkoutinfo.priceTotal)}">
+                                    200.000 VND</div>
                                 <!--                                    <div class="col-md-6 total-price" th:text="${checkoutinfo.priceTotal.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}" style="font-weight: bold !important;"></div>-->
 
                             </div>
@@ -182,15 +189,20 @@
                     </div>
 
                     <br>
-                    <button type="submit" class="btn btn-success"
+                    <button id="checkoutBtn" type="submit" class="btn btn-success"
                         style="width: 100%; min-height: 30px; height: 50px;">Finish Order</button>
                 </div>
                 <!-- </form> -->
 
 
 
+                <!--End pop up-->
+
+
             </div>
+
         </form>
+
         <script>
             const paymentRadioButtons = document.getElementsByName('paymentMethod');
 
@@ -200,13 +212,43 @@
                     document.getElementById('paymentMethod').value = this.value;
                 });
             });
+
+
         </script>
-        
+
+        <!--POP UP-->
+        <a href="#popupCheckout"></a>
+
+        <div id="popupCheckout" class="overlay-co">
+            <div class="popup" style="width: 500px;">
+                <!-- <h2>Info box</h2> -->
+                <div
+                    style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto; margin-bottom: 20px;">
+                    <i class="checkmark">✓</i>
+                </div>
+                <!-- <a class="close" href="#">&times;</a> -->
+                <div class="contentRegister">
+                    <p class="lead">Thank for your booking!</p>
+                    <p class="lead"><strong>Please check <a href="https://mail.google.com/mail/u/0/#inbox"
+                                target="_blank">your
+                                email</a></strong> for further instructions</p>
+                    <br>
+                    <br>
+                    <h6 style="color: black;">Redirecting...</h6>
+                    <!-- <div style="text-align: center; left:50%; margin-top: 10px;">
+                <a th:href="@{/homepage/}" class="btn btn-primary">Continue</a>
+            </div> -->
+
+                </div>
+            </div>
+        </div>
 
     </div>
     <br>
     <div th:replace="fragments/fragments::detailFooter"></div>
     <div th:replace="fragments/fragments::homeScript"></div>
+
+
 </body>
 
 </html>

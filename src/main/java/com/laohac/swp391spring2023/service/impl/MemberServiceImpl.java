@@ -117,6 +117,7 @@ public class MemberServiceImpl implements MemberService {
             .phoneNumber(member.getPhoneNumber())
             .role(member.getRole())
             .carCompanyId(carCompanyId)
+            .provider(member.getProvider().toString())
             .build();    
         }
         return null;

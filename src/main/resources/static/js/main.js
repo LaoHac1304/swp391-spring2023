@@ -92,7 +92,20 @@ function validatePassword() {
         return true;
     }
 
-    return true;
+}
+
+
+//Popup checkout function
+function popupCheckout() {
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const popupCheckout = document.getElementById("popupCheckout");
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+    if (paymentMethod === "payonbus") {
+        popupCheckout.style.opacity = "99";
+        popupCheckout.style.visibility = "visible";
+    }
+
 }
 
 //Selected seats

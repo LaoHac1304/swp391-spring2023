@@ -21,6 +21,7 @@ public class UserDTOResponse {
     private String role;
     private int enabled;
     private String verificationCode;
-    private int carCompanyId;
+    private int carCompanyId; 
+    private String provider;
     
 }

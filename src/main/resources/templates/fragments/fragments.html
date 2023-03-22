@@ -23,7 +23,7 @@
 </head>
 
 <!-- Admin navbar-->
-<nav th:fragment="adminNavbar" class="sb-topnav navbar navbar-expand navbar-dark">
+<nav th:fragment="adminNavbar" class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #272c4a;">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3" th:href="@{/member/viewall}">Dashboard</a>
     <!-- Sidebar Toggle-->
@@ -334,8 +334,8 @@
                         <th:block th:each="tripD : ${departure}">
                             <option th:value="${tripD}" th:text="${tripD}"></option>
                         </th:block>
-                    </select> 
-                    
+                    </select>
+
 
 
                 </div>
@@ -367,13 +367,13 @@
 
             </form>
 
-            
+
             <!-- backendCode End -->
 
         </div>
 
     </section>
-    
+
 
 </div>
 

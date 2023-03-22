@@ -2,12 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:replace="fragments/fragments::homeHead"></div>
+<link rel="stylesheet" th:href="@{/css/checkOutPopUpMsg.css}">
 
 <body>
     <header th:replace="fragments/fragments::homeHeader"></header>
     <br><br>
     <div class="container">
-          
+
         <form th:action="@{/booking/save-order}" method="post">
             <div class="row">
                 <div class="col-md-8" style="padding: 0px 8px;">
@@ -21,8 +22,8 @@
                                         <input type="radio" name="paymentMethod" value="paypal" class="custom-radio"
                                             style="height: min-content;" required
                                             oninvalid="this.setCustomValidity('Please choose a payment method')"
-                                             oninput="this.setCustomValidity('')">
-                                              
+                                            oninput="this.setCustomValidity('')">
+
                                     </span>
                                     <span class="span-payments" style="padding-left: 8px;">
                                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/PayPal_Logo_Icon_2014.svg"
@@ -67,16 +68,16 @@
                                         th:value="${checkoutinfo.user.fullName}" id="" required
                                         oninvalid="this.setCustomValidity('Please fill your name')"
                                         oninput="this.setCustomValidity('')">
-                                </th:block > 
+                                </th:block>
 
-                                <th:block  th:unless="${checkoutinfo.user != null}">
-                                    <input class="table-value" type="text" name="fullName"
-                                        id="" required placeholder="Your name"
+                                <th:block th:unless="${checkoutinfo.user != null}">
+                                    <input class="table-value" type="text" name="fullName" id="" required
+                                        placeholder="Your name"
                                         oninvalid="this.setCustomValidity('Please fill your name')"
                                         oninput="this.setCustomValidity('')">
                                 </th:block>
 
-                                
+
                                 <!-- <div class="table-value" th:text="${checkoutinfo.user.fullName}">Lewis vip vl</div> -->
                             </div>
                             <div class="table-info">
@@ -88,9 +89,9 @@
                                         oninvalid="this.setCustomValidity('Please fill your phone number')"
                                         oninput="this.setCustomValidity('')">
                                 </th:block>
-                                <th:block  th:unless="${checkoutinfo.user != null}">
-                                    <input class="table-value" type="text" name="phoneNumber"
-                                        placeholder="Your phone" id="" required
+                                <th:block th:unless="${checkoutinfo.user != null}">
+                                    <input class="table-value" type="text" name="phoneNumber" placeholder="Your phone"
+                                        id="" required
                                         oninvalid="this.setCustomValidity('Please fill your phone number')"
                                         oninput="this.setCustomValidity('')" style="    height: 17px;">
                                 </th:block>
@@ -100,15 +101,14 @@
                                 <div class="table-name">Email</div>
                                 <th:block th:if="${checkoutinfo.user != null}">
                                     <!-- <div class="table-value" th:text="${checkoutinfo.user.email}">lewisvipvl@gmail.com</div> -->
-                                    <input class="table-value" type="text" name="email" 
-                                    th:value="${checkoutinfo.user.email}" id="" required
-                                    oninvalid="this.setCustomValidity('Please fill your email address')"
+                                    <input class="table-value" type="text" name="email"
+                                        th:value="${checkoutinfo.user.email}" id="" required
+                                        oninvalid="this.setCustomValidity('Please fill your email address')"
                                         oninput="this.setCustomValidity('')">
                                 </th:block>
-                                <th:block  th:unless="${checkoutinfo.user != null}">
-                                    <input class="table-value" type="text" name="email"
-                                        placeholder="Your email" id="" required
-                                        oninvalid="this.setCustomValidity('Please fill your email address')"
+                                <th:block th:unless="${checkoutinfo.user != null}">
+                                    <input class="table-value" type="text" name="email" placeholder="Your email" id=""
+                                        required oninvalid="this.setCustomValidity('Please fill your email address')"
                                         oninput="this.setCustomValidity('')">
                                 </th:block>
                                 <!-- <div class="table-value" th:text="${checkoutinfo.user.email}">lewisvipvl@gmail.com</div> -->
@@ -122,38 +122,41 @@
                                 <div class="col-md-6">
                                     <div class="table-info">
                                         <div class="table-name">Car Company</div>
-                                        <div class="table-value" th:text="${tripInfoCurrent.car.carCompany.name}">Hoa Mai</div>
-        
+                                        <div class="table-value" th:text="${tripInfoCurrent.car.carCompany.name}">Hoa
+                                            Mai</div>
+
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="table-info">
                                         <div class="table-name">Seat Number</div>
                                         <div class="table-value" th:each="seatNumber : ${checkoutinfo.lSeatsNumber}"
-                                         th:text="${seatNumber}">Hoa Mai</div>
-        
+                                            th:text="${seatNumber}">Hoa Mai</div>
+
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="table-info">
                                         <div class="table-name">Pick up place</div>
-                                        <div class="table-value" th:text="${tripInfoCurrent.route.departure}" >Mien Dong Bus station</div>
+                                        <div class="table-value" th:text="${tripInfoCurrent.route.departure}">Mien Dong
+                                            Bus station</div>
                                     </div>
                                 </div>
-                                
+
 
                                 <div class="col-md-6">
                                     <div class="table-info">
                                         <div class="table-name">Drop off place</div>
-                                        <div class="table-value" th:text="${tripInfoCurrent.route.arrival}" >Vung Tau Bus station</div>
+                                        <div class="table-value" th:text="${tripInfoCurrent.route.arrival}">Vung Tau Bus
+                                            station</div>
                                     </div>
                                 </div>
-                                
+
                             </div>
-                            
+
                             <!--  -->
 
                             <div class="table-group-divider"></div>
@@ -161,7 +164,9 @@
                             <!--  -->
                             <div class="row">
                                 <div class="col-md-6 total">Total</div>
-                                <div class="col-md-6 total-price" th:text="${T(com.laohac.swp391spring2023.controller.PaymentController).formatVND(checkoutinfo.priceTotal)}">200.000 VND</div>
+                                <div class="col-md-6 total-price"
+                                    th:text="${T(com.laohac.swp391spring2023.controller.PaymentController).formatVND(checkoutinfo.priceTotal)}">
+                                    200.000 VND</div>
                                 <!--                                    <div class="col-md-6 total-price" th:text="${checkoutinfo.priceTotal.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}" style="font-weight: bold !important;"></div>-->
 
                             </div>
@@ -170,13 +175,20 @@
                     </div>
 
                     <br>
-                    <button type="submit" class="btn btn-success"
-                        style="width: 100%; min-height: 30px; height: 50px;">Finish Order</button>
+                    <button type="submit" class="btn btn-success" style="width: 100%; min-height: 30px; height: 50px;"
+                        id="myBtn">Finish Order</button>
+                </div>
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div>
+                            <img th:src="@{/images/check.png}" alt="" class="image-check-pop-up">
+                        </div>
+                        <p style="color: black;font-size: 45px;margin-top: 20px;">Payment successful</p>
+                        <p style="margin-top: 20px;">Please wait a moment to complete process</p>
+                    </div>
                 </div>
                 <!-- </form> -->
-
-
-
             </div>
         </form>
         <script>
@@ -188,8 +200,32 @@
                     document.getElementById('paymentMethod').value = this.value;
                 });
             });
+
+            var modal = document.getElementById("myModal");
+
+
+            var btn = document.getElementById("myBtn");
+
+
+            var span = document.getElementsByClassName("close")[0];
+
+
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
         </script>
-        
+
 
     </div>
     <br>

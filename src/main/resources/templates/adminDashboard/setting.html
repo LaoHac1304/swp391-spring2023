@@ -8,17 +8,17 @@
     <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css}"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <script th:src="@{/resources/bootstrap.js}"></script>
-
 </head>
-<div th:replace="fragments/fragments::adminHead">
+<div th:replace="fragments/fragments::adminHead" ; style="background-color: #272c4a;">
 
 </div>
 
 
 
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed"
+    style="background: linear-gradient(to bottom right, rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(https://images.unsplash.com/photo-1620353540061-38ac5848aaef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1056&q=80); background-repeat: no-repeat;background-size: cover; height: 880px;">
     <nav th:replace="fragments/fragments::adminNavbar"></nav>
-    <div style="text-align: center; margin-top: 50px;"><img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+    <div style="text-align: center; margin-top: 80px;"><img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
             alt="" style="height: 100px;border-radius: 50%;">
     </div>
     <div id="layoutSidenav">
@@ -28,12 +28,15 @@
         <div class="container bootstrap snippet" style="max-width: 800px; line-height: 40px; background-color:transparent; border: 3px solid rgb(17, 17, 12); padding: 0px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; margin-top: 30px;
             border-radius: 5px; font-family: 'Courier New', monospace;">
             <div class="row" style="margin: 0; background-color: transparent;">
-                <div class="col-sm-1" style="padding: 0;">
+                <!-- <div class="col-sm-1" style="padding: 0;">
                     </hr><br>
-                </div><!--/col-3-->
-                <div class="col-sm-9" style="width: 250px; line-height: 35px;">
+                </div> -->
+                <div class="col" style="width: 250px; line-height: 35px;padding-top: 10px;">
                     <ul class="nav nav-tabs">
-                        <li class="active" style="color: white;"><a style="font-size: 30px;">Edit Profile</a>
+                        <li class="active" style="color: white;">
+                            <div style="align-items: center;">
+                                <a style="font-size: 30px;margin-left: 275px;">Edit Profile</a>
+                            </div>
                         </li>
                     </ul>
 
@@ -44,13 +47,13 @@
                             <form class="form" action="##" method="post" id="registrationForm">
                                 <div class="form-group">
 
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-6" style="padding-top: 20px;">
                                         <label for="first_name">
-                                            <h5 style="margin: 0px; color: white;">FullName</h5>
+                                            <h5 style="margin: 0px; color: white;padding-bottom: 10px;">FullName</h5>
                                         </label>
                                         <input type="text" class="form-control" name="first_name" id="first_name"
                                             placeholder="Enter first name" title="enter your first name if any."
-                                            style="border-color: transparent transparent rgb(211, 218, 226); border-radius: 0px;">
+                                            style=" border-radius: 0px; background-color: white;">
                                     </div>
                                 </div>
                                 <!-- <div class="form-group">
@@ -72,7 +75,7 @@
                                 </label>
                                 <input type="text" class="form-control" name="phone" id="phone"
                                     placeholder="Enter phone number" title="enter your phone number if any."
-                                    style="border-color: transparent transparent rgb(211, 218, 226); border-radius: 0px;">
+                                    style=" border-radius: 0px;background-color: white;">
                             </div>
                         </div>
 
@@ -85,7 +88,7 @@
                                 </label>
                                 <input type="email" class="form-control" name="email" id="email"
                                     placeholder="Enter email" title="enter your email."
-                                    style="border-color: transparent transparent rgb(211, 218, 226); border-radius: 0px;">
+                                    style=" border-radius: 0px;background-color: white;">
                             </div>
                         </div>
                         <div class="form-group">
@@ -97,8 +100,8 @@
                                     <h5 style="color: white;">Password</h5>
                                 </label>
                                 <input type="password" class="form-control" name="password" id="password"
-                                    placeholder="password" title="enter your password."
-                                    style="border-color: transparent transparent rgb(211, 218, 226); border-radius: 0px;">
+                                    placeholder="Enter password" title="enter your password."
+                                    style=" border-radius: 0px;background-color: white;">
                             </div>
                         </div>
                         <div class="form-group">
@@ -106,7 +109,8 @@
                                 <label for="password">
                                     <h5 style="color:white">Gender</h5>
                                 </label><br>
-                                <select name="" id="" style="border: 2px solid black; border-radius: 6px;">
+                                <select name="" id=""
+                                    style="border: 2px solid black; border-radius: 6px;padding: 10px;">
                                     <option value="">* Male</option>
                                     <option value="">* Female</option>
                                     <option value="">* Other</option>
@@ -114,7 +118,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-12">
+                            <div class="col-xs-12" style="margin-bottom: 10px;line-height: 20px;float: right;">
                                 <br>
                                 <button class="btn btn-lg btn-success" type="submit"><i
                                         class="glyphicon glyphicon-ok-sign"></i> Save</button>

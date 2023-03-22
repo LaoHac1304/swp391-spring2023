@@ -67,7 +67,7 @@
 
 .box {
 	width: 85%;
-	height: 80px;
+	height: 60px;
 	background-color: #272c4a;
 	margin-left: 10px;
 	padding: 10px;
@@ -75,12 +75,12 @@
 }
 
 .box p {
-  font-size: 25px;
+  font-size: 20px;
   color: white;
   font-weight: bold;
   /* line-height: 30px; */
   /* padding-left: 10px; */
-  margin-top: -10px;
+  margin-top: 5px;
   width: 163px;
   display: inline-block;
   height: 100px;
@@ -95,9 +95,9 @@
 .box-icon {
   font-size: 40px !important;
   float: right;
-  margin-top: 20px !important;
+  /* margin-top: 20px !important; */
   color: #818181;
-  padding-right: 10px;
+  /* padding-right: 10px; */
   margin-left: 30px;
 } 
 

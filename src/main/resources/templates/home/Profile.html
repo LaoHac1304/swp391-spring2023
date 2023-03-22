@@ -25,7 +25,7 @@
             color: #1a202c;
             text-align: left;
             
-    background-color: rgb(182 191 203)">
+    background-color: rgb(182 191 203) ">
     <header th:replace="fragments/fragments::userHeader"></header>
 
     <div class="container" style="padding-top: 20px;">
@@ -57,7 +57,9 @@
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary " th:text="${userInfo.fullName}"></div>
+                                <div class="col-sm-9 text-secondary " >
+                                    <p style="margin-bottom: 0%;" th:text="${userInfo.fullName}"></p>
+                                </div>
 
                             </div>
                             <hr>
@@ -67,7 +69,9 @@
                                     <h6 class="mb-0">User Name</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary " th:text="${userInfo.username}"></div>
+                                <div class="col-sm-9 text-secondary " >
+                                    <p style="margin-bottom: 0%;" th:text="${userInfo.username}"></p>
+                                </div>
 
                             </div>
                             <hr>
@@ -77,7 +81,9 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary" th:text="${userInfo.email}"></div>
+                                <div class="col-sm-9 text-secondary" >
+                                    <p style="margin-bottom: 0%;" th:text="${userInfo.email}"></p>
+                                </div>
 
                             </div>
                             <hr>
@@ -87,7 +93,9 @@
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary" th:text="${userInfo.phoneNumber}"></div>
+                                <div class="col-sm-9 text-secondary" >
+                                    <p style="margin-bottom: 0%;" th:text="${userInfo.phoneNumber}"></p>
+                                </div>
 
                             </div>
                             <hr>
@@ -97,22 +105,30 @@
                                     <h6 class="mb-0">Gender</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary" th:text="${userInfo.sex}"></div>
+                                <div class="col-sm-9 text-secondary" >
+                                    <p style="margin-bottom: 0%;" th:text="${userInfo.sex}"></p>
+                                </div>
 
                             </div>
                             <hr>
 
                             <div class="row">
-                                <div class="col-sm-10">
+                                <div class="col-md-1">
                                     <!--Edit profile here-->
                                     <a class="btn btn-info " target="__blank"
                                         th:href="@{/users/update-profile}">Edit</a>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-md-1">
+                                    <!--Edit profile here-->
+                                    <a class="btn btn-info " style="width: 151px;" target="__blank"
+                                        th:href="@{/users/changePassword}">Change Password</a>
+                                </div>
+                                <div >
                                     <!--Edit profile here-->
                                     <a class="btn btn-success" th:if="${session.userSession.role == 'admin'}"
                                         th:href="@{/homepage/adminDashBord}" th:text="Admin Dashboard"></a>
                                 </div>
+
 
                             </div>
 

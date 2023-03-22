@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import com.laohac.swp391spring2023.model.dto.ProfitDTOReponse;
 import com.laohac.swp391spring2023.repository.OrderDetailRepository;
+import com.laohac.swp391spring2023.repository.RouteRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,6 +30,7 @@ import com.laohac.swp391spring2023.model.dto.MemberViewDTOReponse;
 import com.laohac.swp391spring2023.model.entities.Car;
 import com.laohac.swp391spring2023.model.entities.CarCompany;
 import com.laohac.swp391spring2023.model.entities.OrderDetail;
+import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.CarCompanyRepository;
 import com.laohac.swp391spring2023.repository.CarRepository;
@@ -47,6 +50,9 @@ public class MemberController {
     private CarRepository carRepository;
     @Autowired
     private OrderDetailRepository orderDetailRepository;
+
+    @Autowired
+    private RouteRepository routeRepository;
 
     @GetMapping("/adminDB")
     public String showAdminDB(HttpSession session, Authentication authentication) {
@@ -96,6 +102,10 @@ public class MemberController {
             ProfitDTOReponse profitDTOReponse = getProfitWithMonth(month.getMonthName());
             wrapper.put(month.getMonthName(), profitDTOReponse);
         }
+
+        List<Route> listRoutes = routeRepository.findAll();
+
+        model.addAttribute("listRoutes", listRoutes);
 
         model.addAttribute("total", memberViewDTOReponse);
 

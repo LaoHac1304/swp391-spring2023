@@ -33,10 +33,12 @@ import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOUpdate;
 import com.laohac.swp391spring2023.model.entities.OrderDetail;
 import com.laohac.swp391spring2023.model.entities.Route;
+import com.laohac.swp391spring2023.model.entities.Seat;
 import com.laohac.swp391spring2023.model.entities.Trip;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.OrderDetailRepository;
 import com.laohac.swp391spring2023.repository.RouteRepository;
+import com.laohac.swp391spring2023.repository.SeatRepository;
 import com.laohac.swp391spring2023.repository.UserRepository;
 import com.laohac.swp391spring2023.service.MemberService;
 import com.laohac.swp391spring2023.service.UserService;
@@ -62,6 +64,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private SeatRepository seatRepository;
 
     @ModelAttribute
     public void addCommonAttributes(Model model) {
@@ -220,6 +225,18 @@ public class UserController {
                 routeDTORequest.getState2().toUpperCase());
 
         List<Trip> tripsInfo = userService.searchByRouteAndDate(route, date);
+        
+        for (Trip trip : tripsInfo) {
+            int total = 0;
+            List<Seat> lSeats = new ArrayList<>();
+            lSeats = seatRepository.findByTrip(trip);
+            if (!lSeats.isEmpty())
+                total = lSeats.size();
+            for (Seat seat : lSeats) {
+                if (seat.getAvailableSeat() == 1) total--;    
+            }
+            trip.setTotalAvailableSeat(total);   
+        }
         model.addAttribute("listTrips", tripsInfo);
 
         // List<Trip> tripsDescByPrice =

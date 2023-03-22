@@ -68,4 +68,6 @@ public class Trip {
     private List<OrderDetail> orderDetails;
     @Column(name = "Is_Special_Day")
     private Boolean isSpecialDay = Utils.isSpecialDay(date);
+
+    private int totalAvailableSeat;
 }   

@@ -127,7 +127,7 @@
                                     <h5>Prepaid trip</h5>
                                 </div>
                                 <div class="info">
-                                    <div class="seat-available-green">6 seats left </div>
+                                    <div class="seat-available-green" th:text="${trip.totalAvailableSeat} + ' seats left'">6 seats left </div>
                                 </div>
                                 
                                 <button data-tracking-event="selected_route" type="submit" class="ant-btn-btn-booking"

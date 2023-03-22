@@ -13,20 +13,19 @@
         </div>
         <div class="card-body text-white">
             <table id="datatablesSimple" class="myTable">
+                <a th:href="@{/route/viewall}">Return to DashBoard</a>
             <thead>
                 <tr>
-                <th>Id</th>
-                <th>Capacity</th>
                 <th>Plate Number</th>
+                <th>Capacity</th>
                 <th>Actions</th>
                 <th><a th:href="@{/car/add}">Add New Car</a></th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="car: ${listCars}">
-                    <td th:text="${car.id}"></td>
-                    <td th:text="${car.capacity}">Departure</td>
                     <td th:text="${car.plateNumber}">Departure</td>
+                    <td th:text="${car.capacity}">Departure</td>
                     <td>
                         <a th:href="@{update/{id}(id=${car.id})}" class="btn btn-success">Update</a>
                         <a th:href="@{delete/{id}(id=${car.id})}" class="btn btn-warning">Delete</a>

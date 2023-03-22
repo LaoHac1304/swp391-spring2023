@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.laohac.swp391spring2023.model.entities.Car;
+import com.laohac.swp391spring2023.model.entities.CarCompany;
+import com.laohac.swp391spring2023.repository.CarCompanyRepository;
 import com.laohac.swp391spring2023.repository.CarRepository;
+import com.laohac.swp391spring2023.service.CarCompanyService;
 import com.laohac.swp391spring2023.service.CarService;
+import com.laohac.swp391spring2023.service.MemberService;
 
 @Controller
 @RequestMapping("/car")
@@ -24,9 +28,21 @@ public class CarController {
     @Autowired
     CarRepository carRepository;
 
+    @Autowired
+    MemberService memberService;
+
+    @Autowired
+    CarCompanyService carCompanyService;
+
+    @Autowired
+    CarCompanyRepository carCompanyRepository;
+
+    
     @GetMapping("/viewall")
     public String viewAllCar(Model model) {
-        List<Car> listCars = carService.getAllCar();
+        int id = memberService.getCurrentUser().getCarCompanyId();            
+        CarCompany carCompany = carCompanyService.getCarCompanyById(id);
+        List<Car> listCars = carService.getListCarByCarCompany(carCompany);
         System.out.println(listCars);
         model.addAttribute("listCars", listCars);
         return "CarCompanyDashboard/CarManagement";
@@ -36,6 +52,12 @@ public class CarController {
     public String addTrip(Model model) {
         Car car = new Car();
         model.addAttribute("car", car);
+
+        int currentUserId = memberService.getCurrentUser().getCarCompanyId();
+        model.addAttribute("currentUserId", currentUserId);
+        
+        List<CarCompany> carCompanys = carCompanyRepository.findAll();
+        model.addAttribute("carCompanys", carCompanys);
 
         return "CarCompanyDashboard/addCar";
     }
@@ -52,6 +74,12 @@ public class CarController {
     public String updateTrip(@PathVariable(value = "id") int id, Model model) {
         Car car = carService.getCarById(id);
         model.addAttribute("car", car);
+
+        int currentUserId = memberService.getCurrentUser().getCarCompanyId();
+        model.addAttribute("currentUserId", currentUserId);
+
+        List<CarCompany> carCompanys = carCompanyRepository.findAll();
+        model.addAttribute("carCompanys", carCompanys);
 
         return "CarCompanyDashboard/updateCar";
     }

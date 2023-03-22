@@ -257,4 +257,12 @@ public class UserController {
      * }
      */
 
+     @GetMapping("/changePassword")
+     public String showChangePasswordProfile(Model model, HttpSession session) {
+ 
+         Object userCurrent = session.getAttribute("userSession");
+         UserDTOResponse userDTOResponse = (UserDTOResponse) userCurrent;
+         model.addAttribute("userInfo", userDTOResponse);
+         return "home/ChangePasswordProfile";
+     }
 }

@@ -60,7 +60,7 @@ public class TripServiceImpl implements TripService {
         this.tripRepository.deleteById(id);
     }
 
-    @Override
+    @Override   
     public List<Trip> searchByRoute(Route route) {
         List<Trip> trips = tripRepository.findByRoute(route);
         return trips;

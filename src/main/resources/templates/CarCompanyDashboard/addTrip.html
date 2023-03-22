@@ -103,7 +103,7 @@
         <div>
             <select id="car" name="car.id" required class="select-add-trip-content">
                 <option value="">--Select a car--</option>
-                <th:block th:each="car : ${cars}">
+                <th:block th:each="car : ${cars}" th:if="${car.carCompany.id == currentUserId}">
                     <option th:value="${car.id}" th:text="${car.plateNumber}"></option>
                 </th:block>
             </select>

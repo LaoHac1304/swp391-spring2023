@@ -83,6 +83,9 @@ public class TripController {
         List<Car> cars = carRepository.findAll();
         model.addAttribute("cars", cars);
 
+        int currentUserId = memberService.getCurrentUser().getCarCompanyId();
+        model.addAttribute("currentUserId", currentUserId);
+
         return "CarCompanyDashboard/addTrip";
     }
 
@@ -102,6 +105,9 @@ public class TripController {
 
         List<Car> cars = carRepository.findAll();
         model.addAttribute("cars", cars);
+
+        int currentUserId = memberService.getCurrentUser().getCarCompanyId();
+        model.addAttribute("currentUserId", currentUserId);
 
         return "CarCompanyDashboard/updateTrip";
     }

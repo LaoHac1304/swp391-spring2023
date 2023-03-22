@@ -231,7 +231,8 @@ public class PaymentController {
         for (Integer seat : lSeats) {
              bookingService.chooseSeats(seat);    
          }
-        return "redirect:/homepage";
+         return"redirect:/homepage";
+        
     }
 
     @PostMapping("/cancel-booking")

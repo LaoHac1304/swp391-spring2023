@@ -1,77 +1,157 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Route</title>
-
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Add new car form</title>
     <style>
-        .add-route-body {
+        .sidebar {
+            width: 200px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            min-height: 100vh;
-            font-family: sans-serif;
-            background: linear-gradient(to bottom right, #93a5cf, #e4efe9);
-            background-position: center;
-            background-size: cover;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .form-wrapper {
+            margin-left: 220px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 200px;
         }
 
         .add-route-form {
-            width: 350px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
+            margin: 0 auto;
+            width: 50%;
         }
 
         .label-title {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: left;
+            color: white;
+            padding: 10px;
             font-size: 25px;
-            text-transform: capitalize;
-            color: rgb(23, 8, 8);
-
         }
 
         .input-add-route {
-            font-size: 21px;
-            padding: 15px 10px;
-            border: none;
-            border-radius: 5px;
+            display: block;
+            margin-bottom: 10px;
+            padding: 15px;
             width: 100%;
-            margin-bottom: 15px;
-            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
 
-        .btn-save-add-route {
+        .btn-save-add-new-car {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
             font-size: 16px;
-            font-weight: bold;
-            margin: 10px 0;
-            padding: 10px 15px;
-            width: 50%;
-            border-radius: 5px;
-            border: 1px solid white
+            margin-top: 10px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .btn-save-add-new-car:hover {
+            background-color: #0069d9;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .navbar>a {
+            color: white;
+        }
+
+        .sidebar>ul {
+            list-style-type: none;
+        }
+
+        .sidebar>ul>li {
+            margin-top: 15px;
+        }
+
+        .bxs-user {
+            margin-right: 10px;
+        }
+
+        .bx-log-out {
+            margin-right: 10px;
+        }
+
+        .add-car-body {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(https://images.unsplash.com/photo-1521794414102-37606728dd9c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80);
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            height: 100vh;
         }
     </style>
-
 </head>
 
-<body class="add-route-body">
-    <form th:action="@{/car/save}" class="add-route-form">
-        <h1>Add new car form</h1>
-        <div>
-            <label for="capacity" class="label-title">Input Capacity</label>
-            <input type="text" id="capacity" name="capacity" required class="input-add-route">
+<body class="add-car-body">
+    <div class="container">
+        <div class="sidebar">
+            <h3 style="font-size: 30px;">Add Car</h3>
+            <ul>
+                <li><a href="#" style="color: black;"><i class='bx bxs-user'></i>Profile</a></li>
+                <li><a href="#" style="color: black;"><i class='bx bx-log-out'></i>Sign Out</a></li>
+            </ul>
         </div>
-        <div>
-            <label for="plateNumber" class="label-title">Input Plate Number</label>
-            <input type="text" id="plateNumber" name="plateNumber" required class="input-add-route">
+        <div class="navbar">
+            <h3>My Website</h3>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
         </div>
-        <div>
-            <button type="submit" class="btn-save-add-route">Save</button>
-    </form>
+        <div class="form-wrapper">
+            <form th:action="@{/car/save}" class="add-route-form">
+                <h1 style="color: white;">Add NEW CAR</h1>
+                <div>
+                    <label for="capacity" class="label-title">Input Capacity</label>
+                    <input type="text" id="capacity" name="capacity" required class="input-add-route"
+                        placeholder="Enter capacity">
+                </div>
+                <div>
+                    <label for="plateNumber" class="label-title">Input Plate Number</label>
+                    <input type="text" id="plateNumber" name="plateNumber" required class="input-add-route"
+                        placeholder='Enter plate number'>
+                </div>
+                <div>
+                    <button type="submit" class="btn-save-add-new-car">Save</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
 </body>
 
 </html>

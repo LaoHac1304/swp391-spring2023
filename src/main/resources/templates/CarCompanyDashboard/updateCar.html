@@ -1,76 +1,151 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Update Car Route</title>
     <style>
-        .update-route-body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: sans-serif;
-            background: linear-gradient(to bottom right, #93a5cf, #e4efe9);
-            background-position: center;
-            background-size: cover;
+        body {
+            margin: 0;
+            padding: 0;
         }
 
-        .update-route-form {
-            width: 350px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar li {
+            padding: 10px;
+        }
+
+        .sidebar li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .navbar h3 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+            margin-top: 200px;
         }
 
         .label-title {
-            font-size: 25px;
-            text-transform: capitalize;
-            color: rgb(23, 8, 8);
-
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: white;
         }
 
         .input-update-route {
-            font-size: 21px;
-            padding: 15px 10px;
-            border: none;
+            padding: 15px;
+            margin-bottom: 10px;
+            width: 35%;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            width: 100%;
-            margin-bottom: 15px;
-            margin-top: 5px;
+
         }
 
         .btn-save-update-route {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 10px 0;
-            padding: 10px 15px;
-            width: 50%;
+            padding: 10px;
+            background-color: #555;
+            color: #fff;
+            border: none;
             border-radius: 5px;
-            border: 1px solid white
+            cursor: pointer;
+        }
+
+        .btn-save-update-route:hover {
+            background-color: #333;
+        }
+
+        .bxs-user {
+            margin-right: 10px;
+        }
+
+        .bx-log-out {
+            margin-right: 10px;
+        }
+
+        .update-car-body {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgb(0, 0, 0, 0.75)), url(https://images.unsplash.com/photo-1611880963158-6d9f787ceeb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+
+        .update-car-form {
+            margin-left: 650px;
         }
     </style>
 </head>
 
-<body class="update-route-body">
-    <form th:action="@{/car/save}" th:object="${car}" class="update-route-form">
-        <input type="hidden" th:field="*{id}">
-        <div>
-            <label for="capacity" class="label-title">Input new capacity</label>
-            <input type="text" id="capacity" name="capacity" th:field="*{capacity}" required
-                class="input-update-route">
-        </div>
-        <div>
-            <label for="plateNumber" class="label-title">Input new Plate Number</label>
-            <input type="text" id="plateNumber" name="plateNumber" th:field="*{plateNumber}" required class="input-update-route">
-        </div>
-        <div>
-            <button type="submit" class="btn-save-update-route">Save</button>
-    </form>
+<body class="update-car-body">
+    <div class="sidebar">
+        <h3 style="font-size: 25px;">Add Route</h3>
+        <ul>
+            <li><a href="#"><i class='bx bxs-user'></i>Profile</a></li>
+            <li><a href="#"><i class='bx bx-log-out'></i>Sign Out</a></li>
+        </ul>
+    </div>
+    <div class="navbar">
+        <h3></h3>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </div>
+    <div class="content">
+        <h1 style="color: white;font-size: 35px;margin-left: 650px;">Update Car Route</h1>
+        <form th:action="@{/car/save}" th:object="${car}" class="update-car-form">
+            <input type="hidden" th:field="*{id}">
+            <div>
+                <label for="capacity" class="label-title">Input new capacity</label>
+                <input type="text" id="capacity" name="capacity" th:field="*{capacity}" required
+                    class="input-update-route">
+            </div>
+            <div>
+                <label for="plateNumber" class="label-title">Input new Plate Number</label>
+                <input type="text" id="plateNumber" name="plateNumber" th:field="*{plateNumber}" required
+                    class="input-update-route">
+            </div>
+            <div style="margin-left: 150px;">
+                <button type="submit" class="btn-save-update-route" style="width: 100px;padding: 10px;">Save</button>
+            </div>
+        </form>
+    </div>
 </body>
 
-</html> 
+</html>

@@ -11,6 +11,8 @@
         .myTable {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 25px;
+            margin-left: 230px;
         }
 
         .myTable th,
@@ -88,20 +90,74 @@
             padding: 5px;
             font-size: 25px;
         }
+
+        .bx-arrow-back {
+            margin-right: 10px;
+        }
+
+        .btn-back-dashboard {
+            text-decoration: none;
+            margin-bottom: 30px;
+            margin-left: 230px;
+            border: 2px solid white;
+            background-color: palevioletred;
+            border-radius: 7px;
+            padding: 10px;
+            color: white;
+        }
+
+        .btn-back-dashboard:hover {
+            background-color: rgb(222, 137, 166);
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar>ul {
+            list-style-type: none;
+        }
+
+        .sidebar>ul>li>a {
+            text-decoration: none;
+        }
+
+        .title-car-management {
+            margin-left: 235px;
+        }
     </style>
 
 </head>
 
-<body>
+<body style="margin: 0px;">
     <div class="card mb-4">
+        <div class="sidebar">
+            <h3 style="font-size: 30px;">Add Car</h3>
+            <ul>
+                <li style="text-decoration: none;"><a href="#" style="color: black;"><i class='bx bxs-user'
+                            style="margin-right: 10px;"></i>Profile</a></li>
+                <li style="text-decoration: none;"><a href="#" style="color: black;"><i class='bx bx-log-out'
+                            style="margin-right: 10px;"></i>Sign
+                        Out</a></li>
+            </ul>
+        </div>
         <div class="card-header content-box-title">
             <i class="fas fa-table me-1">
-                <h2 style="font-size: 30px;">Car details</h2>
+                <h2 style="font-size: 30px;" class="title-car-management">Car details</h2>
             </i>
             <a th:href="@{/car/add}"><i class='bx bx-plus'></i></a>
         </div>
+
         <div class="card-body text-white">
             <table id="datatablesSimple" class="myTable">
+                <a th:href="@{/route/viewall}" class="btn-back-dashboard"><i class='bx bx-arrow-back'></i>Return to
+                    DashBoard</a>
                 <thead>
                     <tr>
                         <th>Id</th>

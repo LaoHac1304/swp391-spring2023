@@ -47,4 +47,6 @@ public class User {
     @JoinColumn(name = "Company")
     private  CarCompany carCompany = null;
 
+    private int ResetCode;
+
 }

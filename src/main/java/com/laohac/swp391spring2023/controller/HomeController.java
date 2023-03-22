@@ -2,6 +2,7 @@ package com.laohac.swp391spring2023.controller;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +19,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.laohac.swp391spring2023.model.dto.RouteDTORequest;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.RouteRepository;
+import com.laohac.swp391spring2023.repository.UserRepository;
 import com.laohac.swp391spring2023.service.MemberService;
 
 @Controller
@@ -33,6 +38,12 @@ public class HomeController {
 
     @Autowired
     private RouteRepository routeRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     @ModelAttribute
     public void addCommonAttributes(Model model) {
@@ -126,23 +137,79 @@ public class HomeController {
 
         return "home/verify_fail";
     }
-    
+
     @GetMapping("/defaultSuccessUrl")
-    public String showHomePage(){
+    public String showHomePage() {
         UserDTOResponse userDTOResponse = memberService.getCurrentUser();
-        if (userDTOResponse.getRole().equals("admin")) return "redirect:/member/adminDB";
+        if (userDTOResponse.getRole().equals("admin"))
+            return "redirect:/member/adminDB";
+        else if (userDTOResponse.getRole().equals("customer"))
+            return "redirect:/users/home";
         else
-            if (userDTOResponse.getRole().equals("customer"))
-                return "redirect:/users/home";
-            else
-                return "redirect:/route/viewall";
-        
+            return "redirect:/route/viewall";
+
     }
 
-    @GetMapping("/reset-password")
-    public String showResetPasswordPage(){
-        return null;
+    @GetMapping("/forgot-password")
+    public String showForgotPasswordForm(Model model) {
+        return "home/forgotPassword";
     }
 
+    @PostMapping("/forgot-password")
+    public String processForgotPasswordForm(@RequestParam("email") String email, Model model) {
+
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (!userOptional.isPresent()) {
+            model.addAttribute("error", "Email not found");
+            return "redirect:/homepage/forgot-password";
+        }
+        User user = userOptional.get();
+
+        int code = (int) (Math.random() * 900000) + 100000;
+
+        user.setResetCode(code);
+        userRepository.save(user);
+
+        // Send email to user
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Reset Password");
+        message.setText("Your verification code is " + code);
+        javaMailSender.send(message);
+
+        model.addAttribute("emailSent", true);
+        return "/home/forgotPassword";
+    }
+
+    @PostMapping("/reset-password")
+    public String processResetPasswordForm(@RequestParam("email") String email, @RequestParam("code") int code,
+            @RequestParam("password") String password, @RequestParam("confirmPassword") String confirmPassword,
+            Model model) {
+
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (!userOptional.isPresent()) {
+            model.addAttribute("error", "Email not found");
+            return "/home/forgotPassword";
+        }
+        User user = userOptional.get();
+
+        if (user.getResetCode() != code) {
+            model.addAttribute("error", "Invalid code");
+            return "/home/forgotPassword";
+        }
+
+        if (!password.equals(confirmPassword)) {
+            model.addAttribute("error", "Passwords do not match");
+            return "/home/forgotPassword";
+        }
+
+        // Update the user's password and reset code
+        user.setPassword(password);
+        user.setResetCode(0);
+        userRepository.save(user);
+
+        model.addAttribute("passwordChanged", true);
+        return "/home/forgotPassword";
+    }
 
 }

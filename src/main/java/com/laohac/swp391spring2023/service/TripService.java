@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.laohac.swp391spring2023.model.dto.TripDTO;
 import com.laohac.swp391spring2023.model.entities.Car;
-import com.laohac.swp391spring2023.model.entities.CarCompany;
 import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.Trip;
 
@@ -21,9 +20,5 @@ public interface TripService {
     public List<Trip> searchByRoute(Route route);
 
     public List<Trip> searchByRouteAndCar(Route route, Car car);
-
-    // public List<Trip> searchByRouteAndListCar(Route route, List<Car> cars);
-
-    // public List<Trip> searchByRouteAndCarCompany(Route route, CarCompany carCompany);
 
 }

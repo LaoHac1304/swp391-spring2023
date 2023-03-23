@@ -101,9 +101,10 @@
             </select>
         </div>
         <div>
+            <label for="car">Car</label>
             <select id="car" name="car.id" required class="select-add-trip-content">
                 <option value="">--Select a car--</option>
-                <th:block th:each="car : ${cars}" th:if="${car.carCompany.id == currentUserId}">
+                <th:block th:each="car : ${cars}">
                     <option th:value="${car.id}" th:text="${car.plateNumber}"></option>
                 </th:block>
             </select>

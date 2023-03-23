@@ -146,6 +146,16 @@
                         placeholder='Enter plate number'>
                 </div>
                 <div>
+                    <label for="carCompany">Company</label> 
+                    <select id="carCompany" name="carCompany.id" required class="select-add-trip-content">
+                        <option value="">--Select a company--</option>
+                        <th:block th:each="carCompany : ${carCompanys}">
+                            <option th:if="${carCompany.id == currentUserId}" th:value="${carCompany.id}" th:selected="true" th:text="${carCompany.name}"></option>
+                            <option th:if="${carCompany.id != currentUserId}" th:value="${carCompany.id}" th:text="${carCompany.name}" hidden></option>
+                        </th:block>
+                    </select>
+                </div>          
+                <div>
                     <button type="submit" class="btn-save-add-new-car">Save</button>
                 </div>
             </form>

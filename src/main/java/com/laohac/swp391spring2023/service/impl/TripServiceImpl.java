@@ -52,7 +52,14 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public Trip getTripById(int id) {
-        return tripRepository.findById(id);
+        Trip trip = tripRepository.findById(id);
+        Optional<Trip> optional = Optional.ofNullable(trip);
+        if(optional.isPresent()){
+            trip = optional.get();
+        }else{
+            throw new RuntimeException("Not found");
+        }
+        return trip;
     }
 
     @Override  

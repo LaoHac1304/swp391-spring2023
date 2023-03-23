@@ -141,6 +141,16 @@
                 <input type="text" id="plateNumber" name="plateNumber" th:field="*{plateNumber}" required
                     class="input-update-route">
             </div>
+            <div>
+                <label for="carCompany">Company</label> 
+                <select id="carCompany" name="carCompany.id" required class="select-add-trip-content">
+                    <option value="">--Select a company--</option>
+                    <th:block th:each="carCompany : ${carCompanys}">
+                        <option th:if="${carCompany.id == currentUserId}" th:value="${carCompany.id}" th:selected="true" th:text="${carCompany.name}"></option>
+                        <option th:if="${carCompany.id != currentUserId}" th:value="${carCompany.id}" th:text="${carCompany.name}" hidden></option>
+                    </th:block>
+                </select>
+            </div>   
             <div style="margin-left: 150px;">
                 <button type="submit" class="btn-save-update-route" style="width: 100px;padding: 10px;">Save</button>
             </div>

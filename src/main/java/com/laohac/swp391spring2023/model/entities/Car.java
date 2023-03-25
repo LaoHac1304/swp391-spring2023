@@ -43,16 +43,16 @@ public class Car {
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     private List<Seat> seats;
 
-    public void initSeats() {
+    public void initSeats(Trip trip) {
         this.seats = new ArrayList<>();
         for (int i = 1; i <= this.capacity; i++) {
             Seat seat = new Seat();
             seat.setSeatNumber(i);
             seat.setCar(this);
+            seat.setTrip(trip);
             this.seats.add(seat);
         }
     }
-
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetails;
 }

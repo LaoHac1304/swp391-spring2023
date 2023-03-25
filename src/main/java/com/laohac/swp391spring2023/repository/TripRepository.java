@@ -1,6 +1,7 @@
 package com.laohac.swp391spring2023.repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.time.LocalDate;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +16,7 @@ public interface TripRepository extends JpaRepository<Trip, Integer> {
 
     public List<Trip> findByRoute(Route route);
     public Trip findById(int id);
+    Optional<Trip> findTripById(int id);
     public List<Trip> findByRouteAndDate(Route route, LocalDate date);
     public List<Trip> findByRouteAndDateOrderByPriceDesc(Route route, LocalDate date);
     public List<Trip> findByRouteAndDateOrderByPriceAsc(Route route, LocalDate date);

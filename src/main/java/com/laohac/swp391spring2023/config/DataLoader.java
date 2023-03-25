@@ -26,9 +26,9 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        // Trip trip = tripRepository.findById(12);
+        // Trip trip = tripRepository.findById(108);
         // Car car = trip.getCar();
-        // for (int i=1;i<=20;i++){
+        // for (int i=1;i<=32;i++){
         
         //     Seat seat = Seat.builder()
         //                     .seatNumber(i)
@@ -39,11 +39,11 @@ public class DataLoader implements CommandLineRunner {
         //     seatRepository.save(seat);
         // }
 
-        List<Trip> trips = tripRepository.findAll();
-        for (Trip trip:trips) {
-            trip.setIsSpecialDay(Utils.isSpecialDay(trip.getDate()));
-            tripRepository.save(trip);
-        }
+        // List<Trip> trips = tripRepository.findAll();
+        // for (Trip trip:trips) {
+        //     trip.setIsSpecialDay(Utils.isSpecialDay(trip.getDate()));
+        //     tripRepository.save(trip);
+        // }
     }
     
     

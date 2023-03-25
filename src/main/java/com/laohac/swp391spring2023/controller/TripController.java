@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.laohac.swp391spring2023.model.entities.Car;
 import com.laohac.swp391spring2023.model.entities.CarCompany;
 import com.laohac.swp391spring2023.model.entities.Route;
+import com.laohac.swp391spring2023.model.entities.Seat;
 import com.laohac.swp391spring2023.model.entities.Trip;
 import com.laohac.swp391spring2023.repository.CarRepository;
 import com.laohac.swp391spring2023.repository.RouteRepository;
+import com.laohac.swp391spring2023.repository.SeatRepository;
 import com.laohac.swp391spring2023.repository.TripRepository;
 import com.laohac.swp391spring2023.service.CarCompanyService;
 import com.laohac.swp391spring2023.service.CarService;
@@ -47,6 +50,9 @@ public class TripController {
 
     @Autowired
     CarCompanyService carCompanyService;
+
+    @Autowired
+    SeatRepository seatRepository;
 
     @GetMapping("/viewall")
     public String viewAllTrip(@RequestParam("departure") String departure,
@@ -91,7 +97,24 @@ public class TripController {
 
     @GetMapping("/save")
     public String saveTrip(@ModelAttribute("trip") Trip trip) {
-        tripRepository.save(trip);
+    tripRepository.save(trip);
+    //     Car car = carRepository.findById(trip.getCar().getId()).orElseThrow(() -> new RuntimeException("Car not found"));
+
+    // // Set the trip ID for each seat in the car
+    // for (Seat seat : car.getSeats()) {
+    //     seat.setTrip(trip);
+    //     seatRepository.save(seat);
+    // }
+    Car car = carRepository.findById(trip.getCar().getId()).orElseThrow(() -> new RuntimeException("Car not found"));
+
+// Set the trip ID for each seat in the car
+car.initSeats(trip);
+
+// Save the car with the new list of seats
+carRepository.save(car);
+
+    // Save the trip and the car (with the initialized seats list)
+    
         return "redirect:/route/viewall";
     }
 

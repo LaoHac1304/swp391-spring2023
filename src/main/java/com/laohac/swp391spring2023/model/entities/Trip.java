@@ -70,4 +70,6 @@ public class Trip {
     private Boolean isSpecialDay = Utils.isSpecialDay(date);
 
     private int totalAvailableSeat;
+
+    
 }   

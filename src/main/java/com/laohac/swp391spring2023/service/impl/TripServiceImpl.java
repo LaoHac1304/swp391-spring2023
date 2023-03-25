@@ -52,8 +52,8 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public Trip getTripById(int id) {
-        Trip trip = tripRepository.findById(id);
-        Optional<Trip> optional = Optional.ofNullable(trip);
+        Optional<Trip> optional = tripRepository.findTripById(id);
+        Trip trip;
         if(optional.isPresent()){
             trip = optional.get();
         }else{

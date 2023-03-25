@@ -1,5 +1,6 @@
 package com.laohac.swp391spring2023.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.laohac.swp391spring2023.model.entities.Car;
 import com.laohac.swp391spring2023.model.entities.CarCompany;
+import com.laohac.swp391spring2023.model.entities.Seat;
 import com.laohac.swp391spring2023.repository.CarCompanyRepository;
 import com.laohac.swp391spring2023.repository.CarRepository;
+import com.laohac.swp391spring2023.repository.SeatRepository;
 import com.laohac.swp391spring2023.service.CarCompanyService;
 import com.laohac.swp391spring2023.service.CarService;
 import com.laohac.swp391spring2023.service.MemberService;
@@ -37,7 +40,9 @@ public class CarController {
     @Autowired
     CarCompanyRepository carCompanyRepository;
 
-    
+    @Autowired
+    SeatRepository seatRepository;
+
     @GetMapping("/viewall")
     public String viewAllCar(Model model) {
         int id = memberService.getCurrentUser().getCarCompanyId();            
@@ -64,9 +69,16 @@ public class CarController {
 
     @GetMapping("/save")
     public String saveTrip(@ModelAttribute("car") Car car) {
-        car.initSeats();
         carRepository.save(car);
 
+        List<Seat> seats = new ArrayList<>();
+    for (int i = 1; i <= car.getCapacity(); i++) {
+        Seat seat = new Seat();
+        seat.setSeatNumber(i);
+        seat.setCar(car);
+        seats.add(seat);
+    }
+    seatRepository.saveAll(seats);
         return "redirect:/car/viewall";
     }
 

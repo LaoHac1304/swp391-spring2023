@@ -137,7 +137,7 @@ $('.slider-nav').slick({
 
 
 
-// Check submit button
+// Check seat submit button
 function checkSubmitButton() {
     var checkboxes = document.getElementsByName("selectedSeats"); // cái này ông lấy tên từ bên nào qua
     var submitButton = document.getElementById("submit-button");

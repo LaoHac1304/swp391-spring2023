@@ -249,8 +249,9 @@ public class BookingServiceImpl implements BookingService {
         @Override
         public boolean cancelBooking(int bookingId) {
 
-                OrderDetail canceledOrderDetail = orderDetailRepository.findById(bookingId);
-
+                Optional<OrderDetail> canceledOrderDetailOptional = orderDetailRepository.findById(bookingId);
+                if (!canceledOrderDetailOptional.isPresent()) return false;
+                OrderDetail canceledOrderDetail = canceledOrderDetailOptional.get();
                 // get LocaldDateTime of the Trip
                 String time = canceledOrderDetail.getTrip().getStartTime();
                 LocalDate localDate = canceledOrderDetail.getTrip().getDate();
@@ -276,6 +277,20 @@ public class BookingServiceImpl implements BookingService {
                 orderDetailRepository.save(canceledOrderDetail);
 
                 return true;
+        }
+
+        @Override
+        public List<OrderDetail> getAllBookings() {
+                List<OrderDetail> optional = orderDetailRepository.findAll();
+                return optional;
+                
+        }
+
+        @Override
+        public List<OrderDetail> getBookingsByStatus(Status bookingStatus) {
+                List<OrderDetail> lOrderDetails = new ArrayList<>();
+                lOrderDetails = orderDetailRepository.findByStatus(bookingStatus);
+                return lOrderDetails;
         }
 
 }

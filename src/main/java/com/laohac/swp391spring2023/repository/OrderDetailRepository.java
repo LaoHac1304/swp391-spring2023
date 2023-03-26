@@ -14,8 +14,8 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
 
     public Optional<List<OrderDetail>> findByCustomer(User user);
 
-    public OrderDetail findById(int id);
-    List<OrderDetail> findByStatus(Status status);
+    public Optional<OrderDetail> findById(int id);
+    public List<OrderDetail> findByStatus(Status status);
 
     
 }

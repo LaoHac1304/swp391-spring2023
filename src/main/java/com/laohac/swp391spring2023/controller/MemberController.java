@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +23,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.laohac.swp391spring2023.model.Month;
 import com.laohac.swp391spring2023.model.Status;
@@ -34,7 +37,9 @@ import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.CarCompanyRepository;
 import com.laohac.swp391spring2023.repository.CarRepository;
+import com.laohac.swp391spring2023.service.BookingService;
 import com.laohac.swp391spring2023.service.MemberService;
+import com.mysql.cj.x.protobuf.MysqlxCrud.Order;
 
 @Controller
 @RequestMapping("/member")
@@ -53,6 +58,9 @@ public class MemberController {
 
     @Autowired
     private RouteRepository routeRepository;
+
+    @Autowired
+    private BookingService bookingService;
 
     @GetMapping("/adminDB")
     public String showAdminDB(HttpSession session, Authentication authentication) {
@@ -182,5 +190,31 @@ public class MemberController {
                 .build();
         return profitDTOReponse;
 
+    }
+
+    @GetMapping("/bookings")
+    public String showBookings(@RequestParam(required = false, defaultValue = "ALL") String status,
+                               Model model) {
+        List<OrderDetail> bookings = null;
+        if (status.equals("ALL")) {
+            bookings = bookingService.getAllBookings();
+        } else {
+            Status bookingStatus = Status.valueOf(status);
+            bookings = bookingService.getBookingsByStatus(bookingStatus);
+        }
+        model.addAttribute("bookings", bookings);
+        model.addAttribute("status", status);
+        return "adminDashboard/bookings";
+    }
+
+    @PostMapping("/bookings/{id}/confirm")
+    public String confirmBooking(@PathVariable("id") int id) {
+        Optional<OrderDetail> bookingOptional = orderDetailRepository.findById(id);
+        if (bookingOptional.isPresent()) {
+            OrderDetail booking = bookingOptional.get();
+            booking.setStatus(Status.CONFIRMED);
+            orderDetailRepository.save(booking);
+        }
+        return "redirect:/member/bookings";
     }
 }

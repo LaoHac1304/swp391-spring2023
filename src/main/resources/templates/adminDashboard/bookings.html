@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Bookings</title>
+</head>
+<body>
+    <h1>Booking Management</h1>
+    <form method="get" action="#" th:action="@{/member/bookings}">
+        <label>Status:</label>
+        <select name="status" onchange="this.form.submit()">
+            <option value="ALL">All Bookings</option>
+            <option value="CONFIRMED" th:selected="${status == 'CONFIRMED'}">Confirmed</option>
+            <option value="PENDING" th:selected="${status == 'PENDING'}">Pending</option>
+            <option value="CANCELLED" th:selected="${status == 'CANCELLED'}">Cancelled</option>
+        </select>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Phone number</th>
+                <th>Email</th>
+                <th>Travel Date</th>
+                <th>Trip</th>
+                <th>Payment Type</th>
+                <th>Payment Status</th>
+                <th>Status</th>
+                <th>Seats</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="booking : ${bookings}">
+                <td th:text="${booking.id}"></td>
+                <td th:text="${booking.fullName}"></td>
+                <td th:text="${booking.phoneNumber}"></td>
+                <td th:text="${booking.email}"></td>
+                <td th:text="${booking.trip.date}"></td>
+                <td th:text="${booking.trip.route.departure + ' to ' + booking.trip.route.arrival}"></td>
+                <td th:text="${booking.paymentType}"></td>
+                <td th:text="${booking.paymentStatus}"></td>
+                <td th:text="${booking.status}"></td>
+                <td th:text="${booking.listSeatsNumber}"></td>
+                <td th:text="${booking.quantity}"></td>
+                <td th:text="${booking.total}"></td>
+                <td>
+                    <form th:action="@{/member/bookings/{id}/confirm(id=${booking.id})}" method="post">
+                        <button type="submit" th:if="${booking.status != 'CONFIRMED'}">Confirm</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

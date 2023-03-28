@@ -108,25 +108,6 @@ function popupCheckout() {
 
 }
 
-//Validate form function
-function validateForm() {
-    var radioButtons = document.getElementsByName("paymentMethod");
-    var isSelected = false;
-    for (var i = 0; i < radioButtons.length; i++) {
-        if (radioButtons[i].checked) {
-            isSelected = true;
-            break;
-        }
-    }
-    if (!isSelected) {
-        document.getElementById("error").style.display = "block";
-        return false;
-    } else {
-        document.getElementById("error").style.display = "none";
-        return true;
-    }
-}
-
 //Selected seats
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 const selectedSeat = document.getElementById('selectedSeat');
@@ -145,7 +126,7 @@ checkboxes.forEach(checkbox => {
 
 //Slider
 $('.slider-nav').slick({
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 3,
     infinite: true,
     // slidesToShow: 3,

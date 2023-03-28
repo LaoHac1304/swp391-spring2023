@@ -1,3 +1,12 @@
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="fragments/fragments::userHead"></div>
@@ -48,7 +57,7 @@
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary ">
+                                <div class="col-sm-9 text-secondary " >
                                     <p style="margin-bottom: 0%;" th:text="${userInfo.fullName}"></p>
                                 </div>
 
@@ -60,7 +69,7 @@
                                     <h6 class="mb-0">User Name</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary ">
+                                <div class="col-sm-9 text-secondary " >
                                     <p style="margin-bottom: 0%;" th:text="${userInfo.username}"></p>
                                 </div>
 
@@ -72,7 +81,7 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary">
+                                <div class="col-sm-9 text-secondary" >
                                     <p style="margin-bottom: 0%;" th:text="${userInfo.email}"></p>
                                 </div>
 
@@ -84,7 +93,7 @@
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary">
+                                <div class="col-sm-9 text-secondary" >
                                     <p style="margin-bottom: 0%;" th:text="${userInfo.phoneNumber}"></p>
                                 </div>
 
@@ -96,7 +105,7 @@
                                     <h6 class="mb-0">Gender</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary">
+                                <div class="col-sm-9 text-secondary" >
                                     <p style="margin-bottom: 0%;" th:text="${userInfo.sex}"></p>
                                 </div>
 
@@ -114,7 +123,7 @@
                                     <a class="btn btn-info " style="width: 151px;" target="__blank"
                                         th:href="@{/users/changePassword}">Change Password</a>
                                 </div>
-                                <div>
+                                <div >
                                     <!--Edit profile here-->
                                     <a class="btn btn-success" th:if="${session.userSession.role == 'admin'}"
                                         th:href="@{/homepage/adminDashBord}" th:text="Admin Dashboard"></a>
@@ -127,63 +136,57 @@
                     </div>
 
 
-
-                </div>
-
-                <div class="card mt-3">
-                    <div class="card-header content-box-title">
-                        <i class="fas fa-table me-1"></i>
-                        Orders History
-                    </div>
-                    <div class="card-body">
-                        <table id="datatablesSimple" class="historyTable">
+                    <div class="card mt-3">
+                        <div class="card-header content-box-title">
+                            <i class="fas fa-table me-1"></i>
+                            Orders History
+                        </div>
+                        <div class="card-body">
+                            <table id="datatablesSimple" class="historyTable">
                             <!-- <table id="myTable" class="historyTable"> -->
-                            <thead>
-                                <tr>
-                                    <th>Departure</th>
-                                    <th>Arrival</th>
-                                    <th>Day</th>
-                                    <!-- <th>Price</th> -->
-                                    <th>Seats</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th>Payment</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="tr-border" th:each="orderDetail: ${orderDetails}">
-                                    <td th:text="${orderDetail.departure}">Departure</td>
-                                    <td th:text="${orderDetail.arrival}">Arrival</td>
-                                    <td th:text="${orderDetail.trip.date}">Day</td>
-                                    <td th:text="${orderDetail.listSeatsNumber}" class="seat-td">Seats</td>
-                                    <td th:text="${orderDetail.quantity}">Quantity</td>
-                                    <td
-                                        th:text="${T(com.laohac.swp391spring2023.controller.PaymentController).formatVND(orderDetail.total)}">
-                                        Total</td>
-                                    <td th:text="${orderDetail.paymentType}">Payment</td>
-                                    <td >
-                                        <span th:if="${#strings.equals(orderDetail.status, 'CONFIRMED')}" th:text="${orderDetail.status}" style="color: green;"></span>
-                                        <span th:if="${#strings.equals(orderDetail.status, 'CANCELLED')}" th:text="${orderDetail.status}" style="color: red;"></span>
-                                        <span th:if="${#strings.equals(orderDetail.status, 'PENDING')}" th:text="${orderDetail.status}" style="color: blue;"></span>
-                                    </td>
-                                    <td>
-                                        <!-- Show the form only when status is PENDING -->
-                                        <form th:if="${#strings.equals(orderDetail.status, 'PENDING')}" method="post"
-                                            th:action="@{/booking/cancel-booking}">
-                                            <input type="hidden" name="bookingId" th:value="${orderDetail.id}">
-                                            <button type="submit" class="btn btn-danger">Cancel</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            </tbody>
+                                <thead>
+                                    <tr>
+                                        <th>Departure</th>
+                                        <th>Arrival</th>
+                                        <th>Day</th>
+                                        <!-- <th>Price</th> -->
+                                        <th>Seats</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th>Payment</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="tr-border" th:each="orderDetail: ${orderDetails}">
+                                        <!-- <th:block th:if="${orderDetail.status == 'pending'}"> -->
+                                        <th:block>
+                                            <td th:text="${orderDetail.departure}">Departure</td>
+                                            <td th:text="${orderDetail.arrival}">Arrival</td>
+                                            <td th:text="${orderDetail.trip.date}">Day</td>
+                                            <td th:text="${orderDetail.listSeatsNumber}" class="seat-td">Seats</td>
+                                            <td th:text="${orderDetail.quantity}">Quantity</td>
+                                            <td th:text="${T(com.laohac.swp391spring2023.controller.PaymentController).formatVND(orderDetail.total)}">Total</td>
+                                            
+                                            <td th:text="${orderDetail.paymentType}">Payment</td>
+                                            <td style="background-color: aquamarine;" th:text="${orderDetail.status}">Status</td>
+                                            <td>
+                                                <form method="post" th:action="@{/booking/cancel-booking}">
+                                                    <input type="hidden" name="bookingId" th:value="${orderDetail.id}">
+                                                    <button type="submit" class="btn btn-danger">Cancel</button>
+                                                </form>
+                                            </td>
+                                        </th:block>
+                                    </tr>
 
-                        </table>
+                                </tbody>
+                            </table>
 
+                            
+                        </div>
 
                     </div>
-
                 </div>
             </div>
         </div>

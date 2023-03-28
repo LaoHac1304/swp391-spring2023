@@ -36,7 +36,7 @@ public interface UserService {
 
     public List<Trip> search(Route route);
 
-    public List<Trip> searchByRouteAndDate(Route route, LocalDate date);
+    public List<Trip> searchByRouteAndDate(Route route, LocalDate date, Boolean isEnable);
 
     public void sendVerificationEmail(UserDTOResponse user, String siteUrl) throws UnsupportedEncodingException, MessagingException;
 

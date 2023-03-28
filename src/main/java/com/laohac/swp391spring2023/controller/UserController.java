@@ -214,19 +214,13 @@ public class UserController {
     public String search(@ModelAttribute("routeDTORequest") RouteDTORequest routeDTORequest, Model model)
             throws ParseException {
 
-        // if (routeDTORequest.getState1() == null || routeDTORequest.getState2() == null) {
-        //     List<Route> listRoute = routeRepository.findAll();
-        //     model.addAttribute("listStates", listRoute);
-        //     return "home/searchPage";
-        // }
-
         String dateString = routeDTORequest.getDate();
         LocalDate date = LocalDate.parse(dateString);
         model.addAttribute("isSpecialDay", Utils.isSpecialDay(date));
         Route route = routeRepository.findByState1AndState2(routeDTORequest.getState1().toUpperCase(),
                 routeDTORequest.getState2().toUpperCase());
 
-        List<Trip> tripsInfo = userService.searchByRouteAndDate(route, date);
+        List<Trip> tripsInfo = userService.searchByRouteAndDate(route, date, true);
         
         for (Trip trip : tripsInfo) {
             int total = 0;
@@ -241,21 +235,6 @@ public class UserController {
         }
         model.addAttribute("listTrips", tripsInfo);
 
-        // List<Trip> tripsDescByPrice =
-        // userService.searchByRouteAndDateByPriceDesc(route, date);
-        // model.addAttribute("tripsDescByPrice", tripsDescByPrice);
-
-        // List<Trip> tripsAscByPrice =
-        // userService.searchByRouteAndDateByPriceAsc(route, date);
-        // model.addAttribute("tripsAscByPrice", tripsAscByPrice);
-
-        // List<Trip> tripsAscByTime =
-        // userService.searchByRouteAndDateByStartTimeAsc(route, date);
-        // model.addAttribute("tripsAscByTime", tripsAscByTime);
-
-        // List<Trip> tripsDescByTime =
-        // userService.searchByRouteAndDateByStartTimeDesc(route, date);
-        // model.addAttribute("tripsDescByTime", tripsDescByTime);
 
         List<Route> listRoute = routeRepository.findAll();
         model.addAttribute("listStates", listRoute);

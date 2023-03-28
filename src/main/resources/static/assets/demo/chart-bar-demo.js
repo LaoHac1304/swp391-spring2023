@@ -54,7 +54,7 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: Math.ceil(maxTicket + maxTicket * 20 / 100),
+          max: Math.ceil(maxTicket + maxTicket * 30 / 100),
           maxTicksLimit: 5
         },
         gridLines: {

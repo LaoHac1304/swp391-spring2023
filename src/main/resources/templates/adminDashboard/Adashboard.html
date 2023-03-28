@@ -8,9 +8,12 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bookingManagement.css}">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 </head>
 
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed" style="background-color: #1b203d;">
     <nav th:replace="fragments/fragments::adminNavbar"></nav>
     <div id="layoutSidenav">
         <div th:replace="fragments/fragments::adminSideNav"></div>
@@ -21,7 +24,7 @@
             <main>
                 <div class="container-fluid px-4 text-white">
                     <br><br>
-                    <div class="row">
+                    <div class="row" style="margin-top: 16px;">
                         <div class="col-xl-3 col-md-6">
                             <div class="box mb-4">
                                 <p th:text="${total.employees} + ' Employees'"></p>
@@ -55,11 +58,11 @@
                             <div class="card mb-4">
                                 <div class="card-header  content-box-title">
                                     <i class="fas fa-chart-area me-1"></i>
-                                    Revenue Profit
+                                    Revenue Cash
                                 </div>
                                 <div class="card-body">
-                                    <canvas style="background-color: antiquewhite; padding-top: 5px;" id="myAreaChart" width="100%"
-                                        height="40" ></canvas>
+                                    <canvas style="background-color: antiquewhite; padding-top: 5px;" id="myAreaChart"
+                                        width="100%" height="40"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -69,8 +72,8 @@
                                     <i class="fas fa-chart-bar me-1"></i>
                                     Revenue Order
                                 </div>
-                                <div class="card-body"><canvas style="background-color: antiquewhite; padding-top: 5px;" id="myBarChart"
-                                        width="100%" height="40"></canvas></div>
+                                <div class="card-body"><canvas style="background-color: antiquewhite; padding-top: 5px;"
+                                        id="myBarChart" width="100%" height="40"></canvas></div>
                             </div>
                         </div>
                     </div>
@@ -80,12 +83,12 @@
                             Order Bar Chart
                         </div>
                         <div class="card-body text-white">
-                            <table id="datatablesSimple" class="myTable">
+                            <table id="datatablesSimple" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Full Name</th>
                                         <th>Email</th>
-                                        <th>Phone NUmber</th>
+                                        <th>Phone Number</th>
                                         <th>Username</th>
                                         <th>Actions</th>
                                     </tr>
@@ -96,10 +99,13 @@
                                         <td th:text="${member.email}">Full Name</td>
                                         <td th:text="${member.phoneNumber}">Phone Number</td>
                                         <td th:text="${member.username}">Username</td>
-                                        <td><a th:href="@{update/{id}(id=${member.id})}"
-                                                class="btn btn-info">Update</a>
+                                        <td><a th:href="@{update/{id}(id=${member.id})}" class="btn btn-info">
+                                                <i style="color: white;" class="fa-solid fa-pen-to-square"></i>
+                                            </a>
                                             <a th:href="@{delete/{id}(id=${member.id})}"
-                                                class="btn btn-danger">Delete</a>
+                                                class="btn btn-danger">
+                                                <i style="color: white;" class="fa-solid fa-trash"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -112,18 +118,14 @@
             <footer th:replace="fragments/fragments::adminFooter"></footer>
         </div>
 
-
-
-
-
-
-        <!--đừng đụng ở dưới-->
     </div>
     <div th:replace="fragments/fragments::adminScript"></div>
     <script>
         $(document).ready(function () {
             $('#datatablesSimple').DataTable({
-                "responsive": true
+                responsive: true,
+                sortable: true,
+                searchable: true,
             });
         });
     </script>

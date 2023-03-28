@@ -26,9 +26,9 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        // Trip trip = tripRepository.findById(108);
+        // Trip trip = tripRepository.findById(125);
         // Car car = trip.getCar();
-        // for (int i=1;i<=32;i++){
+        // for (int i=1;i<=68;i++){
         
         //     Seat seat = Seat.builder()
         //                     .seatNumber(i)

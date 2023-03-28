@@ -10,7 +10,7 @@
     <div class="container">
 
 
-        <form onsubmit="return popupCheckout()" th:action="@{/booking/save-order}" method="post"
+        <form onsubmit="return validateForm() && popupCheckout()" th:action="@{/booking/save-order}" method="post"
             th:object="${checkoutTmpInfo}">
             <div class="row">
                 <div class="col-md-1">
@@ -33,11 +33,8 @@
                             <div class="row-payment">
                                 <label class="flex-label">
                                     <span class="span-payments">
-                                        <input type="radio" id="paymentMethod" name="paymentMethod" value="paypal"
-                                            class="custom-radio" style="height: min-content;" required
-                                            oninvalid="this.setCustomValidity('Please choose a payment method')"
-                                            oninput="this.setCustomValidity('')">
-
+                                        <input type="radio" id="paypal" name="paymentMethod" value="paypal"
+                                            class="custom-radio" style="height: min-content;">
                                     </span>
                                     <span class="span-payments" style="padding-left: 8px;">
                                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/PayPal_Logo_Icon_2014.svg"
@@ -45,14 +42,17 @@
                                         <p class="p-md-2" style="font-size: large;">Paypal</p>
                                     </span>
                                 </label>
-                                <div class="detail-content form-control-sm">Safe payment online. Credit card needed.
+                                <div class="detail-content form-control-sm">
+                                    <p>
+                                        Safe payment online. Credit card needed.
+                                    </p>
                                 </div>
                             </div>
 
-                            <div class="row-payment" th:if="${checkoutinfo.isSpecialDay == false}">
+                            <div class="row-payment" th:unless="${checkoutinfo.isSpecialDay}">
                                 <label class="flex-label">
                                     <span class="span-payments">
-                                        <input type="radio" id="paymentMethod" name="paymentMethod" value="payonbus"
+                                        <input type="radio" id="payOnBus" name="paymentMethod" value="payonbus"
                                             class="custom-radio" style="height: min-content;">
                                     </span>
                                     <span class="span-payments" style="padding-left: 8px;">
@@ -60,13 +60,35 @@
                                         <p class="p-md-2" style="font-size: large; width: 100%;">Pay on bus</p>
                                     </span>
                                 </label>
-                                <div class="detail-content form-control-sm">You can pay when get on the bus via the
-                                    driver
+                                <div class="detail-content form-control-sm">
+                                    <p>
+                                        You can pay when get on the bus via the driver
+                                    </p>
+                                </div>
+                            </div>
+
+
+                            <!--  -->
+                            <div class="row-payment" th:if="${checkoutinfo.isSpecialDay}">
+                                <label class="flex-label">
+                                    <span class="span-payments">
+                                        <input type="radio" id="payOnBus" name="paymentMethod" value="payonbus"
+                                            class="custom-radio" style="height: min-content;">
+                                    </span>
+                                    <span class="span-payments" style="padding-left: 8px;">
+                                        <img th:src="@{/images/bus.png}" alt="Bus logo" style="border-radius: 0%;">
+                                        <p class="p-md-2" style="font-size: large; width: 100%;">Pay on bus</p>
+                                    </span>
+                                </label>
+                                <div class="detail-content form-control-sm">
+                                    <p style="color: red;">You can't pay on bus in this trip</p>
+
                                 </div>
                             </div>
 
                         </div>
                     </div>
+                    <span id="error" style="display:none;color:red;">*Please select a payment method</span>
                 </div>
 
                 <div class="col-md-4 " style="padding: 0px 8px;">

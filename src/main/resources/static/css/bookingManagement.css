@@ -1,0 +1,42 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top: 12px;
+}
+
+thead th {
+    background-color: rgba(0, 0, 0, 0.14);
+  }
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: black;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+    font-size: 15px;
+}
+
+
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+th[title]::after {
+    content: "?";
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 12px;
+    color: #999;
+}

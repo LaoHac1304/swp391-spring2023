@@ -82,6 +82,11 @@
                     Add Employee
                 </a>
 
+                <a class="nav-link" th:href="@{/member/bookings}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-list-check"></i></div>
+                    Booking management
+                </a>
+
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                     aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
@@ -97,19 +102,9 @@
                             Homepage
                         </a>
                         <a class="nav-link" th:href="@{/member/setting}">Profile</a>
+                        <!-- <a class="nav-link" th:href="@{/member/bookings}">Booking management</a> -->
                     </nav>
                 </div>
-                <!-- <div class="sb-sidenav-menu-heading">Addons</div>
-                <a class="nav-link" href="charts.html">
-                    <div class="sb-nav-link-icon">
-                        <i class="fas fa-chart-area"></i>
-                    </div>
-                    Charts
-                </a>
-                <a class="nav-link" href="tables.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Tables
-                </a> -->
             </div>
         </div>
     </nav>
@@ -151,7 +146,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" th:href="@{/images/logo.png}" type="image/icon type" />
-    <title>24HR Car Rental</title>
+    <title>BusGo</title>
 
     <!--Jquery-->
 
@@ -193,7 +188,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" th:href="@{/homepage/}" href="#">
-                <img th:src="@{/images/logo.png}" style="width: 70%" class="img-fluid" alt="logo" />
+                <img th:src="@{/images/logo.png}" style="width: 10%; float: left;" class="img-fluid" alt="logo" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -518,7 +513,7 @@
 
             <br>
             <div>
-                
+
                 <a class="btn btn-joinus" th:href="@{/users}">Create an account</a>
             </div>
             <br />
@@ -860,7 +855,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" th:href="@{/homepage}" href="#">
-                <img th:src="@{/images/logo.png}" style="width: 70%" class="img-fluid" alt="logo" />
+                <img th:src="@{/images/logo.png}" style="width: 10%; float: left;" class="img-fluid" alt="logo" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -1017,7 +1012,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" th:href="@{/images/logo.png}" type="image/icon type" />
-    <title>24HR Car Rental</title>
+    <title>BusGo</title>
 
     <!-- FontAweSome-->
     <script th:src="@{https://kit.fontawesome.com/bdbcf2ce1a.js}" crossorigin="anonymous"></script>
@@ -1044,7 +1039,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" th:href="@{/homepage/}" href="#">
-                <img th:src="@{/images/logo.png}" style="width: 70%" class="img-fluid" alt="logo" />
+                <img th:src="@{/images/logo.png}" style="width: 10%; float: left;" class="img-fluid" alt="logo" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -1223,7 +1218,7 @@
 
 <!--Booking footer-->
 <div class="bookFooter" th:fragment="bookFooter" style="min-height: 0px;">
-    <section id="contact" class="footer_wrapper" >
+    <section id="contact" class="footer_wrapper">
         <div class="container pb-3">
             <div class="row">
                 <div class="col-lg-3 col-md-6">

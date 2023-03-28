@@ -25,7 +25,7 @@
             color: #1a202c;
             text-align: left;
             
-    background-color: rgb(182 191 203) ">
+    background-color: lightgrey">
     <header th:replace="fragments/fragments::userHeader"></header>
 
     <div class="container" style="padding-top: 20px;">
@@ -136,6 +136,13 @@
                     </div>
 
 
+                    
+                </div>
+                
+
+
+                <!--  -->
+                <div class="col-md-12">
                     <div class="card mt-3">
                         <div class="card-header content-box-title">
                             <i class="fas fa-table me-1"></i>
@@ -143,49 +150,49 @@
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple" class="historyTable">
-                            <!-- <table id="myTable" class="historyTable"> -->
-                                <thead>
-                                    <tr>
-                                        <th>Departure</th>
-                                        <th>Arrival</th>
-                                        <th>Day</th>
-                                        <!-- <th>Price</th> -->
-                                        <th>Seats</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                        <th>Payment</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="tr-border" th:each="orderDetail: ${orderDetails}">
-                                        <!-- <th:block th:if="${orderDetail.status == 'pending'}"> -->
-                                        <th:block>
-                                            <td th:text="${orderDetail.departure}">Departure</td>
-                                            <td th:text="${orderDetail.arrival}">Arrival</td>
-                                            <td th:text="${orderDetail.trip.date}">Day</td>
-                                            <td th:text="${orderDetail.listSeatsNumber}" class="seat-td">Seats</td>
-                                            <td th:text="${orderDetail.quantity}">Quantity</td>
-                                            <td th:text="${T(com.laohac.swp391spring2023.controller.PaymentController).formatVND(orderDetail.total)}">Total</td>
-                                            
-                                            <td th:text="${orderDetail.paymentType}">Payment</td>
-                                            <td style="background-color: aquamarine;" th:text="${orderDetail.status}">Status</td>
-                                            <td>
-                                                <form method="post" th:action="@{/booking/cancel-booking}">
-                                                    <input type="hidden" name="bookingId" th:value="${orderDetail.id}">
-                                                    <button type="submit" class="btn btn-danger">Cancel</button>
-                                                </form>
-                                            </td>
-                                        </th:block>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-
+                                <!-- <table id="myTable" class="historyTable"> -->
+                                    <thead>
+                                        <tr>
+                                            <th>Departure</th>
+                                            <th>Arrival</th>
+                                            <th>Day</th>
+                                            <!-- <th>Price</th> -->
+                                            <th>Seats</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                            <th>Payment</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="tr-border" th:each="orderDetail: ${orderDetails}">
+                                            <!-- <th:block th:if="${orderDetail.status == 'pending'}"> -->
+                                            <th:block>
+                                                <td th:text="${orderDetail.departure}">Departure</td>
+                                                <td th:text="${orderDetail.arrival}">Arrival</td>
+                                                <td th:text="${orderDetail.trip.date}">Day</td>
+                                                <td th:text="${orderDetail.listSeatsNumber}" class="seat-td">Seats</td>
+                                                <td th:text="${orderDetail.quantity}">Quantity</td>
+                                                <td th:text="${T(com.laohac.swp391spring2023.controller.PaymentController).formatVND(orderDetail.total)}">Total</td>
+                                                
+                                                <td th:text="${orderDetail.paymentType}">Payment</td>
+                                                <td style="background-color: aquamarine;" th:text="${orderDetail.status}">Status</td>
+                                                <td>
+                                                    <form method="post" th:action="@{/booking/cancel-booking}">
+                                                        <input type="hidden" name="bookingId" th:value="${orderDetail.id}">
+                                                        <button type="submit" class="btn btn-danger">Cancel</button>
+                                                    </form>
+                                                </td>
+                                            </th:block>
+                                        </tr>
+    
+                                    </tbody>
+                                </table>
+    
                             
                         </div>
-
+    
                     </div>
                 </div>
             </div>

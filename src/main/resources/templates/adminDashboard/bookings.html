@@ -1,59 +1,102 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Admin Bookings</title>
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables CSS file -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.css" />
+
+    <!-- DataTables JS file -->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bookingManagement.css}">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+    <!-- Custom Js Link -->
+    <script th:src="@{/js/main.js}"></script>
+
+    <!-- FA icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     <h1>Booking Management</h1>
-    <form method="get" action="#" th:action="@{/member/bookings}">
-        <label>Status:</label>
-        <select name="status" onchange="this.form.submit()">
-            <option value="ALL">All Bookings</option>
-            <option value="CONFIRMED" th:selected="${status == 'CONFIRMED'}">Confirmed</option>
-            <option value="PENDING" th:selected="${status == 'PENDING'}">Pending</option>
-            <option value="CANCELLED" th:selected="${status == 'CANCELLED'}">Cancelled</option>
-        </select>
-    </form>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Customer</th>
-                <th>Phone number</th>
-                <th>Email</th>
-                <th>Travel Date</th>
-                <th>Trip</th>
-                <th>Payment Type</th>
-                <th>Payment Status</th>
-                <th>Status</th>
-                <th>Seats</th>
-                <th>Quantity</th>
-                <th>Total</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="booking : ${bookings}">
-                <td th:text="${booking.id}"></td>
-                <td th:text="${booking.fullName}"></td>
-                <td th:text="${booking.phoneNumber}"></td>
-                <td th:text="${booking.email}"></td>
-                <td th:text="${booking.trip.date}"></td>
-                <td th:text="${booking.trip.route.departure + ' to ' + booking.trip.route.arrival}"></td>
-                <td th:text="${booking.paymentType}"></td>
-                <td th:text="${booking.paymentStatus}"></td>
-                <td th:text="${booking.status}"></td>
-                <td th:text="${booking.listSeatsNumber}"></td>
-                <td th:text="${booking.quantity}"></td>
-                <td th:text="${booking.total}"></td>
-                <td>
-                    <form th:action="@{/member/bookings/{id}/confirm(id=${booking.id})}" method="post">
-                        <button type="submit" th:if="${booking.status != 'CONFIRMED'}">Confirm</button>
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    
+    <div class="table-responsive">
+        
+        <table id="example" class="table table-striped">
+            <form method="get" action="#" th:action="@{/member/bookings}">
+                <label>Status:</label>
+                <select name="status" onchange="this.form.submit()">
+                    <option value="ALL">All Bookings</option>
+                    <option value="CONFIRMED" th:selected="${status == 'CONFIRMED'}">Confirmed</option>
+                    <option value="PENDING" th:selected="${status == 'PENDING'}">Pending</option>
+                    <option value="CANCELLED" th:selected="${status == 'CANCELLED'}">Cancelled</option>
+                </select>
+            </form>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Phone number</th>
+                    <th>Email</th>
+                    <th>Travel Date</th>
+                    <th>Trip</th>
+                    <th>Payment Type</th>
+                    <th>Payment Status</th>
+                    <th>Status</th>
+                    <th>Seats</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="booking : ${bookings}">
+                    <td th:text="${booking.id}"></td>
+                    <td th:text="${booking.fullName}"></td>
+                    <td th:text="${booking.phoneNumber}"></td>
+                    <td th:text="${booking.email}"></td>
+                    <td th:text="${booking.trip.date}"></td>
+                    <td th:text="${booking.trip.route.departure + ' to ' + booking.trip.route.arrival}"></td>
+                    <td th:text="${booking.paymentType}"></td>
+                    <td th:text="${booking.paymentStatus}"></td>
+                    <td >
+                        <span th:if="${#strings.equals(booking.status, 'PENDING')}" th:text="${booking.status}" style="color: rgb(182, 118, 0);"></span>
+                        <span th:if="${#strings.equals(booking.status, 'CONFIRMED')}" th:text="${booking.status}" style="color: green"></span>
+
+                    </td>
+                    <td th:text="${booking.listSeatsNumber}"></td>
+                    <td th:text="${booking.quantity}"></td>
+                    <td th:text="${booking.total}"></td>
+                    <td>
+                        <form th:action="@{/member/bookings/{id}/confirm(id=${booking.id})}" method="post">
+
+                            <button class="btn btn-success" th:if="${!#strings.equals(booking.status, 'PENDING')}" type="submit" disabled>
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button th:if="${#strings.equals(booking.status, 'PENDING')}" type="submit">Confirm</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                sortable: true,
+                searchable: true,
+                theme: 'bootstrap'
+            });
+        });
+
+    </script>
 </body>
+
 </html>

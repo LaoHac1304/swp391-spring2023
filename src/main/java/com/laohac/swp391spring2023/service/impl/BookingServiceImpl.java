@@ -100,25 +100,25 @@ public class BookingServiceImpl implements BookingService {
                 CheckOutInfoDTOReponse checkOutInfoDTOReponse = (CheckOutInfoDTOReponse) session
                                 .getAttribute("checkoutinfo");
                 User user = new User();
+
                 if (userCurrent != null) {
 
-                        Optional<User> uOptional = userRepository.findByEmail(checkOutInfoDTOReponse.getUser().getEmail());
+                        Optional<User> uOptional = userRepository.findByEmail(userCurrent.getEmail());
                         if (uOptional.isPresent()) 
                                 user = uOptional.get();
                 }
+                else user = null;
 
                 CheckOutInfoDTOReponse checkTmpUser = (CheckOutInfoDTOReponse) session.getAttribute("checkoutTmpInfo");
-                user.setEmail(checkTmpUser.getEmail());
-                user.setFullName(checkTmpUser.getFullName());
-                user.setPhoneNumber(checkTmpUser.getPhoneNumber());
+                
 
                 Trip trip = checkOutInfoDTOReponse.getTrip();
                 Car car = checkOutInfoDTOReponse.getTrip().getCar();
                 int quantity = checkOutInfoDTOReponse.getLSeats().size();
                 // Date date = new Date();
-                String email = user.getEmail();
-                String fullName = user.getFullName();
-                String phoneNumber = user.getPhoneNumber();
+                String email = checkTmpUser.getEmail();
+                String fullName = checkTmpUser.getFullName();
+                String phoneNumber = checkTmpUser.getPhoneNumber();
                 BigDecimal total = checkOutInfoDTOReponse.getPriceTotal();
                 String departure = trip.getDepartureDetail();
                 String arrival = trip.getArrivalDetail();
@@ -168,7 +168,7 @@ public class BookingServiceImpl implements BookingService {
                                 .createdAt(LocalDateTime.now())
                                 .updatedAt(LocalDateTime.now())
                                 .build();
-                if (!isSaved && userCurrent != null)
+                if (!isSaved)
                         orderDetailRepository.save(orderDetail);
                 session.setAttribute("orderDetailEmail", orderDetail);
 

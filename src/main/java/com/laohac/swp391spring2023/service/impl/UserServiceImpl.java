@@ -287,8 +287,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Trip> searchByRouteAndDate(Route route, LocalDate date) {
-        List<Trip> trips = tripRepository.findByRouteAndDate(route, date);
+    public List<Trip> searchByRouteAndDate(Route route, LocalDate date, Boolean isEnable) {
+        List<Trip> trips = tripRepository.findByRouteAndDateAndIsEnable(route, date, isEnable);
         return trips;
        
     }

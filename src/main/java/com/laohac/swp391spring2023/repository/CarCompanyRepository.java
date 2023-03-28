@@ -9,4 +9,4 @@ public interface CarCompanyRepository extends JpaRepository<CarCompany, Integer>
 
  
     
-}
+}   

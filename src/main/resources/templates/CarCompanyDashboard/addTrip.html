@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Add New Trip</title>
     <style>
         .body-add-trip {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
             margin-top: 49.8px;
-            height: 92.2vh;
+            height: 98vh;
             background-image: linear-gradient(to bottom right, #414141, #000000);
         }
 
@@ -58,12 +59,47 @@
             font-size: 16px;
             transition: all 0.3s ease;
         }
+
+        .btn-save-content-add-trip:hover {
+            background-color: #43bf47;
+        }
+
+        .btn-cancel-content-add-trip {
+            background-color: rgb(218, 84, 84);
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cancel-content-add-trip:hover {
+            background-color: rgb(199, 52, 52);
+        }
+
+
+
+        .bx-arrow-back {
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            
+        }
+
+        .turn-back-home {
+            margin-top: -45px;
+        }
+
+
     </style>
 
 
 </head>
 
 <body class="body-add-trip">
+    <div class="turn-back-home"><a href="/route/viewall"><i class='bx bx-arrow-back'></i></a></div>
     <form th:action="@{/trip/save}" class="form-add-trip">
         <div>
             <label for="start-time" class="label-add-trip-title">Start Time:</label>
@@ -108,6 +144,7 @@
             </select>
         </div>
         <button type="submit" class="btn-save-content-add-trip">Save</button>
+        <button type="reset" class="btn-cancel-content-add-trip">Cancel</button>
     </form>
 </body>
 

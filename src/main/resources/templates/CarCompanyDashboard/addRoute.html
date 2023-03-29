@@ -118,6 +118,17 @@
             width: 50%;
             border-radius: 5px;
             border: 1px solid white
+            
+        }
+
+        .btn-cancel-add-route {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+            padding: 10px 15px;
+            width: 50%;
+            border-radius: 5px;
+            border: 1px solid white
         }
 
         .sidebar>ul>li:hover {
@@ -129,11 +140,7 @@
             color: white;
         }
 
-        .bxs-user {
-            margin-right: 10px;
-        }
-
-        .bx-log-out {
+        .bx {
             margin-right: 10px;
         }
     </style>
@@ -148,6 +155,7 @@
             <ul>
                 <li><a href="#"><i class='bx bxs-user'></i>Profile</a></li>
                 <li><a href="#"><i class='bx bx-log-out'></i>Sign Out</a></li>
+                <li><a href="/route/viewall"><i class='bx bx-arrow-back'></i>Home</a></li>
             </ul>
         </div>
         <div class="navbar">
@@ -168,8 +176,8 @@
                     <label for="arrival" class="label-title">Arrival</label>
                     <input type="text" id="arrival" name="arrival" required class="input-add-route">
                 </div>
-                <div>
                     <button type="submit" class="btn-save-add-route">Save</button>
+                    <button type="reset" class="btn-cancel-add-route">Cancel</button>    
             </form>
         </div>
     </div>

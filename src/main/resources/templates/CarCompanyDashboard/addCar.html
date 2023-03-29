@@ -123,10 +123,10 @@
             <ul>
                 <li><a href="#" style="color: black;"><i class='bx bxs-user'></i>Profile</a></li>
                 <li><a href="#" style="color: black;"><i class='bx bx-log-out'></i>Sign Out</a></li>
+                
             </ul>
         </div>
         <div class="navbar">
-            <h3>My Website</h3>
             <a href="#">Home</a>
             <a href="#">About</a>
             <a href="#">Services</a>
@@ -147,7 +147,7 @@
                 </div>
                 <div>
                     <label for="carCompany">Company</label> 
-                    <select id="carCompany" name="carCompany.id" required class="select-add-trip-content">
+                    <select id="carCompany" name="carCompany.id" required class="select-add-trip-content" style="display: none;">
                         <option value="">--Select a company--</option>
                         <th:block th:each="carCompany : ${carCompanys}">
                             <option th:if="${carCompany.id == currentUserId}" th:value="${carCompany.id}" th:selected="true" th:text="${carCompany.name}"></option>

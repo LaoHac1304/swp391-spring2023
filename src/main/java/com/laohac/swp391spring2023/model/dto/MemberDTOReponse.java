@@ -16,6 +16,7 @@ import lombok.Setter;
 public class MemberDTOReponse {
 
 
+    private Integer id;
     private String email;
     private String username;
     private String password;
@@ -25,5 +26,6 @@ public class MemberDTOReponse {
     private String role;
     private CarCompany carCompany;
     private Boolean enableToWork;
+    private String name;
     
 }

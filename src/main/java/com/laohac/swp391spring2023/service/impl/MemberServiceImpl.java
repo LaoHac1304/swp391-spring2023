@@ -60,12 +60,13 @@ public class MemberServiceImpl implements MemberService {
             return MemberDTOReponse.builder()
                                     .username(member.getUsername())
                                     .fullName(member.getFullName())
+                                    .name(member.getFullName())
                                     .build();
         }
         return null;
     }
 
-    private boolean checkEnableCarCompany(User user, Set lTrips){
+    private boolean checkEnableCarCompany(User user, Set<Integer> lTrips){
 
         if (user.getCarCompany() == null) return false;
         CarCompany carCompany = user.getCarCompany();
@@ -96,6 +97,7 @@ public class MemberServiceImpl implements MemberService {
             boolean isWork = checkEnableCarCompany(user, set);
             MemberDTOReponse memberDTOReponse = MemberDTOReponse
                                                     .builder()
+                                                    .id(user.getId())
                                                     .email(user.getEmail())
                                                     .username(user.getUsername())
                                                     .password(user.getPassword())

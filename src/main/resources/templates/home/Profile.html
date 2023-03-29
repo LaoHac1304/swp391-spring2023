@@ -18,21 +18,35 @@
     <!-- DataTables CSS and JS files (required) -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bookingManagement.css}">
+    <!-- Custom Js Link -->
+    <script th:src="@{/js/main.js}"></script>
 
 </head>
 
 <body style="
             color: #1a202c;
             text-align: left;
-            
-    background-color: lightgrey">
+            background-color: lightgray;
+            font-size: 1.3rem;
+            ">
+    <!-- background-image: url(/images/slider/slider2.webp);
+            background-size: cover; -->
     <header th:replace="fragments/fragments::userHeader"></header>
 
     <div class="container" style="padding-top: 20px;">
         <div class="main-body">
             <div class="row gutters-sm">
                 <div class="col-md-3 mb-3">
-                    <div class="card">
+                    <div class="card" style="padding-bottom: 6px;">
+                        <a th:href="@{/homepage}" style="color: rgb(22, 24, 41); margin-left: 15px;">
+                            <i class="fa-solid fa-arrow-left" style=" margin-top: 25px;">
+                            </i>
+                            Return back
+                        </a>
+                        <br>
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
                                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Your avatar go here"
@@ -57,7 +71,7 @@
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary " >
+                                <div class="col-sm-9 text-secondary ">
                                     <p style="margin-bottom: 0%;" th:text="${userInfo.fullName}"></p>
                                 </div>
 
@@ -69,7 +83,7 @@
                                     <h6 class="mb-0">User Name</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary " >
+                                <div class="col-sm-9 text-secondary ">
                                     <p style="margin-bottom: 0%;" th:text="${userInfo.username}"></p>
                                 </div>
 
@@ -81,7 +95,7 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary" >
+                                <div class="col-sm-9 text-secondary">
                                     <p style="margin-bottom: 0%;" th:text="${userInfo.email}"></p>
                                 </div>
 
@@ -93,7 +107,7 @@
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary" >
+                                <div class="col-sm-9 text-secondary">
                                     <p style="margin-bottom: 0%;" th:text="${userInfo.phoneNumber}"></p>
                                 </div>
 
@@ -105,7 +119,7 @@
                                     <h6 class="mb-0">Gender</h6>
                                 </div>
 
-                                <div class="col-sm-9 text-secondary" >
+                                <div class="col-sm-9 text-secondary">
                                     <p style="margin-bottom: 0%;" th:text="${userInfo.sex}"></p>
                                 </div>
 
@@ -123,7 +137,7 @@
                                     <a class="btn btn-info " style="width: 151px;" target="__blank"
                                         th:href="@{/users/changePassword}">Change Password</a>
                                 </div>
-                                <div >
+                                <div>
                                     <!--Edit profile here-->
                                     <a class="btn btn-success" th:if="${session.userSession.role == 'admin'}"
                                         th:href="@{/homepage/adminDashBord}" th:text="Admin Dashboard"></a>
@@ -136,9 +150,9 @@
                     </div>
 
 
-                    
+
                 </div>
-                
+
 
 
                 <!--  -->
@@ -149,8 +163,10 @@
                             Orders History
                         </div>
                         <div class="card-body">
-                            <table id="datatablesSimple" class="historyTable">
-                                <!-- <table id="myTable" class="historyTable"> -->
+                            <div class="table-responsive">
+
+                                <table id="datatablesSimple" class="table table-striped">
+                                    <!-- <table id="myTable" class="historyTable"> -->
                                     <thead>
                                         <tr>
                                             <th>Departure</th>
@@ -174,25 +190,50 @@
                                                 <td th:text="${orderDetail.trip.date}">Day</td>
                                                 <td th:text="${orderDetail.listSeatsNumber}" class="seat-td">Seats</td>
                                                 <td th:text="${orderDetail.quantity}">Quantity</td>
-                                                <td th:text="${T(com.laohac.swp391spring2023.controller.PaymentController).formatVND(orderDetail.total)}">Total</td>
-                                                
+                                                <td
+                                                    th:text="${T(com.laohac.swp391spring2023.controller.PaymentController).formatVND(orderDetail.total)}">
+                                                    Total</td>
+
                                                 <td th:text="${orderDetail.paymentType}">Payment</td>
-                                                <td style="background-color: aquamarine;" th:text="${orderDetail.status}">Status</td>
+
                                                 <td>
-                                                    <form method="post" th:action="@{/booking/cancel-booking}">
-                                                        <input type="hidden" name="bookingId" th:value="${orderDetail.id}">
+                                                    <span style="color: #2ebd33; font-weight: 600;"
+                                                        th:if="${#strings.equals(orderDetail.status, 'CONFIRMED')}"
+                                                        th:text="${orderDetail.status}"></span>
+
+                                                    <span style="color: #2b6ccd; font-weight: 600;"
+                                                        th:if="${!#strings.equals(orderDetail.status, 'CONFIRMED')}"
+                                                        th:text="${orderDetail.status}"></span>
+                                                </td>
+
+                                                <td>
+                                                    <!--  -->
+                                                    <form th:if="${#strings.equals(orderDetail.status, 'PENDING')}"
+                                                        method="post" th:action="@{/booking/cancel-booking}">
+                                                        <input type="hidden" name="bookingId"
+                                                            th:value="${orderDetail.id}">
                                                         <button type="submit" class="btn btn-danger">Cancel</button>
+                                                    </form>
+
+                                                    <!--  -->
+                                                    <form th:if="${!#strings.equals(orderDetail.status, 'PENDING')}"
+                                                        method="post" th:action="@{/booking/cancel-booking}">
+                                                        <input type="hidden" name="bookingId"
+                                                            th:value="${orderDetail.id}">
+                                                        <button type="submit" class="btn btn-danger"
+                                                            disabled>Cancel</button>
                                                     </form>
                                                 </td>
                                             </th:block>
                                         </tr>
-    
+
                                     </tbody>
                                 </table>
-    
-                            
+                            </div>
+
+
                         </div>
-    
+
                     </div>
                 </div>
             </div>

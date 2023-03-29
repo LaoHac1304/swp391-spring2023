@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/fragments::adminHead"></div>
 
 <head>
     <meta charset="UTF-8">
@@ -23,70 +24,115 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
-<body>
-    <h1>Booking Management</h1>
-    
-    <div class="table-responsive">
-        
-        <table id="example" class="table table-striped">
-            <form method="get" action="#" th:action="@{/member/bookings}">
-                <label>Status:</label>
-                <select name="status" onchange="this.form.submit()">
-                    <option value="ALL">All Bookings</option>
-                    <option value="CONFIRMED" th:selected="${status == 'CONFIRMED'}">Confirmed</option>
-                    <option value="PENDING" th:selected="${status == 'PENDING'}">Pending</option>
-                    <option value="CANCELLED" th:selected="${status == 'CANCELLED'}">Cancelled</option>
-                </select>
-            </form>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Customer</th>
-                    <th>Phone number</th>
-                    <th>Email</th>
-                    <th>Travel Date</th>
-                    <th>Trip</th>
-                    <th>Payment Type</th>
-                    <th>Payment Status</th>
-                    <th>Status</th>
-                    <th>Seats</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="booking : ${bookings}">
-                    <td th:text="${booking.id}"></td>
-                    <td th:text="${booking.fullName}"></td>
-                    <td th:text="${booking.phoneNumber}"></td>
-                    <td th:text="${booking.email}"></td>
-                    <td th:text="${booking.trip.date}"></td>
-                    <td th:text="${booking.trip.route.departure + ' to ' + booking.trip.route.arrival}"></td>
-                    <td th:text="${booking.paymentType}"></td>
-                    <td th:text="${booking.paymentStatus}"></td>
-                    <td >
-                        <span th:if="${#strings.equals(booking.status, 'PENDING')}" th:text="${booking.status}" style="color: rgb(182, 118, 0);"></span>
-                        <span th:if="${#strings.equals(booking.status, 'CONFIRMED')}" th:text="${booking.status}" style="color: green"></span>
+<body class="sb-nav-fixed" style="background-color: #1b203d;">
+    <nav th:replace="fragments/fragments::adminNavbar"></nav>
+    <div id="layoutSidenav">
+        <div th:replace="fragments/fragments::adminSideNav"></div>
+        <div id="layoutSidenav_content">
 
-                    </td>
-                    <td th:text="${booking.listSeatsNumber}"></td>
-                    <td th:text="${booking.quantity}"></td>
-                    <td th:text="${booking.total}"></td>
-                    <td>
-                        <form th:action="@{/member/bookings/{id}/confirm(id=${booking.id})}" method="post">
+            <!--Main-->
+            <main>
+                <div class="container-fluid px-4 text-white">
+                    <br>
 
-                            <button class="btn btn-success" th:if="${!#strings.equals(booking.status, 'PENDING')}" type="submit" disabled>
-                                <i class="fas fa-check"></i>
-                            </button>
-                            <button th:if="${#strings.equals(booking.status, 'PENDING')}" type="submit">Confirm</button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+                    <div class="card mb-4" style="background-color: #272c4a;">
+                        <div class="card-header  content-box-title">
+                            <i class="fas fa-list-check me-1"></i>
+                            Booking Management
+                        </div>
+
+                        <div class="container-fluid">
+                            <br>
+                            <div class="table-responsive">
+
+                                <table id="example" class="table table-striped">
+                                    <div style="margin-bottom: 10px;">
+                                    
+                                        <form method="get" action="#" th:action="@{/member/bookings}" >
+                                            <label>Status: </label>
+                                            <select style="margin-left: 10px; padding: 3px;
+                                            border-radius: 4px;" name="status" onchange="this.form.submit()">
+                                                <option value="ALL">All Bookings</option>
+                                                <option value="CONFIRMED" th:selected="${status == 'CONFIRMED'}">Confirmed
+                                                </option>
+                                                <option value="PENDING" th:selected="${status == 'PENDING'}">Pending
+                                                </option>
+                                                <option value="CANCELLED" th:selected="${status == 'CANCELLED'}">Cancelled
+                                                </option>
+                                            </select>
+                                        </form>
+                                    </div>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Customer</th>
+                                            <th>Phone number</th>
+                                            <th>Email</th>
+                                            <th>Travel Date</th>
+                                            <th>Trip</th>
+                                            <th>Payment Type</th>
+                                            <!-- <th>Payment Status</th> -->
+
+                                            <th>Seats</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="booking : ${bookings}">
+                                            <td th:text="${booking.id}"></td>
+                                            <td th:text="${booking.fullName}"></td>
+                                            <td th:text="${booking.phoneNumber}"></td>
+                                            <td th:text="${booking.email}"></td>
+                                            <td th:text="${booking.trip.date}"></td>
+                                            <td
+                                                th:text="${booking.trip.route.departure + ' to ' + booking.trip.route.arrival}">
+                                            </td>
+                                            <td th:text="${booking.paymentType}"></td>
+                                            <!-- <td th:text="${booking.paymentStatus}"></td> -->
+
+                                            <td th:text="${booking.listSeatsNumber}"></td>
+                                            <td th:text="${booking.quantity}"></td>
+                                            <td th:text="${booking.total}"></td>
+                                            <td>
+                                                <span th:if="${#strings.equals(booking.status, 'PENDING')}"
+                                                    th:text="${booking.status}" style="color: rgb(255 224 0); font-weight:600;"></span>
+                                                <span th:if="${#strings.equals(booking.status, 'CONFIRMED')}"
+                                                    th:text="${booking.status}" style="color: #00ff3a; font-weight:600;"></span>
+
+                                            </td>
+                                            <td>
+                                                <form th:action="@{/member/bookings/{id}/confirm(id=${booking.id})}"
+                                                    method="post">
+
+                                                    <button class="btn btn-success"
+                                                        th:if="${!#strings.equals(booking.status, 'PENDING')}"
+                                                        type="submit" disabled>
+                                                        <i style="color: white;" class="fas fa-check"></i>
+                                                    </button>
+                                                    <button class="btn btn-success"
+                                                        th:if="${#strings.equals(booking.status, 'PENDING')}"
+                                                        type="submit"><i style="color: white;"
+                                                            class="fas fa-check"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+            <footer th:replace="fragments/fragments::adminFooter"></footer>
+        </div>
     </div>
-
+    <div th:replace="fragments/fragments::adminScript"></div>
     <script>
         $(document).ready(function () {
             $('#example').DataTable({
@@ -98,5 +144,6 @@
 
     </script>
 </body>
+
 
 </html>

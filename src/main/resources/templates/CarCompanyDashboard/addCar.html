@@ -123,10 +123,10 @@
             <ul>
                 <li><a href="#" style="color: black;"><i class='bx bxs-user'></i>Profile</a></li>
                 <li><a href="#" style="color: black;"><i class='bx bx-log-out'></i>Sign Out</a></li>
+                
             </ul>
         </div>
         <div class="navbar">
-            <h3>My Website</h3>
             <a href="#">Home</a>
             <a href="#">About</a>
             <a href="#">Services</a>
@@ -145,7 +145,7 @@
                     <input type="text" id="plateNumber" name="plateNumber" required class="input-add-route"
                         placeholder='Enter plate number'>
                 </div>
-                <div>
+                <div style="display: none;">
                     <label for="carCompany">Company</label> 
                     <select id="carCompany" name="carCompany.id" required class="select-add-trip-content">
                         <option value="">--Select a company--</option>
@@ -158,7 +158,7 @@
                 <div>
                     <button type="submit" class="btn-save-add-new-car">Save</button>
                     <div th:if="${error}" class="alert alert-danger" role="alert">
-                        <p th:text="${error}" style="color: white;"></p>
+                        <p th:text="${error}" style="color: red; font-size: 20px;"></p>
                     </div>
                 </div>
             </form>

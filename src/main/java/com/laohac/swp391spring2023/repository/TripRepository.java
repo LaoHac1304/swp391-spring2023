@@ -22,6 +22,13 @@ public interface TripRepository extends JpaRepository<Trip, Integer> {
     public List<Trip> findByRouteAndDateOrderByStartTimeDesc(Route route, LocalDate date);
     public List<Trip> findByRouteAndDateOrderByStartTimeAsc(Route route, LocalDate date);
 
-    public List<Trip> findByRouteAndCarAndIsEnable(Route route, Car car, Boolean isEnable);
-    // public List<Trip> findByRouteAndCarCompany(Route route, CarCompany carCompany);
+    public List<Trip> findByRouteAndCarAndIsEnableOrderByDateAsc(Route route, Car car, Boolean isEnable);
+    
+    public List<Trip> findByCarAndIsBiggestDay(Car car, Boolean isBiggestDay);
+
+    public Trip findTripByCarAndIsBiggestDay(Car car, Boolean isBiggestDay);
+
+    public Trip findByRouteAndCarAndIsBiggestDay(Route route, Car car, Boolean isBiggestDay);
+    
+    public Trip findByIsBiggestDay(Boolean isBiggestDay);
 }

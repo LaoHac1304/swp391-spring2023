@@ -75,21 +75,8 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public List<Trip> searchByRouteAndCar(Route route, Car car, Boolean isEnable) {
-        List<Trip> trips = tripRepository.findByRouteAndCarAndIsEnable(route, car, isEnable);
+        List<Trip> trips = tripRepository.findByRouteAndCarAndIsEnableOrderByDateAsc(route, car, isEnable);
         return trips;
     }
-
-    // @Override
-    // public List<Trip> searchByRouteAndListCar(Route route, List<Car> cars) {
-    //     List<Trip> trips = tripRepository.findByRouteAndListCar(route, cars);
-    //     return trips;
-    // }
-
-    // @Override
-    // // public List<Trip> searchByRouteAndCarCompany(Route route, CarCompany carCompany) {
-    // //     List<Trip> trips = tripRepository.findByRouteAndCarCompany(route, carCompany);
-    // //     return trips;
-    // // }
-
     
 }

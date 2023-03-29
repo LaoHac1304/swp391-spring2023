@@ -61,6 +61,14 @@
                                                     title="Please enter a valid 10 or 11-digit phone number">
                                             </div>
                                             <button type="submit" class="btn btn-primary"> Save Employee</button>
+                                            <button type="button" onclick="goBack()" class="btn btn-warning"> Return
+                                                back</button>
+                                            <script>
+                                                function goBack() {
+                                                    // window.history.back();
+                                                    window.location.href = "http://localhost:8080/member/viewall";
+                                                }
+                                            </script>
                                         </form>
                                     </div>
                                 </div>

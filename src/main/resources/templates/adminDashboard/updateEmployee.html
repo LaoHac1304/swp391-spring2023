@@ -11,7 +11,8 @@
             <!--Main-->
             <main>
                 <div class="container-fluid px-4 text-white">
-                    <h1 class="mt-4">Charts</h1>
+                    <br>
+                    <!-- <h1 class="mt-4">Charts</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="Adashboard.html">Dashboard</a></li>
                         <li class="breadcrumb-item active">Charts</li>
@@ -24,7 +25,7 @@
                             <a target="_blank" href="https://www.chartjs.org/docs/latest/">Chart.js documentation</a>
                             .
                         </div>
-                    </div>
+                    </div> -->
                     <div class="card mb-4">
                         <div class="card-header  content-box-title">
                             <i class="fas fa-chart-area me-1"></i>
@@ -44,7 +45,16 @@
                                                     other users on the site)</label>
                                                 <input type="text" th:field="*{username}" placeholder="Username"
                                                     class="form-control mb-4 col-4" required
-                                                    title="Please enter username">
+                                                    title="You can't change username" disabled>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                                                <input type="text" th:field="*{email}"
+                                                    placeholder="Enter your email address"
+                                                    class="form-control mb-4 col-4" required
+                                                    title="You can change notification email later in checkout"
+                                                    disabled>
                                             </div>
 
                                             <div class="mb-3 form-group">
@@ -54,21 +64,15 @@
                                                     title="Please enter Fullname">
                                             </div>
 
-                                            <div class="mb-3 form-group">
+                                            <!-- <div class="mb-3 form-group">
                                                 <label class="small mb-1">Password</label>
                                                 <input type="text" th:field="*{password}"
                                                     placeholder="Enter your password" class="form-control mb-4 col-4"
                                                     required pattern=".{6,}"
                                                     title="Password must be at least 6 characters">
-                                            </div>
+                                            </div> -->
 
-                                            <div class="mb-3">
-                                                <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                                <input type="text" th:field="*{email}"
-                                                    placeholder="Enter your email address"
-                                                    class="form-control mb-4 col-4" required
-                                                    title="Please enter email address">
-                                            </div>
+
 
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="inputPhone">Phone number</label>
@@ -79,6 +83,15 @@
                                             </div>
 
                                             <button type="submit" class="btn btn-primary"> Save Employee</button>
+                                            <button type="button" class="btn btn-danger">Reset Password </button>
+                                            <button type="button" onclick="goBack()" class="btn btn-warning"> Return
+                                                back</button>
+                                            <script>
+                                                function goBack() {
+                                                    // window.history.back();
+                                                    window.location.href = "http://localhost:8080/member/viewall";
+                                                }
+                                            </script>
                                         </form>
                                     </div>
                                 </div>
@@ -86,8 +99,8 @@
                                 <div class="col-md-4">
                                     <div class="card-body">
                                         <h5 class="card-title">Additional Information</h5>
-                                        <p class="card-text">Password must be at least 6 characters.</p>
-                                        <p class="card-text">'@' Must be include in the email address field.</p>
+                                        <p class="card-text">If the employee forgot they password, </p>
+                                        <p class="card-text">the only way is reset password.</p>
                                         <p class="card-text">Phone number must be between 10 - 11 digits.</p>
                                     </div>
                                 </div>

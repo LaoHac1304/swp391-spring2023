@@ -134,8 +134,10 @@ public class MemberServiceImpl implements MemberService {
         member.setRole("employee");
         member.setSex("Male");
 
+        
         String rawPassword = member.getPassword();
-        member.setPassword(passwordEncoder.encode(rawPassword));
+        if (rawPassword != null && !rawPassword.isEmpty()) {
+        member.setPassword(passwordEncoder.encode(rawPassword));}
         member.setProvider(Provider.LOCAL);
         
         this.memberRepository.save(member);       
@@ -178,6 +180,19 @@ public class MemberServiceImpl implements MemberService {
             
         }
         return null;
+    }
+
+    @Override
+    public void updateMember(User member) {
+        String name = member.getFullName();
+        String phone = member.getPhoneNumber();
+        Optional<User> memberOptional = memberRepository.findById(member.getId());
+        if (memberOptional.isPresent()) {
+            member = memberOptional.get();
+        }
+        member.setFullName(name);
+        member.setPhoneNumber(phone);
+        this.memberRepository.save(member);    
     }
 
    

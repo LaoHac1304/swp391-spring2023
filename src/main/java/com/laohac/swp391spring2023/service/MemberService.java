@@ -20,5 +20,7 @@ public interface MemberService {
 
     public UserDTOResponse getCurrentUser();
 
+    public void updateMember(User member);
+
     
 }

@@ -103,7 +103,8 @@
                                                     th:text="${booking.status}" style="color: rgb(255 224 0); font-weight:600;"></span>
                                                 <span th:if="${#strings.equals(booking.status, 'CONFIRMED')}"
                                                     th:text="${booking.status}" style="color: #00ff3a; font-weight:600;"></span>
-
+                                                    <span th:if="${#strings.equals(booking.status, 'CANCELLED')}"
+                                                    th:text="${booking.status}" style="color: #ff0000; font-weight:600;"></span>
                                             </td>
                                             <td>
                                                 <form th:action="@{/member/bookings/{id}/confirm(id=${booking.id})}"

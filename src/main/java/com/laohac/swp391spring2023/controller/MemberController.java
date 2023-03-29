@@ -18,6 +18,7 @@ import com.laohac.swp391spring2023.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +39,7 @@ import com.laohac.swp391spring2023.model.entities.Route;
 import com.laohac.swp391spring2023.model.entities.User;
 import com.laohac.swp391spring2023.repository.CarCompanyRepository;
 import com.laohac.swp391spring2023.repository.CarRepository;
+import com.laohac.swp391spring2023.repository.MemberRepository;
 import com.laohac.swp391spring2023.service.BookingService;
 import com.laohac.swp391spring2023.service.MemberService;
 import com.mysql.cj.x.protobuf.MysqlxCrud.Order;
@@ -62,6 +64,12 @@ public class MemberController {
 
     @Autowired
     private BookingService bookingService;
+
+    @Autowired
+    private MemberRepository memberRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/adminDB")
     public String showAdminDB(HttpSession session, Authentication authentication) {
@@ -138,6 +146,26 @@ public class MemberController {
     @GetMapping("/save")
     public String saveMember(@ModelAttribute("member") User member) {
         memberService.addMember(member);
+        return "redirect:/member/viewall";
+    }
+
+    @GetMapping("/save-update")
+    public String updateMember(@ModelAttribute("member") User member) {
+        memberService.updateMember(member);
+        return "redirect:/member/viewall";
+    }
+
+    @GetMapping("/reset-password")
+    public String resetPassword(@ModelAttribute("member") User member) {
+        Optional<User> memberOptional = memberRepository.findById(member.getId());
+        if (memberOptional.isPresent()) {
+            member = memberOptional.get();
+            String rawPassword = "12345678";
+            if (rawPassword != null && !rawPassword.isEmpty()) {
+                member.setPassword(passwordEncoder.encode(rawPassword));
+            }
+            memberRepository.save(member);
+        }
         return "redirect:/member/viewall";
     }
 

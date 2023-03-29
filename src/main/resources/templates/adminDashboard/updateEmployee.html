@@ -37,7 +37,7 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
 
-                                        <form th:action="@{/member/save}" th:object="${member}">
+                                        <form th:action="@{/member/save-update}" th:object="${member}">
                                             <input type="hidden" th:field="*{id}">
 
                                             <div class="mb-3 form-group">
@@ -83,7 +83,7 @@
                                             </div>
 
                                             <button type="submit" class="btn btn-primary"> Save Employee</button>
-                                            <button type="button" class="btn btn-danger">Reset Password </button>
+                                            
                                             <button type="button" onclick="goBack()" class="btn btn-warning"> Return
                                                 back</button>
                                             <script>
@@ -92,6 +92,10 @@
                                                     window.location.href = "http://localhost:8080/member/viewall";
                                                 }
                                             </script>
+                                        </form>
+                                        <form th:action="@{/member/reset-password}" th:object="${member}">
+                                            <input type="hidden" th:field="*{id}">
+                                            <button type="submit" class="btn btn-danger">Reset Password </button>
                                         </form>
                                     </div>
                                 </div>

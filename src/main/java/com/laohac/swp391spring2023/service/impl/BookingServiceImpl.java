@@ -87,8 +87,9 @@ public class BookingServiceImpl implements BookingService {
                 BigDecimal price = trip.getPrice();
                 BigDecimal priceTotal = price.multiply(BigDecimal.valueOf(listSeats.size()));
                 // int priceTotal = price*(listSeats.size());
+                Boolean isSpecialDay = trip.getIsSpecialDay();
                 return CheckOutInfoDTOReponse.builder().trip(trip).lSeats(listSeats).priceTotal(priceTotal)
-                                .user(userDTOResponse).build();
+                                .user(userDTOResponse).isSpecialDay(isSpecialDay).build();
 
         }
 

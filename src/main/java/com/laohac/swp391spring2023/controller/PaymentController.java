@@ -236,11 +236,15 @@ public class PaymentController {
     }
 
     @PostMapping("/cancel-booking")
-    public String cancelBooking(@RequestParam("bookingId") int bookingId, Model model){
+    public String cancelBooking(@RequestParam("bookingId") int bookingId, Model model, HttpSession session){
         
-        
-        if (bookingService.cancelBooking(bookingId) == false) 
-            model.addAttribute("errorMessage", "Sorry, it's too late to cancel this booking");
+        boolean ok = true;
+        if (!bookingService.cancelBooking(bookingId)) {
+            ok = false;
+            session.setAttribute("errorMessageCancelBK", ok);
+            // model.addAttribute("errorMessageCancelBK",ok);
+        }
+            
 
         return "redirect:/users/info";
     }

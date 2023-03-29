@@ -56,10 +56,10 @@ public class TripController {
 
     @GetMapping("/viewall")
     public String viewAllTrip(@RequestParam("departure") String departure,
-                              @RequestParam("arrival") String arrival,  
-                              Model model) {
-                        
-        int id = memberService.getCurrentUser().getCarCompanyId();            
+            @RequestParam("arrival") String arrival,
+            Model model) {
+
+        int id = memberService.getCurrentUser().getCarCompanyId();
         CarCompany carCompany = carCompanyService.getCarCompanyById(id);
         List<Car> cars = carService.getListCarByCarCompany(carCompany);
         Route route = routeRepository.findByState1AndState2(departure, arrival);
@@ -67,15 +67,15 @@ public class TripController {
         List<Trip> lTrips = new ArrayList<>();
         for (Car car : cars) {
             List<Trip> listTrips = new ArrayList<>();
-            listTrips = tripService.searchByRouteAndCar(route, car); 
+            listTrips = tripService.searchByRouteAndCar(route, car, true);
             for (Trip tripTmp : listTrips) {
                 lTrips.add(tripTmp);
             }
-            model.addAttribute("listTrips",lTrips);
-              
+            model.addAttribute("listTrips", lTrips);
+
         }
-        return "CarCompanyDashboard/TripManagement"; 
-        
+        return "CarCompanyDashboard/TripManagement";
+
     }
 
     @GetMapping("/add")
@@ -97,24 +97,15 @@ public class TripController {
 
     @GetMapping("/save")
     public String saveTrip(@ModelAttribute("trip") Trip trip) {
-    tripRepository.save(trip);
-    //     Car car = carRepository.findById(trip.getCar().getId()).orElseThrow(() -> new RuntimeException("Car not found"));
+        tripRepository.save(trip);
 
-    // // Set the trip ID for each seat in the car
-    // for (Seat seat : car.getSeats()) {
-    //     seat.setTrip(trip);
-    //     seatRepository.save(seat);
-    // }
-    Car car = carRepository.findById(trip.getCar().getId()).orElseThrow(() -> new RuntimeException("Car not found"));
+        Car car = carRepository.findById(trip.getCar().getId())
+                .orElseThrow(() -> new RuntimeException("Car not found"));
 
-// Set the trip ID for each seat in the car
-car.initSeats(trip);
+        car.initSeats(trip);
 
-// Save the car with the new list of seats
-carRepository.save(car);
+        carRepository.save(car);
 
-    // Save the trip and the car (with the initialized seats list)
-    
         return "redirect:/route/viewall";
     }
 
@@ -137,7 +128,9 @@ carRepository.save(car);
 
     @GetMapping("/delete/{id}")
     public String deleteTrip(@PathVariable(value = "id") int id) {
-        this.tripService.deleteTripById(id);
+        Trip trip = tripService.getTripById(id);
+        trip.setIsEnable(false);
+        tripRepository.save(trip);
         return "redirect:/route/viewall";
-    }
+    }   
 }

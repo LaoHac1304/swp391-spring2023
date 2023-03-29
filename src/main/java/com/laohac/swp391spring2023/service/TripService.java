@@ -19,6 +19,6 @@ public interface TripService {
     
     public List<Trip> searchByRoute(Route route);
 
-    public List<Trip> searchByRouteAndCar(Route route, Car car);
+    public List<Trip> searchByRouteAndCar(Route route, Car car, Boolean isEnable);
 
 }

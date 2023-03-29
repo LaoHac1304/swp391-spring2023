@@ -26,7 +26,7 @@ public interface UserService {
 
     public UserDTOResponse authenticated(UserDTORequest userDTORequest);
 
-    public UserDTOResponse update(UserDTOUpdate userUpdate, String username);
+    public UserDTOResponse update(UserDTOUpdate userUpdate, String username, String email);
 
     public UserDTOResponse getCurrentUser();
 
@@ -36,7 +36,7 @@ public interface UserService {
 
     public List<Trip> search(Route route);
 
-    public List<Trip> searchByRouteAndDate(Route route, LocalDate date);
+    public List<Trip> searchByRouteAndDate(Route route, LocalDate date, Boolean isEnable);
 
     public void sendVerificationEmail(UserDTOResponse user, String siteUrl) throws UnsupportedEncodingException, MessagingException;
 

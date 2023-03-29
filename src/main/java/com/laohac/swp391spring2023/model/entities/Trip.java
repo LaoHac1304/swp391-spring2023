@@ -71,5 +71,7 @@ public class Trip {
 
     private int totalAvailableSeat;
 
-    
+    @Column(name = "IsEnable")
+    private Boolean isEnable;
+   
 }   

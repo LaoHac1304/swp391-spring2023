@@ -74,7 +74,7 @@ var myLineChart = new Chart(ctx, {
         ticks: {
           min: 0,
           // max: 40000,
-          max: Math.ceil(maxPrice + maxPrice * 20 / 100), // code function here
+          max: Math.ceil(maxPrice + maxPrice * 30 / 100), // code function here
           maxTicksLimit: 10,
         },
         gridLines: {

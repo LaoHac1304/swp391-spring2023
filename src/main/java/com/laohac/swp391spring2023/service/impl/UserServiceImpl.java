@@ -228,15 +228,18 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDTOResponse update(UserDTOUpdate userUpdate, String username) {
+    public UserDTOResponse update(UserDTOUpdate userUpdate, String username, String email) {
         
         Optional<User> userOptional = userRepository.findByUsername(username);
+        if (!userOptional.isPresent())
+            userOptional = userRepository.findByEmail(email);
         if (userOptional.isPresent()){
             User user = userOptional.get();
             user.setFullName(userUpdate.getFullName());
             user.setPhoneNumber(userUpdate.getPhoneNumber());
             user.setSex(userUpdate.getSex());
             userRepository.save(user);
+
 
             UserDTOResponse userDTOResponse = UserDTOResponse
                                                 .builder()
@@ -255,7 +258,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTOResponse getCurrentUser() {
-        // TODO Auto-generated method stub
+        
         return null;
     }
 
@@ -287,8 +290,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Trip> searchByRouteAndDate(Route route, LocalDate date) {
-        List<Trip> trips = tripRepository.findByRouteAndDate(route, date);
+    public List<Trip> searchByRouteAndDate(Route route, LocalDate date, Boolean isEnable) {
+        List<Trip> trips = tripRepository.findByRouteAndDateAndIsEnable(route, date, isEnable);
         return trips;
        
     }

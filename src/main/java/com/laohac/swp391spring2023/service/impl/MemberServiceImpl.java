@@ -161,7 +161,9 @@ public class MemberServiceImpl implements MemberService {
             if (member.getCarCompany()!= null){
                 carCompanyId = member.getCarCompany().getId();
             }
-            
+            // if ((username == null || username.isEmpty()) && (member.getEmail() == null || member.getEmail().isEmpty())){
+            //     return null;
+            // }
             return UserDTOResponse
             .builder()
             .username(username)
@@ -172,7 +174,8 @@ public class MemberServiceImpl implements MemberService {
             .role(member.getRole())
             .carCompanyId(carCompanyId)
             .provider(member.getProvider().toString())
-            .build();    
+            .build();
+            
         }
         return null;
     }

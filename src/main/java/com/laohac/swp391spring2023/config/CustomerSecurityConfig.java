@@ -14,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @Order(2)
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+// @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class CustomerSecurityConfig {
 
     @Bean
@@ -52,7 +52,7 @@ public class CustomerSecurityConfig {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/users/login")
+                .loginPage("/homepage")
                 .usernameParameter("username")
                 .loginProcessingUrl("/users/login")
                 .defaultSuccessUrl("/homepage/defaultSuccessUrl")

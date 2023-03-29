@@ -166,7 +166,24 @@
         }
 
         .combine-icon-text {
-            margin-left: 620px;
+            margin-left: 1000px;
+        }
+
+        .btn-view-list-trip {
+            border-radius: 4px;
+            border: 1px solid transparent;
+            background-color: rgb(222, 222, 84);
+            color: white;
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+
+        .btn-view-list-trip:hover {
+            background-color: rgb(209, 209, 54);
+        }
+
+        .card {
+            margin-top: 20px;
         }
     </style>
 
@@ -195,46 +212,7 @@
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/tables.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">table_view</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Tables</span>
-                    </a>
-                </li> -->
-                <!-- <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/billing.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">receipt_long</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Billing</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/virtual-reality.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">view_in_ar</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Virtual Reality</span>
-                    </a>
-                </li> -->
-                <!-- <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/rtl.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
-                        </div>
-                        <span class="nav-link-text ms-1">RTL</span>
-                    </a>
-                </li> -->
-                <!-- <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/notifications.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">notifications</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Notifications</span>
-                    </a>
-                </li> -->
+                
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages
                     </h6>
@@ -255,24 +233,8 @@
                         <span class="nav-link-text ms-1">Sign Out</span>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/sign-up.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">assignment</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Sign Up</span>
-                    </a>
-                </li> -->
             </ul>
         </div>
-        <!-- <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-            <div class="mx-3">
-                <a class="btn bg-gradient-primary mt-4 w-100"
-                    href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree"
-                    type="button">Upgrade to
-                    pro</a>
-            </div>
-        </div> -->
     </aside>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
@@ -295,11 +257,6 @@
                         </div>
                     </div>
                     <ul class="navbar-nav  justify-content-end">
-                        <!-- <li class="nav-item d-flex align-items-center">
-                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank"
-                                href="https://www.creative-tim.com/builder/material?ref=navbar-dashboard">Online
-                                Builder</a>
-                        </li> -->
                         <li class="nav-item d-flex align-items-center">
                             <a href="../pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
                                 <i class="fa fa-user me-sm-1"></i>
@@ -487,87 +444,15 @@
                 </div>
             </div>
 
-            <!-- <div class="row mt-4">
-                <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                    <div class="card z-index-2 ">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                <div class="chart">
-                                    <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h6 class="mb-0 ">Website Views</h6>
-                            <p class="text-sm ">Last Campaign Performance</p>
-                            <hr class="dark horizontal">
-                            <div class="d-flex ">
-                                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                                <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                    <div class="card z-index-2  ">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                            <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
-                                <div class="chart">
-                                    <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h6 class="mb-0 "> Daily Sales </h6>
-                            <p class="text-sm "> (<span class="font-weight-bolder">+15%</span>) increase in today sales.
-                            </p>
-                            <hr class="dark horizontal">
-                            <div class="d-flex ">
-                                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                                <p class="mb-0 text-sm"> updated 4 min ago </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mt-4 mb-3">
-                    <div class="card z-index-2 ">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                            <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
-                                <div class="chart">
-                                    <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h6 class="mb-0 ">Completed Tasks</h6>
-                            <p class="text-sm ">Last Campaign Performance</p>
-                            <hr class="dark horizontal">
-                            <div class="d-flex ">
-                                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                                <p class="mb-0 text-sm">just updated</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <div class="row mb-4">
                 <div class="col-lg-12 col-md-12 mb-md-0 mb-4">
                     <div class="card">
                         <div class="card-header pb-0">
                             <div class="row">
-                                <!-- <div class="col-lg-6 col-7">
-                                    <h6>Projects</h6>
-                                    <p class="text-sm mb-0">
-                                        <i class="fa fa-check text-info" aria-hidden="true"></i>
-                                        <span class="font-weight-bold ms-1">30 done</span> this month
-                                    </p>
-                                </div> -->
+                                
                                 <div class="col-lg-6 col-5 my-auto text-end">
                                     <div class="dropdown float-lg-end pe-4">
-                                        <!-- <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fa fa-ellipsis-v text-secondary"></i>
-                                        </a> -->
+                                       
                                         <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5"
                                             aria-labelledby="dropdownTable">
                                             <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a>
@@ -609,7 +494,7 @@
                                                 <th>Departure</th>
                                                 <th>Arrival</th>
                                                 <th>Actions</th>
-                                                <th>Detail</th>
+                                                <!-- <th>Detail</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -621,57 +506,22 @@
                                                         class="btn btn-success">Update</a>
                                                     <a th:href="@{delete/{id}(id=${route.id})}"
                                                         class="btn btn-warning">Delete</a>
+                                                    <a class="btn-view-list-trip"
+                                                        th:href="@{/trip/viewall(departure=${route.departure},arrival=${route.arrival})}">VIEW
+                                                        LIST TRIP</a>
                                                 </td>
-                                                <td>
+                                                <!-- <td>
                                                     <a
                                                         th:href="@{/trip/viewall(departure=${route.departure},arrival=${route.arrival})}">View
                                                         list trip</a>
-                                                </td>
+                                                </td> -->
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <footer class="footer py-4  ">
-                            <div class="container-fluid">
-                                <div class="row align-items-center justify-content-lg-between">
-                                    <div class="col-lg-6 mb-lg-0 mb-4">
-                                        <!-- <div class="copyright text-center text-sm text-muted text-lg-start">
-                                            ©
-                                            <script>
-                                                document.write(new Date().getFullYear())
-                                            </script>,
-                                            made with <i class="fa fa-heart"></i> by
-                                            <a href="https://www.creative-tim.com" class="font-weight-bold"
-                                                target="_blank">Creative Tim</a>
-                                            for a better web.
-                                        </div> -->
-                                    </div>
-                                    <!-- <div class="col-lg-6">
-                                        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                                            <li class="nav-item">
-                                                <a href="https://www.creative-tim.com" class="nav-link text-muted"
-                                                    target="_blank">Creative
-                                                    Tim</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="https://www.creative-tim.com/presentation"
-                                                    class="nav-link text-muted" target="_blank">About Us</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted"
-                                                    target="_blank">Blog</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="https://www.creative-tim.com/license"
-                                                    class="nav-link pe-0 text-muted" target="_blank">License</a>
-                                            </li>
-                                        </ul>
-                                    </div> -->
-                                </div>
-                            </div>
-                        </footer>
+                        
                     </div>
     </main>
     <div class="fixed-plugin">

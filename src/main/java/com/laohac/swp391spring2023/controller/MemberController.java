@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.laohac.swp391spring2023.model.Month;
 import com.laohac.swp391spring2023.model.Status;
+import com.laohac.swp391spring2023.model.dto.MemberDTOReponse;
 import com.laohac.swp391spring2023.model.dto.MemberViewDTOReponse;
 import com.laohac.swp391spring2023.model.entities.Car;
 import com.laohac.swp391spring2023.model.entities.CarCompany;
@@ -85,7 +86,7 @@ public class MemberController {
         // int orders = 0;
         int cars = 0;
 
-        List<User> listUsers = memberService.getAllMember();
+        List<MemberDTOReponse> listUsers = memberService.getAllMember();
         List<CarCompany> listCarCompanies = carCompanyRepository.findAll();
         List<Car> listCars = carRepository.findAll();
 
@@ -110,6 +111,8 @@ public class MemberController {
             ProfitDTOReponse profitDTOReponse = getProfitWithMonth(month.getMonthName());
             wrapper.put(month.getMonthName(), profitDTOReponse);
         }
+
+
 
         List<Route> listRoutes = routeRepository.findAll();
 

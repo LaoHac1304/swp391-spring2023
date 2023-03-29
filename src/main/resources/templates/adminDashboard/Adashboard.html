@@ -90,6 +90,7 @@
                                         <th>Email</th>
                                         <th>Phone Number</th>
                                         <th>Username</th>
+                                        <th>Is available</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -99,13 +100,42 @@
                                         <td th:text="${member.email}">Full Name</td>
                                         <td th:text="${member.phoneNumber}">Phone Number</td>
                                         <td th:text="${member.username}">Username</td>
-                                        <td><a th:href="@{update/{id}(id=${member.id})}" class="btn btn-info">
-                                                <i style="color: white;" class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            <a th:href="@{delete/{id}(id=${member.id})}"
-                                                class="btn btn-danger">
-                                                <i style="color: white;" class="fa-solid fa-trash"></i>
-                                            </a>
+                                        <td>
+                                            <span style="color: #00ff3a; font-weight:600;"
+                                                th:if="${#strings.equals(member.enableToWork, 'true')}"
+                                                th:text="${#strings.toUpperCase(member.enableToWork)}"></span>
+                                            <span style="color: rgb(255 224 0); font-weight:600;"
+                                                th:if="${#strings.equals(member.enableToWork, 'false')}"
+                                                th:text="${#strings.toUpperCase(member.enableToWork)}"></span>
+                                        </td>
+
+                                        <td>
+                                            <!-- Enable -->
+                                            <th:block th:if="${#strings.equals(member.enableToWork, 'true')}">
+                                                <a th:href="@{update/{id}(id=${member.id})}" class="btn btn-info">
+                                                    <i style="color: white;" class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                                <a th:href="@{delete/{id}(id=${member.id})}" class="btn btn-danger">
+                                                    <i style="color: white;" class="fa-solid fa-trash"></i>
+                                                </a>
+                                            </th:block>
+
+
+                                            <!-- Disable -->
+                                            <th:block th:if="${!#strings.equals(member.enableToWork, 'true')}">
+                                                <!-- <a th:href="@{update/{id}(id=${member.id})}" class="btn btn-info" th:disabled="true">
+                                                    <i style="color: white;" class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                                <a th:href="@{delete/{id}(id=${member.id})}" class="btn btn-danger" th:disabled="true">
+                                                    <i style="color: white;" class="fa-solid fa-trash"></i>
+                                                </a> -->
+                                                <button type="button" class="btn btn-info" th:onclick="'location.href=\'/update/\'+${member.id}'" disabled>
+                                                    <i style="color: white;" class="fa-solid fa-pen-to-square"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-danger" th:onclick="'location.href=\'/delete/\'+${member.id}'" disabled>
+                                                    <i style="color: white;" class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </th:block>
                                         </td>
                                     </tr>
                                 </tbody>

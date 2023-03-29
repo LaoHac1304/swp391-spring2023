@@ -73,5 +73,8 @@ public class Trip {
 
     @Column(name = "IsEnable")
     private Boolean isEnable;
+
+    @Column(name = "isBiggestDay")
+    private Boolean isBiggestDay;
    
 }   

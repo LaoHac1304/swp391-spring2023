@@ -20,7 +20,8 @@
 
         <form th:action="@{/users/login}" method="post" class="form-login">
             <div th:if="${param.error}">
-                <h4 style="color: red">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</h4>
+                <!-- <h4 style="color: red">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</h4> -->
+                <h4 style="color: red">Incorrect username or password. Please try again.</h4>
             </div>
             <div class="row">
                 <a th:href="@{/homepage}">
@@ -28,7 +29,7 @@
                     </i>
                 </a>
                 
-                <h3>Login Here</h3>
+                <h3>Login</h3>
             </div>
             
             <label>Username</label><br>

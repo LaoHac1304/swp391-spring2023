@@ -54,7 +54,7 @@ public class CarController {
     }
 
     @GetMapping("/add")
-    public String addTrip(Model model) {
+    public String addCar(Model model) {
         Car car = new Car();
         model.addAttribute("car", car);
 
@@ -68,7 +68,15 @@ public class CarController {
     }
 
     @GetMapping("/save")
-    public String saveTrip(@ModelAttribute("car") Car car) {
+    public String saveCar(@ModelAttribute("car") Car car, Model model) {
+        if (carRepository.findByPlateNumber(car.getPlateNumber()) != null) {
+            model.addAttribute("error", "Plate number already exists");
+            int currentUserId = memberService.getCurrentUser().getCarCompanyId();
+            model.addAttribute("currentUserId", currentUserId);
+            List<CarCompany> carCompanys = carCompanyRepository.findAll();
+            model.addAttribute("carCompanys", carCompanys);
+            return "CarCompanyDashboard/addCar";
+        }
         carRepository.save(car);
 
         List<Seat> seats = new ArrayList<>();

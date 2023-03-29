@@ -23,6 +23,7 @@
             padding: 20px;
             width: 600px;
             margin:  auto;
+            margin-top: 100px;
             /* margin-bottom: 20px; */
         }
 
@@ -125,6 +126,21 @@
             </div>
             <label for="arrival-detail" style="font-weight: bold;">Date:</label>
             <input type="date" id="arrival-date" name="date" required class="input-add-trip-content">
+            <script>
+                // var today = new Date().toISOString().split('T')[0];
+                // document.getElementById("myDate").setAttribute("min", today);
+                // Get the current date with local time
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+
+                // Format the date into the required string format
+                var minDate = yyyy + '-' + mm + '-' + dd;
+
+                // Set the minimum date of the input element to the formatted date
+                document.getElementById("arrival-date").setAttribute("min", minDate);
+            </script>
         </div>
         <div>
             <label for="route" style="font-weight: bold;">Route:</label>
@@ -138,14 +154,18 @@
         <div>
             <select id="car" name="car.id" required class="select-add-trip-content">
                 <option value="">--Select a car--</option>
-                <th:block th:each="car : ${cars}" th:if="${car.carCompany != null and car.carCompany.id == currentUserId}">
-  <option th:value="${car.id}" th:text="${car.plateNumber}"></option>
-</th:block>
+                <th:block th:each="car : ${cars}"
+                    th:if="${car.carCompany != null and car.carCompany.id == currentUserId}">
+                    <option th:value="${car.id}" th:text="${car.plateNumber}"></option>
+                </th:block>
             </select>
         </div>
+        <!-- <div th:if="${session.errorCarExist}" class="alert alert-danger" role="alert">
+        </div> -->
+        <p th:text="${session.errorCarExist}" style="color: rgb(244, 67, 54);font-family: Roboto, Helvetica, Arial, sans-serif;"></p>
         <button type="submit" class="btn-save-content-add-trip">Save</button>
         <button type="reset" class="btn-cancel-content-add-trip">Cancel</button>
-    </form>
+    </form> 
 </body>
 
 </html>

@@ -617,7 +617,7 @@ a.main-btn3.mt-2:hover {
     color: #9ABC66;
     font-size: 100px;
     line-height: 200px;
-    margin-left: 55px;
+    /* margin-left: 55px; */
 }
 
 /* ================================================================================== */
@@ -639,6 +639,17 @@ a.main-btn3.mt-2:hover {
     opacity: 1;
 }
 
+.reset_password{
+    margin-top: 0px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    /* padding: 15px 0; */
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 .overlay-co {
     position: absolute;
@@ -874,7 +885,7 @@ hr {
 }
 
 .header_wrapper .nav-item .nav-link {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: var(--bg-white);
     display: inline-block;

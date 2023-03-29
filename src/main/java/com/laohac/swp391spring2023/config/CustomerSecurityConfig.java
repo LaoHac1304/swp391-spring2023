@@ -44,7 +44,7 @@ public class CustomerSecurityConfig {
         httpSecurity.authenticationProvider(authenticationProvider2());
 
         httpSecurity.authorizeRequests()
-                .antMatchers("/", "/pay/**", "/homepage", "/homepage/**", "/users", "/users/**", "/trip", "/trip/**",
+                .antMatchers("/", "/pay/**", "/homepage", "/homepage/**", "/users", "/users/**", "/trip", "/trip/**", "/homepage/logout",
                         "/route", "/route/**", "/car", "car/**", "/booking", "/booking/**", "/users/verify",
                         "/oauth2/**", "/css/**", "/js/**", "/images/**")
                 .permitAll()
@@ -63,12 +63,12 @@ public class CustomerSecurityConfig {
                 .userInfoEndpoint().userService(oAuth2UserService)
                 .and()
                 .defaultSuccessUrl("/users/home")
-                .successHandler(oAuth2LoginSuccessHandler)
-                .and()
-                .logout()
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .logoutUrl("/users/logout");
+                .successHandler(oAuth2LoginSuccessHandler);
+                // .and()
+                // .logout()
+                // .invalidateHttpSession(true)
+                // .deleteCookies("JSESSIONID")
+                // .logoutUrl("/users/logout");
 
         return httpSecurity.build();
     }

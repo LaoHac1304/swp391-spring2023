@@ -41,7 +41,7 @@ public class AdminSecurityConfig {
 
         httpSecurity.authorizeRequests()
         .antMatchers("/css/**", "/js/**","/images/**").permitAll()
-        .antMatchers("/", "/pay/**", "/homepage","/homepage/login", "/users/login","/homepage/defaultSuccessUrl","/homepage/**").permitAll();
+        .antMatchers("/", "/pay/**", "/homepage","/homepage/login", "/homepage/logout", "/users/login","/homepage/defaultSuccessUrl","/homepage/**").permitAll();
 
         httpSecurity .antMatcher("/member/**").authorizeRequests().anyRequest().hasAuthority("admin")
         .and()
@@ -50,12 +50,12 @@ public class AdminSecurityConfig {
             .usernameParameter("username")
             .loginProcessingUrl("/users/login")
             .defaultSuccessUrl("/homepage/defaultSuccessUrl")
-            .permitAll()
-            .and()
-            .logout()
-            .invalidateHttpSession(true)
-            .deleteCookies("JSESSIONID")
-            .logoutUrl("/member/logout");
+            .permitAll();
+            // .and()
+            // .logout()
+            // .invalidateHttpSession(true)
+            // .deleteCookies("JSESSIONID")
+            // .logoutUrl("/member/logout");
         
         return httpSecurity.build();
     }

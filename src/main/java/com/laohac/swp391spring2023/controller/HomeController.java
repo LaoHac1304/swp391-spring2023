@@ -102,7 +102,7 @@ public class HomeController {
             session.invalidate();
         }
 
-        return "/homepage";
+        return "redirect:/homepage";
         // return "homepage/login";
     }
 
@@ -152,6 +152,8 @@ public class HomeController {
             return "redirect:/route/viewall";
 
     }
+
+    
 
     @GetMapping("/forgot-password")
     public String showForgotPasswordForm(Model model) {

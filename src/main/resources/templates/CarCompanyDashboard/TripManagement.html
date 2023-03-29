@@ -155,7 +155,7 @@
         <div class="card-header-content-box-title">
             <h2 class="fas-fa-table-me-1">Trip Details</h2>
         </div>
-        <a th:href="@{/trip/add}" class="add-trip-btn"><i class='bx bx-plus'></i>
+        <a th:href="@{/trip/add}" class="add-trip-btn"><i class='bx bx-plus'></i>    
             Add New Trip
         </a>
         <div class="card-body text-white">
@@ -163,8 +163,7 @@
             <table id="datatablesSimple" class="trip-management-table">
                 <thead>
                     <tr>
-                        <th>Arrival</th>
-                        <th>Departure</th>
+                        <th>Route</th>
                         <th>Price</th>
                         <th>Time</th>
                         <th>Car</th>
@@ -176,8 +175,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="trip: ${listTrips}">
-                        <td th:text="${trip.getRoute().getDeparture()}">Departure</td>
-                        <td th:text="${trip.getRoute().getArrival()}">Arrival</td>
+                        <td th:text="${trip.getRoute().getDeparture() + ' - ' + trip.getRoute().getArrival()}">Route</td>
                         <td th:text="${trip.price}">Price</td>
                         <td th:text="${trip.startTime + ' - ' + trip.endTime}">Start</td>
                         <td th:text="${trip.getCar().getPlateNumber}">Car</td>
@@ -185,8 +183,8 @@
                         <td th:text="${trip.arrivalDetail}">Drop Off</td>
                         <td th:text="${trip.date}">Day</td>
                         <td>
-                            <a th:href="@{update/{id}(id=${trip.id})}" class="update-tripm-btn">Update</a>
-                            <a th:href="@{delete/{id}(id=${trip.id})}" class="delete-tripm-btn">Delete</a>
+                            <a th:href="@{updateListTrip/{id}(id=${trip.id})}" class="update-tripm-btn">Extend</a>
+                            <a th:href="@{delete/{id}(id=${trip.id})}" class="delete-tripm-btn">Disable</a>
                         </td>
                     </tr>
                 </tbody>

@@ -10,4 +10,5 @@ import com.laohac.swp391spring2023.model.entities.CarCompany;
 
 public interface CarRepository extends JpaRepository<Car, Integer> {
     List<Car> findByCarCompany(CarCompany carCompany);
+    public Car findByPlateNumber(String plateNumber);
 }

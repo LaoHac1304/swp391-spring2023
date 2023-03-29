@@ -157,6 +157,9 @@
                 </div>          
                 <div>
                     <button type="submit" class="btn-save-add-new-car">Save</button>
+                    <div th:if="${error}" class="alert alert-danger" role="alert">
+                        <p th:text="${error}" style="color: white;"></p>
+                    </div>
                 </div>
             </form>
         </div>

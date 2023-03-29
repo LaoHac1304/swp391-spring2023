@@ -189,41 +189,48 @@ public class BookingServiceImpl implements BookingService {
                 String subject = "About your trip";
                 String senderName = "4Boys Team";
 
-                String mailContent = "<body style=\"background-color: #f4f4f4;\"><div style=\"background-color: #f4f4f4; padding: 20px;\">"
+                String mailContent = "<body style=\"background-color: #f4f4f4; max-width: 350px\"><div style=\"background-color: #f4f4f4; padding: 20px; \">"
                   + "<div style=\"background-color: white; border: 1px solid #ddd; border-radius: 5px; overflow: hidden;\">"
                   + "<div style=\"background-color: #55a9ee; color: white; padding: 10px 20px; font-size: 24px; font-weight: bold;\">"
                   + "Bus Ticket"
                   + "</div>"
                   + "<div style=\"padding: 20px;\">"
-                  + "<p style=\"font-size: 18px; font-weight: bold; margin-bottom: 10px;\">Route</p>"
-                  + "<p style=\"font-size: 14px; margin: 0;\">" 
-                  + checkOutInfoDTOReponse.getTrip().getRoute().getDeparture() 
-                  + " - " 
-                  + checkOutInfoDTOReponse.getTrip().getRoute().getArrival() 
-                  + "</p>"
-                  + "<p style=\"font-size: 18px; font-weight: bold; margin-bottom: 10px;\">Departure Detail</p>"
-                  + "<p style=\"font-size: 14px; margin: 0;\">" 
-                  + checkOutInfoDTOReponse.getTrip().getDepartureDetail() 
-                  + "</p>"
-                  + "<p style=\"font-size: 18px; font-weight: bold; margin-bottom: 10px;\">Start Time</p>"
-                  + "<p style=\"font-size: 14px; margin: 0;\">" 
-                  + checkOutInfoDTOReponse.getTrip().getStartTime() 
-                  + "</p>"
-                  + "<p style=\"font-size: 18px; font-weight: bold; margin-bottom: 10px;\">Seat Numbers</p>"
-                  + "<p style=\"font-size: 14px; margin: 0;\">" 
-                  + checkOutInfoDTOReponse.getListSeatNumber().toString() 
-                  + "</p>"
+
                   + "<p style=\"font-size: 18px; font-weight: bold; margin-bottom: 10px;\">User Details</p>"
                   + "<p style=\"font-size: 14px; margin: 0;\">"
                   + "Full Name: " + fullName + "<br>"
                   + "Email: " + email + "<br>"
                   + "Phone Number: " + phoneNumber 
                   + "</p>"
-                  + "<p style=\"font-size: 18px; font-weight: bold; margin-bottom: 10px;\">Price Total</p>"
+
+                  + "<p style=\"font-size: 18px; font-weight: bold; margin-bottom: 10px;\">Route</p>"
                   + "<p style=\"font-size: 14px; margin: 0;\">" 
+                  + checkOutInfoDTOReponse.getTrip().getRoute().getDeparture() 
+                  + " - " 
+                  + checkOutInfoDTOReponse.getTrip().getRoute().getArrival() 
+                  + "</p>"
+
+                  + "<p style=\"font-size: 18px; font-weight: bold; margin-bottom: 10px;\">Departure Detail</p>"
+                  + "<p style=\"font-size: 14px; margin: 0;\">" 
+                  + checkOutInfoDTOReponse.getTrip().getDepartureDetail() 
+                  + "</p>"
+
+                  + "<p style=\"font-size: 18px; font-weight: bold; margin-bottom: 10px;\">Start Time</p>"
+                  + "<p style=\"font-size: 14px; margin: 0;\">" 
+                  + checkOutInfoDTOReponse.getTrip().getStartTime() 
+                  + "</p>"
+
+                  + "<p style=\"font-size: 18px; font-weight: bold; margin-bottom: 10px;\">Seat Numbers</p>"
+                  + "<p style=\"font-size: 14px; margin: 0;\">" 
+                  + checkOutInfoDTOReponse.getListSeatNumber().toString() 
+                  + "</p>"
+                  
+                  + "<p style=\"font-size: 18px; font-weight: bold; margin-bottom: 10px;\">Price Total</p>"
+                  + "<p style=\"font-size: 14px; margin: 0; color: #2b6ccd; font-weight: 600;\">" 
                   + checkOutInfoDTOReponse.getPriceTotal().toString() 
                   + " VND" 
                   + "</p>"
+
                   + "</div>"
                   + "</div>"
                   + "</div></body>";

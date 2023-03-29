@@ -161,6 +161,7 @@
                         <div class="card-header content-box-title">
                             <i class="fas fa-table me-1"></i>
                             Orders History
+
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -202,8 +203,12 @@
                                                         th:text="${orderDetail.status}"></span>
 
                                                     <span style="color: #2b6ccd; font-weight: 600;"
-                                                        th:if="${!#strings.equals(orderDetail.status, 'CONFIRMED')}"
+                                                        th:if="${#strings.equals(orderDetail.status, 'PENDING')}"
                                                         th:text="${orderDetail.status}"></span>
+                                                    <span style="color: red; font-weight: 600;"
+                                                        th:if="${#strings.equals(orderDetail.status, 'CANCELLED')}"
+                                                        th:text="${orderDetail.status}"></span>
+
                                                 </td>
 
                                                 <td>
@@ -212,12 +217,18 @@
                                                         method="post" th:action="@{/booking/cancel-booking}">
                                                         <input type="hidden" name="bookingId"
                                                             th:value="${orderDetail.id}">
-                                                        <button type="submit" class="btn btn-danger">Cancel</button>
+                                                        <button id="cancelBtn" type="submit" onclick=""
+                                                            class="btn btn-danger">Cancel</button>
+
+
                                                     </form>
+
+
 
                                                     <!--  -->
                                                     <form th:if="${!#strings.equals(orderDetail.status, 'PENDING')}"
                                                         method="post" th:action="@{/booking/cancel-booking}">
+
                                                         <input type="hidden" name="bookingId"
                                                             th:value="${orderDetail.id}">
                                                         <button type="submit" class="btn btn-danger"
@@ -229,6 +240,9 @@
 
                                     </tbody>
                                 </table>
+                                <span th:if="${errorMessageCancelBK}">
+                                    123sdmasd
+                                </span>
                             </div>
 
 

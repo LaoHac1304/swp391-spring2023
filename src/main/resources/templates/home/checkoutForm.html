@@ -48,8 +48,10 @@
                                     </p>
                                 </div>
                             </div>
-
-                            <div class="row-payment" th:unless="${checkoutinfo.isSpecialDay}">
+                            
+                            <!-- <span th:text="${checkoutinfo.isSpecialDay + 'text here'}"></span> -->
+                            
+                            <div class="row-payment" th:if="${!checkoutinfo.isSpecialDay}">
                                 <label class="flex-label">
                                     <span class="span-payments">
                                         <input type="radio" id="payOnBus" name="paymentMethod" value="payonbus"
@@ -73,7 +75,7 @@
                                 <label class="flex-label">
                                     <span class="span-payments">
                                         <input type="radio" id="payOnBus" name="paymentMethod" value="payonbus"
-                                            class="custom-radio" style="height: min-content;">
+                                            class="custom-radio" style="height: min-content;" disabled>
                                     </span>
                                     <span class="span-payments" style="padding-left: 8px;">
                                         <img th:src="@{/images/bus.png}" alt="Bus logo" style="border-radius: 0%;">

@@ -102,6 +102,7 @@
                             Homepage
                         </a>
                         <a class="nav-link" th:href="@{/member/setting}">Profile</a>
+                        <a class="nav-link" th:href="@{/member/logout}">Logout</a>
                         <!-- <a class="nav-link" th:href="@{/member/bookings}">Booking management</a> -->
                     </nav>
                 </div>
@@ -548,7 +549,7 @@
                                 var link = document.getElementById("search-trips-link1");
                                 var date = new Date();
                                 var formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, "0") + "-" + date.getDate().toString().padStart(2, "0");
-                                link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP+HCM&state2=DA+LAT";
+                                link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP.HCM&state2=ĐÀ+LẠT";
                             </script>
                         </a>
 

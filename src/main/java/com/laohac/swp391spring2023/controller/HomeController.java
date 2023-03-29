@@ -145,8 +145,6 @@ public class HomeController {
             return "redirect:/member/adminDB";
         else if (userDTOResponse.getRole().equals("customer")){
 
-        // Redirect the user back to the previous page
-            //return "redirect:" + referer;
             return "redirect:/users/home";
         }
             

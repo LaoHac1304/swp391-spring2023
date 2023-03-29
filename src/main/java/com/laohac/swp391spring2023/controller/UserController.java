@@ -106,10 +106,18 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String showLogin(Model model) {
-        if (memberService.getCurrentUser() != null) {
-            return "home/index";
+    public String showLogin(Model model, HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+        SecurityContextHolder.clearContext();
+
+        session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
         }
+        // if (memberService.getCurrentUser() != null) {
+
+        //     return "home/index";
+        // }
         User user = new User();
         model.addAttribute("user", user);
         return "home/login1";

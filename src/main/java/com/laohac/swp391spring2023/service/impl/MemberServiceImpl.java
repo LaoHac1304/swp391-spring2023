@@ -29,6 +29,7 @@ import com.laohac.swp391spring2023.model.Provider;
 import com.laohac.swp391spring2023.model.dto.MemberDTOReponse;
 import com.laohac.swp391spring2023.model.dto.UserDTOResponse;
 import com.laohac.swp391spring2023.model.entities.User;
+import com.laohac.swp391spring2023.repository.CarCompanyRepository;
 import com.laohac.swp391spring2023.repository.MemberRepository;
 import com.laohac.swp391spring2023.repository.UserRepository;
 import com.laohac.swp391spring2023.service.MemberService;
@@ -48,6 +49,9 @@ public class MemberServiceImpl implements MemberService {
     private OrderDetailRepository orderDetailRepository;
     @Autowired
     private TripRepository tripRepository;
+
+    @Autowired
+    private CarCompanyRepository carCompanyRepository;
 
     
     @Override
@@ -126,9 +130,21 @@ public class MemberServiceImpl implements MemberService {
     }
     @Override
     public void deleteMemberById(int id) {
-        this.memberRepository.deleteById(id);
+        Optional<User> optional = memberRepository.findById(id);
+        if (!optional.isPresent()) return;
+        User user = optional.get();
+        // CarCompany carCompany = user.getCarCompany();
+        // carCompanyRepository.deleteById(carCompany.getId());
+        user.setCarCompany(null);
+        user.setRole(null);
+        user.setPassword(null);
+        user = memberRepository.save(user);
+        
         
     }
+
+    
+
     @Override
     public void addMember(User member) {
         member.setRole("employee");

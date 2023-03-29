@@ -10,7 +10,7 @@ public interface MemberService {
 
     public MemberDTOReponse authenticate(User memberDTORequest);
 
-    public List<User> getAllMember();
+    public List<MemberDTOReponse> getAllMember();
 
     public void addMember(User member);
 

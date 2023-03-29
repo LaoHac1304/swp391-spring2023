@@ -2,14 +2,22 @@ package com.laohac.swp391spring2023.service.impl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import com.laohac.swp391spring2023.model.dto.ProfitDTOReponse;
+import com.laohac.swp391spring2023.model.entities.Car;
+import com.laohac.swp391spring2023.model.entities.CarCompany;
 import com.laohac.swp391spring2023.model.entities.OrderDetail;
+import com.laohac.swp391spring2023.model.entities.Trip;
 import com.laohac.swp391spring2023.repository.OrderDetailRepository;
+import com.laohac.swp391spring2023.repository.TripRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -38,6 +46,8 @@ public class MemberServiceImpl implements MemberService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private OrderDetailRepository orderDetailRepository;
+    @Autowired
+    private TripRepository tripRepository;
 
     
     @Override
@@ -49,15 +59,57 @@ public class MemberServiceImpl implements MemberService {
             if (!member.getPassword().equals(memberDTORequest.getPassword())) return null;
             return MemberDTOReponse.builder()
                                     .username(member.getUsername())
-                                    .name(member.getFullName())
+                                    .fullName(member.getFullName())
                                     .build();
         }
         return null;
     }
 
-    public List<User> getAllMember() {  
+    private boolean checkEnableCarCompany(User user, Set lTrips){
 
-        return memberRepository.findAllByRole("employee");
+        if (user.getCarCompany() == null) return false;
+        CarCompany carCompany = user.getCarCompany();
+        List<Car> cars = carCompany.getCar();
+        if (cars == null) return false;
+        
+        
+        for (Car car : cars) {
+            if (lTrips.contains(car.getId()))
+                return true;       
+        }
+
+        return false;
+    }
+
+    @Override
+    public List<MemberDTOReponse> getAllMember() {  
+
+        List<User> lUsers = new ArrayList<>();
+        List<MemberDTOReponse> lDtoReponses = new ArrayList<>();
+        List<Trip> lTrips = tripRepository.findAll();
+        Set<Integer> set = new HashSet<Integer>();
+        for (Trip trip : lTrips) {
+            set.add(trip.getCar().getId());    
+        }
+        lUsers = memberRepository.findAllByRole("employee");
+        for (User user : lUsers) {
+            boolean isWork = checkEnableCarCompany(user, set);
+            MemberDTOReponse memberDTOReponse = MemberDTOReponse
+                                                    .builder()
+                                                    .email(user.getEmail())
+                                                    .username(user.getUsername())
+                                                    .password(user.getPassword())
+                                                    .fullName(user.getFullName())
+                                                    .sex(user.getSex())
+                                                    .phoneNumber(user.getPhoneNumber())
+                                                    .role(user.getRole())
+                                                    .carCompany(user.getCarCompany())
+                                                    .enableToWork(isWork)
+                                                    .build();
+            lDtoReponses.add(memberDTOReponse);
+        }
+
+        return lDtoReponses;
     }
     @Override
     public User getMemberById(int id) {

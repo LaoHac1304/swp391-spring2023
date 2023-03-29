@@ -158,7 +158,7 @@ public class UserController {
     }
 
     
-    @PreAuthorize("hasAuthority('customer')")
+    
     @GetMapping("/info")
     public String showInfo(Model model, HttpSession session) {
         Object userCurrent = session.getAttribute("userSession");
@@ -191,7 +191,8 @@ public class UserController {
         Object userCurrent = session.getAttribute("userSession");
         UserDTOResponse userDTOResponse = (UserDTOResponse) userCurrent;
         String username = userDTOResponse.getUsername();
-        userDTOResponse = userService.update(userUpdate, username);
+        String email = userDTOResponse.getEmail();
+        userDTOResponse = userService.update(userUpdate, username, email);
         session.setAttribute("userSession", userDTOResponse);
         return "redirect:/users/info";
     }

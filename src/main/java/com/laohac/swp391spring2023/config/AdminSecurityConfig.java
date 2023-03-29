@@ -46,7 +46,7 @@ public class AdminSecurityConfig {
         httpSecurity .antMatcher("/member/**").authorizeRequests().anyRequest().hasAuthority("admin")
         .and()
         .formLogin()
-            .loginPage("/homepage")
+            .loginPage("/users/login")
             .usernameParameter("username")
             .loginProcessingUrl("/users/login")
             .defaultSuccessUrl("/homepage/defaultSuccessUrl")

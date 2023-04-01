@@ -188,7 +188,7 @@ public class BookingServiceImpl implements BookingService {
                 String email = checkOutTmp.getEmail();
                 String phoneNumber = checkOutTmp.getPhoneNumber();
                 String subject = "About your trip";
-                String senderName = "4Boys Team";
+                String senderName = "BusGo";
 
                 String mailContent = "<body style=\"background-color: #f4f4f4; max-width: 350px\"><div style=\"background-color: #f4f4f4; padding: 20px; \">"
                   + "<div style=\"background-color: white; border: 1px solid #ddd; border-radius: 5px; overflow: hidden;\">"
@@ -211,7 +211,7 @@ public class BookingServiceImpl implements BookingService {
                   + checkOutInfoDTOReponse.getTrip().getRoute().getArrival() 
                   + "</p>"
 
-                  + "<p style=\"font-size: 18px; font-weight: bold; margin-bottom: 10px;\">Departure Detail</p>"
+                  + "<p style=\"font-size: 18px; font-weight: bold; margin-bottom: 10px;\">Departure Place</p>"
                   + "<p style=\"font-size: 14px; margin: 0;\">" 
                   + checkOutInfoDTOReponse.getTrip().getDepartureDetail() 
                   + "</p>"

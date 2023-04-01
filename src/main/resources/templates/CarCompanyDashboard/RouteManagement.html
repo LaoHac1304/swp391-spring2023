@@ -128,7 +128,7 @@
             background-color: #508fc7;
             color: white;
             margin-left: 4px;
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .card-content-box-title {
@@ -150,7 +150,7 @@
         }
 
         .add-trip-btn {
-            background-color: rgb(233, 185, 233);
+            background-color: rgb(210 45 210);
             padding: 12px;
             border-radius: 7px;
             border: 1px solid white;
@@ -166,20 +166,20 @@
         }
 
         .combine-icon-text {
-            margin-left: 1000px;
+            margin-left: 620px;
         }
 
         .btn-view-list-trip {
             border-radius: 4px;
             border: 1px solid transparent;
-            background-color: rgb(222, 222, 84);
+            background-color: rgb(27 195 30);
             color: white;
             padding: 6px 12px;
             font-size: 14px;
         }
 
         .btn-view-list-trip:hover {
-            background-color: rgb(209, 209, 54);
+            background-color: rgba(27, 195, 30, 0.8);
         }
 
         .card {
@@ -217,14 +217,14 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages
                     </h6>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link text-white " href="../pages/profile.html">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">person</i>
                         </div>
                         <span class="nav-link-text ms-1">Profile</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link text-white " th:href="@{/homepage/logout}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -234,6 +234,7 @@
                         <span class="nav-link-text ms-1">Sign Out</span>
                     </a>
                 </li>
+                
             </ul>
         </div>
     </aside>
@@ -250,7 +251,7 @@
                     </ol>
                     <h6 class="font-weight-bolder mb-0">Dashboard</h6>
                 </nav>
-                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                <!-- <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                         <div class="input-group input-group-outline">
                             <label class="form-label">Type here...</label>
@@ -362,7 +363,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
         </nav>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
@@ -484,8 +485,8 @@
                                         <a th:href="@{/trip/add}" class="add-trip-btn"><i class='bx bx-plus'></i>
                                             Add New Trip
                                         </a>
-                                        <a th:href="@{/route/add}" class="btn-add-route"><i class='bx bx-plus'>Add new
-                                                route</i></a>
+                                        <a th:href="@{/route/add}" class="btn-add-route"><i class='bx bx-plus'>Add New
+                                                Route</i></a>
                                     </div>
                                 </div>
                                 <div class="card-body text-white">
@@ -503,10 +504,10 @@
                                                 <td th:text="${route.departure}">Departure</td>
                                                 <td th:text="${route.arrival}">Arrival</td>
                                                 <td>
-                                                    <a th:href="@{update/{id}(id=${route.id})}"
+                                                    <!-- <a th:href="@{update/{id}(id=${route.id})}"
                                                         class="btn btn-success">Update</a>
                                                     <a th:href="@{delete/{id}(id=${route.id})}"
-                                                        class="btn btn-warning">Delete</a>
+                                                        class="btn btn-warning">Delete</a> -->
                                                     <a class="btn-view-list-trip"
                                                         th:href="@{/trip/viewall(departure=${route.departure},arrival=${route.arrival})}">VIEW
                                                         LIST TRIP</a>

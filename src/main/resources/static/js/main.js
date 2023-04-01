@@ -145,7 +145,7 @@ checkboxes.forEach(checkbox => {
 
 //Slider
 $('.slider-nav').slick({
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 3,
     infinite: true,
     // slidesToShow: 3,

@@ -50,12 +50,12 @@
                     <hr class="dropdown-divider" />
                 </li>
 
-                <li>
+                <!-- <li>
                     <a class="dropdown-item" th:href="@{/member/setting}">Profile</a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <hr class="dropdown-divider" />
-                </li>
+                </li> -->
                 <li>
                     <a class="dropdown-item" th:href="@{/member/logout}">Logout</a>
                 </li>
@@ -77,10 +77,10 @@
                     Dashboard
                 </a>
 
-                <a class="nav-link" th:href="@{/member/add}">
+                <!-- <a class="nav-link" th:href="@{/member/add}">
                     <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                     Add Employee
-                </a>
+                </a> -->
 
                 <a class="nav-link" th:href="@{/member/bookings}">
                     <div class="sb-nav-link-icon"><i class="fas fa-list-check"></i></div>
@@ -98,10 +98,10 @@
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link" th:href="@{/homepage}" target="_blank">
+                        <!-- <a class="nav-link" th:href="@{/homepage}" target="_blank">
                             Homepage
-                        </a>
-                        <a class="nav-link" th:href="@{/member/setting}">Profile</a>
+                        </a> -->
+                        <!-- <a class="nav-link" th:href="@{/member/setting}">Profile</a> -->
                         <a class="nav-link" th:href="@{/member/logout}">Logout</a>
                         <!-- <a class="nav-link" th:href="@{/member/bookings}">Booking management</a> -->
                     </nav>
@@ -537,7 +537,7 @@
                 <div class="slider slider-nav">
                     <div class="slider-container">
                         <a id="search-trips-link1"
-                            href="http://localhost:8080/users/search-trip?date=2023-02-22&amp;state1=TP+HCM&amp;state2=DA+LAT">
+                            href="http://localhost:8080/users/search-trip?date=2023-02-22&amp;state1=TP.HCM&amp;state2=ĐÀ+LẠT">
                             <div class="slider-img">
                                 <img src="/images/place/Dalat.jpg" alt="Dalat">
                             </div>
@@ -556,7 +556,7 @@
                     </div>
                     <div class="slider-container">
                         <a id="search-trips-link2"
-                            href="http://localhost:8080/users/search-trip?date=2023-02-27&amp;state1=VUNG+TAU&amp;state2=NHA+TRANG">
+                            href="http://localhost:8080/users/search-trip?date=2023-02-27&amp;state1=VŨNG+TÀU&amp;state2=NHA+TRANG">
                             <div class="slider-img">
                                 <img src="/images/place/vungtau.jpg" alt="vungtau">
                             </div>
@@ -568,14 +568,14 @@
                                 var link = document.getElementById("search-trips-link2");
                                 var date = new Date();
                                 var formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, "0") + "-" + date.getDate().toString().padStart(2, "0");
-                                link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=VUNG+TAU&state2=NHA+TRANG";
+                                link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=VŨNG+TÀU&state2=NHA+TRANG";
                             </script>
                         </a>
 
                     </div>
                     <div class="slider-container">
                         <a id="search-trips-link3"
-                            href="http://localhost:8080/users/search-trip?date=2023-02-27&amp;state1=MUI+NE&amp;state2=CAN+THO">
+                            href="http://localhost:8080/users/search-trip?date=2023-02-27&amp;state1=MŨI+NÉ&amp;state2=CẦN+THƠ">
                             <div class="slider-img">
                                 <img src="/images/place/muine.jpg" alt="muine">
                             </div>
@@ -587,14 +587,14 @@
                                 var link = document.getElementById("search-trips-link3");
                                 var date = new Date();
                                 var formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, "0") + "-" + date.getDate().toString().padStart(2, "0");
-                                link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=MUI+NE&state2=CAN+THO";
+                                link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=MŨI+NÉ&state2=CẦN+THƠ";
                             </script>
                         </a>
 
                     </div>
                     <div class="slider-container">
                         <a id="search-trips-link4"
-                            href="http://localhost:8080/users/search-trip?date=2023-02-27&amp;state1=TP+HCM&amp;state2=CA+MAU">
+                            href="http://localhost:8080/users/search-trip?date=2023-02-27&amp;state1=TP.HCM&amp;state2=CÀ+MAU">
                             <div class="slider-img">
                                 <img src="/images/place/nhatrang.jpg" alt="muine">
                             </div>
@@ -606,14 +606,14 @@
                                 var link = document.getElementById("search-trips-link4");
                                 var date = new Date();
                                 var formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, "0") + "-" + date.getDate().toString().padStart(2, "0");
-                                link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP+HCM&state2=CA+MAU";
+                                link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP.HCM&state2=CÀ+MAU";
                             </script>
                         </a>
 
                     </div>
                     <div class="slider-container">
                         <a id="search-trips-link"
-                            href="http://localhost:8080/users/search-trip?date=2023-02-27&amp;state1=TP+HCM&amp;state2=DAK+LAK">
+                            href="http://localhost:8080/users/search-trip?date=2023-02-27&amp;state1=TP.HCM&amp;state2=ĐẮK+LẮK">
                             <div class="slider-img">
                                 <img src="/images/place/cantho.jpg" alt="muine">
                             </div>
@@ -625,7 +625,7 @@
                                 var link = document.getElementById("search-trips-link");
                                 var date = new Date();
                                 var formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, "0") + "-" + date.getDate().toString().padStart(2, "0");
-                                link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP+HCM&state2=DAK+LAK";
+                                link.href = "http://localhost:8080/users/search-trip?date=" + formattedDate + "&state1=TP.HCM&state2=ĐẮK+LẮK";
                             </script>
                         </a>
 

@@ -23,7 +23,7 @@
             padding: 20px;
             width: 600px;
             margin:  auto;
-            margin-top: 100px;
+            margin-top: 5px;
             /* margin-bottom: 20px; */
         }
 
@@ -131,6 +131,7 @@
                 // document.getElementById("myDate").setAttribute("min", today);
                 // Get the current date with local time
                 var today = new Date();
+                today.setDate(today.getDate() + 1);
                 var dd = String(today.getDate()).padStart(2, '0');
                 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
                 var yyyy = today.getFullYear();

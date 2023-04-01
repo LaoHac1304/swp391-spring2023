@@ -219,12 +219,12 @@ public class TripController {
 
     @GetMapping("/delete/{id}")
     public String deleteTrip(@PathVariable(value = "id") int id) {
-        // Trip trip = tripService.getTripById(id);
-        // trip.setIsEnable(false);
-        // tripRepository.save(trip);
-        // return "redirect:/route/viewall";
-
-        this.tripService.deleteTripById(id);
+        Trip trip = tripService.getTripById(id);
+        trip.setIsEnable(false);
+        tripRepository.save(trip);
         return "redirect:/route/viewall";
+
+        // this.tripService.deleteTripById(id);
+        // return "redirect:/route/viewall";
     }
 }

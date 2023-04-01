@@ -25,17 +25,17 @@
                 <div class="container-fluid px-4 text-white">
                     <br><br>
                     <div class="row" style="margin-top: 16px;">
-                        <div class="col-xl-3 col-md-6">
+                        <!-- <div class="col-xl-3 col-md-6">
                             <div class="box mb-4">
                                 <p th:text="${total.employees} + ' Employees'"></p>
-                                <!-- Important place-->
+                                Important place
                                 <div th:attr="data-total=${total.employees}"></div>
                                 <i class="fa fa-user box-icon text-white"></i>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-xl-3 col-md-6">
                             <div class="box mb-4">
-                                <p th:text="${total.carCompanies} + ' Companies'">99<br><span>Bus company</span></p>
+                                <p th:text="${total.carCompanies} + 'Bus Companies'">99<br><span>Bus company</span></p>
                                 <i class="fa fa-building box-icon text-white"></i>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                                         <th>Email</th>
                                         <th>Phone Number</th>
                                         <th>Username</th>
-                                        <th>Is available</th>
+                                        <th>Available</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -111,7 +111,7 @@
 
                                         <td>
                                             <!-- Enable -->
-                                            <th:block th:if="${#strings.equals(member.enableToWork, 'true')}">
+                                            <th:block th:if="${!#strings.equals(member.enableToWork, 'true')}">
                                                 <a th:href="@{update/{id}(id=${member.id})}" class="btn btn-info">
                                                     <i style="color: white;" class="fa-solid fa-pen-to-square"></i>
                                                 </a>
@@ -122,7 +122,7 @@
 
 
                                             <!-- Disable -->
-                                            <th:block th:if="${!#strings.equals(member.enableToWork, 'true')}">
+                                            <th:block th:if="${#strings.equals(member.enableToWork, 'true')}">
                                                 <!-- <a th:href="@{update/{id}(id=${member.id})}" class="btn btn-info" th:disabled="true">
                                                     <i style="color: white;" class="fa-solid fa-pen-to-square"></i>
                                                 </a>
